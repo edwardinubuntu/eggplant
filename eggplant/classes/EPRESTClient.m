@@ -11,6 +11,7 @@
 @implementation EPRESTClient
 
 static EPRESTClient *gYahooSharedClient;
+static EPRESTClient *gWikiSharedClient;
 
 + (EPRESTClient *)sharedYahooClient {
   static dispatch_once_t yahooOnceToken;
@@ -20,6 +21,16 @@ static EPRESTClient *gYahooSharedClient;
   });
   
   return gYahooSharedClient;
+}
+
++ (EPRESTClient *)sharedWikiClient {
+  static dispatch_once_t yahooOnceToken;
+  dispatch_once(&yahooOnceToken, ^{
+    gWikiSharedClient = (EPRESTClient *)[EPRESTClient clientWithBaseURL:[NSURL URLWithString:kWIKI_BASE_URL]];
+    [gWikiSharedClient registerHTTPOperationClass:[AFJSONRequestOperation class]];
+  });
+  
+  return gWikiSharedClient;
 }
 
 @end

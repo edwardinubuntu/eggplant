@@ -31,6 +31,8 @@
 		1C878538162A65C2005D3672 /* NSString+Encode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C878537162A65C2005D3672 /* NSString+Encode.m */; };
 		1C87853B162A6631005D3672 /* NSDictionary+EPObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C87853A162A6631005D3672 /* NSDictionary+EPObject.m */; };
 		1CB1AD83162B713B0068EA0D /* EPYKnowledgeSearchModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB1AD82162B713B0068EA0D /* EPYKnowledgeSearchModelTests.m */; };
+		1CB1AD87162B75500068EA0D /* EPWikiSearchContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB1AD86162B75500068EA0D /* EPWikiSearchContentModel.m */; };
+		1CB1AD8A162B76190068EA0D /* EPWikiSearchContentModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB1AD89162B76190068EA0D /* EPWikiSearchContentModelTests.m */; };
 		474FCF439F934B07B7BB343D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC5336F5AC004F25805C6DBC /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +82,10 @@
 		1C87853A162A6631005D3672 /* NSDictionary+EPObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+EPObject.m"; sourceTree = "<group>"; };
 		1CB1AD81162B713B0068EA0D /* EPYKnowledgeSearchModelTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPYKnowledgeSearchModelTests.h; sourceTree = "<group>"; };
 		1CB1AD82162B713B0068EA0D /* EPYKnowledgeSearchModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPYKnowledgeSearchModelTests.m; sourceTree = "<group>"; };
+		1CB1AD85162B75500068EA0D /* EPWikiSearchContentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPWikiSearchContentModel.h; sourceTree = "<group>"; };
+		1CB1AD86162B75500068EA0D /* EPWikiSearchContentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPWikiSearchContentModel.m; sourceTree = "<group>"; };
+		1CB1AD88162B76190068EA0D /* EPWikiSearchContentModelTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPWikiSearchContentModelTests.h; sourceTree = "<group>"; };
+		1CB1AD89162B76190068EA0D /* EPWikiSearchContentModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPWikiSearchContentModelTests.m; sourceTree = "<group>"; };
 		3D2E77B0AA1D4CB683DB4B3C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		BC5336F5AC004F25805C6DBC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -215,6 +221,7 @@
 				1C878528162A63EF005D3672 /* EPRESTClient.m */,
 				1C878524162A63C0005D3672 /* EPModel.h */,
 				1C878525162A63C0005D3672 /* EPModel.m */,
+				1CB1AD84162B75270068EA0D /* Wikipedia */,
 				1C87852D162A64FC005D3672 /* Knowledge */,
 			);
 			name = "Data Models";
@@ -254,8 +261,19 @@
 			children = (
 				1CB1AD81162B713B0068EA0D /* EPYKnowledgeSearchModelTests.h */,
 				1CB1AD82162B713B0068EA0D /* EPYKnowledgeSearchModelTests.m */,
+				1CB1AD88162B76190068EA0D /* EPWikiSearchContentModelTests.h */,
+				1CB1AD89162B76190068EA0D /* EPWikiSearchContentModelTests.m */,
 			);
 			path = classes;
+			sourceTree = "<group>";
+		};
+		1CB1AD84162B75270068EA0D /* Wikipedia */ = {
+			isa = PBXGroup;
+			children = (
+				1CB1AD85162B75500068EA0D /* EPWikiSearchContentModel.h */,
+				1CB1AD86162B75500068EA0D /* EPWikiSearchContentModel.m */,
+			);
+			name = Wikipedia;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -392,6 +410,7 @@
 				1C878534162A6549005D3672 /* EPYKnowledge.m in Sources */,
 				1C878538162A65C2005D3672 /* NSString+Encode.m in Sources */,
 				1C87853B162A6631005D3672 /* NSDictionary+EPObject.m in Sources */,
+				1CB1AD87162B75500068EA0D /* EPWikiSearchContentModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,6 +419,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CB1AD83162B713B0068EA0D /* EPYKnowledgeSearchModelTests.m in Sources */,
+				1CB1AD8A162B76190068EA0D /* EPWikiSearchContentModelTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,4 +12,6 @@
 
 + (EPRESTClient *)sharedYahooClient;
 
++ (EPRESTClient *)sharedWikiClient;
+
 @end
