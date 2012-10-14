@@ -19,7 +19,6 @@
 		1C8784F7162A56EA005D3672 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8784D3162A56EA005D3672 /* Foundation.framework */; };
 		1C8784F8162A56EA005D3672 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8784D7162A56EA005D3672 /* CoreData.framework */; };
 		1C878500162A56EA005D3672 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1C8784FE162A56EA005D3672 /* InfoPlist.strings */; };
-		1C878503162A56EA005D3672 /* eggplantTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C878502162A56EA005D3672 /* eggplantTests.m */; };
 		1C878518162A5901005D3672 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C878515162A5901005D3672 /* Default-568h@2x.png */; };
 		1C878519162A5901005D3672 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C878516162A5901005D3672 /* Default.png */; };
 		1C87851A162A5901005D3672 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C878517162A5901005D3672 /* Default@2x.png */; };
@@ -31,6 +30,7 @@
 		1C878534162A6549005D3672 /* EPYKnowledge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C878533162A6549005D3672 /* EPYKnowledge.m */; };
 		1C878538162A65C2005D3672 /* NSString+Encode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C878537162A65C2005D3672 /* NSString+Encode.m */; };
 		1C87853B162A6631005D3672 /* NSDictionary+EPObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C87853A162A6631005D3672 /* NSDictionary+EPObject.m */; };
+		1CB1AD83162B713B0068EA0D /* EPYKnowledgeSearchModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB1AD82162B713B0068EA0D /* EPYKnowledgeSearchModelTests.m */; };
 		474FCF439F934B07B7BB343D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC5336F5AC004F25805C6DBC /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -59,8 +59,6 @@
 		1C8784F4162A56EA005D3672 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		1C8784FD162A56EA005D3672 /* eggplantTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "eggplantTests-Info.plist"; sourceTree = "<group>"; };
 		1C8784FF162A56EA005D3672 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		1C878501162A56EA005D3672 /* eggplantTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = eggplantTests.h; sourceTree = "<group>"; };
-		1C878502162A56EA005D3672 /* eggplantTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = eggplantTests.m; sourceTree = "<group>"; };
 		1C878515162A5901005D3672 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		1C878516162A5901005D3672 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		1C878517162A5901005D3672 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -80,6 +78,8 @@
 		1C878537162A65C2005D3672 /* NSString+Encode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Encode.m"; sourceTree = "<group>"; };
 		1C878539162A6631005D3672 /* NSDictionary+EPObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+EPObject.h"; sourceTree = "<group>"; };
 		1C87853A162A6631005D3672 /* NSDictionary+EPObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+EPObject.m"; sourceTree = "<group>"; };
+		1CB1AD81162B713B0068EA0D /* EPYKnowledgeSearchModelTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPYKnowledgeSearchModelTests.h; sourceTree = "<group>"; };
+		1CB1AD82162B713B0068EA0D /* EPYKnowledgeSearchModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPYKnowledgeSearchModelTests.m; sourceTree = "<group>"; };
 		3D2E77B0AA1D4CB683DB4B3C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		BC5336F5AC004F25805C6DBC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -169,8 +169,7 @@
 		1C8784FB162A56EA005D3672 /* eggplantTests */ = {
 			isa = PBXGroup;
 			children = (
-				1C878501162A56EA005D3672 /* eggplantTests.h */,
-				1C878502162A56EA005D3672 /* eggplantTests.m */,
+				1CB1AD80162B713B0068EA0D /* classes */,
 				1C8784FC162A56EA005D3672 /* Supporting Files */,
 			);
 			path = eggplantTests;
@@ -248,6 +247,15 @@
 				1C87853A162A6631005D3672 /* NSDictionary+EPObject.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		1CB1AD80162B713B0068EA0D /* classes */ = {
+			isa = PBXGroup;
+			children = (
+				1CB1AD81162B713B0068EA0D /* EPYKnowledgeSearchModelTests.h */,
+				1CB1AD82162B713B0068EA0D /* EPYKnowledgeSearchModelTests.m */,
+			);
+			path = classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -391,7 +399,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1C878503162A56EA005D3672 /* eggplantTests.m in Sources */,
+				1CB1AD83162B713B0068EA0D /* EPYKnowledgeSearchModelTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,6 +518,7 @@
 		1C87850A162A56EA005D3672 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/eggplant.app/eggplant";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
@@ -517,7 +526,16 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "eggplant/eggplant-Prefix.pch";
+				HEADER_SEARCH_PATHS = "${PODS_HEADERS_SEARCH_PATHS}";
 				INFOPLIST_FILE = "eggplantTests/eggplantTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-Weverything",
+					"-ObjC",
+				);
+				PODS_BUILD_HEADERS_SEARCH_PATHS = "\"${PODS_ROOT}/BuildHeaders\" \"${PODS_ROOT}/BuildHeaders/A2DynamicDelegate\" \"${PODS_ROOT}/BuildHeaders/AFIncrementalStore\" \"${PODS_ROOT}/BuildHeaders/AFNetworking\" \"${PODS_ROOT}/BuildHeaders/BlocksKit\" \"${PODS_ROOT}/BuildHeaders/DDProgressView\" \"${PODS_ROOT}/BuildHeaders/FPPopover\" \"${PODS_ROOT}/BuildHeaders/MJPopupViewController\" \"${PODS_ROOT}/BuildHeaders/Nimbus\" \"${PODS_ROOT}/BuildHeaders/SDURLCache\" \"${PODS_ROOT}/BuildHeaders/SVProgressHUD\" \"${PODS_ROOT}/BuildHeaders/libffi\"";
+				PODS_HEADERS_SEARCH_PATHS = "${PODS_PUBLIC_HEADERS_SEARCH_PATHS}";
+				PODS_PUBLIC_HEADERS_SEARCH_PATHS = "\"${PODS_ROOT}/Headers\" \"${PODS_ROOT}/Headers/A2DynamicDelegate\" \"${PODS_ROOT}/Headers/AFIncrementalStore\" \"${PODS_ROOT}/Headers/AFNetworking\" \"${PODS_ROOT}/Headers/BlocksKit\" \"${PODS_ROOT}/Headers/DDProgressView\" \"${PODS_ROOT}/Headers/FPPopover\" \"${PODS_ROOT}/Headers/MJPopupViewController\" \"${PODS_ROOT}/Headers/Nimbus\" \"${PODS_ROOT}/Headers/SDURLCache\" \"${PODS_ROOT}/Headers/SVProgressHUD\" \"${PODS_ROOT}/Headers/libffi\"";
+				PODS_ROOT = "${SRCROOT}/Pods";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
@@ -527,6 +545,7 @@
 		1C87850B162A56EA005D3672 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/eggplant.app/eggplant";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
@@ -534,7 +553,16 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "eggplant/eggplant-Prefix.pch";
+				HEADER_SEARCH_PATHS = "${PODS_HEADERS_SEARCH_PATHS}";
 				INFOPLIST_FILE = "eggplantTests/eggplantTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-Weverything",
+					"-ObjC",
+				);
+				PODS_BUILD_HEADERS_SEARCH_PATHS = "\"${PODS_ROOT}/BuildHeaders\" \"${PODS_ROOT}/BuildHeaders/A2DynamicDelegate\" \"${PODS_ROOT}/BuildHeaders/AFIncrementalStore\" \"${PODS_ROOT}/BuildHeaders/AFNetworking\" \"${PODS_ROOT}/BuildHeaders/BlocksKit\" \"${PODS_ROOT}/BuildHeaders/DDProgressView\" \"${PODS_ROOT}/BuildHeaders/FPPopover\" \"${PODS_ROOT}/BuildHeaders/MJPopupViewController\" \"${PODS_ROOT}/BuildHeaders/Nimbus\" \"${PODS_ROOT}/BuildHeaders/SDURLCache\" \"${PODS_ROOT}/BuildHeaders/SVProgressHUD\" \"${PODS_ROOT}/BuildHeaders/libffi\"";
+				PODS_HEADERS_SEARCH_PATHS = "${PODS_PUBLIC_HEADERS_SEARCH_PATHS}";
+				PODS_PUBLIC_HEADERS_SEARCH_PATHS = "\"${PODS_ROOT}/Headers\" \"${PODS_ROOT}/Headers/A2DynamicDelegate\" \"${PODS_ROOT}/Headers/AFIncrementalStore\" \"${PODS_ROOT}/Headers/AFNetworking\" \"${PODS_ROOT}/Headers/BlocksKit\" \"${PODS_ROOT}/Headers/DDProgressView\" \"${PODS_ROOT}/Headers/FPPopover\" \"${PODS_ROOT}/Headers/MJPopupViewController\" \"${PODS_ROOT}/Headers/Nimbus\" \"${PODS_ROOT}/Headers/SDURLCache\" \"${PODS_ROOT}/Headers/SVProgressHUD\" \"${PODS_ROOT}/Headers/libffi\"";
+				PODS_ROOT = "${SRCROOT}/Pods";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
