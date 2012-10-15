@@ -33,6 +33,12 @@
 		1CB1AD83162B713B0068EA0D /* EPYKnowledgeSearchModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB1AD82162B713B0068EA0D /* EPYKnowledgeSearchModelTests.m */; };
 		1CB1AD87162B75500068EA0D /* EPWikiSearchContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB1AD86162B75500068EA0D /* EPWikiSearchContentModel.m */; };
 		1CB1AD8A162B76190068EA0D /* EPWikiSearchContentModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB1AD89162B76190068EA0D /* EPWikiSearchContentModelTests.m */; };
+		1CB1AD8E162B79C20068EA0D /* EPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB1AD8D162B79C20068EA0D /* EPViewController.m */; };
+		1CB1AD92162B7A610068EA0D /* EPHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB1AD90162B7A610068EA0D /* EPHomeViewController.m */; };
+		1CB1AD93162B7A610068EA0D /* EPHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CB1AD91162B7A610068EA0D /* EPHomeViewController.xib */; };
+		1CB1AD9A162B7CF80068EA0D /* bedge_grunge.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CB1AD97162B7CF80068EA0D /* bedge_grunge.png */; };
+		1CB1AD9B162B7CF80068EA0D /* bedge_grunge_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CB1AD98162B7CF80068EA0D /* bedge_grunge_@2X.png */; };
+		1CB1AD9C162B7CF80068EA0D /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1CB1AD99162B7CF80068EA0D /* readme.txt */; };
 		474FCF439F934B07B7BB343D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC5336F5AC004F25805C6DBC /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -86,6 +92,14 @@
 		1CB1AD86162B75500068EA0D /* EPWikiSearchContentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPWikiSearchContentModel.m; sourceTree = "<group>"; };
 		1CB1AD88162B76190068EA0D /* EPWikiSearchContentModelTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPWikiSearchContentModelTests.h; sourceTree = "<group>"; };
 		1CB1AD89162B76190068EA0D /* EPWikiSearchContentModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPWikiSearchContentModelTests.m; sourceTree = "<group>"; };
+		1CB1AD8C162B79C20068EA0D /* EPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPViewController.h; sourceTree = "<group>"; };
+		1CB1AD8D162B79C20068EA0D /* EPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPViewController.m; sourceTree = "<group>"; };
+		1CB1AD8F162B7A610068EA0D /* EPHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPHomeViewController.h; sourceTree = "<group>"; };
+		1CB1AD90162B7A610068EA0D /* EPHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPHomeViewController.m; sourceTree = "<group>"; };
+		1CB1AD91162B7A610068EA0D /* EPHomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EPHomeViewController.xib; sourceTree = "<group>"; };
+		1CB1AD97162B7CF80068EA0D /* bedge_grunge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bedge_grunge.png; sourceTree = "<group>"; };
+		1CB1AD98162B7CF80068EA0D /* bedge_grunge_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bedge_grunge_@2X.png"; sourceTree = "<group>"; };
+		1CB1AD99162B7CF80068EA0D /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
 		3D2E77B0AA1D4CB683DB4B3C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		BC5336F5AC004F25805C6DBC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -193,6 +207,7 @@
 		1C878514162A5901005D3672 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				1CB1AD96162B7CF80068EA0D /* bedge_grunge */,
 				1C878515162A5901005D3672 /* Default-568h@2x.png */,
 				1C878516162A5901005D3672 /* Default.png */,
 				1C878517162A5901005D3672 /* Default@2x.png */,
@@ -207,6 +222,7 @@
 				1C87851D162A59AD005D3672 /* AppDelegate.m */,
 				1C87852A162A6452005D3672 /* EPAtlas.h */,
 				1C87852B162A6452005D3672 /* EPAtlas.m */,
+				1CB1AD8B162B792B0068EA0D /* View Controllers */,
 				1C878531162A6534005D3672 /* Data Objects */,
 				1C878523162A638D005D3672 /* Data Models */,
 				1C878535162A65B5005D3672 /* Categories */,
@@ -274,6 +290,28 @@
 				1CB1AD86162B75500068EA0D /* EPWikiSearchContentModel.m */,
 			);
 			name = Wikipedia;
+			sourceTree = "<group>";
+		};
+		1CB1AD8B162B792B0068EA0D /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1CB1AD8C162B79C20068EA0D /* EPViewController.h */,
+				1CB1AD8D162B79C20068EA0D /* EPViewController.m */,
+				1CB1AD8F162B7A610068EA0D /* EPHomeViewController.h */,
+				1CB1AD90162B7A610068EA0D /* EPHomeViewController.m */,
+				1CB1AD91162B7A610068EA0D /* EPHomeViewController.xib */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		1CB1AD96162B7CF80068EA0D /* bedge_grunge */ = {
+			isa = PBXGroup;
+			children = (
+				1CB1AD97162B7CF80068EA0D /* bedge_grunge.png */,
+				1CB1AD98162B7CF80068EA0D /* bedge_grunge_@2X.png */,
+				1CB1AD99162B7CF80068EA0D /* readme.txt */,
+			);
+			path = bedge_grunge;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -352,6 +390,10 @@
 				1C878518162A5901005D3672 /* Default-568h@2x.png in Resources */,
 				1C878519162A5901005D3672 /* Default.png in Resources */,
 				1C87851A162A5901005D3672 /* Default@2x.png in Resources */,
+				1CB1AD93162B7A610068EA0D /* EPHomeViewController.xib in Resources */,
+				1CB1AD9A162B7CF80068EA0D /* bedge_grunge.png in Resources */,
+				1CB1AD9B162B7CF80068EA0D /* bedge_grunge_@2X.png in Resources */,
+				1CB1AD9C162B7CF80068EA0D /* readme.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +453,8 @@
 				1C878538162A65C2005D3672 /* NSString+Encode.m in Sources */,
 				1C87853B162A6631005D3672 /* NSDictionary+EPObject.m in Sources */,
 				1CB1AD87162B75500068EA0D /* EPWikiSearchContentModel.m in Sources */,
+				1CB1AD8E162B79C20068EA0D /* EPViewController.m in Sources */,
+				1CB1AD92162B7A610068EA0D /* EPHomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
