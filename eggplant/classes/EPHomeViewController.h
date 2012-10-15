@@ -7,7 +7,18 @@
 //
 
 #import "EPViewController.h"
+#import "iCarousel.h"
 
-@interface EPHomeViewController : EPViewController
+@interface EPHomeViewController : EPViewController <
+  iCarouselDataSource,
+  iCarouselDelegate
+>
+
+@property (nonatomic, strong) iCarousel *headerCarousel;
+@property (nonatomic, strong) UIButton *searchButton;
+
+@property (nonatomic, strong) UIView *buttonSectionsView;
+@property (nonatomic, strong) UIButton *cameraButton;
+@property (nonatomic, strong) UIButton *writeButton;
 
 @end

@@ -34,11 +34,18 @@
 		1CB1AD87162B75500068EA0D /* EPWikiSearchContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB1AD86162B75500068EA0D /* EPWikiSearchContentModel.m */; };
 		1CB1AD8A162B76190068EA0D /* EPWikiSearchContentModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB1AD89162B76190068EA0D /* EPWikiSearchContentModelTests.m */; };
 		1CB1AD8E162B79C20068EA0D /* EPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB1AD8D162B79C20068EA0D /* EPViewController.m */; };
-		1CB1AD92162B7A610068EA0D /* EPHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB1AD90162B7A610068EA0D /* EPHomeViewController.m */; };
-		1CB1AD93162B7A610068EA0D /* EPHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CB1AD91162B7A610068EA0D /* EPHomeViewController.xib */; };
 		1CB1AD9A162B7CF80068EA0D /* bedge_grunge.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CB1AD97162B7CF80068EA0D /* bedge_grunge.png */; };
 		1CB1AD9B162B7CF80068EA0D /* bedge_grunge_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CB1AD98162B7CF80068EA0D /* bedge_grunge_@2X.png */; };
 		1CB1AD9C162B7CF80068EA0D /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1CB1AD99162B7CF80068EA0D /* readme.txt */; };
+		1CB1AE0A162C2D1B0068EA0D /* EPHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB1AE09162C2D1B0068EA0D /* EPHomeViewController.m */; };
+		1CB1AE0D162C35030068EA0D /* 06-magnify.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CB1AE0B162C35020068EA0D /* 06-magnify.png */; };
+		1CB1AE0E162C35030068EA0D /* 06-magnify@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CB1AE0C162C35020068EA0D /* 06-magnify@2x.png */; };
+		1CB1AE11162C37220068EA0D /* 187-pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CB1AE0F162C37220068EA0D /* 187-pencil.png */; };
+		1CB1AE12162C37220068EA0D /* 187-pencil@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CB1AE10162C37220068EA0D /* 187-pencil@2x.png */; };
+		1CB1AE15162C37440068EA0D /* 86-camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CB1AE13162C37440068EA0D /* 86-camera.png */; };
+		1CB1AE16162C37440068EA0D /* 86-camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CB1AE14162C37440068EA0D /* 86-camera@2x.png */; };
+		1CB1AE5B162C49160068EA0D /* 06-magnify-right.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CB1AE59162C49160068EA0D /* 06-magnify-right.png */; };
+		1CB1AE5C162C49160068EA0D /* 06-magnify-right@2x copy.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CB1AE5A162C49160068EA0D /* 06-magnify-right@2x copy.png */; };
 		474FCF439F934B07B7BB343D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC5336F5AC004F25805C6DBC /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -94,12 +101,19 @@
 		1CB1AD89162B76190068EA0D /* EPWikiSearchContentModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPWikiSearchContentModelTests.m; sourceTree = "<group>"; };
 		1CB1AD8C162B79C20068EA0D /* EPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPViewController.h; sourceTree = "<group>"; };
 		1CB1AD8D162B79C20068EA0D /* EPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPViewController.m; sourceTree = "<group>"; };
-		1CB1AD8F162B7A610068EA0D /* EPHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPHomeViewController.h; sourceTree = "<group>"; };
-		1CB1AD90162B7A610068EA0D /* EPHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPHomeViewController.m; sourceTree = "<group>"; };
-		1CB1AD91162B7A610068EA0D /* EPHomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EPHomeViewController.xib; sourceTree = "<group>"; };
 		1CB1AD97162B7CF80068EA0D /* bedge_grunge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bedge_grunge.png; sourceTree = "<group>"; };
 		1CB1AD98162B7CF80068EA0D /* bedge_grunge_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bedge_grunge_@2X.png"; sourceTree = "<group>"; };
 		1CB1AD99162B7CF80068EA0D /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
+		1CB1AE08162C2D1B0068EA0D /* EPHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPHomeViewController.h; sourceTree = "<group>"; };
+		1CB1AE09162C2D1B0068EA0D /* EPHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPHomeViewController.m; sourceTree = "<group>"; };
+		1CB1AE0B162C35020068EA0D /* 06-magnify.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "06-magnify.png"; sourceTree = "<group>"; };
+		1CB1AE0C162C35020068EA0D /* 06-magnify@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "06-magnify@2x.png"; sourceTree = "<group>"; };
+		1CB1AE0F162C37220068EA0D /* 187-pencil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "187-pencil.png"; sourceTree = "<group>"; };
+		1CB1AE10162C37220068EA0D /* 187-pencil@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "187-pencil@2x.png"; sourceTree = "<group>"; };
+		1CB1AE13162C37440068EA0D /* 86-camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "86-camera.png"; sourceTree = "<group>"; };
+		1CB1AE14162C37440068EA0D /* 86-camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "86-camera@2x.png"; sourceTree = "<group>"; };
+		1CB1AE59162C49160068EA0D /* 06-magnify-right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "06-magnify-right.png"; sourceTree = "<group>"; };
+		1CB1AE5A162C49160068EA0D /* 06-magnify-right@2x copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "06-magnify-right@2x copy.png"; sourceTree = "<group>"; };
 		3D2E77B0AA1D4CB683DB4B3C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		BC5336F5AC004F25805C6DBC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -207,6 +221,14 @@
 		1C878514162A5901005D3672 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				1CB1AE13162C37440068EA0D /* 86-camera.png */,
+				1CB1AE14162C37440068EA0D /* 86-camera@2x.png */,
+				1CB1AE0F162C37220068EA0D /* 187-pencil.png */,
+				1CB1AE10162C37220068EA0D /* 187-pencil@2x.png */,
+				1CB1AE59162C49160068EA0D /* 06-magnify-right.png */,
+				1CB1AE5A162C49160068EA0D /* 06-magnify-right@2x copy.png */,
+				1CB1AE0B162C35020068EA0D /* 06-magnify.png */,
+				1CB1AE0C162C35020068EA0D /* 06-magnify@2x.png */,
 				1CB1AD96162B7CF80068EA0D /* bedge_grunge */,
 				1C878515162A5901005D3672 /* Default-568h@2x.png */,
 				1C878516162A5901005D3672 /* Default.png */,
@@ -297,9 +319,8 @@
 			children = (
 				1CB1AD8C162B79C20068EA0D /* EPViewController.h */,
 				1CB1AD8D162B79C20068EA0D /* EPViewController.m */,
-				1CB1AD8F162B7A610068EA0D /* EPHomeViewController.h */,
-				1CB1AD90162B7A610068EA0D /* EPHomeViewController.m */,
-				1CB1AD91162B7A610068EA0D /* EPHomeViewController.xib */,
+				1CB1AE08162C2D1B0068EA0D /* EPHomeViewController.h */,
+				1CB1AE09162C2D1B0068EA0D /* EPHomeViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -360,6 +381,7 @@
 		1C8784C4162A56EA005D3672 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = EP;
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Polydice Inc.";
 			};
@@ -390,10 +412,17 @@
 				1C878518162A5901005D3672 /* Default-568h@2x.png in Resources */,
 				1C878519162A5901005D3672 /* Default.png in Resources */,
 				1C87851A162A5901005D3672 /* Default@2x.png in Resources */,
-				1CB1AD93162B7A610068EA0D /* EPHomeViewController.xib in Resources */,
 				1CB1AD9A162B7CF80068EA0D /* bedge_grunge.png in Resources */,
 				1CB1AD9B162B7CF80068EA0D /* bedge_grunge_@2X.png in Resources */,
 				1CB1AD9C162B7CF80068EA0D /* readme.txt in Resources */,
+				1CB1AE0D162C35030068EA0D /* 06-magnify.png in Resources */,
+				1CB1AE0E162C35030068EA0D /* 06-magnify@2x.png in Resources */,
+				1CB1AE11162C37220068EA0D /* 187-pencil.png in Resources */,
+				1CB1AE12162C37220068EA0D /* 187-pencil@2x.png in Resources */,
+				1CB1AE15162C37440068EA0D /* 86-camera.png in Resources */,
+				1CB1AE16162C37440068EA0D /* 86-camera@2x.png in Resources */,
+				1CB1AE5B162C49160068EA0D /* 06-magnify-right.png in Resources */,
+				1CB1AE5C162C49160068EA0D /* 06-magnify-right@2x copy.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,7 +483,7 @@
 				1C87853B162A6631005D3672 /* NSDictionary+EPObject.m in Sources */,
 				1CB1AD87162B75500068EA0D /* EPWikiSearchContentModel.m in Sources */,
 				1CB1AD8E162B79C20068EA0D /* EPViewController.m in Sources */,
-				1CB1AD92162B7A610068EA0D /* EPHomeViewController.m in Sources */,
+				1CB1AE0A162C2D1B0068EA0D /* EPHomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -564,6 +593,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -578,6 +608,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
