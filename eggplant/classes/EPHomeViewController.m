@@ -39,10 +39,11 @@
   [self.searchButton setImage:[UIImage imageNamed:@"06-magnify"] forState:UIControlStateNormal];
   [self.searchButton sizeToFit];
   self.searchButton.center = CGPointMake(spacing + self.searchButton.frame.size.width, self.view.frame.size.height - self.searchButton.frame.size.height - spacing);
+  self.searchButton.tintColor = [UIColor clearColor];
   [self.view addSubview:self.searchButton];
   
-  
   _buttonSectionsView = [[UIView alloc] init];
+  self.buttonSectionsView.backgroundColor = [UIColor grayColor];
   [self.view addSubview:self.buttonSectionsView];
   
   _cameraButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -56,66 +57,90 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  
-  __block EPHomeViewController *tempSelf = self;
-  
   // Do any additional setup after loading the view.
-  [self.searchButton addEventHandler:^(id sender) {
-    UIButton *currentButton = (UIButton *)sender;
-    currentButton.selected = !currentButton.selected;
-    
-    CGFloat adjustY = -10;
-    CGFloat spacing = 3;
-    CGFloat backViewHeight = 30;
-    // After switch
-    if (currentButton.selected) {
-      
-      tempSelf.buttonSectionsView.backgroundColor = [UIColor lightGrayColor];
-      tempSelf.buttonSectionsView.frame = CGRectMake(currentButton.frame.origin.x + currentButton.frame.size.width + adjustY, currentButton.frame.origin.y + (currentButton.frame.size.height - backViewHeight) / 2, 0, backViewHeight);
-      
-      [UIView animateWithDuration:0.3 animations:^{
-        tempSelf.buttonSectionsView.frame = CGRectMake(currentButton.frame.origin.x + currentButton.frame.size.width + adjustY,  currentButton.frame.origin.y + (currentButton.frame.size.height - backViewHeight) / 2, 130, backViewHeight);
-        [tempSelf.cameraButton sizeToFit];
-        [tempSelf.writeButton sizeToFit];
-        // Righter
-        CGFloat centX = spacing + tempSelf.cameraButton.frame.size.width + 25;
-        tempSelf.cameraButton.center = CGPointMake(centX, tempSelf.buttonSectionsView.frame.size.height / 2);
-        tempSelf.writeButton.center = CGPointMake(centX + 20 + tempSelf.writeButton.frame.size.width, tempSelf.buttonSectionsView.frame.size.height / 2);
-        
-        [tempSelf.searchButton setImage:[UIImage imageNamed:@"06-magnify-right"] forState:UIControlStateNormal];
-        
-      } completion:^(BOOL finished) {
-        tempSelf.buttonSectionsView.backgroundColor = [UIColor lightGrayColor];
-
-        [UIView animateWithDuration:0.3 animations:^{
-          // Lefter
-          CGFloat centX = spacing + tempSelf.cameraButton.frame.size.width;
-          tempSelf.cameraButton.center = CGPointMake(centX, tempSelf.buttonSectionsView.frame.size.height / 2);
-          tempSelf.writeButton.center = CGPointMake(centX + 20 + tempSelf.writeButton.frame.size.width, tempSelf.buttonSectionsView.frame.size.height / 2);
-          
-        }];
-      }];
-      
-    } else {
-      
-      tempSelf.cameraButton.frame = CGRectZero;
-      tempSelf.writeButton.frame = CGRectZero;
-      [UIView animateWithDuration:0.3 animations:^{
-        tempSelf.buttonSectionsView.frame = CGRectMake(currentButton.frame.origin.x + currentButton.frame.size.width + adjustY,  currentButton.frame.origin.y + (currentButton.frame.size.height - backViewHeight) / 2, 0, backViewHeight);
-        [tempSelf.searchButton setImage:[UIImage imageNamed:@"06-magnify"] forState:UIControlStateNormal];
-      } completion:^(BOOL finished) {
-        tempSelf.buttonSectionsView.backgroundColor = [UIColor lightGrayColor];
-        
-      }];
-    }
-  } forControlEvents:UIControlEventTouchUpInside];
-  
+  [self searchBarPressHandleAnimations];
   [self.view bringSubviewToFront:self.searchButton];
 }
 
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - private
+
+- (void)searchBarPressHandleAnimations {
+
+  __block EPHomeViewController *tempSelf = self;
+  [self.searchButton addEventHandler:^(id sender) {
+    UIButton *currentButton = (UIButton *)sender;
+    currentButton.selected = !currentButton.selected;
+    
+    CGFloat adjustX = 0;
+    CGFloat spacing = 80;
+    CGFloat backViewHeight = 30;
+    CGFloat smallMoving = 25;
+    
+    // After switch
+    if (currentButton.selected) {
+      
+      tempSelf.buttonSectionsView.frame = CGRectMake(currentButton.frame.origin.x + currentButton.frame.size.width + adjustX, currentButton.frame.origin.y + (currentButton.frame.size.height - backViewHeight) / 2, 0, backViewHeight);
+      
+      [UIView animateWithDuration:0.3 animations:^{
+        tempSelf.buttonSectionsView.frame = CGRectMake(currentButton.frame.origin.x + currentButton.frame.size.width + adjustX,  currentButton.frame.origin.y + (currentButton.frame.size.height - backViewHeight) / 2, tempSelf.view.frame.size.width, backViewHeight);
+        [tempSelf.cameraButton sizeToFit];
+        [tempSelf.writeButton sizeToFit];
+        
+        CGFloat currentButtonRight = spacing;
+        currentButtonRight += smallMoving;
+        // Righter
+        tempSelf.cameraButton.center = CGPointMake(currentButtonRight, tempSelf.buttonSectionsView.frame.size.height / 2);
+        tempSelf.writeButton.center = CGPointMake(currentButtonRight + spacing + tempSelf.cameraButton.frame.size.width / 2, tempSelf.buttonSectionsView.frame.size.height / 2);
+        
+        [tempSelf.searchButton setImage:[UIImage imageNamed:@"06-magnify-right"] forState:UIControlStateNormal];
+        
+      } completion:^(BOOL finished) {
+        
+        [UIView animateWithDuration:0.3 animations:^{
+          // Lefter
+          CGFloat currentButtonRight = spacing;
+          tempSelf.cameraButton.center = CGPointMake(currentButtonRight, tempSelf.buttonSectionsView.frame.size.height / 2);
+          tempSelf.writeButton.center = CGPointMake(currentButtonRight + spacing + tempSelf.cameraButton.frame.size.width / 2, tempSelf.buttonSectionsView.frame.size.height / 2);
+          
+        }];
+      }];
+      
+    } else {
+      
+      
+      [UIView animateWithDuration:0.3 animations:^{
+        
+        CGFloat currentButtonRight = spacing;
+        currentButtonRight += smallMoving;
+        // Righter
+        tempSelf.cameraButton.center = CGPointMake(currentButtonRight, tempSelf.buttonSectionsView.frame.size.height / 2);
+        tempSelf.writeButton.center = CGPointMake(currentButtonRight + spacing + tempSelf.cameraButton.frame.size.width / 2, tempSelf.buttonSectionsView.frame.size.height / 2);
+        
+        tempSelf.buttonSectionsView.frame = CGRectMake(currentButton.frame.origin.x + currentButton.frame.size.width + adjustX,  currentButton.frame.origin.y + (currentButton.frame.size.height - backViewHeight) / 2, 0, backViewHeight);
+        
+      } completion:^(BOOL finished) {
+        
+        [UIView animateWithDuration:0.3 animations:^{
+          // Lefter
+          CGFloat currentButtonRight = 0;
+          tempSelf.cameraButton.center = CGPointMake(currentButtonRight, tempSelf.buttonSectionsView.frame.size.height / 2);
+          tempSelf.writeButton.center = CGPointMake(currentButtonRight, tempSelf.buttonSectionsView.frame.size.height / 2);
+          
+          [tempSelf.searchButton setImage:[UIImage imageNamed:@"06-magnify"] forState:UIControlStateNormal];
+          
+        } completion:^(BOOL finished) {
+          tempSelf.cameraButton.frame = CGRectZero;
+          tempSelf.writeButton.frame = CGRectZero;
+        }];
+        
+      }];
+    }
+  } forControlEvents:UIControlEventTouchUpInside];
 }
 
 #pragma mark - iCarouselDelegate
