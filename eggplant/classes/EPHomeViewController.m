@@ -34,6 +34,12 @@
   self.headerCarousel.backgroundColor = [UIColor grayColor];
   [self.view addSubview:self.headerCarousel];
   
+  _contentCarousel = [[iCarousel alloc] initWithFrame:CGRectMake(0, 44.f, self.view.frame.size.width, self.view.frame.size.height - 44.f)];
+  self.contentCarousel.delegate = self;
+  self.contentCarousel.dataSource = self;
+  self.contentCarousel.backgroundColor = [UIColor whiteColor];
+  [self.view addSubview:self.contentCarousel];
+  
   CGFloat spacing = 3;
   _searchButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
   [self.searchButton setImage:[UIImage imageNamed:@"06-magnify"] forState:UIControlStateNormal];
@@ -143,24 +149,62 @@
   } forControlEvents:UIControlEventTouchUpInside];
 }
 
-#pragma mark - iCarouselDelegate
+#pragma mark - iCarouselDataSource
 
 - (NSUInteger)numberOfItemsInCarousel:(iCarousel *)carousel {
-  return 5;
+  if (carousel == self.headerCarousel) {
+    return 5;
+  }
+  if (carousel == self.contentCarousel) {
+    return 5;
+  }
+  return 0;
 }
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSUInteger)index reusingView:(UIView *)view {
-  UIView *sectionHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 150, 38)];
-  UILabel *sectionHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 36)];
-  sectionHeaderLabel.textAlignment = UITextAlignmentCenter;
-  sectionHeaderLabel.text = [NSString stringWithFormat:@"Sections %i", index];
-  sectionHeaderLabel.textColor = [UIColor whiteColor];
-  sectionHeaderLabel.backgroundColor = [UIColor clearColor];
-  sectionHeaderLabel.center = sectionHeaderView.center;
-  
-  [sectionHeaderView setBackgroundColor:[UIColor blackColor]];
-  [sectionHeaderView addSubview:sectionHeaderLabel];
-  return sectionHeaderView;
+  if (carousel == self.headerCarousel) {
+    UIView *sectionHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 150, 38)];
+    UILabel *sectionHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 36)];
+    sectionHeaderLabel.textAlignment = UITextAlignmentCenter;
+    sectionHeaderLabel.text = [NSString stringWithFormat:@"Sections %i", index];
+    sectionHeaderLabel.textColor = [UIColor whiteColor];
+    sectionHeaderLabel.backgroundColor = [UIColor clearColor];
+    sectionHeaderLabel.center = sectionHeaderView.center;
+    
+    [sectionHeaderView setBackgroundColor:[UIColor blackColor]];
+    [sectionHeaderView addSubview:sectionHeaderLabel];
+    return sectionHeaderView;
+  }
+  if (carousel == self.contentCarousel) {
+    UIView *contentHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.contentCarousel.frame.size.height)];
+    
+    UILabel *sectionHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 36)];
+    sectionHeaderLabel.textAlignment = UITextAlignmentCenter;
+    sectionHeaderLabel.text = [NSString stringWithFormat:@"Content %i", index];
+    sectionHeaderLabel.textColor = [UIColor whiteColor];
+    sectionHeaderLabel.backgroundColor = [UIColor lightGrayColor];
+    sectionHeaderLabel.center = contentHeaderView.center;
+    
+    [contentHeaderView setBackgroundColor:[UIColor whiteColor]];
+    [contentHeaderView addSubview:sectionHeaderLabel];
+
+    return contentHeaderView;
+  }
+  return [[UIView alloc] initWithFrame:CGRectZero];
+}
+
+#pragma mark - iCarouselDelegate
+
+- (void)carouselDidEndScrollingAnimation:(iCarousel *)carousel{
+  if (carousel == self.headerCarousel) {
+    [self.contentCarousel scrollToItemAtIndex:carousel.currentItemIndex duration:0.5];
+  }
+}
+
+- (void)carouselCurrentItemIndexDidChange:(iCarousel *)carousel {
+  if (carousel == self.contentCarousel) {
+    [self.headerCarousel scrollToItemAtIndex:carousel.currentItemIndex duration:0.3];
+  }
 }
 
 @end

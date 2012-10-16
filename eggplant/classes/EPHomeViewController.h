@@ -15,8 +15,9 @@
 >
 
 @property (nonatomic, strong) iCarousel *headerCarousel;
-@property (nonatomic, strong) UIButton *searchButton;
+@property (nonatomic, strong) iCarousel *contentCarousel;
 
+@property (nonatomic, strong) UIButton *searchButton;
 @property (nonatomic, strong) UIView *buttonSectionsView;
 @property (nonatomic, strong) UIButton *cameraButton;
 @property (nonatomic, strong) UIButton *writeButton;
