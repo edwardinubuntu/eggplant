@@ -43,7 +43,7 @@
   [self.view addSubview:self.searchButton];
   
   _buttonSectionsView = [[UIView alloc] init];
-  self.buttonSectionsView.backgroundColor = [UIColor grayColor];
+  self.buttonSectionsView.backgroundColor = [UIColor clearColor];
   [self.view addSubview:self.buttonSectionsView];
   
   _cameraButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
