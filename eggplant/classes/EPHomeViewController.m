@@ -38,7 +38,7 @@ CGFloat smallMoving = 25;
   _headerCarousel = [[iCarousel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44.f)];
   self.headerCarousel.delegate = self;
   self.headerCarousel.dataSource = self;
-  self.headerCarousel.backgroundColor = [UIColor grayColor];
+  self.headerCarousel.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"navy_blue"]];
   [self.view addSubview:self.headerCarousel];
   
   _contentCarousel = [[iCarousel alloc] initWithFrame:CGRectMake(0, 44.f, self.view.frame.size.width, self.view.frame.size.height - 44.f)];
@@ -81,12 +81,21 @@ CGFloat smallMoving = 25;
   [self.view bringSubviewToFront:self.searchButton];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+  [self loadData];
+}
+
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - private
+
+- (void)loadData {
+  [self.headerCarousel scrollToItemAtIndex:2 animated:YES];
+}
 
 - (void)foldSearchButtonsWithCurrentButton:(UIButton *)currentButton {
   [UIView animateWithDuration:0.3 animations:^{
@@ -184,22 +193,22 @@ CGFloat smallMoving = 25;
     sectionHeaderLabel.backgroundColor = [UIColor clearColor];
     sectionHeaderLabel.center = sectionHeaderView.center;
     
-    [sectionHeaderView setBackgroundColor:[UIColor blackColor]];
+    [sectionHeaderView setBackgroundColor:[UIColor clearColor]];
     [sectionHeaderView addSubview:sectionHeaderLabel];
     return sectionHeaderView;
   }
   if (carousel == self.contentCarousel) {
     UIView *contentHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.contentCarousel.frame.size.height)];
     
-    UILabel *sectionHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 36)];
-    sectionHeaderLabel.textAlignment = UITextAlignmentCenter;
-    sectionHeaderLabel.text = [NSString stringWithFormat:@"Content %i", index];
-    sectionHeaderLabel.textColor = [UIColor whiteColor];
-    sectionHeaderLabel.backgroundColor = [UIColor lightGrayColor];
-    sectionHeaderLabel.center = contentHeaderView.center;
+    UILabel *contentHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 36)];
+    contentHeaderLabel.textAlignment = UITextAlignmentCenter;
+    contentHeaderLabel.text = [NSString stringWithFormat:@"Content %i", index];
+    contentHeaderLabel.textColor = [UIColor whiteColor];
+    contentHeaderLabel.backgroundColor = [UIColor lightGrayColor];
+    contentHeaderLabel.center = contentHeaderView.center;
     
     [contentHeaderView setBackgroundColor:[UIColor whiteColor]];
-    [contentHeaderView addSubview:sectionHeaderLabel];
+    [contentHeaderView addSubview:contentHeaderLabel];
     
     return contentHeaderView;
   }

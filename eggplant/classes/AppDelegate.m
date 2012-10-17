@@ -32,6 +32,7 @@
   EPHomeViewController *rootViewController = [[EPHomeViewController alloc] init];
   UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
   [navigationController setNavigationBarHidden:YES animated:YES];
+  navigationController.navigationBar.tintColor = [UIColor blackColor];
   
   self.window.rootViewController = navigationController;
   

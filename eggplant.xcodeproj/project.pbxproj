@@ -50,6 +50,9 @@
 		1CC40AC6162F01B500DB04F0 /* EPWikiQueryLangLinksModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC40AC5162F01B500DB04F0 /* EPWikiQueryLangLinksModelTests.m */; };
 		1CC40AC9162F056500DB04F0 /* EPWikiTerm.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC40AC8162F056500DB04F0 /* EPWikiTerm.m */; };
 		1CC40ACC162F058400DB04F0 /* EPWikiLangLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC40ACB162F058400DB04F0 /* EPWikiLangLink.m */; };
+		1CC40ADA162F1A0A00DB04F0 /* navy_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CC40AD7162F1A0A00DB04F0 /* navy_blue.png */; };
+		1CC40ADB162F1A0A00DB04F0 /* navy_blue_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CC40AD8162F1A0A00DB04F0 /* navy_blue_@2X.png */; };
+		1CC40ADC162F1A0A00DB04F0 /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1CC40AD9162F1A0A00DB04F0 /* readme.txt */; };
 		474FCF439F934B07B7BB343D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC5336F5AC004F25805C6DBC /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -126,6 +129,9 @@
 		1CC40AC8162F056500DB04F0 /* EPWikiTerm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPWikiTerm.m; sourceTree = "<group>"; };
 		1CC40ACA162F058400DB04F0 /* EPWikiLangLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPWikiLangLink.h; sourceTree = "<group>"; };
 		1CC40ACB162F058400DB04F0 /* EPWikiLangLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPWikiLangLink.m; sourceTree = "<group>"; };
+		1CC40AD7162F1A0A00DB04F0 /* navy_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navy_blue.png; sourceTree = "<group>"; };
+		1CC40AD8162F1A0A00DB04F0 /* navy_blue_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navy_blue_@2X.png"; sourceTree = "<group>"; };
+		1CC40AD9162F1A0A00DB04F0 /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
 		3D2E77B0AA1D4CB683DB4B3C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		BC5336F5AC004F25805C6DBC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -241,6 +247,7 @@
 				1CB1AE65162D026B0068EA0D /* 06-magnify-right@2x.png */,
 				1CB1AE0B162C35020068EA0D /* 06-magnify.png */,
 				1CB1AE0C162C35020068EA0D /* 06-magnify@2x.png */,
+				1CC40AD6162F1A0A00DB04F0 /* navy_blue */,
 				1CB1AD96162B7CF80068EA0D /* bedge_grunge */,
 				1C878515162A5901005D3672 /* Default-568h@2x.png */,
 				1C878516162A5901005D3672 /* Default.png */,
@@ -371,6 +378,16 @@
 			name = Wiki;
 			sourceTree = "<group>";
 		};
+		1CC40AD6162F1A0A00DB04F0 /* navy_blue */ = {
+			isa = PBXGroup;
+			children = (
+				1CC40AD7162F1A0A00DB04F0 /* navy_blue.png */,
+				1CC40AD8162F1A0A00DB04F0 /* navy_blue_@2X.png */,
+				1CC40AD9162F1A0A00DB04F0 /* readme.txt */,
+			);
+			path = navy_blue;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -459,6 +476,9 @@
 				1CB1AE16162C37440068EA0D /* 86-camera@2x.png in Resources */,
 				1CB1AE5B162C49160068EA0D /* 06-magnify-right.png in Resources */,
 				1CB1AE66162D026B0068EA0D /* 06-magnify-right@2x.png in Resources */,
+				1CC40ADA162F1A0A00DB04F0 /* navy_blue.png in Resources */,
+				1CC40ADB162F1A0A00DB04F0 /* navy_blue_@2X.png in Resources */,
+				1CC40ADC162F1A0A00DB04F0 /* readme.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
