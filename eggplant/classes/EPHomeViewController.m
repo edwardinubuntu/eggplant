@@ -9,6 +9,8 @@
 #import "EPHomeViewController.h"
 #import "UIControl+BlocksKit.h"
 #import "EPTermsStorageManager.h"
+#import "EPDataSourceObject.h"
+#import "EPScrollPageView.h"
 
 @interface EPHomeViewController ()
 
@@ -48,12 +50,6 @@ CGFloat smallMoving = 25;
   self.headerCarousel.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"navy_blue"]];
   [self.view addSubview:self.headerCarousel];
   
-  _contentCarousel = [[iCarousel alloc] initWithFrame:CGRectMake(0, 44.f, self.view.frame.size.width, self.view.frame.size.height - 44.f)];
-  self.contentCarousel.delegate = self;
-  self.contentCarousel.dataSource = self;
-  self.contentCarousel.backgroundColor = [UIColor whiteColor];
-  [self.view addSubview:self.contentCarousel];
-  
   CGFloat spacing = 3;
   _searchButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
   [self.searchButton setImage:[UIImage imageNamed:@"06-magnify"] forState:UIControlStateNormal];
@@ -79,6 +75,11 @@ CGFloat smallMoving = 25;
     [tempSelf foldSearchButtonsWithCurrentButton:tempSelf.searchButton];
   } forControlEvents:UIControlEventTouchUpInside];
   [self.buttonSectionsView addSubview:self.writeButton];
+  
+  _pagingScrollView = [[NIPagingScrollView alloc] initWithFrame:CGRectMake(0, self.headerCarousel.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.headerCarousel.frame.size.height)];
+  self.pagingScrollView.delegate = self;
+  self.pagingScrollView.dataSource = self;
+  [self.view addSubview:self.pagingScrollView];
 }
 
 - (void)viewDidLoad {
@@ -115,13 +116,13 @@ CGFloat smallMoving = 25;
   self.termsFromUserSaved = [[NSMutableArray alloc] initWithArray:termUserSavedKeys];
   
   [self.headerCarousel reloadData];
-  [self.contentCarousel reloadData];
+  [self.pagingScrollView reloadData];
   
   if (self.termsFromDefault.count > 0) {
     // Scroll to First Data
     [self.headerCarousel scrollToItemAtIndex:(kCountAbout + kCountHome + 0) animated:YES];
   }
-
+  
 }
 
 - (void)foldSearchButtonsWithCurrentButton:(UIButton *)currentButton {
@@ -204,9 +205,6 @@ CGFloat smallMoving = 25;
   if (carousel == self.headerCarousel) {
     return kCountAbout + kCountHome + self.termsFromDefault.count + self.termsFromUserSaved.count;
   }
-  if (carousel == self.contentCarousel) {
-    return kCountAbout + kCountHome + self.termsFromDefault.count + self.termsFromUserSaved.count;
-  }
   return 0;
 }
 
@@ -242,21 +240,6 @@ CGFloat smallMoving = 25;
     [sectionHeaderView addSubview:sectionHeaderLabel];
     return sectionHeaderView;
   }
-  if (carousel == self.contentCarousel) {
-    UIView *contentHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.contentCarousel.frame.size.height)];
-    
-    UILabel *contentHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 36)];
-    contentHeaderLabel.textAlignment = UITextAlignmentCenter;
-    contentHeaderLabel.text = [NSString stringWithFormat:@"Content %i", index];
-    contentHeaderLabel.textColor = [UIColor whiteColor];
-    contentHeaderLabel.backgroundColor = [UIColor lightGrayColor];
-    contentHeaderLabel.center = contentHeaderView.center;
-    
-    [contentHeaderView setBackgroundColor:[UIColor whiteColor]];
-    [contentHeaderView addSubview:contentHeaderLabel];
-    
-    return contentHeaderView;
-  }
   return [[UIView alloc] initWithFrame:CGRectZero];
 }
 
@@ -264,13 +247,64 @@ CGFloat smallMoving = 25;
 
 - (void)carouselDidEndScrollingAnimation:(iCarousel *)carousel{
   if (carousel == self.headerCarousel) {
-    [self.contentCarousel scrollToItemAtIndex:carousel.currentItemIndex duration:0.5];
+    [self.pagingScrollView moveToPageAtIndex:carousel.currentItemIndex animated:YES];
   }
 }
 
-- (void)carouselCurrentItemIndexDidChange:(iCarousel *)carousel {
-  if (carousel == self.contentCarousel) {
-    [self.headerCarousel scrollToItemAtIndex:carousel.currentItemIndex duration:0.3];
+#pragma mark - NIPagingScrollViewDataSource
+
+- (NSInteger)numberOfPagesInPagingScrollView:(NIPagingScrollView *)pagingScrollView {
+  return kCountAbout + kCountHome + self.termsFromDefault.count + self.termsFromUserSaved.count;
+}
+
+- (UIView<NIPagingScrollViewPage> *)pagingScrollView:(NIPagingScrollView *)pagingScrollView pageViewForIndex:(NSInteger)pageIndex {
+  
+  EPScrollPageView *contentHeaderView = [[EPScrollPageView alloc] initWithFrame:CGRectMake(0, 0, pagingScrollView.frame.size.width,pagingScrollView.frame.size.height)];
+ [contentHeaderView setBackgroundColor:[UIColor lightGrayColor]];
+
+      switch (pageIndex) {
+        case kIndexAbout: {
+          UILabel *contentHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 36)];
+          contentHeaderLabel.textAlignment = UITextAlignmentCenter;
+          contentHeaderLabel.text = [NSString stringWithFormat:@"Content %i", pageIndex];
+          contentHeaderLabel.textColor = [UIColor whiteColor];
+          contentHeaderLabel.backgroundColor = [UIColor grayColor];
+          contentHeaderLabel.center = contentHeaderView.center;
+          [contentHeaderView addSubview:contentHeaderLabel];
+        }
+          break;
+        case kIndexHome: {
+          UILabel *contentHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 36)];
+          contentHeaderLabel.textAlignment = UITextAlignmentCenter;
+          contentHeaderLabel.text = [NSString stringWithFormat:@"Content %i", pageIndex];
+          contentHeaderLabel.textColor = [UIColor whiteColor];
+          contentHeaderLabel.backgroundColor = [UIColor grayColor];
+          contentHeaderLabel.center = contentHeaderView.center;
+          [contentHeaderView addSubview:contentHeaderLabel];
+        }
+          break;
+        default:
+  
+          if ((pageIndex - kCountAbout - kCountHome) < self.termsFromDefault.count) {
+//            NSString *termFromDefault = [self.termsFromDefault objectAtIndex:((pageIndex - kCountAbout - kCountHome))];
+            UITableView *dataSourceView = [[UITableView alloc] initWithFrame:contentHeaderView.frame];
+            EPDataSourceObject *dataSourceObject = [[EPDataSourceObject alloc] init];
+            dataSourceView.dataSource = dataSourceObject;
+            dataSourceView.delegate = dataSourceObject;
+//            [contentHeaderView addSubview:dataSourceView];
+        } else {
+          }
+          break;
+      }
+  
+      return contentHeaderView;
+}
+
+#pragma mark - NIPagingScrollViewDelegate
+
+- (void)pagingScrollViewDidChangePages:(NIPagingScrollView *)pagingScrollView {
+  if (pagingScrollView == self.pagingScrollView) {
+      [self.headerCarousel scrollToItemAtIndex:self.pagingScrollView.centerPageIndex duration:0.5];
   }
 }
 

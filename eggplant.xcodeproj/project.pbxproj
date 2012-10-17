@@ -56,6 +56,9 @@
 		1CC40AE0162F570500DB04F0 /* EPTermsStorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC40ADF162F570400DB04F0 /* EPTermsStorageManager.m */; };
 		1CC40AE2162F57BF00DB04F0 /* termsDefaultStorage.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1CC40AE1162F57BF00DB04F0 /* termsDefaultStorage.plist */; };
 		1CC40AE5162F5F4300DB04F0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1CC40AE7162F5F4300DB04F0 /* Localizable.strings */; };
+		1CC40AED162F639800DB04F0 /* EPDataSourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC40AEC162F639800DB04F0 /* EPDataSourceViewController.m */; };
+		1CC40AF0162F676500DB04F0 /* EPDataSourceObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC40AEF162F676400DB04F0 /* EPDataSourceObject.m */; };
+		1CC40AF8162F711600DB04F0 /* EPScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC40AF7162F711600DB04F0 /* EPScrollPageView.m */; };
 		474FCF439F934B07B7BB343D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC5336F5AC004F25805C6DBC /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -142,6 +145,12 @@
 		1CC40AE8162F5F6100DB04F0 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		1CC40AE9162F5F6100DB04F0 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		1CC40AEA162F5F6100DB04F0 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		1CC40AEB162F639800DB04F0 /* EPDataSourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPDataSourceViewController.h; sourceTree = "<group>"; };
+		1CC40AEC162F639800DB04F0 /* EPDataSourceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPDataSourceViewController.m; sourceTree = "<group>"; };
+		1CC40AEE162F676400DB04F0 /* EPDataSourceObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPDataSourceObject.h; sourceTree = "<group>"; };
+		1CC40AEF162F676400DB04F0 /* EPDataSourceObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPDataSourceObject.m; sourceTree = "<group>"; };
+		1CC40AF6162F711600DB04F0 /* EPScrollPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPScrollPageView.h; sourceTree = "<group>"; };
+		1CC40AF7162F711600DB04F0 /* EPScrollPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPScrollPageView.m; sourceTree = "<group>"; };
 		3D2E77B0AA1D4CB683DB4B3C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		BC5336F5AC004F25805C6DBC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -275,6 +284,7 @@
 				1C87851D162A59AD005D3672 /* AppDelegate.m */,
 				1C87852A162A6452005D3672 /* EPAtlas.h */,
 				1C87852B162A6452005D3672 /* EPAtlas.m */,
+				1CC40AF5162F70F800DB04F0 /* Views */,
 				1CB1AD8B162B792B0068EA0D /* View Controllers */,
 				1C878531162A6534005D3672 /* Data Objects */,
 				1CC40ADD162F56D300DB04F0 /* Managers */,
@@ -357,6 +367,10 @@
 				1CB1AD8D162B79C20068EA0D /* EPViewController.m */,
 				1CB1AE08162C2D1B0068EA0D /* EPHomeViewController.h */,
 				1CB1AE09162C2D1B0068EA0D /* EPHomeViewController.m */,
+				1CC40AEB162F639800DB04F0 /* EPDataSourceViewController.h */,
+				1CC40AEC162F639800DB04F0 /* EPDataSourceViewController.m */,
+				1CC40AEE162F676400DB04F0 /* EPDataSourceObject.h */,
+				1CC40AEF162F676400DB04F0 /* EPDataSourceObject.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -408,6 +422,15 @@
 				1CC40ADF162F570400DB04F0 /* EPTermsStorageManager.m */,
 			);
 			name = Managers;
+			sourceTree = "<group>";
+		};
+		1CC40AF5162F70F800DB04F0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1CC40AF6162F711600DB04F0 /* EPScrollPageView.h */,
+				1CC40AF7162F711600DB04F0 /* EPScrollPageView.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -569,6 +592,9 @@
 				1CC40AC9162F056500DB04F0 /* EPWikiTerm.m in Sources */,
 				1CC40ACC162F058400DB04F0 /* EPWikiLangLink.m in Sources */,
 				1CC40AE0162F570500DB04F0 /* EPTermsStorageManager.m in Sources */,
+				1CC40AED162F639800DB04F0 /* EPDataSourceViewController.m in Sources */,
+				1CC40AF0162F676500DB04F0 /* EPDataSourceObject.m in Sources */,
+				1CC40AF8162F711600DB04F0 /* EPScrollPageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

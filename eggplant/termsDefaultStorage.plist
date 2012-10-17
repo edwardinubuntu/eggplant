@@ -2,6 +2,28 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>terms</key>
+	<dict>
+		<key>茄</key>
+		<dict>
+			<key>dataSources</key>
+			<dict>
+				<key>wiki</key>
+				<dict>
+					<key>imageURL</key>
+					<string>http://zh.wikipedia.org/wiki/File:Three_Types_of_Eggplant.jpg</string>
+					<key>url</key>
+					<string>http://zh.wikipedia.org/zh-tw/%E8%8C%84</string>
+					<key>title</key>
+					<string>茄</string>
+					<key>detail</key>
+					<string>茄（學名：Solanum melongena）常稱茄子，吳越人沿用宋代叫法稱爲落蘇，廣東人稱為矮瓜，是茄科茄屬一年生草本植物，熱帶為多年生。其結出的果實可食用，顏色多為紫色或紫黑色，也有淡綠色或白色品種，形狀上也有圓形，橢圓，梨形等各種。茄子是一種典型的蔬菜，根據品種的不同，食用方法多樣。</string>
+				</dict>
+			</dict>
+			<key>termInEN</key>
+			<string>eggplant</string>
+		</dict>
+	</dict>
 	<key>termKeys</key>
 	<array>
 		<string>茄</string>

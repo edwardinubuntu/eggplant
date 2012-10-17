@@ -8,21 +8,24 @@
 
 #import "EPViewController.h"
 #import "iCarousel.h"
+#import "NIPagingScrollView.h"
+#import "NIPagingScrollViewDataSource.h"
+#import "NIPagingScrollViewDelegate.h"
 
 @interface EPHomeViewController : EPViewController <
   iCarouselDataSource,
-  iCarouselDelegate
+  iCarouselDelegate,
+  NIPagingScrollViewDelegate,
+  NIPagingScrollViewDataSource
 >
 
 @property (nonatomic, strong) iCarousel *headerCarousel;
-@property (nonatomic, strong) iCarousel *contentCarousel;
-
 @property (nonatomic, strong) UIButton *searchButton;
 @property (nonatomic, strong) UIView *buttonSectionsView;
 @property (nonatomic, strong) UIButton *cameraButton;
 @property (nonatomic, strong) UIButton *writeButton;
-
 @property (nonatomic, strong) NSArray *termsFromDefault;
 @property (nonatomic, strong) NSMutableArray *termsFromUserSaved;
+@property (nonatomic, strong) NIPagingScrollView *pagingScrollView;
 
 @end
