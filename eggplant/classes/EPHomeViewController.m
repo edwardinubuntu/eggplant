@@ -8,6 +8,7 @@
 
 #import "EPHomeViewController.h"
 #import "UIControl+BlocksKit.h"
+#import "EPTermsStorageManager.h"
 
 @interface EPHomeViewController ()
 
@@ -19,6 +20,12 @@ CGFloat adjustX = 0;
 CGFloat spacing = 80;
 CGFloat backViewHeight = 30;
 CGFloat smallMoving = 25;
+
+#define kCountAbout 1
+#define kCountHome  1
+
+#define kIndexAbout 0
+#define kIndexHome  1
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -79,11 +86,12 @@ CGFloat smallMoving = 25;
   // Do any additional setup after loading the view.
   [self searchBarPressHandleAnimations];
   [self.view bringSubviewToFront:self.searchButton];
+  
+  [self loadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
-  [self loadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -94,7 +102,26 @@ CGFloat smallMoving = 25;
 #pragma mark - private
 
 - (void)loadData {
-  [self.headerCarousel scrollToItemAtIndex:2 animated:YES];
+  
+  // Default
+  [[EPTermsStorageManager defaultManager] load];
+  NSDictionary *termsDictData = [[EPTermsStorageManager defaultManager] termsFromDefault];
+  NSArray *termKeys = [termsDictData objectForKey:@"termKeys"];
+  self.termsFromDefault = [[NSArray alloc] initWithArray:termKeys];
+  
+  // User Saved
+  NSDictionary *termsUserSavedDictData = [[EPTermsStorageManager defaultManager] termsFromUserSaved];
+  NSArray *termUserSavedKeys = [termsUserSavedDictData objectForKey:@"termKeys"];
+  self.termsFromUserSaved = [[NSMutableArray alloc] initWithArray:termUserSavedKeys];
+  
+  [self.headerCarousel reloadData];
+  [self.contentCarousel reloadData];
+  
+  if (self.termsFromDefault.count > 0) {
+    // Scroll to First Data
+    [self.headerCarousel scrollToItemAtIndex:(kCountAbout + kCountHome + 0) animated:YES];
+  }
+
 }
 
 - (void)foldSearchButtonsWithCurrentButton:(UIButton *)currentButton {
@@ -175,22 +202,40 @@ CGFloat smallMoving = 25;
 
 - (NSUInteger)numberOfItemsInCarousel:(iCarousel *)carousel {
   if (carousel == self.headerCarousel) {
-    return 5;
+    return kCountAbout + kCountHome + self.termsFromDefault.count + self.termsFromUserSaved.count;
   }
   if (carousel == self.contentCarousel) {
-    return 5;
+    return kCountAbout + kCountHome + self.termsFromDefault.count + self.termsFromUserSaved.count;
   }
   return 0;
 }
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSUInteger)index reusingView:(UIView *)view {
   if (carousel == self.headerCarousel) {
-    UIView *sectionHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 150, 38)];
-    UILabel *sectionHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 36)];
+    UIView *sectionHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 150, 34)];
+    UILabel *sectionHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 32)];
     sectionHeaderLabel.textAlignment = UITextAlignmentCenter;
-    sectionHeaderLabel.text = [NSString stringWithFormat:@"Sections %i", index];
+    
+    switch (index) {
+      case kIndexAbout:
+        sectionHeaderLabel.text = NSLocalizedString(@"About", @"About");
+        break;
+      case kIndexHome:
+        sectionHeaderLabel.text = NSLocalizedString(@"Sections", @"Sections");
+        break;
+      default:
+        
+        if ((index - kCountAbout - kCountHome) < self.termsFromDefault.count) {
+          NSString *termFromDefault = [self.termsFromDefault objectAtIndex:((index - kCountAbout - kCountHome))];
+          sectionHeaderLabel.text = termFromDefault;
+        } else {
+          sectionHeaderLabel.text = [NSString stringWithFormat:@"Sections %i", index];
+        }
+        break;
+    }
+    
     sectionHeaderLabel.textColor = [UIColor whiteColor];
-    sectionHeaderLabel.backgroundColor = [UIColor clearColor];
+    sectionHeaderLabel.backgroundColor = [UIColor grayColor];
     sectionHeaderLabel.center = sectionHeaderView.center;
     
     [sectionHeaderView setBackgroundColor:[UIColor clearColor]];

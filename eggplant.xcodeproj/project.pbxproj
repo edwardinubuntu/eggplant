@@ -53,6 +53,9 @@
 		1CC40ADA162F1A0A00DB04F0 /* navy_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CC40AD7162F1A0A00DB04F0 /* navy_blue.png */; };
 		1CC40ADB162F1A0A00DB04F0 /* navy_blue_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CC40AD8162F1A0A00DB04F0 /* navy_blue_@2X.png */; };
 		1CC40ADC162F1A0A00DB04F0 /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1CC40AD9162F1A0A00DB04F0 /* readme.txt */; };
+		1CC40AE0162F570500DB04F0 /* EPTermsStorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC40ADF162F570400DB04F0 /* EPTermsStorageManager.m */; };
+		1CC40AE2162F57BF00DB04F0 /* termsStorage.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1CC40AE1162F57BF00DB04F0 /* termsStorage.plist */; };
+		1CC40AE5162F5F4300DB04F0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1CC40AE7162F5F4300DB04F0 /* Localizable.strings */; };
 		474FCF439F934B07B7BB343D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC5336F5AC004F25805C6DBC /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -132,6 +135,13 @@
 		1CC40AD7162F1A0A00DB04F0 /* navy_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navy_blue.png; sourceTree = "<group>"; };
 		1CC40AD8162F1A0A00DB04F0 /* navy_blue_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navy_blue_@2X.png"; sourceTree = "<group>"; };
 		1CC40AD9162F1A0A00DB04F0 /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
+		1CC40ADE162F570400DB04F0 /* EPTermsStorageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPTermsStorageManager.h; sourceTree = "<group>"; };
+		1CC40ADF162F570400DB04F0 /* EPTermsStorageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPTermsStorageManager.m; sourceTree = "<group>"; };
+		1CC40AE1162F57BF00DB04F0 /* termsStorage.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = termsStorage.plist; sourceTree = "<group>"; };
+		1CC40AE6162F5F4300DB04F0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1CC40AE8162F5F6100DB04F0 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		1CC40AE9162F5F6100DB04F0 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		1CC40AEA162F5F6100DB04F0 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		3D2E77B0AA1D4CB683DB4B3C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		BC5336F5AC004F25805C6DBC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -214,6 +224,8 @@
 				1C8784DC162A56EA005D3672 /* InfoPlist.strings */,
 				1C8784DF162A56EA005D3672 /* main.m */,
 				1C8784E1162A56EA005D3672 /* eggplant-Prefix.pch */,
+				1CC40AE1162F57BF00DB04F0 /* termsStorage.plist */,
+				1CC40AE7162F5F4300DB04F0 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -265,6 +277,7 @@
 				1C87852B162A6452005D3672 /* EPAtlas.m */,
 				1CB1AD8B162B792B0068EA0D /* View Controllers */,
 				1C878531162A6534005D3672 /* Data Objects */,
+				1CC40ADD162F56D300DB04F0 /* Managers */,
 				1C878523162A638D005D3672 /* Data Models */,
 				1C878535162A65B5005D3672 /* Categories */,
 			);
@@ -388,6 +401,15 @@
 			path = navy_blue;
 			sourceTree = "<group>";
 		};
+		1CC40ADD162F56D300DB04F0 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				1CC40ADE162F570400DB04F0 /* EPTermsStorageManager.h */,
+				1CC40ADF162F570400DB04F0 /* EPTermsStorageManager.m */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -444,6 +466,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"zh-Hant",
 			);
 			mainGroup = 1C8784C2162A56EA005D3672;
 			productRefGroup = 1C8784CE162A56EA005D3672 /* Products */;
@@ -479,6 +502,8 @@
 				1CC40ADA162F1A0A00DB04F0 /* navy_blue.png in Resources */,
 				1CC40ADB162F1A0A00DB04F0 /* navy_blue_@2X.png in Resources */,
 				1CC40ADC162F1A0A00DB04F0 /* readme.txt in Resources */,
+				1CC40AE2162F57BF00DB04F0 /* termsStorage.plist in Resources */,
+				1CC40AE5162F5F4300DB04F0 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -543,6 +568,7 @@
 				1CC40AC2162F00FE00DB04F0 /* EPWikiQueryLangLinksModel.m in Sources */,
 				1CC40AC9162F056500DB04F0 /* EPWikiTerm.m in Sources */,
 				1CC40ACC162F058400DB04F0 /* EPWikiLangLink.m in Sources */,
+				1CC40AE0162F570500DB04F0 /* EPTermsStorageManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,6 +597,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				1C8784DD162A56EA005D3672 /* en */,
+				1CC40AE8162F5F6100DB04F0 /* zh-Hant */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -579,8 +606,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				1C8784FF162A56EA005D3672 /* en */,
+				1CC40AEA162F5F6100DB04F0 /* zh-Hant */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		1CC40AE7162F5F4300DB04F0 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1CC40AE6162F5F4300DB04F0 /* en */,
+				1CC40AE9162F5F6100DB04F0 /* zh-Hant */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

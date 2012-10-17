@@ -22,4 +22,7 @@
 @property (nonatomic, strong) UIButton *cameraButton;
 @property (nonatomic, strong) UIButton *writeButton;
 
+@property (nonatomic, strong) NSArray *termsFromDefault;
+@property (nonatomic, strong) NSMutableArray *termsFromUserSaved;
+
 @end
