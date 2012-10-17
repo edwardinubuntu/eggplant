@@ -10,4 +10,14 @@
 
 @implementation EPYKnowledge
 
+- (NSString *)description {
+  NSMutableString *description = [NSMutableString string];
+  [description appendFormat:@"category: %@,", self.category];
+  [description appendFormat:@"content: %@,", self.content];
+  [description appendFormat:@"status: %@,", self.status];
+  [description appendFormat:@"subject: %@,", self.subject];
+  [description appendFormat:@"URL: %@", self.url.absoluteString];
+  return description;
+}
+
 @end

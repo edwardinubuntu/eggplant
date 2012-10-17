@@ -23,14 +23,8 @@
   [path appendFormat:@"v1/SEARCH?appid=%@", kYAHOO_APP_ID];
   [path appendFormat:@"&p=%@", [self.keywords encodeString:NSUTF8StringEncoding]];
   [path appendString:@"&intl=tw&format=json"];
-  
-  if (!more) {
-    self.offset = 0;
-    [self.knowledges removeAllObjects];
-  } else {
-    self.offset = [self.knowledges count];
-  }
-  self.page = self.offset / self.limit + 1;
+
+  NIDPRINT(@"Query with %@", path);
   
   __block EPYKnowledgeSearchModel *tempSelf = self;
   if (!self.isLoading) {

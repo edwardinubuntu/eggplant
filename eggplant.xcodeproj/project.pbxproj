@@ -313,12 +313,8 @@
 		1CB1AD80162B713B0068EA0D /* classes */ = {
 			isa = PBXGroup;
 			children = (
-				1CB1AD81162B713B0068EA0D /* EPYKnowledgeSearchModelTests.h */,
-				1CB1AD82162B713B0068EA0D /* EPYKnowledgeSearchModelTests.m */,
-				1CB1AD88162B76190068EA0D /* EPWikiSearchContentModelTests.h */,
-				1CB1AD89162B76190068EA0D /* EPWikiSearchContentModelTests.m */,
-				1CC40AC4162F01B500DB04F0 /* EPWikiQueryLangLinksModelTests.h */,
-				1CC40AC5162F01B500DB04F0 /* EPWikiQueryLangLinksModelTests.m */,
+				1CC40ACE162F0B1700DB04F0 /* Wiki */,
+				1CC40ACD162F0B0900DB04F0 /* YKnowledge */,
 			);
 			path = classes;
 			sourceTree = "<group>";
@@ -353,6 +349,26 @@
 				1CB1AD99162B7CF80068EA0D /* readme.txt */,
 			);
 			path = bedge_grunge;
+			sourceTree = "<group>";
+		};
+		1CC40ACD162F0B0900DB04F0 /* YKnowledge */ = {
+			isa = PBXGroup;
+			children = (
+				1CB1AD81162B713B0068EA0D /* EPYKnowledgeSearchModelTests.h */,
+				1CB1AD82162B713B0068EA0D /* EPYKnowledgeSearchModelTests.m */,
+			);
+			name = YKnowledge;
+			sourceTree = "<group>";
+		};
+		1CC40ACE162F0B1700DB04F0 /* Wiki */ = {
+			isa = PBXGroup;
+			children = (
+				1CB1AD88162B76190068EA0D /* EPWikiSearchContentModelTests.h */,
+				1CB1AD89162B76190068EA0D /* EPWikiSearchContentModelTests.m */,
+				1CC40AC4162F01B500DB04F0 /* EPWikiQueryLangLinksModelTests.h */,
+				1CC40AC5162F01B500DB04F0 /* EPWikiQueryLangLinksModelTests.m */,
+			);
+			name = Wiki;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

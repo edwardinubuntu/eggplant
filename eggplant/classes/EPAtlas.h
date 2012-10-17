@@ -18,3 +18,9 @@
 #define kYAHOO_BASE_URL @"http://tw.knowledge.yahooapis.com/"
 
 #define kWIKI_BASE_URL  @"wikipedia.org"
+
+#pragma mark - Category
+
+#define kCategoryPlant  @"植物學"
+#define kCategoryCook  @"料理食譜"
+#define kCategoryIngredient @"食材"
