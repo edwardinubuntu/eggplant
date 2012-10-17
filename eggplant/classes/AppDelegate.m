@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "EPHomeViewController.h"
+#import "SDURLCache.h"
 
 @implementation AppDelegate
 
@@ -19,6 +20,14 @@
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   // Override point for customization after application launch.
   self.window.backgroundColor = [UIColor whiteColor];
+  
+  dispatch_async(dispatch_get_main_queue(), ^{
+    // Setup URL cache
+    SDURLCache *urlCache = [[SDURLCache alloc] initWithMemoryCapacity:1024 * 1024 * 5  // 5MB mem cache
+                                                         diskCapacity:1024 * 1024 * 100 // 100MB disk cache
+                                                             diskPath:[SDURLCache defaultCachePath]];
+    [NSURLCache setSharedURLCache:urlCache];
+  });
   
   EPHomeViewController *rootViewController = [[EPHomeViewController alloc] init];
   UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
