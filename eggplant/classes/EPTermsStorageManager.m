@@ -32,7 +32,7 @@ static EPTermsStorageManager *gDefaultManager;
 - (void)load {
   
   // Append Default Data
-  NSDictionary *defaultTermsDictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"termsStorage" ofType:@"plist"]];
+  NSDictionary *defaultTermsDictionary = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"termsDefaultStorage" ofType:@"plist"]];
   [self.termsFromDefault addEntriesFromDictionary:defaultTermsDictionary];
   
   NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);

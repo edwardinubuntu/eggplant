@@ -54,7 +54,7 @@
 		1CC40ADB162F1A0A00DB04F0 /* navy_blue_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CC40AD8162F1A0A00DB04F0 /* navy_blue_@2X.png */; };
 		1CC40ADC162F1A0A00DB04F0 /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1CC40AD9162F1A0A00DB04F0 /* readme.txt */; };
 		1CC40AE0162F570500DB04F0 /* EPTermsStorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC40ADF162F570400DB04F0 /* EPTermsStorageManager.m */; };
-		1CC40AE2162F57BF00DB04F0 /* termsStorage.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1CC40AE1162F57BF00DB04F0 /* termsStorage.plist */; };
+		1CC40AE2162F57BF00DB04F0 /* termsDefaultStorage.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1CC40AE1162F57BF00DB04F0 /* termsDefaultStorage.plist */; };
 		1CC40AE5162F5F4300DB04F0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1CC40AE7162F5F4300DB04F0 /* Localizable.strings */; };
 		474FCF439F934B07B7BB343D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC5336F5AC004F25805C6DBC /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -137,7 +137,7 @@
 		1CC40AD9162F1A0A00DB04F0 /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
 		1CC40ADE162F570400DB04F0 /* EPTermsStorageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPTermsStorageManager.h; sourceTree = "<group>"; };
 		1CC40ADF162F570400DB04F0 /* EPTermsStorageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPTermsStorageManager.m; sourceTree = "<group>"; };
-		1CC40AE1162F57BF00DB04F0 /* termsStorage.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = termsStorage.plist; sourceTree = "<group>"; };
+		1CC40AE1162F57BF00DB04F0 /* termsDefaultStorage.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = termsDefaultStorage.plist; sourceTree = "<group>"; };
 		1CC40AE6162F5F4300DB04F0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1CC40AE8162F5F6100DB04F0 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		1CC40AE9162F5F6100DB04F0 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -224,7 +224,7 @@
 				1C8784DC162A56EA005D3672 /* InfoPlist.strings */,
 				1C8784DF162A56EA005D3672 /* main.m */,
 				1C8784E1162A56EA005D3672 /* eggplant-Prefix.pch */,
-				1CC40AE1162F57BF00DB04F0 /* termsStorage.plist */,
+				1CC40AE1162F57BF00DB04F0 /* termsDefaultStorage.plist */,
 				1CC40AE7162F5F4300DB04F0 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
@@ -502,7 +502,7 @@
 				1CC40ADA162F1A0A00DB04F0 /* navy_blue.png in Resources */,
 				1CC40ADB162F1A0A00DB04F0 /* navy_blue_@2X.png in Resources */,
 				1CC40ADC162F1A0A00DB04F0 /* readme.txt in Resources */,
-				1CC40AE2162F57BF00DB04F0 /* termsStorage.plist in Resources */,
+				1CC40AE2162F57BF00DB04F0 /* termsDefaultStorage.plist in Resources */,
 				1CC40AE5162F5F4300DB04F0 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
