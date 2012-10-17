@@ -23,10 +23,12 @@ static EPRESTClient *gWikiSharedClient;
   return gYahooSharedClient;
 }
 
-+ (EPRESTClient *)sharedWikiClient {
++ (EPRESTClient *)sharedWikiClient:(NSString *)lang {
   static dispatch_once_t yahooOnceToken;
   dispatch_once(&yahooOnceToken, ^{
-    gWikiSharedClient = (EPRESTClient *)[EPRESTClient clientWithBaseURL:[NSURL URLWithString:kWIKI_BASE_URL]];
+    gWikiSharedClient = (EPRESTClient *)[EPRESTClient clientWithBaseURL:
+                                         [NSURL URLWithString:
+                                          [NSString stringWithFormat:@"http://%@.%@/", lang, kWIKI_BASE_URL]]];
     [gWikiSharedClient registerHTTPOperationClass:[AFJSONRequestOperation class]];
   });
   

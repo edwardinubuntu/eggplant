@@ -7,9 +7,10 @@
 //
 
 #import "EPModel.h"
+#import "NSString+Encode.h"
 
 @interface EPWikiSearchContentModel : EPModel
 
-@property (nonatomic, strong) NSString *keywords;
+@property (nonatomic, strong) NSString *keyword;
 
 @end

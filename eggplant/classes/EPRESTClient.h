@@ -12,6 +12,6 @@
 
 + (EPRESTClient *)sharedYahooClient;
 
-+ (EPRESTClient *)sharedWikiClient;
++ (EPRESTClient *)sharedWikiClient:(NSString *)lang;
 
 @end

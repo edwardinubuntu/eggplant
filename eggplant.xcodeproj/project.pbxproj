@@ -46,6 +46,10 @@
 		1CB1AE16162C37440068EA0D /* 86-camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CB1AE14162C37440068EA0D /* 86-camera@2x.png */; };
 		1CB1AE5B162C49160068EA0D /* 06-magnify-right.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CB1AE59162C49160068EA0D /* 06-magnify-right.png */; };
 		1CB1AE66162D026B0068EA0D /* 06-magnify-right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CB1AE65162D026B0068EA0D /* 06-magnify-right@2x.png */; };
+		1CC40AC2162F00FE00DB04F0 /* EPWikiQueryLangLinksModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC40AC1162F00FE00DB04F0 /* EPWikiQueryLangLinksModel.m */; };
+		1CC40AC6162F01B500DB04F0 /* EPWikiQueryLangLinksModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC40AC5162F01B500DB04F0 /* EPWikiQueryLangLinksModelTests.m */; };
+		1CC40AC9162F056500DB04F0 /* EPWikiTerm.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC40AC8162F056500DB04F0 /* EPWikiTerm.m */; };
+		1CC40ACC162F058400DB04F0 /* EPWikiLangLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC40ACB162F058400DB04F0 /* EPWikiLangLink.m */; };
 		474FCF439F934B07B7BB343D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC5336F5AC004F25805C6DBC /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -114,6 +118,14 @@
 		1CB1AE14162C37440068EA0D /* 86-camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "86-camera@2x.png"; sourceTree = "<group>"; };
 		1CB1AE59162C49160068EA0D /* 06-magnify-right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "06-magnify-right.png"; sourceTree = "<group>"; };
 		1CB1AE65162D026B0068EA0D /* 06-magnify-right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "06-magnify-right@2x.png"; sourceTree = "<group>"; };
+		1CC40AC0162F00FE00DB04F0 /* EPWikiQueryLangLinksModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPWikiQueryLangLinksModel.h; sourceTree = "<group>"; };
+		1CC40AC1162F00FE00DB04F0 /* EPWikiQueryLangLinksModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPWikiQueryLangLinksModel.m; sourceTree = "<group>"; };
+		1CC40AC4162F01B500DB04F0 /* EPWikiQueryLangLinksModelTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPWikiQueryLangLinksModelTests.h; sourceTree = "<group>"; };
+		1CC40AC5162F01B500DB04F0 /* EPWikiQueryLangLinksModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPWikiQueryLangLinksModelTests.m; sourceTree = "<group>"; };
+		1CC40AC7162F056500DB04F0 /* EPWikiTerm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPWikiTerm.h; sourceTree = "<group>"; };
+		1CC40AC8162F056500DB04F0 /* EPWikiTerm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPWikiTerm.m; sourceTree = "<group>"; };
+		1CC40ACA162F058400DB04F0 /* EPWikiLangLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPWikiLangLink.h; sourceTree = "<group>"; };
+		1CC40ACB162F058400DB04F0 /* EPWikiLangLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPWikiLangLink.m; sourceTree = "<group>"; };
 		3D2E77B0AA1D4CB683DB4B3C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		BC5336F5AC004F25805C6DBC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -279,6 +291,10 @@
 			children = (
 				1C878532162A6549005D3672 /* EPYKnowledge.h */,
 				1C878533162A6549005D3672 /* EPYKnowledge.m */,
+				1CC40AC7162F056500DB04F0 /* EPWikiTerm.h */,
+				1CC40AC8162F056500DB04F0 /* EPWikiTerm.m */,
+				1CC40ACA162F058400DB04F0 /* EPWikiLangLink.h */,
+				1CC40ACB162F058400DB04F0 /* EPWikiLangLink.m */,
 			);
 			name = "Data Objects";
 			sourceTree = "<group>";
@@ -301,6 +317,8 @@
 				1CB1AD82162B713B0068EA0D /* EPYKnowledgeSearchModelTests.m */,
 				1CB1AD88162B76190068EA0D /* EPWikiSearchContentModelTests.h */,
 				1CB1AD89162B76190068EA0D /* EPWikiSearchContentModelTests.m */,
+				1CC40AC4162F01B500DB04F0 /* EPWikiQueryLangLinksModelTests.h */,
+				1CC40AC5162F01B500DB04F0 /* EPWikiQueryLangLinksModelTests.m */,
 			);
 			path = classes;
 			sourceTree = "<group>";
@@ -310,6 +328,8 @@
 			children = (
 				1CB1AD85162B75500068EA0D /* EPWikiSearchContentModel.h */,
 				1CB1AD86162B75500068EA0D /* EPWikiSearchContentModel.m */,
+				1CC40AC0162F00FE00DB04F0 /* EPWikiQueryLangLinksModel.h */,
+				1CC40AC1162F00FE00DB04F0 /* EPWikiQueryLangLinksModel.m */,
 			);
 			name = Wikipedia;
 			sourceTree = "<group>";
@@ -484,6 +504,9 @@
 				1CB1AD87162B75500068EA0D /* EPWikiSearchContentModel.m in Sources */,
 				1CB1AD8E162B79C20068EA0D /* EPViewController.m in Sources */,
 				1CB1AE0A162C2D1B0068EA0D /* EPHomeViewController.m in Sources */,
+				1CC40AC2162F00FE00DB04F0 /* EPWikiQueryLangLinksModel.m in Sources */,
+				1CC40AC9162F056500DB04F0 /* EPWikiTerm.m in Sources */,
+				1CC40ACC162F058400DB04F0 /* EPWikiLangLink.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,6 +516,7 @@
 			files = (
 				1CB1AD83162B713B0068EA0D /* EPYKnowledgeSearchModelTests.m in Sources */,
 				1CB1AD8A162B76190068EA0D /* EPWikiSearchContentModelTests.m in Sources */,
+				1CC40AC6162F01B500DB04F0 /* EPWikiQueryLangLinksModelTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

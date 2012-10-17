@@ -22,7 +22,7 @@
 }
 
 - (void)testSearch {
-  self.searchContentModel.keywords = @"马铃薯";
+  self.searchContentModel.keyword = @"马铃薯";
   
   __block BOOL done = NO;
   __block EPWikiSearchContentModelTests *tempSelf = self;

@@ -7,7 +7,6 @@
 //
 
 #import "EPWikiSearchContentModel.h"
-#import "NSString+Encode.h"
 
 @implementation EPWikiSearchContentModel
 
@@ -20,13 +19,7 @@
 - (void)loadMore:(BOOL)more didFinishLoad:(requestDidFinishLoadBolck)requestDidFinishLoad loadWithError:(requestLoadWithErrorBlock)requestLoadWithError {
   NSMutableString *path = [[NSMutableString alloc] init];
   [path appendString:@"w/api.php?action=query&prop=revisions&format=json&rvprop=content"];
-  [path appendFormat:@"&titles=%@", [self.keywords encodeString:NSUTF8StringEncoding]];
-  
-  if (!more) {
-    self.offset = 0;
-  } else {
-  }
-  self.page = self.offset / self.limit + 1;
+  [path appendFormat:@"&titles=%@", [self.keyword encodeString:NSUTF8StringEncoding]];
   
   __block EPWikiSearchContentModel *tempSelf = self;
   if (!self.isLoading) {
@@ -34,7 +27,7 @@
     
     NIDPRINT(@"EPWikiSearchContentModel getPath: %@", path);
     
-    [[EPRESTClient sharedWikiClient] getPath:path parameters:[[NSMutableDictionary alloc] init] success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [[EPRESTClient sharedWikiClient:@"zh"] getPath:path parameters:[[NSMutableDictionary alloc] init] success:^(AFHTTPRequestOperation *operation, id responseObject) {
       tempSelf.isLoading = NO;
       tempSelf.isLoaded = YES;
       
