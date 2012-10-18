@@ -9,7 +9,6 @@
 #import "EPHomeViewController.h"
 #import "UIControl+BlocksKit.h"
 #import "EPTermsStorageManager.h"
-#import "EPDataSourceObject.h"
 #import "EPScrollPageView.h"
 
 @interface EPHomeViewController ()
