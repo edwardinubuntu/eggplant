@@ -33,6 +33,7 @@ CGFloat smallMoving = 25;
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
     // Custom initialization
+    _recycledTableView = [[NSMutableDictionary alloc] init];
   }
   return self;
 }
@@ -80,6 +81,10 @@ CGFloat smallMoving = 25;
   self.pagingScrollView.delegate = self;
   self.pagingScrollView.dataSource = self;
   [self.view addSubview:self.pagingScrollView];
+  
+  _tableView = [[UITableView alloc] init];
+
+  [self loadData];
 }
 
 - (void)viewDidLoad {
@@ -87,8 +92,7 @@ CGFloat smallMoving = 25;
   // Do any additional setup after loading the view.
   [self searchBarPressHandleAnimations];
   [self.view bringSubviewToFront:self.searchButton];
-  
-  [self loadData];
+  [self.view bringSubviewToFront:self.buttonSectionsView];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -101,6 +105,15 @@ CGFloat smallMoving = 25;
 }
 
 #pragma mark - private
+
+- (UITableView *)dequeueReusableTableViewWithIdentifier:(NSString*)identifier {
+  UITableView *cachedView = [self.recycledTableView objectForKey:identifier];
+  if (!cachedView) {
+    cachedView = [[UITableView alloc] init];
+    [self.recycledTableView setObject:cachedView forKey:identifier];
+  }
+  return cachedView;
+}
 
 - (void)loadData {
   
@@ -199,6 +212,8 @@ CGFloat smallMoving = 25;
   } forControlEvents:UIControlEventTouchUpInside];
 }
 
+
+
 #pragma mark - iCarouselDataSource
 
 - (NSUInteger)numberOfItemsInCarousel:(iCarousel *)carousel {
@@ -286,12 +301,12 @@ CGFloat smallMoving = 25;
         default:
   
           if ((pageIndex - kCountAbout - kCountHome) < self.termsFromDefault.count) {
-//            NSString *termFromDefault = [self.termsFromDefault objectAtIndex:((pageIndex - kCountAbout - kCountHome))];
-            UITableView *dataSourceView = [[UITableView alloc] initWithFrame:contentHeaderView.frame];
-            EPDataSourceObject *dataSourceObject = [[EPDataSourceObject alloc] init];
-            dataSourceView.dataSource = dataSourceObject;
-            dataSourceView.delegate = dataSourceObject;
-//            [contentHeaderView addSubview:dataSourceView];
+            NSString *termFromDefault = [self.termsFromDefault objectAtIndex:((pageIndex - kCountAbout - kCountHome))];
+            _tableView = [self dequeueReusableTableViewWithIdentifier:[NSString stringWithFormat:@"TableViewID%@", termFromDefault]];
+            _tableView.frame = contentHeaderView.frame;
+            _tableView.dataSource = self;
+            _tableView.delegate = self;
+            [contentHeaderView addSubview:_tableView];
         } else {
           }
           break;
@@ -307,5 +322,30 @@ CGFloat smallMoving = 25;
       [self.headerCarousel scrollToItemAtIndex:self.pagingScrollView.centerPageIndex duration:0.5];
   }
 }
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+  return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+  return 20;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+  
+  NSMutableString *cellWithId = [NSMutableString stringWithFormat:@"cell%@%i%i", @"term", indexPath.section, indexPath.row];
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellWithId];
+  if (!cell) {
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellWithId];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+  }
+  cell.textLabel.text = @"Text";
+  cell.detailTextLabel.text = @"Detail";
+  
+  return cell;
+}
+
 
 @end

@@ -16,7 +16,9 @@
   iCarouselDataSource,
   iCarouselDelegate,
   NIPagingScrollViewDelegate,
-  NIPagingScrollViewDataSource
+  NIPagingScrollViewDataSource,
+  UITableViewDataSource,
+  UITableViewDelegate
 >
 
 @property (nonatomic, strong) iCarousel *headerCarousel;
@@ -27,5 +29,8 @@
 @property (nonatomic, strong) NSArray *termsFromDefault;
 @property (nonatomic, strong) NSMutableArray *termsFromUserSaved;
 @property (nonatomic, strong) NIPagingScrollView *pagingScrollView;
+
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) NSMutableDictionary *recycledTableView;
 
 @end
