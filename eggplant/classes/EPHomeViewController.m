@@ -540,11 +540,11 @@ CGFloat smallMoving = 25;
         if ([sourceType isEqualToString:@"wiki"]) {
           return [EPWikiCell cellHeight];
         } else if ([sourceType isEqualToString:@"icook"]) {
-          return [EPICookCell cellHeight:[currentSource objectForKey:@"name"] detail:[currentSource objectForKey:@"detail"]];
+          return [EPICookCell cellHeight:[currentSource objectForKey:@"title"] detail:[currentSource objectForKey:@"detail"]];
         } else if ([sourceType isEqualToString:@"instagram"]) {
-          return [EPSourceImageCell cellHeight:[currentSource objectForKey:@"name"] detail:[currentSource objectForKey:@"detail"]];
+          return [EPSourceImageCell cellHeight:[currentSource objectForKey:@"title"] detail:[currentSource objectForKey:@"detail"]];
         } else if ([sourceType isEqualToString:@"YKnowledge"]) {
-          return [EPAttributedSourceCell cellHeight:[currentSource objectForKey:@"name"] detail:[currentSource objectForKey:@"detail"]];
+          return [EPAttributedSourceCell cellHeight:[currentSource objectForKey:@"title"] detail:[currentSource objectForKey:@"detail"]];
         }
       }
     }

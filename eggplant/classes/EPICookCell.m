@@ -20,12 +20,13 @@
   CGFloat left = 10;
   self.textLabel.backgroundColor = [UIColor clearColor];
   self.textLabel.frame = CGRectMake(left, 10.f, width, self.textLabel.frame.size.height);
+  [self.textLabel sizeToFit];
   
   self.detailTextLabel.backgroundColor = [UIColor clearColor];
   if (NIIsStringWithAnyText(self.detailTextLabel.text)) {
-    self.detailTextLabel.frame = CGRectMake(left, self.textLabel.frame.origin.y + 20, width, 65);
+    self.detailTextLabel.frame = CGRectMake(left, self.textLabel.frame.origin.y + self.textLabel.frame.size.height, width, 65);
   } else {
-    self.detailTextLabel.frame = CGRectMake(left, self.textLabel.frame.origin.y + 20, width, 10);
+    self.detailTextLabel.frame = CGRectMake(left, self.textLabel.frame.origin.y + self.textLabel.frame.size.height, width, 10);
   }
   
   self.sourceLabel.frame = CGRectMake(left, self.detailTextLabel.frame.origin.y + self.detailTextLabel.frame.size.height, width, 16.f);

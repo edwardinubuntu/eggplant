@@ -35,22 +35,34 @@
   CGFloat imageSize = 0;
   self.imageView.frame = CGRectZero;
   
-  CGFloat width = self.contentView.frame.size.width - imageSize - 10 * 3;
-  CGFloat left = imageSize + 10 * 2;
+  CGFloat width = self.contentView.frame.size.width - 10 * 2;
+  CGFloat left = imageSize + 10;
   self.textLabel.backgroundColor = [UIColor clearColor];
   self.textLabel.frame = CGRectMake(left, 10.f, width, self.textLabel.frame.size.height);
   
-  self.titleAttributedLabel.frame = self.textLabel.frame;
+  self.titleAttributedLabel.frame = CGRectMake(left, 10.f, width, self.titleAttributedLabel.frame.size.height);
   self.titleAttributedLabel.attributedString = [[NSAttributedString alloc] initWithHTMLData:[self.textLabel.text dataUsingEncoding:NSUTF8StringEncoding] documentAttributes:nil];
   self.titleAttributedLabel.font = [UIFont boldSystemFontOfSize:16.f];
+  [self.titleAttributedLabel sizeToFit];
   
   self.detailTextLabel.backgroundColor = [UIColor clearColor];
-  self.detailTextLabel.frame = CGRectMake(left, self.textLabel.frame.origin.y + 30, width, 65);
+  self.detailTextLabel.frame = CGRectMake(left, self.titleAttributedLabel.frame.origin.y + self.titleAttributedLabel.frame.size.height + 10, width, 65);
   
   self.detailAttributedLabel.attributedString = [[NSAttributedString alloc] initWithHTMLData:[self.detailTextLabel.text dataUsingEncoding:NSUTF8StringEncoding] documentAttributes:nil];
   self.detailAttributedLabel.frame = self.detailTextLabel.frame;
   
   self.sourceLabel.frame = CGRectMake(left, self.detailTextLabel.frame.origin.y + self.detailTextLabel.frame.size.height, width, 16.f);
+}
+
++ (CGFloat)cellHeight:(NSString *)text detail:(NSString *)detail {
+  
+  NIAttributedLabel *titleAttributedLabel = [[NIAttributedLabel alloc] init];
+  titleAttributedLabel.attributedString = [[NSAttributedString alloc] initWithHTMLData:[text dataUsingEncoding:NSUTF8StringEncoding] documentAttributes:nil];
+  titleAttributedLabel.font = [UIFont boldSystemFontOfSize:16.f];
+  titleAttributedLabel.frame = CGRectMake(10, 10.f, 320 - 10 * 2, titleAttributedLabel.frame.size.height);
+  [titleAttributedLabel sizeToFit];
+  
+  return 110 + titleAttributedLabel.frame.size.height;
 }
 
 @end
