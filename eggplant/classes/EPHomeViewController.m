@@ -363,6 +363,7 @@ CGFloat smallMoving = 25;
   if (pagingScrollView == self.pagingScrollView) {
     [self.headerCarousel scrollToItemAtIndex:self.pagingScrollView.centerPageIndex duration:0.5];
   }
+  self.searchButton.hidden = NO;
 }
 
 #pragma mark - UITableViewDataSource
@@ -557,6 +558,12 @@ CGFloat smallMoving = 25;
     [webController openURL:openURL];
     [self.navigationController pushViewController:webController animated:YES];
   }
+}
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+  self.searchButton.hidden = (scrollView.contentOffset.y > self.view.frame.size.height / 2);
 }
 
 @end
