@@ -56,9 +56,9 @@
 					<key>url</key>
 					<string>http://en.wikipedia.org/wiki/Eggplant</string>
 					<key>title</key>
-					<string>Tomato</string>
+					<string>番茄</string>
 					<key>detail</key>
-					<string>Tomato</string>
+					<string>可以吃</string>
 				</dict>
 				<dict>
 					<key>imageURL</key>
@@ -66,9 +66,9 @@
 					<key>url</key>
 					<string>http://en.wikipedia.org/wiki/Eggplant</string>
 					<key>title</key>
-					<string>番茄</string>
+					<string>Tomato</string>
 					<key>detail</key>
-					<string>可以吃</string>
+					<string>Tomato</string>
 				</dict>
 			</array>
 		</dict>

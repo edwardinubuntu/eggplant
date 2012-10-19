@@ -35,4 +35,14 @@ static EPRESTClient *gWikiSharedClient;
   return gWikiSharedClient;
 }
 
++ (EPRESTClient *)sharedInstgramClient {
+  static dispatch_once_t yahooOnceToken;
+  dispatch_once(&yahooOnceToken, ^{
+    gYahooSharedClient = (EPRESTClient *)[EPRESTClient clientWithBaseURL:[NSURL URLWithString:kINSTAGRAM_BASE_URL]];
+    [gYahooSharedClient registerHTTPOperationClass:[AFJSONRequestOperation class]];
+  });
+  
+  return gYahooSharedClient;
+}
+
 @end

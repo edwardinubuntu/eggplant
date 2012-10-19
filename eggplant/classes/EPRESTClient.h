@@ -11,7 +11,7 @@
 @interface EPRESTClient : AFRESTClient
 
 + (EPRESTClient *)sharedYahooClient;
-
 + (EPRESTClient *)sharedWikiClient:(NSString *)lang;
++ (EPRESTClient *)sharedInstgramClient;
 
 @end

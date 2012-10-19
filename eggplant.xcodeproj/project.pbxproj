@@ -30,6 +30,10 @@
 		1C878534162A6549005D3672 /* EPYKnowledge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C878533162A6549005D3672 /* EPYKnowledge.m */; };
 		1C878538162A65C2005D3672 /* NSString+Encode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C878537162A65C2005D3672 /* NSString+Encode.m */; };
 		1C87853B162A6631005D3672 /* NSDictionary+EPObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C87853A162A6631005D3672 /* NSDictionary+EPObject.m */; };
+		1CA4FDF7163156660061E957 /* EPInstagramTagsMediaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA4FDF6163156660061E957 /* EPInstagramTagsMediaModel.m */; };
+		1CA4FDFB163158DE0061E957 /* EPInstagramTagsMediaModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA4FDFA163158DE0061E957 /* EPInstagramTagsMediaModelTests.m */; };
+		1CB0742A16316ADA0028E3C9 /* EPImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0742916316ADA0028E3C9 /* EPImage.m */; };
+		1CB0742D16316B260028E3C9 /* EPInstagram.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0742C16316B260028E3C9 /* EPInstagram.m */; };
 		1CB1AD83162B713B0068EA0D /* EPYKnowledgeSearchModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB1AD82162B713B0068EA0D /* EPYKnowledgeSearchModelTests.m */; };
 		1CB1AD87162B75500068EA0D /* EPWikiSearchContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB1AD86162B75500068EA0D /* EPWikiSearchContentModel.m */; };
 		1CB1AD8A162B76190068EA0D /* EPWikiSearchContentModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB1AD89162B76190068EA0D /* EPWikiSearchContentModelTests.m */; };
@@ -104,6 +108,14 @@
 		1C878537162A65C2005D3672 /* NSString+Encode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Encode.m"; sourceTree = "<group>"; };
 		1C878539162A6631005D3672 /* NSDictionary+EPObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+EPObject.h"; sourceTree = "<group>"; };
 		1C87853A162A6631005D3672 /* NSDictionary+EPObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+EPObject.m"; sourceTree = "<group>"; };
+		1CA4FDF5163156660061E957 /* EPInstagramTagsMediaModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPInstagramTagsMediaModel.h; sourceTree = "<group>"; };
+		1CA4FDF6163156660061E957 /* EPInstagramTagsMediaModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPInstagramTagsMediaModel.m; sourceTree = "<group>"; };
+		1CA4FDF9163158DE0061E957 /* EPInstagramTagsMediaModelTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPInstagramTagsMediaModelTests.h; sourceTree = "<group>"; };
+		1CA4FDFA163158DE0061E957 /* EPInstagramTagsMediaModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPInstagramTagsMediaModelTests.m; sourceTree = "<group>"; };
+		1CB0742816316ADA0028E3C9 /* EPImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPImage.h; sourceTree = "<group>"; };
+		1CB0742916316ADA0028E3C9 /* EPImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPImage.m; sourceTree = "<group>"; };
+		1CB0742B16316B260028E3C9 /* EPInstagram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPInstagram.h; sourceTree = "<group>"; };
+		1CB0742C16316B260028E3C9 /* EPInstagram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPInstagram.m; sourceTree = "<group>"; };
 		1CB1AD81162B713B0068EA0D /* EPYKnowledgeSearchModelTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPYKnowledgeSearchModelTests.h; sourceTree = "<group>"; };
 		1CB1AD82162B713B0068EA0D /* EPYKnowledgeSearchModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPYKnowledgeSearchModelTests.m; sourceTree = "<group>"; };
 		1CB1AD85162B75500068EA0D /* EPWikiSearchContentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPWikiSearchContentModel.h; sourceTree = "<group>"; };
@@ -295,6 +307,7 @@
 				1C878528162A63EF005D3672 /* EPRESTClient.m */,
 				1C878524162A63C0005D3672 /* EPModel.h */,
 				1C878525162A63C0005D3672 /* EPModel.m */,
+				1CA4FDF31631562E0061E957 /* Instagram */,
 				1CB1AD84162B75270068EA0D /* Wikipedia */,
 				1C87852D162A64FC005D3672 /* Knowledge */,
 			);
@@ -319,6 +332,10 @@
 				1CC40AC8162F056500DB04F0 /* EPWikiTerm.m */,
 				1CC40ACA162F058400DB04F0 /* EPWikiLangLink.h */,
 				1CC40ACB162F058400DB04F0 /* EPWikiLangLink.m */,
+				1CB0742816316ADA0028E3C9 /* EPImage.h */,
+				1CB0742916316ADA0028E3C9 /* EPImage.m */,
+				1CB0742B16316B260028E3C9 /* EPInstagram.h */,
+				1CB0742C16316B260028E3C9 /* EPInstagram.m */,
 			);
 			name = "Data Objects";
 			sourceTree = "<group>";
@@ -334,9 +351,28 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
+		1CA4FDF31631562E0061E957 /* Instagram */ = {
+			isa = PBXGroup;
+			children = (
+				1CA4FDF5163156660061E957 /* EPInstagramTagsMediaModel.h */,
+				1CA4FDF6163156660061E957 /* EPInstagramTagsMediaModel.m */,
+			);
+			name = Instagram;
+			sourceTree = "<group>";
+		};
+		1CA4FDF8163156FA0061E957 /* Instagram */ = {
+			isa = PBXGroup;
+			children = (
+				1CA4FDF9163158DE0061E957 /* EPInstagramTagsMediaModelTests.h */,
+				1CA4FDFA163158DE0061E957 /* EPInstagramTagsMediaModelTests.m */,
+			);
+			name = Instagram;
+			sourceTree = "<group>";
+		};
 		1CB1AD80162B713B0068EA0D /* classes */ = {
 			isa = PBXGroup;
 			children = (
+				1CA4FDF8163156FA0061E957 /* Instagram */,
 				1CC40ACE162F0B1700DB04F0 /* Wiki */,
 				1CC40ACD162F0B0900DB04F0 /* YKnowledge */,
 			);
@@ -583,6 +619,9 @@
 				1CC40ACC162F058400DB04F0 /* EPWikiLangLink.m in Sources */,
 				1CC40AE0162F570500DB04F0 /* EPTermsStorageManager.m in Sources */,
 				1CC40AF8162F711600DB04F0 /* EPScrollPageView.m in Sources */,
+				1CA4FDF7163156660061E957 /* EPInstagramTagsMediaModel.m in Sources */,
+				1CB0742A16316ADA0028E3C9 /* EPImage.m in Sources */,
+				1CB0742D16316B260028E3C9 /* EPInstagram.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,6 +632,7 @@
 				1CB1AD83162B713B0068EA0D /* EPYKnowledgeSearchModelTests.m in Sources */,
 				1CB1AD8A162B76190068EA0D /* EPWikiSearchContentModelTests.m in Sources */,
 				1CC40AC6162F01B500DB04F0 /* EPWikiQueryLangLinksModelTests.m in Sources */,
+				1CA4FDFB163158DE0061E957 /* EPInstagramTagsMediaModelTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -378,8 +378,8 @@ CGFloat smallMoving = 25;
     for (NSDictionary *eachDataTerm  in dataFromTerms) {
       if ([[eachDataTerm objectForKey:@"key"] isEqualToString:key]) {
         NSArray *sourceArray = [eachDataTerm objectForKey:@"sources"];
-        for (NSDictionary *eachSource in sourceArray) {
-          NSString *title = [eachSource objectForKey:@"title"];
+        NSDictionary *currentSource = [sourceArray objectAtIndex:indexPath.row];
+          NSString *title = [currentSource objectForKey:@"title"];
           
           NSMutableString *cellWithId = [NSMutableString stringWithFormat:@"cell%@%i%i", title, indexPath.section, indexPath.row];
           UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellWithId];
@@ -388,10 +388,10 @@ CGFloat smallMoving = 25;
             cell.selectionStyle = UITableViewCellSelectionStyleGray;
           }
           cell.textLabel.text = title;
-          cell.detailTextLabel.text = [eachSource objectForKey:@"detail"];
+          cell.detailTextLabel.text = [currentSource objectForKey:@"detail"];
           
           // TODO: Add placeholder image
-          [cell.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[eachSource objectForKey:@"imageURL"]]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+          [cell.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[currentSource objectForKey:@"imageURL"]]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
             UITableViewCell *currentLoadingCell = (UITableViewCell *)[tempSelf.tableView cellForRowAtIndexPath:tempIndexPath];
             currentLoadingCell.imageView.image = image;
             [currentLoadingCell setNeedsLayout];
@@ -400,7 +400,6 @@ CGFloat smallMoving = 25;
             // Handle error
           }];
           return cell;
-        }
       }
       
       

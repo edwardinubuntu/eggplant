@@ -7,7 +7,6 @@
 //
 
 #import "EPModel.h"
-#import "NSString+Encode.h"
 
 @interface EPWikiSearchContentModel : EPModel
 
