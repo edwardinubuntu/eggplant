@@ -54,6 +54,11 @@
 		1CB0748816319CEF0028E3C9 /* ICIngredientTerm.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0747516319CEF0028E3C9 /* ICIngredientTerm.m */; };
 		1CB0748D16319D6E0028E3C9 /* ICRecipesSearchModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0748C16319D6E0028E3C9 /* ICRecipesSearchModelTests.m */; };
 		1CB0749016319EDA0028E3C9 /* EPICookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0748F16319EDA0028E3C9 /* EPICookCell.m */; };
+		1CB074931631A2580028E3C9 /* UILabel+VAlign.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB074921631A2570028E3C9 /* UILabel+VAlign.m */; };
+		1CB074961631F4E30028E3C9 /* EPSourceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB074951631F4E20028E3C9 /* EPSourceCell.m */; };
+		1CB074991631F5740028E3C9 /* EPSourceImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB074981631F5730028E3C9 /* EPSourceImageCell.m */; };
+		1CB0749C1631F9630028E3C9 /* errorViewStateImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CB0749A1631F9630028E3C9 /* errorViewStateImage.png */; };
+		1CB0749D1631F9630028E3C9 /* errorViewStateImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CB0749B1631F9630028E3C9 /* errorViewStateImage@2x.png */; };
 		1CB1AD83162B713B0068EA0D /* EPYKnowledgeSearchModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB1AD82162B713B0068EA0D /* EPYKnowledgeSearchModelTests.m */; };
 		1CB1AD87162B75500068EA0D /* EPWikiSearchContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB1AD86162B75500068EA0D /* EPWikiSearchContentModel.m */; };
 		1CB1AD8A162B76190068EA0D /* EPWikiSearchContentModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB1AD89162B76190068EA0D /* EPWikiSearchContentModelTests.m */; };
@@ -174,6 +179,14 @@
 		1CB0748C16319D6E0028E3C9 /* ICRecipesSearchModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICRecipesSearchModelTests.m; sourceTree = "<group>"; };
 		1CB0748E16319EDA0028E3C9 /* EPICookCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPICookCell.h; sourceTree = "<group>"; };
 		1CB0748F16319EDA0028E3C9 /* EPICookCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPICookCell.m; sourceTree = "<group>"; };
+		1CB074911631A2570028E3C9 /* UILabel+VAlign.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+VAlign.h"; sourceTree = "<group>"; };
+		1CB074921631A2570028E3C9 /* UILabel+VAlign.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+VAlign.m"; sourceTree = "<group>"; };
+		1CB074941631F4E20028E3C9 /* EPSourceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSourceCell.h; sourceTree = "<group>"; };
+		1CB074951631F4E20028E3C9 /* EPSourceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSourceCell.m; sourceTree = "<group>"; };
+		1CB074971631F5730028E3C9 /* EPSourceImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSourceImageCell.h; sourceTree = "<group>"; };
+		1CB074981631F5730028E3C9 /* EPSourceImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSourceImageCell.m; sourceTree = "<group>"; };
+		1CB0749A1631F9630028E3C9 /* errorViewStateImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = errorViewStateImage.png; sourceTree = "<group>"; };
+		1CB0749B1631F9630028E3C9 /* errorViewStateImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "errorViewStateImage@2x.png"; sourceTree = "<group>"; };
 		1CB1AD81162B713B0068EA0D /* EPYKnowledgeSearchModelTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPYKnowledgeSearchModelTests.h; sourceTree = "<group>"; };
 		1CB1AD82162B713B0068EA0D /* EPYKnowledgeSearchModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPYKnowledgeSearchModelTests.m; sourceTree = "<group>"; };
 		1CB1AD85162B75500068EA0D /* EPWikiSearchContentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPWikiSearchContentModel.h; sourceTree = "<group>"; };
@@ -324,6 +337,8 @@
 		1C878514162A5901005D3672 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				1CB0749A1631F9630028E3C9 /* errorViewStateImage.png */,
+				1CB0749B1631F9630028E3C9 /* errorViewStateImage@2x.png */,
 				1CB0743E16317DC70028E3C9 /* CellDefaultImage.png */,
 				1CB0743F16317DC70028E3C9 /* CellDefaultImage@2x.png */,
 				1CB1AE13162C37440068EA0D /* 86-camera.png */,
@@ -405,6 +420,8 @@
 		1C878535162A65B5005D3672 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				1CB074911631A2570028E3C9 /* UILabel+VAlign.h */,
+				1CB074921631A2570028E3C9 /* UILabel+VAlign.m */,
 				1CB0744F16319CBC0028E3C9 /* NSDictionary+ICObjects.h */,
 				1CB0745016319CBC0028E3C9 /* NSDictionary+ICObjects.m */,
 				1C878536162A65C2005D3672 /* NSString+Encode.h */,
@@ -436,10 +453,14 @@
 		1CB07439163178A10028E3C9 /* Table View Cells */ = {
 			isa = PBXGroup;
 			children = (
+				1CB074941631F4E20028E3C9 /* EPSourceCell.h */,
+				1CB074951631F4E20028E3C9 /* EPSourceCell.m */,
 				1CB0743B163178DF0028E3C9 /* EPWikiCell.h */,
 				1CB0743C163178DF0028E3C9 /* EPWikiCell.m */,
 				1CB0748E16319EDA0028E3C9 /* EPICookCell.h */,
 				1CB0748F16319EDA0028E3C9 /* EPICookCell.m */,
+				1CB074971631F5730028E3C9 /* EPSourceImageCell.h */,
+				1CB074981631F5730028E3C9 /* EPSourceImageCell.m */,
 			);
 			name = "Table View Cells";
 			sourceTree = "<group>";
@@ -683,6 +704,8 @@
 				1CC40AE5162F5F4300DB04F0 /* Localizable.strings in Resources */,
 				1CB0744016317DC70028E3C9 /* CellDefaultImage.png in Resources */,
 				1CB0744116317DC70028E3C9 /* CellDefaultImage@2x.png in Resources */,
+				1CB0749C1631F9630028E3C9 /* errorViewStateImage.png in Resources */,
+				1CB0749D1631F9630028E3C9 /* errorViewStateImage@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -769,6 +792,9 @@
 				1CB0748116319CEF0028E3C9 /* ICPhoto.m in Sources */,
 				1CB0748816319CEF0028E3C9 /* ICIngredientTerm.m in Sources */,
 				1CB0749016319EDA0028E3C9 /* EPICookCell.m in Sources */,
+				1CB074931631A2580028E3C9 /* UILabel+VAlign.m in Sources */,
+				1CB074961631F4E30028E3C9 /* EPSourceCell.m in Sources */,
+				1CB074991631F5740028E3C9 /* EPSourceImageCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

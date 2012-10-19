@@ -7,12 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <QuartzCore/CALayer.h>
+#import "EPSourceCell.h"
 
-@interface EPWikiCell : UITableViewCell
-
-@property (nonatomic, strong) UILabel *sourceLabel;
-
-+ (CGFloat)cellHeight;
+@interface EPWikiCell : EPSourceCell
 
 @end

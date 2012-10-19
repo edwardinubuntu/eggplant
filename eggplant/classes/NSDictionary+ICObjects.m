@@ -7,7 +7,6 @@
 //
 
 #import "NSDictionary+ICObjects.h"
-#import "ICRecipesListObject.h"
 
 @implementation NSDictionary (ICObjects)
 
@@ -181,22 +180,6 @@
   }
   category.name = [self objectForKey:@"name"];
   return category;
-}
-
-- (ICRecipesListObject *)extractRecipesList {
-  ICRecipesListObject *recipesList = [[ICRecipesListObject alloc] init];
-  if ([self objectForKey:@"id"] && ![[self objectForKey:@"id"] isKindOfClass:[NSNull class]]) {
-    recipesList.recipesListID = [[self objectForKey:@"id"] intValue];
-  }
-  if ([self objectForKey:@"recipes_count"] && ![[self objectForKey:@"recipes_count"] isKindOfClass:[NSNull class]]) {
-    recipesList.recipesCount = [[self objectForKey:@"recipes_count"] intValue];
-  }
-//  recipesList.url = [NSURL URLWithString:[self objectForKey:@"url"]];
-  if ([self objectForKey:@"recipe_in_list"] && ![[self objectForKey:@"recipe_in_list"] isKindOfClass:[NSNull class]]) {
-    recipesList.recipeInList = [[self objectForKey:@"recipe_in_list"] intValue] == 1;
-  }
-  recipesList.name = [self objectForKey:@"name"];
-  return recipesList;
 }
 
 @end

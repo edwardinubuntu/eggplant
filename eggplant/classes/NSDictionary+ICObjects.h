@@ -14,8 +14,6 @@
 #import "ICList.h"
 #import "ICDish.h"
 #import "ICCategory.h"
-#import "ICRecipesList.h"
-#import "ICRecipesListObject.h"
 
 @interface NSDictionary (ICObjects)
 
@@ -26,6 +24,5 @@
 - (ICList *)extractList;
 - (ICDish *)extractDish;
 - (ICCategory *)extractCategory;
-- (ICRecipesListObject *)extractRecipesList;
 
 @end

@@ -10,15 +10,6 @@
 
 @implementation EPICookCell
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
-
 - (void)layoutSubviews {
   [super layoutSubviews];
   
@@ -31,7 +22,11 @@
   self.textLabel.frame = CGRectMake(left, 10.f, width, self.textLabel.frame.size.height);
   
   self.detailTextLabel.backgroundColor = [UIColor clearColor];
-  self.detailTextLabel.frame = CGRectMake(left, self.textLabel.frame.origin.y + 20, width, 65);
+  if (NIIsStringWithAnyText(self.detailTextLabel.text)) {
+    self.detailTextLabel.frame = CGRectMake(left, self.textLabel.frame.origin.y + 20, width, 65);
+  } else {
+    self.detailTextLabel.frame = CGRectMake(left, self.textLabel.frame.origin.y + 20, width, 10);
+  }
   
   self.sourceLabel.frame = CGRectMake(left, self.detailTextLabel.frame.origin.y + self.detailTextLabel.frame.size.height, width, 16.f);
 }

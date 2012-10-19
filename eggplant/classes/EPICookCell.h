@@ -6,8 +6,9 @@
 //  Copyright (c) 2012年 Polydice Inc. All rights reserved.
 //
 
-#import "EPWikiCell.h"
+#import "EPSourceCell.h"
+#import "ICRecipe.h"
 
-@interface EPICookCell : EPWikiCell
+@interface EPICookCell : EPSourceCell
 
 @end
