@@ -10,6 +10,7 @@
 #import "UIControl+BlocksKit.h"
 #import "EPTermsStorageManager.h"
 #import "EPScrollPageView.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface EPHomeViewController ()
 
@@ -33,6 +34,7 @@ CGFloat smallMoving = 25;
   if (self) {
     // Custom initialization
     _recycledTableView = [[NSMutableDictionary alloc] init];
+    _termDataFromDefault = [[NSDictionary alloc] init];
   }
   return self;
 }
@@ -82,7 +84,7 @@ CGFloat smallMoving = 25;
   [self.view addSubview:self.pagingScrollView];
   
   _tableView = [[UITableView alloc] init];
-
+  
   [self loadData];
 }
 
@@ -118,9 +120,9 @@ CGFloat smallMoving = 25;
   
   // Default
   [[EPTermsStorageManager defaultManager] load];
-  NSDictionary *termsDictData = [[EPTermsStorageManager defaultManager] termsFromDefault];
-  NSArray *termKeys = [termsDictData objectForKey:@"termKeys"];
-  self.termsFromDefault = [[NSArray alloc] initWithArray:termKeys];
+  self.termDataFromDefault = [[EPTermsStorageManager defaultManager] termsFromDefault];
+  NSArray *termKeys = [self.termDataFromDefault objectForKey:@"termKeys"];
+  self.termKeysFromDefault = [termKeys copy];
   
   // User Saved
   NSDictionary *termsUserSavedDictData = [[EPTermsStorageManager defaultManager] termsFromUserSaved];
@@ -130,7 +132,7 @@ CGFloat smallMoving = 25;
   [self.headerCarousel reloadData];
   [self.pagingScrollView reloadData];
   
-  if (self.termsFromDefault.count > 0) {
+  if (self.termKeysFromDefault.count > 0) {
     // Scroll to First Data
     [self.headerCarousel scrollToItemAtIndex:(kCountAbout + kCountHome + 0) animated:YES];
   }
@@ -217,7 +219,7 @@ CGFloat smallMoving = 25;
 
 - (NSUInteger)numberOfItemsInCarousel:(iCarousel *)carousel {
   if (carousel == self.headerCarousel) {
-    return kCountAbout + kCountHome + self.termsFromDefault.count + self.termsFromUserSaved.count;
+    return kCountAbout + kCountHome + self.termKeysFromDefault.count + self.termsFromUserSaved.count;
   }
   return 0;
 }
@@ -237,8 +239,8 @@ CGFloat smallMoving = 25;
         break;
       default:
         
-        if ((index - kCountAbout - kCountHome) < self.termsFromDefault.count) {
-          NSString *termFromDefault = [self.termsFromDefault objectAtIndex:((index - kCountAbout - kCountHome))];
+        if ((index - kCountAbout - kCountHome) < self.termKeysFromDefault.count) {
+          NSString *termFromDefault = [self.termKeysFromDefault objectAtIndex:((index - kCountAbout - kCountHome))];
           sectionHeaderLabel.text = termFromDefault;
         } else {
           sectionHeaderLabel.text = [NSString stringWithFormat:@"Sections %i", index];
@@ -268,57 +270,61 @@ CGFloat smallMoving = 25;
 #pragma mark - NIPagingScrollViewDataSource
 
 - (NSInteger)numberOfPagesInPagingScrollView:(NIPagingScrollView *)pagingScrollView {
-  return kCountAbout + kCountHome + self.termsFromDefault.count + self.termsFromUserSaved.count;
+  return kCountAbout + kCountHome + self.termKeysFromDefault.count + self.termsFromUserSaved.count;
 }
 
 - (UIView<NIPagingScrollViewPage> *)pagingScrollView:(NIPagingScrollView *)pagingScrollView pageViewForIndex:(NSInteger)pageIndex {
   
   EPScrollPageView *contentHeaderView = [[EPScrollPageView alloc] initWithFrame:CGRectMake(0, 0, pagingScrollView.frame.size.width,pagingScrollView.frame.size.height)];
- [contentHeaderView setBackgroundColor:[UIColor lightGrayColor]];
-
-      switch (pageIndex) {
-        case kIndexAbout: {
-          UILabel *contentHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 36)];
-          contentHeaderLabel.textAlignment = UITextAlignmentCenter;
-          contentHeaderLabel.text = [NSString stringWithFormat:@"Content %i", pageIndex];
-          contentHeaderLabel.textColor = [UIColor whiteColor];
-          contentHeaderLabel.backgroundColor = [UIColor grayColor];
-          contentHeaderLabel.center = contentHeaderView.center;
-          [contentHeaderView addSubview:contentHeaderLabel];
-        }
-          break;
-        case kIndexHome: {
-          UILabel *contentHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 36)];
-          contentHeaderLabel.textAlignment = UITextAlignmentCenter;
-          contentHeaderLabel.text = [NSString stringWithFormat:@"Content %i", pageIndex];
-          contentHeaderLabel.textColor = [UIColor whiteColor];
-          contentHeaderLabel.backgroundColor = [UIColor grayColor];
-          contentHeaderLabel.center = contentHeaderView.center;
-          [contentHeaderView addSubview:contentHeaderLabel];
-        }
-          break;
-        default:
+  [contentHeaderView setBackgroundColor:[UIColor lightGrayColor]];
   
-          if ((pageIndex - kCountAbout - kCountHome) < self.termsFromDefault.count) {
-            NSString *termFromDefault = [self.termsFromDefault objectAtIndex:((pageIndex - kCountAbout - kCountHome))];
-            _tableView = [self dequeueReusableTableViewWithIdentifier:[NSString stringWithFormat:@"TableViewID%@", termFromDefault]];
-            _tableView.frame = contentHeaderView.frame;
-            _tableView.dataSource = self;
-            _tableView.delegate = self;
-            [contentHeaderView addSubview:_tableView];
-        } else {
-          }
-          break;
+  NSInteger termIndex = pageIndex - kCountAbout - kCountHome;
+  switch (pageIndex) {
+    case kIndexAbout: {
+      UILabel *contentHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 36)];
+      contentHeaderLabel.textAlignment = UITextAlignmentCenter;
+      contentHeaderLabel.text = [NSString stringWithFormat:@"Content %i", pageIndex];
+      contentHeaderLabel.textColor = [UIColor whiteColor];
+      contentHeaderLabel.backgroundColor = [UIColor grayColor];
+      contentHeaderLabel.center = contentHeaderView.center;
+      [contentHeaderView addSubview:contentHeaderLabel];
+    }
+      break;
+    case kIndexHome: {
+      UILabel *contentHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 36)];
+      contentHeaderLabel.textAlignment = UITextAlignmentCenter;
+      contentHeaderLabel.text = [NSString stringWithFormat:@"Content %i", pageIndex];
+      contentHeaderLabel.textColor = [UIColor whiteColor];
+      contentHeaderLabel.backgroundColor = [UIColor grayColor];
+      contentHeaderLabel.center = contentHeaderView.center;
+      [contentHeaderView addSubview:contentHeaderLabel];
+    }
+      break;
+    default: {
+      
+      if (termIndex < self.termKeysFromDefault.count) {
+        NSString *termFromDefault = [self.termKeysFromDefault objectAtIndex:(termIndex)];
+        _tableView = [self dequeueReusableTableViewWithIdentifier:[NSString stringWithFormat:@"TableViewID%@", termFromDefault]];
+        _tableView = [[UITableView alloc] init];
+        _tableView.tag = termIndex;
+        _tableView.frame = contentHeaderView.frame;
+        _tableView.dataSource = self;
+        _tableView.delegate = self;
+        [contentHeaderView addSubview:_tableView];
+      } else {
       }
+    }
+      break;
+  }
   
-      return contentHeaderView;
+  return contentHeaderView;
 }
 
 #pragma mark - NIPagingScrollViewDelegate
 
 - (void)pagingScrollViewDidChangePages:(NIPagingScrollView *)pagingScrollView {
   if (pagingScrollView == self.pagingScrollView) {
-      [self.headerCarousel scrollToItemAtIndex:self.pagingScrollView.centerPageIndex duration:0.5];
+    [self.headerCarousel scrollToItemAtIndex:self.pagingScrollView.centerPageIndex duration:0.5];
   }
 }
 
@@ -329,10 +335,78 @@ CGFloat smallMoving = 25;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return 20;
+  
+  NSInteger pageIndex = tableView.tag;
+  if (pageIndex < self.termKeysFromDefault.count) {
+    
+    NSString *key = [self.termKeysFromDefault objectAtIndex:(pageIndex)];
+    // Check data
+    NSArray *dataFromTerms = [self.termDataFromDefault objectForKey:@"terms"];
+    
+    for (NSDictionary *eachDataTerm  in dataFromTerms) {
+      if ([[eachDataTerm objectForKey:@"key"] isEqualToString:key]) {
+        NSArray *sources = [eachDataTerm objectForKey:@"sources"];
+        return sources.count;
+      }
+    }
+  }
+  
+  NSInteger numberOfRows = 0;
+  switch (pageIndex) {
+    case 1:
+      numberOfRows = 5;
+      break;
+    default:
+      numberOfRows = 20;
+      break;
+  }
+  return numberOfRows;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+  
+  __block EPHomeViewController *tempSelf = self;
+  __block NSIndexPath *tempIndexPath = indexPath;
+  
+  NSInteger pageIndex = tableView.tag;
+  if (pageIndex < self.termKeysFromDefault.count) {
+    
+    NSString *key = [self.termKeysFromDefault objectAtIndex:(pageIndex)];
+    // Check data
+    NSArray *dataFromTerms = [self.termDataFromDefault objectForKey:@"terms"];
+    
+    for (NSDictionary *eachDataTerm  in dataFromTerms) {
+      if ([[eachDataTerm objectForKey:@"key"] isEqualToString:key]) {
+        NSArray *sourceArray = [eachDataTerm objectForKey:@"sources"];
+        for (NSDictionary *eachSource in sourceArray) {
+          NSString *title = [eachSource objectForKey:@"title"];
+          
+          NSMutableString *cellWithId = [NSMutableString stringWithFormat:@"cell%@%i%i", title, indexPath.section, indexPath.row];
+          UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellWithId];
+          if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellWithId];
+            cell.selectionStyle = UITableViewCellSelectionStyleGray;
+          }
+          cell.textLabel.text = title;
+          cell.detailTextLabel.text = [eachSource objectForKey:@"detail"];
+          
+          // TODO: Add placeholder image
+          [cell.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[eachSource objectForKey:@"imageURL"]]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+            UITableViewCell *currentLoadingCell = (UITableViewCell *)[tempSelf.tableView cellForRowAtIndexPath:tempIndexPath];
+            currentLoadingCell.imageView.image = image;
+            [currentLoadingCell setNeedsLayout];
+            
+          } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+            // Handle error
+          }];
+          return cell;
+        }
+      }
+      
+      
+      
+    }
+  }
   
   NSMutableString *cellWithId = [NSMutableString stringWithFormat:@"cell%@%i%i", @"term", indexPath.section, indexPath.row];
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellWithId];

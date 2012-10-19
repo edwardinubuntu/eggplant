@@ -3,15 +3,27 @@
 <plist version="1.0">
 <dict>
 	<key>terms</key>
-	<dict>
-		<key>茄</key>
+	<array>
 		<dict>
-			<key>dataSources</key>
-			<dict>
-				<key>wiki</key>
+			<key>key</key>
+			<string>茄</string>
+			<key>termInEN</key>
+			<string>eggplant</string>
+			<key>sources</key>
+			<array>
 				<dict>
 					<key>imageURL</key>
-					<string>http://zh.wikipedia.org/wiki/File:Three_Types_of_Eggplant.jpg</string>
+					<string>http://upload.wikimedia.org/wikipedia/commons/4/49/Solanum_melongena_ja02.jpg</string>
+					<key>url</key>
+					<string>http://en.wikipedia.org/wiki/Eggplant</string>
+					<key>title</key>
+					<string>Eggplant</string>
+					<key>detail</key>
+					<string>The eggplant, brinjal eggplant, aubergine, melongene, brinjal or guinea squash (Solanum melongena) is a plant of the family Solanaceae (also known as the nightshades) and genus Solanum. It bears a fruit of the same name, commonly used in cooking. As a nightshade, it is closely related to the tomato and potato. It was domesticated in India from Solanum incanum</string>
+				</dict>
+				<dict>
+					<key>imageURL</key>
+					<string>http://upload.wikimedia.org/wikipedia/commons/f/f9/Three_Types_of_Eggplant.jpg</string>
 					<key>url</key>
 					<string>http://zh.wikipedia.org/zh-tw/%E8%8C%84</string>
 					<key>title</key>
@@ -19,11 +31,48 @@
 					<key>detail</key>
 					<string>茄（學名：Solanum melongena）常稱茄子，吳越人沿用宋代叫法稱爲落蘇，廣東人稱為矮瓜，是茄科茄屬一年生草本植物，熱帶為多年生。其結出的果實可食用，顏色多為紫色或紫黑色，也有淡綠色或白色品種，形狀上也有圓形，橢圓，梨形等各種。茄子是一種典型的蔬菜，根據品種的不同，食用方法多樣。</string>
 				</dict>
-			</dict>
-			<key>termInEN</key>
-			<string>eggplant</string>
+				<dict>
+					<key>imageURL</key>
+					<string>http://upload.wikimedia.org/wikipedia/commons/4/49/Solanum_melongena_ja02.jpg</string>
+					<key>url</key>
+					<string>http://en.wikipedia.org/wiki/Eggplant</string>
+					<key>title</key>
+					<string>Eggplant</string>
+					<key>detail</key>
+					<string>The eggplant, brinjal eggplant, aubergine, melongene, brinjal or guinea squash (Solanum melongena) is a plant of the family Solanaceae (also known as the nightshades) and genus Solanum. It bears a fruit of the same name, commonly used in cooking. As a nightshade, it is closely related to the tomato and potato. It was domesticated in India from Solanum incanum</string>
+				</dict>
+			</array>
 		</dict>
-	</dict>
+		<dict>
+			<key>key</key>
+			<string>番茄</string>
+			<key>termInEN</key>
+			<string>tomato</string>
+			<key>sources</key>
+			<array>
+				<dict>
+					<key>imageURL</key>
+					<string>http://upload.wikimedia.org/wikipedia/commons/4/49/Solanum_melongena_ja02.jpg</string>
+					<key>url</key>
+					<string>http://en.wikipedia.org/wiki/Eggplant</string>
+					<key>title</key>
+					<string>Tomato</string>
+					<key>detail</key>
+					<string>Tomato</string>
+				</dict>
+				<dict>
+					<key>imageURL</key>
+					<string>http://upload.wikimedia.org/wikipedia/commons/4/49/Solanum_melongena_ja02.jpg</string>
+					<key>url</key>
+					<string>http://en.wikipedia.org/wiki/Eggplant</string>
+					<key>title</key>
+					<string>番茄</string>
+					<key>detail</key>
+					<string>可以吃</string>
+				</dict>
+			</array>
+		</dict>
+	</array>
 	<key>termKeys</key>
 	<array>
 		<string>茄</string>

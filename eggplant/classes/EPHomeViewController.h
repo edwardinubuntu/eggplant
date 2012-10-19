@@ -26,7 +26,10 @@
 @property (nonatomic, strong) UIView *buttonSectionsView;
 @property (nonatomic, strong) UIButton *cameraButton;
 @property (nonatomic, strong) UIButton *writeButton;
-@property (nonatomic, strong) NSArray *termsFromDefault;
+
+@property (nonatomic, strong) NSArray *termKeysFromDefault;
+@property (nonatomic, strong) NSDictionary *termDataFromDefault;
+
 @property (nonatomic, strong) NSMutableArray *termsFromUserSaved;
 @property (nonatomic, strong) NIPagingScrollView *pagingScrollView;
 
