@@ -12,6 +12,8 @@
 
 static EPRESTClient *gYahooSharedClient;
 static EPRESTClient *gWikiSharedClient;
+static EPRESTClient *gInstagramClient;
+static EPRESTClient *giCookClient;
 
 + (EPRESTClient *)sharedYahooClient {
   static dispatch_once_t yahooOnceToken;
@@ -38,11 +40,23 @@ static EPRESTClient *gWikiSharedClient;
 + (EPRESTClient *)sharedInstgramClient {
   static dispatch_once_t yahooOnceToken;
   dispatch_once(&yahooOnceToken, ^{
-    gYahooSharedClient = (EPRESTClient *)[EPRESTClient clientWithBaseURL:[NSURL URLWithString:kINSTAGRAM_BASE_URL]];
-    [gYahooSharedClient registerHTTPOperationClass:[AFJSONRequestOperation class]];
+    gInstagramClient = (EPRESTClient *)[EPRESTClient clientWithBaseURL:[NSURL URLWithString:kINSTAGRAM_BASE_URL]];
+    [gInstagramClient registerHTTPOperationClass:[AFJSONRequestOperation class]];
   });
   
-  return gYahooSharedClient;
+  return gInstagramClient;
+}
+
++ (EPRESTClient *)sharediCookClient {
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    giCookClient = (EPRESTClient *)[EPRESTClient clientWithBaseURL:[NSURL URLWithString:kICOOK_BASE_URL]];
+    [giCookClient registerHTTPOperationClass:[AFJSONRequestOperation class]];
+    [giCookClient setDefaultHeader:@"User-Agent" value:@"tw.icook.iCook"];
+    NIDPRINT(@"User-Agent: %@", [giCookClient defaultValueForHeader:@"User-Agent"]);
+  });
+  
+  return giCookClient;
 }
 
 @end

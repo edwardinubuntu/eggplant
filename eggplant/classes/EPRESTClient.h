@@ -13,5 +13,6 @@
 + (EPRESTClient *)sharedYahooClient;
 + (EPRESTClient *)sharedWikiClient:(NSString *)lang;
 + (EPRESTClient *)sharedInstgramClient;
++ (EPRESTClient *)sharediCookClient;
 
 @end

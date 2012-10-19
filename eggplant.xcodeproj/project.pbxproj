@@ -38,6 +38,22 @@
 		1CB0744016317DC70028E3C9 /* CellDefaultImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CB0743E16317DC70028E3C9 /* CellDefaultImage.png */; };
 		1CB0744116317DC70028E3C9 /* CellDefaultImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CB0743F16317DC70028E3C9 /* CellDefaultImage@2x.png */; };
 		1CB07444163182CB0028E3C9 /* EPWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB07443163182CB0028E3C9 /* EPWebViewController.m */; };
+		1CB0744C16319C960028E3C9 /* ICModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0744716319C960028E3C9 /* ICModel.m */; };
+		1CB0744D16319C960028E3C9 /* ICRecipesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0744916319C960028E3C9 /* ICRecipesModel.m */; };
+		1CB0744E16319C960028E3C9 /* ICRecipesSearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0744B16319C960028E3C9 /* ICRecipesSearchModel.m */; };
+		1CB0745116319CBC0028E3C9 /* NSDictionary+ICObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0745016319CBC0028E3C9 /* NSDictionary+ICObjects.m */; };
+		1CB0747816319CEF0028E3C9 /* ICUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0745516319CEF0028E3C9 /* ICUser.m */; };
+		1CB0747916319CEF0028E3C9 /* ICRecipe.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0745716319CEF0028E3C9 /* ICRecipe.m */; };
+		1CB0747A16319CEF0028E3C9 /* ICList.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0745916319CEF0028E3C9 /* ICList.m */; };
+		1CB0747B16319CEF0028E3C9 /* ICDish.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0745B16319CEF0028E3C9 /* ICDish.m */; };
+		1CB0747C16319CEF0028E3C9 /* ICStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0745D16319CEF0028E3C9 /* ICStep.m */; };
+		1CB0747D16319CEF0028E3C9 /* ICIngredient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0745F16319CEF0028E3C9 /* ICIngredient.m */; };
+		1CB0747E16319CEF0028E3C9 /* ICCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0746116319CEF0028E3C9 /* ICCategory.m */; };
+		1CB0747F16319CEF0028E3C9 /* ICUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0746316319CEF0028E3C9 /* ICUpload.m */; };
+		1CB0748116319CEF0028E3C9 /* ICPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0746716319CEF0028E3C9 /* ICPhoto.m */; };
+		1CB0748816319CEF0028E3C9 /* ICIngredientTerm.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0747516319CEF0028E3C9 /* ICIngredientTerm.m */; };
+		1CB0748D16319D6E0028E3C9 /* ICRecipesSearchModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0748C16319D6E0028E3C9 /* ICRecipesSearchModelTests.m */; };
+		1CB0749016319EDA0028E3C9 /* EPICookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0748F16319EDA0028E3C9 /* EPICookCell.m */; };
 		1CB1AD83162B713B0068EA0D /* EPYKnowledgeSearchModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB1AD82162B713B0068EA0D /* EPYKnowledgeSearchModelTests.m */; };
 		1CB1AD87162B75500068EA0D /* EPWikiSearchContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB1AD86162B75500068EA0D /* EPWikiSearchContentModel.m */; };
 		1CB1AD8A162B76190068EA0D /* EPWikiSearchContentModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB1AD89162B76190068EA0D /* EPWikiSearchContentModelTests.m */; };
@@ -126,6 +142,38 @@
 		1CB0743F16317DC70028E3C9 /* CellDefaultImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CellDefaultImage@2x.png"; sourceTree = "<group>"; };
 		1CB07442163182CB0028E3C9 /* EPWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPWebViewController.h; sourceTree = "<group>"; };
 		1CB07443163182CB0028E3C9 /* EPWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPWebViewController.m; sourceTree = "<group>"; };
+		1CB0744616319C960028E3C9 /* ICModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICModel.h; sourceTree = "<group>"; };
+		1CB0744716319C960028E3C9 /* ICModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICModel.m; sourceTree = "<group>"; };
+		1CB0744816319C960028E3C9 /* ICRecipesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICRecipesModel.h; sourceTree = "<group>"; };
+		1CB0744916319C960028E3C9 /* ICRecipesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICRecipesModel.m; sourceTree = "<group>"; };
+		1CB0744A16319C960028E3C9 /* ICRecipesSearchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICRecipesSearchModel.h; sourceTree = "<group>"; };
+		1CB0744B16319C960028E3C9 /* ICRecipesSearchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICRecipesSearchModel.m; sourceTree = "<group>"; };
+		1CB0744F16319CBC0028E3C9 /* NSDictionary+ICObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+ICObjects.h"; sourceTree = "<group>"; };
+		1CB0745016319CBC0028E3C9 /* NSDictionary+ICObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+ICObjects.m"; sourceTree = "<group>"; };
+		1CB0745416319CEF0028E3C9 /* ICUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICUser.h; sourceTree = "<group>"; };
+		1CB0745516319CEF0028E3C9 /* ICUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICUser.m; sourceTree = "<group>"; };
+		1CB0745616319CEF0028E3C9 /* ICRecipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICRecipe.h; sourceTree = "<group>"; };
+		1CB0745716319CEF0028E3C9 /* ICRecipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICRecipe.m; sourceTree = "<group>"; };
+		1CB0745816319CEF0028E3C9 /* ICList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICList.h; sourceTree = "<group>"; };
+		1CB0745916319CEF0028E3C9 /* ICList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICList.m; sourceTree = "<group>"; };
+		1CB0745A16319CEF0028E3C9 /* ICDish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICDish.h; sourceTree = "<group>"; };
+		1CB0745B16319CEF0028E3C9 /* ICDish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICDish.m; sourceTree = "<group>"; };
+		1CB0745C16319CEF0028E3C9 /* ICStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICStep.h; sourceTree = "<group>"; };
+		1CB0745D16319CEF0028E3C9 /* ICStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICStep.m; sourceTree = "<group>"; };
+		1CB0745E16319CEF0028E3C9 /* ICIngredient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICIngredient.h; sourceTree = "<group>"; };
+		1CB0745F16319CEF0028E3C9 /* ICIngredient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICIngredient.m; sourceTree = "<group>"; };
+		1CB0746016319CEF0028E3C9 /* ICCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICCategory.h; sourceTree = "<group>"; };
+		1CB0746116319CEF0028E3C9 /* ICCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICCategory.m; sourceTree = "<group>"; };
+		1CB0746216319CEF0028E3C9 /* ICUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICUpload.h; sourceTree = "<group>"; };
+		1CB0746316319CEF0028E3C9 /* ICUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICUpload.m; sourceTree = "<group>"; };
+		1CB0746616319CEF0028E3C9 /* ICPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICPhoto.h; sourceTree = "<group>"; };
+		1CB0746716319CEF0028E3C9 /* ICPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICPhoto.m; sourceTree = "<group>"; };
+		1CB0747416319CEF0028E3C9 /* ICIngredientTerm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICIngredientTerm.h; sourceTree = "<group>"; };
+		1CB0747516319CEF0028E3C9 /* ICIngredientTerm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICIngredientTerm.m; sourceTree = "<group>"; };
+		1CB0748B16319D6E0028E3C9 /* ICRecipesSearchModelTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICRecipesSearchModelTests.h; sourceTree = "<group>"; };
+		1CB0748C16319D6E0028E3C9 /* ICRecipesSearchModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICRecipesSearchModelTests.m; sourceTree = "<group>"; };
+		1CB0748E16319EDA0028E3C9 /* EPICookCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPICookCell.h; sourceTree = "<group>"; };
+		1CB0748F16319EDA0028E3C9 /* EPICookCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPICookCell.m; sourceTree = "<group>"; };
 		1CB1AD81162B713B0068EA0D /* EPYKnowledgeSearchModelTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPYKnowledgeSearchModelTests.h; sourceTree = "<group>"; };
 		1CB1AD82162B713B0068EA0D /* EPYKnowledgeSearchModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPYKnowledgeSearchModelTests.m; sourceTree = "<group>"; };
 		1CB1AD85162B75500068EA0D /* EPWikiSearchContentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPWikiSearchContentModel.h; sourceTree = "<group>"; };
@@ -319,6 +367,7 @@
 				1C878528162A63EF005D3672 /* EPRESTClient.m */,
 				1C878524162A63C0005D3672 /* EPModel.h */,
 				1C878525162A63C0005D3672 /* EPModel.m */,
+				1CB0744516319BC70028E3C9 /* ICook */,
 				1CA4FDF31631562E0061E957 /* Instagram */,
 				1CB1AD84162B75270068EA0D /* Wikipedia */,
 				1C87852D162A64FC005D3672 /* Knowledge */,
@@ -338,6 +387,7 @@
 		1C878531162A6534005D3672 /* Data Objects */ = {
 			isa = PBXGroup;
 			children = (
+				1CB0745216319CD20028E3C9 /* iCook */,
 				1C878532162A6549005D3672 /* EPYKnowledge.h */,
 				1C878533162A6549005D3672 /* EPYKnowledge.m */,
 				1CC40AC7162F056500DB04F0 /* EPWikiTerm.h */,
@@ -355,6 +405,8 @@
 		1C878535162A65B5005D3672 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				1CB0744F16319CBC0028E3C9 /* NSDictionary+ICObjects.h */,
+				1CB0745016319CBC0028E3C9 /* NSDictionary+ICObjects.m */,
 				1C878536162A65C2005D3672 /* NSString+Encode.h */,
 				1C878537162A65C2005D3672 /* NSString+Encode.m */,
 				1C878539162A6631005D3672 /* NSDictionary+EPObject.h */,
@@ -386,13 +438,65 @@
 			children = (
 				1CB0743B163178DF0028E3C9 /* EPWikiCell.h */,
 				1CB0743C163178DF0028E3C9 /* EPWikiCell.m */,
+				1CB0748E16319EDA0028E3C9 /* EPICookCell.h */,
+				1CB0748F16319EDA0028E3C9 /* EPICookCell.m */,
 			);
 			name = "Table View Cells";
+			sourceTree = "<group>";
+		};
+		1CB0744516319BC70028E3C9 /* ICook */ = {
+			isa = PBXGroup;
+			children = (
+				1CB0744616319C960028E3C9 /* ICModel.h */,
+				1CB0744716319C960028E3C9 /* ICModel.m */,
+				1CB0744816319C960028E3C9 /* ICRecipesModel.h */,
+				1CB0744916319C960028E3C9 /* ICRecipesModel.m */,
+				1CB0744A16319C960028E3C9 /* ICRecipesSearchModel.h */,
+				1CB0744B16319C960028E3C9 /* ICRecipesSearchModel.m */,
+			);
+			name = ICook;
+			sourceTree = "<group>";
+		};
+		1CB0745216319CD20028E3C9 /* iCook */ = {
+			isa = PBXGroup;
+			children = (
+				1CB0745416319CEF0028E3C9 /* ICUser.h */,
+				1CB0745516319CEF0028E3C9 /* ICUser.m */,
+				1CB0745616319CEF0028E3C9 /* ICRecipe.h */,
+				1CB0745716319CEF0028E3C9 /* ICRecipe.m */,
+				1CB0745816319CEF0028E3C9 /* ICList.h */,
+				1CB0745916319CEF0028E3C9 /* ICList.m */,
+				1CB0745A16319CEF0028E3C9 /* ICDish.h */,
+				1CB0745B16319CEF0028E3C9 /* ICDish.m */,
+				1CB0745C16319CEF0028E3C9 /* ICStep.h */,
+				1CB0745D16319CEF0028E3C9 /* ICStep.m */,
+				1CB0745E16319CEF0028E3C9 /* ICIngredient.h */,
+				1CB0745F16319CEF0028E3C9 /* ICIngredient.m */,
+				1CB0746016319CEF0028E3C9 /* ICCategory.h */,
+				1CB0746116319CEF0028E3C9 /* ICCategory.m */,
+				1CB0746216319CEF0028E3C9 /* ICUpload.h */,
+				1CB0746316319CEF0028E3C9 /* ICUpload.m */,
+				1CB0746616319CEF0028E3C9 /* ICPhoto.h */,
+				1CB0746716319CEF0028E3C9 /* ICPhoto.m */,
+				1CB0747416319CEF0028E3C9 /* ICIngredientTerm.h */,
+				1CB0747516319CEF0028E3C9 /* ICIngredientTerm.m */,
+			);
+			name = iCook;
+			sourceTree = "<group>";
+		};
+		1CB0748A16319D670028E3C9 /* iCook */ = {
+			isa = PBXGroup;
+			children = (
+				1CB0748B16319D6E0028E3C9 /* ICRecipesSearchModelTests.h */,
+				1CB0748C16319D6E0028E3C9 /* ICRecipesSearchModelTests.m */,
+			);
+			name = iCook;
 			sourceTree = "<group>";
 		};
 		1CB1AD80162B713B0068EA0D /* classes */ = {
 			isa = PBXGroup;
 			children = (
+				1CB0748A16319D670028E3C9 /* iCook */,
 				1CA4FDF8163156FA0061E957 /* Instagram */,
 				1CC40ACE162F0B1700DB04F0 /* Wiki */,
 				1CC40ACD162F0B0900DB04F0 /* YKnowledge */,
@@ -650,6 +754,21 @@
 				1CB0742D16316B260028E3C9 /* EPInstagram.m in Sources */,
 				1CB0743D163178DF0028E3C9 /* EPWikiCell.m in Sources */,
 				1CB07444163182CB0028E3C9 /* EPWebViewController.m in Sources */,
+				1CB0744C16319C960028E3C9 /* ICModel.m in Sources */,
+				1CB0744D16319C960028E3C9 /* ICRecipesModel.m in Sources */,
+				1CB0744E16319C960028E3C9 /* ICRecipesSearchModel.m in Sources */,
+				1CB0745116319CBC0028E3C9 /* NSDictionary+ICObjects.m in Sources */,
+				1CB0747816319CEF0028E3C9 /* ICUser.m in Sources */,
+				1CB0747916319CEF0028E3C9 /* ICRecipe.m in Sources */,
+				1CB0747A16319CEF0028E3C9 /* ICList.m in Sources */,
+				1CB0747B16319CEF0028E3C9 /* ICDish.m in Sources */,
+				1CB0747C16319CEF0028E3C9 /* ICStep.m in Sources */,
+				1CB0747D16319CEF0028E3C9 /* ICIngredient.m in Sources */,
+				1CB0747E16319CEF0028E3C9 /* ICCategory.m in Sources */,
+				1CB0747F16319CEF0028E3C9 /* ICUpload.m in Sources */,
+				1CB0748116319CEF0028E3C9 /* ICPhoto.m in Sources */,
+				1CB0748816319CEF0028E3C9 /* ICIngredientTerm.m in Sources */,
+				1CB0749016319EDA0028E3C9 /* EPICookCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -661,6 +780,7 @@
 				1CB1AD8A162B76190068EA0D /* EPWikiSearchContentModelTests.m in Sources */,
 				1CC40AC6162F01B500DB04F0 /* EPWikiQueryLangLinksModelTests.m in Sources */,
 				1CA4FDFB163158DE0061E957 /* EPInstagramTagsMediaModelTests.m in Sources */,
+				1CB0748D16319D6E0028E3C9 /* ICRecipesSearchModelTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

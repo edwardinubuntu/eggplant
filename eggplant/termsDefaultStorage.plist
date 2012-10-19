@@ -12,6 +12,20 @@
 			<key>sources</key>
 			<array>
 				<dict>
+					<key>imageURL</key>
+					<string>http://upload.wikimedia.org/wikipedia/commons/4/49/Solanum_melongena_ja02.jpg</string>
+					<key>type</key>
+					<string>wiki</string>
+					<key>url</key>
+					<string>http://en.wikipedia.org/wiki/Eggplant</string>
+					<key>title</key>
+					<string>Eggplant</string>
+					<key>detail</key>
+					<string>The eggplant, brinjal eggplant, aubergine, melongene, brinjal or guinea squash (Solanum melongena) is a plant of the family Solanaceae (also known as the nightshades) and genus Solanum. It bears a fruit of the same name, commonly used in cooking. As a nightshade, it is closely related to the tomato and potato. It was domesticated in India from Solanum incanum</string>
+					<key>sourceURL</key>
+					<string>en.wikipedia.org</string>
+				</dict>
+				<dict>
 					<key>type</key>
 					<string>wiki</string>
 					<key>imageURL</key>
@@ -27,17 +41,19 @@
 				</dict>
 				<dict>
 					<key>imageURL</key>
-					<string>http://upload.wikimedia.org/wikipedia/commons/4/49/Solanum_melongena_ja02.jpg</string>
+					<string>http://cdn1.icook.tw/uploads/picture/data/51102/small_e9cc1ece6d478677.jpg</string>
 					<key>type</key>
-					<string>wiki</string>
+					<string>icook</string>
 					<key>url</key>
-					<string>http://en.wikipedia.org/wiki/Eggplant</string>
+					<string>http://icook.tw/recipes/29388</string>
 					<key>title</key>
-					<string>Eggplant</string>
+					<string>醋拌茄子</string>
 					<key>detail</key>
-					<string>The eggplant, brinjal eggplant, aubergine, melongene, brinjal or guinea squash (Solanum melongena) is a plant of the family Solanaceae (also known as the nightshades) and genus Solanum. It bears a fruit of the same name, commonly used in cooking. As a nightshade, it is closely related to the tomato and potato. It was domesticated in India from Solanum incanum</string>
+					<string>茄子富含維生素P可軟化血管與增強彈性，防治高血壓、壞血病、動脈硬化；纖維中的皂苷能降膽固醇。
+茄子做成涼拌菜不但熱量低、 開胃，也很適合早晨搭配一碗熱呼呼的白稀飯唷！
+</string>
 					<key>sourceURL</key>
-					<string>en.wikipedia.org</string>
+					<string>icook.tw</string>
 				</dict>
 			</array>
 			<key>images</key>

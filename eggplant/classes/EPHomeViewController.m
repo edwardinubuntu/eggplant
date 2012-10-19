@@ -12,6 +12,7 @@
 #import "EPScrollPageView.h"
 #import "UIImageView+AFNetworking.h"
 #import "EPWikiCell.h"
+#import "EPICookCell.h"
 #import "EPWebViewController.h"
 
 @interface EPHomeViewController ()
@@ -410,8 +411,10 @@ CGFloat smallMoving = 25;
             NSString *sourceType = [currentSource objectForKey:@"type"];
             if ([sourceType isEqualToString:@"wiki"]) {
               cell = [[EPWikiCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellWithId];
-              
               ((EPWikiCell *)cell).sourceLabel.text = [currentSource objectForKey:@"sourceURL"];
+            } else if ([sourceType isEqualToString:@"icook"]) {
+              cell = [[EPICookCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellWithId];
+              ((EPICookCell *)cell).sourceLabel.text = [currentSource objectForKey:@"sourceURL"];
             } else {
               cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellWithId];
               
@@ -481,6 +484,9 @@ CGFloat smallMoving = 25;
         NSString *sourceType = [currentSource objectForKey:@"type"];
         if ([sourceType isEqualToString:@"wiki"]) {
           return [EPWikiCell cellHeight];
+        }
+        if ([sourceType isEqualToString:@"icook"]) {
+          return [EPICookCell cellHeight];
         }
       }
     }
