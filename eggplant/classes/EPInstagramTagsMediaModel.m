@@ -63,7 +63,7 @@
             image.imageType = EPImageTypeThumbnail;
           }
           
-        [tempSelf.instagrams addObject:image];
+          [tempSelf.instagrams addObject:image];
         }
       }
       

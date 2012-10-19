@@ -11,6 +11,8 @@
 #import "EPTermsStorageManager.h"
 #import "EPScrollPageView.h"
 #import "UIImageView+AFNetworking.h"
+#import "EPWikiCell.h"
+#import "EPWebViewController.h"
 
 @interface EPHomeViewController ()
 
@@ -96,8 +98,18 @@ CGFloat smallMoving = 25;
   [self.view bringSubviewToFront:self.buttonSectionsView];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+  [super viewDidDisappear:animated];
+  [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -106,6 +118,24 @@ CGFloat smallMoving = 25;
 }
 
 #pragma mark - private
+
+- (NSArray *)sourceWithGivenDefaultDataSet:(NSInteger)pageIndex {
+  NSArray *sources;
+  if (pageIndex < self.termKeysFromDefault.count) {
+    
+    NSString *key = [self.termKeysFromDefault objectAtIndex:(pageIndex)];
+    // Check data
+    NSArray *dataFromTerms = [self.termDataFromDefault objectForKey:@"terms"];
+    
+    for (NSDictionary *eachDataTerm  in dataFromTerms) {
+      if ([[eachDataTerm objectForKey:@"key"] isEqualToString:key]) {
+        sources = [eachDataTerm objectForKey:@"sources"];
+        break;
+      }
+    }
+  }
+  return sources;
+}
 
 - (UITableView *)dequeueReusableTableViewWithIdentifier:(NSString*)identifier {
   UITableView *cachedView = [self.recycledTableView objectForKey:identifier];
@@ -249,7 +279,10 @@ CGFloat smallMoving = 25;
     }
     
     sectionHeaderLabel.textColor = [UIColor whiteColor];
-    sectionHeaderLabel.backgroundColor = [UIColor grayColor];
+    sectionHeaderLabel.backgroundColor = [UIColor clearColor];
+    sectionHeaderLabel.font = [UIFont systemFontOfSize:20.f];
+    sectionHeaderLabel.shadowColor = [UIColor lightGrayColor];
+    sectionHeaderLabel.shadowOffset = CGSizeMake(0, 1);
     sectionHeaderLabel.center = sectionHeaderView.center;
     
     [sectionHeaderView setBackgroundColor:[UIColor clearColor]];
@@ -337,18 +370,9 @@ CGFloat smallMoving = 25;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   
   NSInteger pageIndex = tableView.tag;
-  if (pageIndex < self.termKeysFromDefault.count) {
-    
-    NSString *key = [self.termKeysFromDefault objectAtIndex:(pageIndex)];
-    // Check data
-    NSArray *dataFromTerms = [self.termDataFromDefault objectForKey:@"terms"];
-    
-    for (NSDictionary *eachDataTerm  in dataFromTerms) {
-      if ([[eachDataTerm objectForKey:@"key"] isEqualToString:key]) {
-        NSArray *sources = [eachDataTerm objectForKey:@"sources"];
-        return sources.count;
-      }
-    }
+  NSArray *sources = [self sourceWithGivenDefaultDataSet:pageIndex];
+  if (sources.count > 0) {
+    return sources.count;
   }
   
   NSInteger numberOfRows = 0;
@@ -377,21 +401,28 @@ CGFloat smallMoving = 25;
     
     for (NSDictionary *eachDataTerm  in dataFromTerms) {
       if ([[eachDataTerm objectForKey:@"key"] isEqualToString:key]) {
-        NSArray *sourceArray = [eachDataTerm objectForKey:@"sources"];
-        NSDictionary *currentSource = [sourceArray objectAtIndex:indexPath.row];
+        NSDictionary *currentSource = [[eachDataTerm objectForKey:@"sources"] objectAtIndex:indexPath.row];
           NSString *title = [currentSource objectForKey:@"title"];
           
           NSMutableString *cellWithId = [NSMutableString stringWithFormat:@"cell%@%i%i", title, indexPath.section, indexPath.row];
           UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellWithId];
           if (!cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellWithId];
+            NSString *sourceType = [currentSource objectForKey:@"type"];
+            if ([sourceType isEqualToString:@"wiki"]) {
+              cell = [[EPWikiCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellWithId];
+              
+              ((EPWikiCell *)cell).sourceLabel.text = [currentSource objectForKey:@"sourceURL"];
+            } else {
+              cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellWithId];
+              
+            }
             cell.selectionStyle = UITableViewCellSelectionStyleGray;
           }
           cell.textLabel.text = title;
           cell.detailTextLabel.text = [currentSource objectForKey:@"detail"];
           
           // TODO: Add placeholder image
-          [cell.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[currentSource objectForKey:@"imageURL"]]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+          [cell.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[currentSource objectForKey:@"imageURL"]]] placeholderImage:[UIImage imageNamed:@"CellDefaultImage"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
             UITableViewCell *currentLoadingCell = (UITableViewCell *)[tempSelf.tableView cellForRowAtIndexPath:tempIndexPath];
             currentLoadingCell.imageView.image = image;
             [currentLoadingCell setNeedsLayout];
@@ -419,5 +450,55 @@ CGFloat smallMoving = 25;
   return cell;
 }
 
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+  NSArray *currentSourceArray = [self sourceWithGivenDefaultDataSet:tableView.tag];
+  NSDictionary *currentSource = [currentSourceArray objectAtIndex:indexPath.row];
+  
+  __block UITableView *tempTableView = tableView;
+  __block NSIndexPath *tempIndexPath = indexPath;
+  // TODO: Add placeholder image
+  [cell.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[currentSource objectForKey:@"imageURL"]]] placeholderImage:[UIImage imageNamed:@"CellDefaultImage"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+    UITableViewCell *currentLoadingCell = (UITableViewCell *)[tempTableView cellForRowAtIndexPath:tempIndexPath];
+    currentLoadingCell.imageView.image = image;
+    [currentLoadingCell setNeedsLayout];
+    
+  } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+    // Handle error
+  }];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+  NSInteger pageIndex = tableView.tag;
+  if (pageIndex < self.termKeysFromDefault.count) {
+    NSString *key = [self.termKeysFromDefault objectAtIndex:(pageIndex)];
+    // Check data
+    NSArray *dataFromTerms = [self.termDataFromDefault objectForKey:@"terms"];
+    for (NSDictionary *eachDataTerm  in dataFromTerms) {
+      if ([[eachDataTerm objectForKey:@"key"] isEqualToString:key]) {
+         NSDictionary *currentSource = [[eachDataTerm objectForKey:@"sources"] objectAtIndex:indexPath.row];
+        NSString *sourceType = [currentSource objectForKey:@"type"];
+        if ([sourceType isEqualToString:@"wiki"]) {
+          return [EPWikiCell cellHeight];
+        }
+      }
+    }
+  }
+  return 44.f;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  UITableViewCell *currentCell = [tableView cellForRowAtIndexPath:indexPath];
+  currentCell.selected = NO;
+  NSArray *currentSourceArray = [self sourceWithGivenDefaultDataSet:tableView.tag];
+  NSDictionary *currentSource = [currentSourceArray objectAtIndex:indexPath.row];
+  if ([currentSource objectForKey:@"url"]) {
+    NSURL *openURL = [NSURL URLWithString:[currentSource objectForKey:@"url"]];
+    EPWebViewController *webController = [[EPWebViewController alloc] init];
+    [webController openURL:openURL];
+    [self.navigationController pushViewController:webController animated:YES];
+  }
+}
 
 @end

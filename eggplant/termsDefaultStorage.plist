@@ -14,14 +14,20 @@
 				<dict>
 					<key>imageURL</key>
 					<string>http://upload.wikimedia.org/wikipedia/commons/4/49/Solanum_melongena_ja02.jpg</string>
+					<key>type</key>
+					<string>wiki</string>
 					<key>url</key>
 					<string>http://en.wikipedia.org/wiki/Eggplant</string>
 					<key>title</key>
 					<string>Eggplant</string>
 					<key>detail</key>
 					<string>The eggplant, brinjal eggplant, aubergine, melongene, brinjal or guinea squash (Solanum melongena) is a plant of the family Solanaceae (also known as the nightshades) and genus Solanum. It bears a fruit of the same name, commonly used in cooking. As a nightshade, it is closely related to the tomato and potato. It was domesticated in India from Solanum incanum</string>
+					<key>sourceURL</key>
+					<string>en.wikipedia.org</string>
 				</dict>
 				<dict>
+					<key>type</key>
+					<string>wiki</string>
 					<key>imageURL</key>
 					<string>http://upload.wikimedia.org/wikipedia/commons/f/f9/Three_Types_of_Eggplant.jpg</string>
 					<key>url</key>
@@ -30,16 +36,8 @@
 					<string>茄</string>
 					<key>detail</key>
 					<string>茄（學名：Solanum melongena）常稱茄子，吳越人沿用宋代叫法稱爲落蘇，廣東人稱為矮瓜，是茄科茄屬一年生草本植物，熱帶為多年生。其結出的果實可食用，顏色多為紫色或紫黑色，也有淡綠色或白色品種，形狀上也有圓形，橢圓，梨形等各種。茄子是一種典型的蔬菜，根據品種的不同，食用方法多樣。</string>
-				</dict>
-				<dict>
-					<key>imageURL</key>
-					<string>http://upload.wikimedia.org/wikipedia/commons/4/49/Solanum_melongena_ja02.jpg</string>
-					<key>url</key>
-					<string>http://en.wikipedia.org/wiki/Eggplant</string>
-					<key>title</key>
-					<string>Eggplant</string>
-					<key>detail</key>
-					<string>The eggplant, brinjal eggplant, aubergine, melongene, brinjal or guinea squash (Solanum melongena) is a plant of the family Solanaceae (also known as the nightshades) and genus Solanum. It bears a fruit of the same name, commonly used in cooking. As a nightshade, it is closely related to the tomato and potato. It was domesticated in India from Solanum incanum</string>
+					<key>sourceURL</key>
+					<string>zh.wikipedia.org</string>
 				</dict>
 			</array>
 		</dict>
@@ -51,24 +49,32 @@
 			<key>sources</key>
 			<array>
 				<dict>
+					<key>type</key>
+					<string>wiki</string>
 					<key>imageURL</key>
-					<string>http://upload.wikimedia.org/wikipedia/commons/4/49/Solanum_melongena_ja02.jpg</string>
+					<string>http://upload.wikimedia.org/wikipedia/commons/d/d2/Tomatoes_plain_and_sliced.jpg</string>
 					<key>url</key>
-					<string>http://en.wikipedia.org/wiki/Eggplant</string>
+					<string>http://zh.wikipedia.org/zh-tw/%E7%95%AA%E8%8C%84</string>
 					<key>title</key>
 					<string>番茄</string>
+					<key>sourceURL</key>
+					<string>zh.wikipedia.org</string>
 					<key>detail</key>
-					<string>可以吃</string>
+					<string>番茄（學名：Solanum lycopersicum，俗寫作蕃茄），在中國大陸北方又稱西紅柿，是茄科茄屬馬鈴薯亞屬的多年生草本植物。番茄原產於中美洲和南美洲，現作為食用蔬果已被全球性廣泛種植。</string>
 				</dict>
 				<dict>
+					<key>type</key>
+					<string>wiki</string>
 					<key>imageURL</key>
-					<string>http://upload.wikimedia.org/wikipedia/commons/4/49/Solanum_melongena_ja02.jpg</string>
+					<string>http://upload.wikimedia.org/wikipedia/commons/8/88/Bright_red_tomato_and_cross_section02.jpg</string>
 					<key>url</key>
-					<string>http://en.wikipedia.org/wiki/Eggplant</string>
+					<string>http://en.wikipedia.org/wiki/Tomato</string>
 					<key>title</key>
 					<string>Tomato</string>
 					<key>detail</key>
-					<string>Tomato</string>
+					<string>The word &quot;tomato&quot; may refer to the plant (Solanum lycopersicum) or the edible, typically red, fruit that it bears. Originating in America, the tomato was spread around the world following the Spanish colonization of the Americas, and its many varieties are now widely grown, often in greenhouses in cooler climates.</string>
+					<key>sourceURL</key>
+					<string>en.wikipedia.org</string>
 				</dict>
 			</array>
 		</dict>

@@ -34,6 +34,10 @@
 		1CA4FDFB163158DE0061E957 /* EPInstagramTagsMediaModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA4FDFA163158DE0061E957 /* EPInstagramTagsMediaModelTests.m */; };
 		1CB0742A16316ADA0028E3C9 /* EPImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0742916316ADA0028E3C9 /* EPImage.m */; };
 		1CB0742D16316B260028E3C9 /* EPInstagram.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0742C16316B260028E3C9 /* EPInstagram.m */; };
+		1CB0743D163178DF0028E3C9 /* EPWikiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0743C163178DF0028E3C9 /* EPWikiCell.m */; };
+		1CB0744016317DC70028E3C9 /* CellDefaultImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CB0743E16317DC70028E3C9 /* CellDefaultImage.png */; };
+		1CB0744116317DC70028E3C9 /* CellDefaultImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CB0743F16317DC70028E3C9 /* CellDefaultImage@2x.png */; };
+		1CB07444163182CB0028E3C9 /* EPWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB07443163182CB0028E3C9 /* EPWebViewController.m */; };
 		1CB1AD83162B713B0068EA0D /* EPYKnowledgeSearchModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB1AD82162B713B0068EA0D /* EPYKnowledgeSearchModelTests.m */; };
 		1CB1AD87162B75500068EA0D /* EPWikiSearchContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB1AD86162B75500068EA0D /* EPWikiSearchContentModel.m */; };
 		1CB1AD8A162B76190068EA0D /* EPWikiSearchContentModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB1AD89162B76190068EA0D /* EPWikiSearchContentModelTests.m */; };
@@ -116,6 +120,12 @@
 		1CB0742916316ADA0028E3C9 /* EPImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPImage.m; sourceTree = "<group>"; };
 		1CB0742B16316B260028E3C9 /* EPInstagram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPInstagram.h; sourceTree = "<group>"; };
 		1CB0742C16316B260028E3C9 /* EPInstagram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPInstagram.m; sourceTree = "<group>"; };
+		1CB0743B163178DF0028E3C9 /* EPWikiCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPWikiCell.h; sourceTree = "<group>"; };
+		1CB0743C163178DF0028E3C9 /* EPWikiCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPWikiCell.m; sourceTree = "<group>"; };
+		1CB0743E16317DC70028E3C9 /* CellDefaultImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CellDefaultImage.png; sourceTree = "<group>"; };
+		1CB0743F16317DC70028E3C9 /* CellDefaultImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CellDefaultImage@2x.png"; sourceTree = "<group>"; };
+		1CB07442163182CB0028E3C9 /* EPWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPWebViewController.h; sourceTree = "<group>"; };
+		1CB07443163182CB0028E3C9 /* EPWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPWebViewController.m; sourceTree = "<group>"; };
 		1CB1AD81162B713B0068EA0D /* EPYKnowledgeSearchModelTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPYKnowledgeSearchModelTests.h; sourceTree = "<group>"; };
 		1CB1AD82162B713B0068EA0D /* EPYKnowledgeSearchModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPYKnowledgeSearchModelTests.m; sourceTree = "<group>"; };
 		1CB1AD85162B75500068EA0D /* EPWikiSearchContentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPWikiSearchContentModel.h; sourceTree = "<group>"; };
@@ -266,6 +276,8 @@
 		1C878514162A5901005D3672 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				1CB0743E16317DC70028E3C9 /* CellDefaultImage.png */,
+				1CB0743F16317DC70028E3C9 /* CellDefaultImage@2x.png */,
 				1CB1AE13162C37440068EA0D /* 86-camera.png */,
 				1CB1AE14162C37440068EA0D /* 86-camera@2x.png */,
 				1CB1AE0F162C37220068EA0D /* 187-pencil.png */,
@@ -369,6 +381,15 @@
 			name = Instagram;
 			sourceTree = "<group>";
 		};
+		1CB07439163178A10028E3C9 /* Table View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				1CB0743B163178DF0028E3C9 /* EPWikiCell.h */,
+				1CB0743C163178DF0028E3C9 /* EPWikiCell.m */,
+			);
+			name = "Table View Cells";
+			sourceTree = "<group>";
+		};
 		1CB1AD80162B713B0068EA0D /* classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -397,6 +418,8 @@
 				1CB1AD8D162B79C20068EA0D /* EPViewController.m */,
 				1CB1AE08162C2D1B0068EA0D /* EPHomeViewController.h */,
 				1CB1AE09162C2D1B0068EA0D /* EPHomeViewController.m */,
+				1CB07442163182CB0028E3C9 /* EPWebViewController.h */,
+				1CB07443163182CB0028E3C9 /* EPWebViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -453,6 +476,7 @@
 		1CC40AF5162F70F800DB04F0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1CB07439163178A10028E3C9 /* Table View Cells */,
 				1CC40AF6162F711600DB04F0 /* EPScrollPageView.h */,
 				1CC40AF7162F711600DB04F0 /* EPScrollPageView.m */,
 			);
@@ -553,6 +577,8 @@
 				1CC40ADC162F1A0A00DB04F0 /* readme.txt in Resources */,
 				1CC40AE2162F57BF00DB04F0 /* termsDefaultStorage.plist in Resources */,
 				1CC40AE5162F5F4300DB04F0 /* Localizable.strings in Resources */,
+				1CB0744016317DC70028E3C9 /* CellDefaultImage.png in Resources */,
+				1CB0744116317DC70028E3C9 /* CellDefaultImage@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -622,6 +648,8 @@
 				1CA4FDF7163156660061E957 /* EPInstagramTagsMediaModel.m in Sources */,
 				1CB0742A16316ADA0028E3C9 /* EPImage.m in Sources */,
 				1CB0742D16316B260028E3C9 /* EPInstagram.m in Sources */,
+				1CB0743D163178DF0028E3C9 /* EPWikiCell.m in Sources */,
+				1CB07444163182CB0028E3C9 /* EPWebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
