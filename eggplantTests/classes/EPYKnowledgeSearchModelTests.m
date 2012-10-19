@@ -44,6 +44,32 @@
   }
 }
 
+- (void)testSearchList {
+  self.searchModel.keywords = @"茄子";
+  
+  __block BOOL done = NO;
+  __block EPYKnowledgeSearchModelTests *tempSelf = self;
+  [self.searchModel loadMore:NO didFinishLoad:^{
+    done = YES;
+    STAssertTrue(tempSelf.searchModel.isLoaded, @"Must be loaded");
+    for (EPYKnowledge *eachknowledge in self.searchModel.knowledges) {
+      NIDPRINT(@"EPYKnowledge :%@", eachknowledge);
+    }
+    
+  } loadWithError:^(NSError *error) {
+    done = YES;
+    NIDPRINT(@"testSearchEnglish got Error %@", error.localizedDescription);
+    STAssertTrue(NO, @"Load with Error");
+  }];
+  
+  while (!done) {
+    // This executes another run loop.
+    [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+    // Sleep 1/100th sec
+    usleep(1000);
+  }
+}
+
 - (void)queryTermForKnowledge:(NSString *)keyword canEat:(BOOL)canEat {
     self.searchModel.keywords = keyword;
     

@@ -8,8 +8,11 @@ PODS:
 - BlocksKit (1.5.2):
   - A2DynamicDelegate
 - DDProgressView (0.1)
+- DTCoreText (1.0.2)
 - FPPopover (1.1)
 - MJPopupViewController (0.3)
+- Nimbus/AttributedLabel (0.9.3):
+  - Nimbus/Core
 - Nimbus/Core (0.9.3)
 - Nimbus/Models (0.9.3):
   - Nimbus/Core
@@ -35,8 +38,10 @@ DEPENDENCIES:
 - AFNetworking (= 1.0RC1)
 - BlocksKit
 - DDProgressView
+- DTCoreText
 - FPPopover
 - MJPopupViewController
+- Nimbus/AttributedLabel (= 0.9.3)
 - Nimbus/Core (= 0.9.3)
 - Nimbus/Models (= 0.9.3)
 - Nimbus/NetworkControllers (= 0.9.3)
@@ -54,8 +59,10 @@ SPEC CHECKSUMS:
   AFNetworking: b21c1252d437fd322e7db1caa93b163d76a362cb
   BlocksKit: 12fbe889d9f8cc66adf5c9bd4cb0606071f214f2
   DDProgressView: 6dd7fa77900e3dc140b816dddc5616382c124b54
+  DTCoreText: 4f2b9d62554c62dd7cd412c9f50ece1e70a548b9
   FPPopover: 80927060f59836f3b373716b8898535979c7f971
   MJPopupViewController: b16cf4fdf53fef2c361bb33c0be0ec8ee5527720
+  Nimbus/AttributedLabel: 6a35688977607cda01be9027699a9e64bd08fb99
   Nimbus/Core: 6a35688977607cda01be9027699a9e64bd08fb99
   Nimbus/Models: 6a35688977607cda01be9027699a9e64bd08fb99
   Nimbus/NetworkControllers: 6a35688977607cda01be9027699a9e64bd08fb99

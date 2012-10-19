@@ -125,6 +125,20 @@
 					<key>sourceURL</key>
 					<string>instagr.am</string>
 				</dict>
+				<dict>
+					<key>type</key>
+					<string>YKnowledge</string>
+					<key>imageURL</key>
+					<string></string>
+					<key>url</key>
+					<string>http://tw.rd.yahoo.com/referurl/knowledge/openapi/SEARCH/*http://knowledge.yahoo.com.tw/question/question?qid=1005012905297</string>
+					<key>title</key>
+					<string>[料理食譜] &lt;b&gt;茄子&lt;/b&gt;可以做出哪些好吃的料理呢??</string>
+					<key>detail</key>
+					<string>爽口紫茄所需材料：&lt;b&gt;茄子&lt;/b&gt; ... 1條(250克) 蒜頭 ... 2瓣&lt;sep/&gt;搗碎，再加入白醋及果糖調勻。 &lt;b&gt;茄子&lt;/b&gt;輕壓擠出水後，撕成絲狀，拌&lt;sep/&gt;豆腐泥滲出水份，再倒去水份。 &lt;b&gt;茄子&lt;/b&gt;洗淨後切成夾片(即一厚片中間&lt;sep/&gt;,status: 已解決,subject: &lt;b&gt;茄子&lt;/b&gt;可以做出哪些好吃的料理呢??</string>
+					<key>sourceURL</key>
+					<string>knowledge.yahoo.com.tw</string>
+				</dict>
 			</array>
 		</dict>
 		<dict>

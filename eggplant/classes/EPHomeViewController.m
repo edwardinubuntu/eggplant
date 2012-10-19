@@ -17,6 +17,7 @@
 #import "EPSourceImageCell.h"
 #import "DDProgressView.h"
 #import "EPRESTClient.h"
+#import "EPAttributedSourceCell.h"
 
 @interface EPHomeViewController ()
 
@@ -422,6 +423,9 @@ CGFloat smallMoving = 25;
             } else if ([sourceType isEqualToString:@"instagram"]) {
               cell = [[EPSourceImageCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellWithId];
               ((EPSourceImageCell *)cell).sourceLabel.text = [currentSource objectForKey:@"sourceURL"];
+            } else if ([sourceType isEqualToString:@"YKnowledge"]) {
+              cell = [[EPAttributedSourceCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellWithId];
+              ((EPAttributedSourceCell *)cell).sourceLabel.text = [currentSource objectForKey:@"sourceURL"];
             } else {
               cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellWithId];
               
@@ -503,7 +507,6 @@ CGFloat smallMoving = 25;
     
     [requestOperation setDownloadProgressBlock:^(NSInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
       float percentage = (float)totalBytesRead / (float)totalBytesExpectedToRead;
-      NIDPRINT(@"Downloading.... %lld / %lld = %f", totalBytesRead, totalBytesExpectedToRead, percentage);
       tempProgressView.progress = percentage;
       
       if (tempProgressView.progress >= 1) {
@@ -540,6 +543,8 @@ CGFloat smallMoving = 25;
           return [EPICookCell cellHeight:[currentSource objectForKey:@"name"] detail:[currentSource objectForKey:@"detail"]];
         } else if ([sourceType isEqualToString:@"instagram"]) {
           return [EPSourceImageCell cellHeight:[currentSource objectForKey:@"name"] detail:[currentSource objectForKey:@"detail"]];
+        } else if ([sourceType isEqualToString:@"YKnowledge"]) {
+          return [EPAttributedSourceCell cellHeight:[currentSource objectForKey:@"name"] detail:[currentSource objectForKey:@"detail"]];
         }
       }
     }
