@@ -12,6 +12,20 @@
 			<key>sources</key>
 			<array>
 				<dict>
+					<key>type</key>
+					<string>wiki</string>
+					<key>imageURL</key>
+					<string>http://upload.wikimedia.org/wikipedia/commons/f/f9/Three_Types_of_Eggplant.jpg</string>
+					<key>url</key>
+					<string>http://zh.wikipedia.org/zh-tw/%E8%8C%84</string>
+					<key>title</key>
+					<string>茄</string>
+					<key>detail</key>
+					<string>茄（學名：Solanum melongena）常稱茄子，吳越人沿用宋代叫法稱爲落蘇，廣東人稱為矮瓜，是茄科茄屬一年生草本植物，熱帶為多年生。其結出的果實可食用，顏色多為紫色或紫黑色，也有淡綠色或白色品種，形狀上也有圓形，橢圓，梨形等各種。茄子是一種典型的蔬菜，根據品種的不同，食用方法多樣。</string>
+					<key>sourceURL</key>
+					<string>zh.wikipedia.org</string>
+				</dict>
+				<dict>
 					<key>imageURL</key>
 					<string>http://upload.wikimedia.org/wikipedia/commons/4/49/Solanum_melongena_ja02.jpg</string>
 					<key>type</key>
@@ -25,19 +39,36 @@
 					<key>sourceURL</key>
 					<string>en.wikipedia.org</string>
 				</dict>
+			</array>
+			<key>images</key>
+			<array>
 				<dict>
 					<key>type</key>
-					<string>wiki</string>
+					<string>instagram</string>
 					<key>imageURL</key>
-					<string>http://upload.wikimedia.org/wikipedia/commons/f/f9/Three_Types_of_Eggplant.jpg</string>
+					<string>http://distilleryimage9.s3.amazonaws.com/0b9ad34a193f11e28d6622000a1fbc43_5.jpg</string>
 					<key>url</key>
-					<string>http://zh.wikipedia.org/zh-tw/%E8%8C%84</string>
+					<string>http://instagr.am/p/Q7hTrfrtnF/</string>
 					<key>title</key>
-					<string>茄</string>
+					<string>eggplant</string>
 					<key>detail</key>
-					<string>茄（學名：Solanum melongena）常稱茄子，吳越人沿用宋代叫法稱爲落蘇，廣東人稱為矮瓜，是茄科茄屬一年生草本植物，熱帶為多年生。其結出的果實可食用，顏色多為紫色或紫黑色，也有淡綠色或白色品種，形狀上也有圓形，橢圓，梨形等各種。茄子是一種典型的蔬菜，根據品種的不同，食用方法多樣。</string>
+					<string></string>
 					<key>sourceURL</key>
-					<string>zh.wikipedia.org</string>
+					<string>instagr.am</string>
+				</dict>
+				<dict>
+					<key>type</key>
+					<string>instagram</string>
+					<key>imageURL</key>
+					<string>http://distilleryimage6.s3.amazonaws.com/db3e36e219f211e2a03a22000a1fbd56_5.jpg</string>
+					<key>url</key>
+					<string>http://instagr.am/p/Q90m9cIohm/</string>
+					<key>title</key>
+					<string>eggplant</string>
+					<key>detail</key>
+					<string></string>
+					<key>sourceURL</key>
+					<string>instagr.am</string>
 				</dict>
 			</array>
 		</dict>

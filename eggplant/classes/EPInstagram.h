@@ -11,6 +11,7 @@
 
 @interface EPInstagram : NSObject
 
+@property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSDictionary *images;
 @property (nonatomic, strong) NSURL *link;
 

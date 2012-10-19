@@ -42,29 +42,33 @@
       NSArray *data = [responseObject objectForKey:@"data"];
       for (NSDictionary *eachData in data) {
         EPInstagram *instagram = [[EPInstagram alloc] init];
-        instagram.link = [eachData objectForKey:@"link"];
+        instagram.link = [NSURL URLWithString:[eachData objectForKey:@"link"]];
+        instagram.name = tempSelf.keyword;
         
         NSDictionary *images = [eachData objectForKey:@"images"];
         
+        NSMutableDictionary *imagesDict = [[NSMutableDictionary alloc] init];
         for (NSString *imageKey in [images keyEnumerator].allObjects) {
           
           NSDictionary *eachImageDict = [images objectForKey:imageKey];
           EPImage *image = [[EPImage alloc] init];
           image.height = [[eachImageDict objectForKey:@"height"] intValue];
           image.width = [[eachImageDict objectForKey:@"width"] intValue];
-          image.url = [NSURL URLWithString:@"url"];
-          if (imageKey) {
+          image.url = [NSURL URLWithString:[eachImageDict objectForKey:@"url"]];
+          if ([imageKey isEqualToString:@"low_resolution"]) {
             image.imageType = EPImageTypeLowResolution;
           }
-          if (imageKey) {
+          if ([imageKey isEqualToString:@"standard_resolution"]) {
             image.imageType = EPImageTypeStandardResolution;
           }
-          if (imageKey) {
+          if ([imageKey isEqualToString:@"thumbnail"]) {
             image.imageType = EPImageTypeThumbnail;
           }
           
-          [tempSelf.instagrams addObject:image];
+          [imagesDict setObject:image forKey:imageKey];
         }
+        instagram.images = imagesDict;
+        [tempSelf.instagrams addObject:instagram];
       }
       
       requestDidFinishLoad();

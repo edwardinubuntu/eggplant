@@ -31,6 +31,18 @@
     STAssertTrue(tempSelf.tagsMediaModel.isLoaded, @"Must be loaded");
     
     STAssertTrue(tempSelf.tagsMediaModel.instagrams.count > 0, @"Must have photo media");
+    for (EPInstagram *eachData in tempSelf.tagsMediaModel.instagrams) {
+      NIDPRINT(@"eachData.name: %@", eachData.name);
+      NIDPRINT(@"eachData.link: %@", eachData.link);
+      for (NSString *key in eachData.images.keyEnumerator.allObjects) {
+        EPImage *eachImage = [eachData.images objectForKey:key];
+        if (eachImage.imageType == EPImageTypeThumbnail) {
+          NIDPRINT(@"EPImageTypeThumbnail eachImage.url.absoluteString: %@", eachImage.url.absoluteString);
+          STAssertTrue(NIIsStringWithAnyText(eachImage.url.absoluteString), @"Must be loaded");
+        }
+      }
+      
+    }
     
   } loadWithError:^(NSError *error) {
     done = YES;
