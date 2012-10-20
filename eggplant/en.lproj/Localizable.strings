@@ -16,3 +16,15 @@
 /* Search */
 "Search Placeholder" = "Search...";
 
+/* Cancel */
+"Cancel" = "Cancel";
+
+/* Done */
+"Done" = "Done";
+
+/* Can Eat */
+"Keyword Can  Eat" = "%@ 可以吃！";
+
+/* Can Not Eat */
+"Keyword Can Not Eat" = "%@ 不可以吃。";
+

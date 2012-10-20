@@ -16,3 +16,9 @@
 /* Search */
 "Search Placeholder" = "搜尋...";
 
+/* Can Eat */
+"Keyword Can  Eat" = "%@ 可以吃！";
+
+/* Can Not Eat */
+"Keyword Can Not Eat" = "%@ 不可以吃。";
+

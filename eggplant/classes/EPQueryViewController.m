@@ -111,7 +111,7 @@
   
   if (NIIsStringWithAnyText(self.keyword)) {
     self.loadingView.frame = CGRectMake(0, 0, 20, 20);
-    self.loadingView.center = self.view.center;
+    self.loadingView.center = CGPointMake(kTableViewFrameSizeWidth / 2, kTableViewFrameSizeHeight / 2);
     self.loadingView.hidden = NO;
     [self.loadingView startAnimating];
     [self.view bringSubviewToFront:self.loadingView];
@@ -184,10 +184,11 @@
   self.canEatResult = canEat;
   [self.loadingView stopAnimating];
   self.loadingView.hidden = YES;
+
+  NSString *canEatText = [NSString stringWithFormat:NSLocalizedString(@"Keyword Can  Eat", @"Can Eat"), self.keyword];
+  NSString *canNotEatText = [NSString stringWithFormat:NSLocalizedString(@"Keyword Can Not Eat", @"Can Not Eat"), self.keyword];
   
-  // TODO: Change here
-  
-  self.resultLabel.text = self.canEatResult ? @"YES" : @"NO";
+  self.resultLabel.text = self.canEatResult ?  canEatText : canNotEatText;
   self.resultLabel.font = [UIFont systemFontOfSize:14.f];
   self.resultLabel.frame = CGRectMake((kTableViewFrameSizeHeight - 200) / 2, (kTableViewFrameSizeHeight - 44) / 2, 200, 44);
   self.resultLabel.textAlignment = UITextAlignmentCenter;
