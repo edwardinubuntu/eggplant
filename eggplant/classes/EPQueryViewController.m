@@ -177,6 +177,11 @@
         break;
       }
     }
+   if (!hasZHLang) {
+     if (tempSelf.keywords.count > 0) {
+       [tempSelf.keywords removeObjectAtIndex:0];
+     }
+   }
   } loadWithError:^(NSError *error) {
     NIDPRINT(@"testSearch got Error %@", error.localizedDescription);
   }];
