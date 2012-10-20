@@ -69,7 +69,7 @@ CGFloat smallMoving = 25;
   self.headerCarousel.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"navy_blue_"]];
   [self.view addSubview:self.headerCarousel];
   
-  CGFloat spacing = 3;
+  CGFloat spacing = 7;
   _searchButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
   _searchButton.layer.cornerRadius = 7.f;
   _searchButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
@@ -77,7 +77,7 @@ CGFloat smallMoving = 25;
   
   [self.searchButton setImage:[UIImage imageNamed:@"06-magnify"] forState:UIControlStateNormal];
   [self.searchButton sizeToFit];
-  self.searchButton.center = CGPointMake(spacing + self.searchButton.frame.size.width, self.view.frame.size.height - self.searchButton.frame.size.height - spacing);
+  self.searchButton.center = CGPointMake(spacing + self.searchButton.frame.size.width / 2, self.view.frame.size.height - self.searchButton.frame.size.height / 2 - spacing);
   self.searchButton.tintColor = [UIColor clearColor];
   [self.view addSubview:self.searchButton];
   
@@ -693,9 +693,22 @@ CGFloat smallMoving = 25;
 
 #pragma mark - iCarouselDelegate
 
+- (void)carouselWillBeginScrollingAnimation:(iCarousel *)carousel {
+  self.searchButton.hidden = YES;
+  self.buttonSectionsView.hidden = YES;
+}
+
 - (void)carouselDidEndScrollingAnimation:(iCarousel *)carousel{
   if (carousel == self.headerCarousel) {
     [self.pagingScrollView moveToPageAtIndex:carousel.currentItemIndex animated:YES];
+    
+    if (self.headerCarousel.currentItemIndex < kCountAbout + kCountHome) {
+      self.searchButton.hidden = YES;
+      self.buttonSectionsView.hidden = YES;
+    } else {
+      self.searchButton.hidden = NO;
+      self.buttonSectionsView.hidden = NO;
+    }
   }
 }
 
@@ -947,18 +960,7 @@ CGFloat smallMoving = 25;
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
   
   if (self.pagingScrollView.centerPageIndex >= kCountAbout + kCountHome) {
-    int scrollDirection;
-    if (lastContentOffset > scrollView.contentOffset.y)
-      scrollDirection = EPScrollDirectionTypeUp;
-    else if (lastContentOffset < scrollView.contentOffset.y)
-      scrollDirection = EPScrollDirectionTypeDown;
-    
-    lastContentOffset = scrollView.contentOffset.y;
-    
-    [UIView animateWithDuration:0.2 animations:^(void){
-      self.searchButton.alpha = ((scrollDirection == EPScrollDirectionTypeUp) ||(scrollView.contentOffset.y < 60.f))?1.f:0.f;
-      self.buttonSectionsView.alpha = self.searchButton.alpha;
-    }];
+    // No hide
   } else {
     self.searchButton.hidden = YES;
     self.buttonSectionsView.hidden = YES;
