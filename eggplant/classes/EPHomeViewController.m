@@ -189,6 +189,8 @@ CGFloat smallMoving = 25;
     [recipeDict setObject:[NSString stringWithFormat:@"http://en.wikipedia.org/wiki/%@", tempSelf.privateTranslateModel.keywordTranslation] forKey:@"url"];
     [recipeDict setObject:tempSelf.privateTranslateModel.keywordTranslation forKey:@"title"];
     [recipeDict setObject:@"wikipedia.org" forKey:@"sourceURL"];
+    float randomNum = arc4random() % 100;
+    [recipeDict setObject:[NSNumber numberWithFloat:randomNum] forKey:@"randomNum"];
     
     [sources addObject:recipeDict];
     
@@ -223,6 +225,8 @@ CGFloat smallMoving = 25;
       [recipeDict setObject:eachRecipe.recipeDescription forKey:@"detail"];
       [recipeDict setObject:@"icook.tw" forKey:@"sourceURL"];
       [recipeDict setObject:eachRecipe.photos.smallURL.absoluteString forKey:@"imageURL"];
+      float randomNum = arc4random() % 100;
+      [recipeDict setObject:[NSNumber numberWithFloat:randomNum] forKey:@"randomNum"];
       
       [sources addObject:recipeDict];
     }
@@ -234,6 +238,9 @@ CGFloat smallMoving = 25;
     }
     [sourcesOriginal addObjectsFromArray:sources];
     [tempTermWithDataDict setObject:sourcesOriginal forKey:@"sources"];
+    
+    NSMutableArray *newSortedArray = [tempSelf sortByRandomNum:tempTermWithDataDict];
+    [tempTermWithDataDict setObject:newSortedArray forKey:@"sources"];
     
     // TODO: Save
     
@@ -255,6 +262,8 @@ CGFloat smallMoving = 25;
       [knowDict setObject:@"instagram" forKey:@"type"];
       [knowDict setObject:eachInstagram.link.absoluteString forKey:@"url"];
       [knowDict setObject:@"instagr.am" forKey:@"sourceURL"];
+      float randomNum = arc4random() % 100;
+      [knowDict setObject:[NSNumber numberWithFloat:randomNum] forKey:@"randomNum"];
       
       for (NSString *key in eachInstagram.images.keyEnumerator.allObjects) {
         EPImage *eachImage = [eachInstagram.images objectForKey:key];
@@ -275,6 +284,8 @@ CGFloat smallMoving = 25;
     [sourcesOriginal addObjectsFromArray:sources];
     [tempTermWithDataDict setObject:sourcesOriginal forKey:@"sources"];
     
+    NSMutableArray *newSortedArray = [tempSelf sortByRandomNum:tempTermWithDataDict];
+    [tempTermWithDataDict setObject:newSortedArray forKey:@"sources"];
     // TODO: Save
     
     [tempSelf.tableView reloadData];
@@ -297,6 +308,8 @@ CGFloat smallMoving = 25;
             [knowDict setObject:eachKnow.subject forKey:@"title"];
             [knowDict setObject:eachKnow.content forKey:@"detail"];
             [knowDict setObject:@"knowledge.yahoo.com.tw" forKey:@"sourceURL"];
+          float randomNum = arc4random() % 100;
+          [knowDict setObject:[NSNumber numberWithFloat:randomNum] forKey:@"randomNum"];
             
             [sources addObject:knowDict];
         }
@@ -308,13 +321,37 @@ CGFloat smallMoving = 25;
         }
         [sourcesOriginal addObjectsFromArray:sources];
         [tempTermWithDataDict setObject:sourcesOriginal forKey:@"sources"];
-        
+      
+      
+      NSMutableArray *newSortedArray = [tempSelf sortByRandomNum:tempTermWithDataDict];
+      [tempTermWithDataDict setObject:newSortedArray forKey:@"sources"];
+      tempSelf.contentDictData = [NSMutableArray arrayWithArray:[tempTermWithDataDict objectForKey:@"terms"]];
         // TODO: Save
         
         [tempSelf.tableView reloadData];
     } loadWithError:^(NSError *error) {
         // Handle Error
     }];
+}
+
+- (NSMutableArray *)sortByRandomNum:(NSMutableDictionary *)termWithDataDict {
+    // Sort
+  NSArray *newSortedArray =  [[termWithDataDict objectForKey:@"sources"] sortedArrayUsingComparator: ^(id obj1, id obj2) {
+        
+        NSNumber *p1 = [obj1 objectForKey:@"randomNum"];
+        NSNumber *p2 = [obj2 objectForKey:@"randomNum"];
+        
+        if (p1.floatValue > p2.floatValue ) {
+            return (NSComparisonResult)NSOrderedDescending;
+            
+        }
+        
+        if (p1.floatValue < p2.floatValue) {
+            return (NSComparisonResult)NSOrderedAscending;
+        }
+        return (NSComparisonResult)NSOrderedSame;
+    }];
+  return [NSMutableArray arrayWithArray:newSortedArray];
 }
 
 - (void)checkPerpareQueryAPIData:(NSString *)searchingTerm {
