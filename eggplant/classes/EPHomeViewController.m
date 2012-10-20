@@ -58,8 +58,9 @@ CGFloat smallMoving = 25;
   __block EPHomeViewController *tempSelf = self;
   
   _queryViewController = [[EPQueryViewController alloc] init];
-  
+  UIImageView *bgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg-purple"]];
   _termBrowseTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+  [_termBrowseTableView setBackgroundView:bgView];
   [self.view addSubview:_termBrowseTableView];
   
   _searchKeywordViewController = [[EPSearchKeywordViewController alloc] init];
