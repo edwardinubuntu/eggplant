@@ -236,11 +236,6 @@
   return YES;
 }
 
-- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
-  [self dismissModalViewControllerAnimated:YES];
-
-}
-
 - (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar {
   [self dismissModalViewControllerAnimated:YES];
 }

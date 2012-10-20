@@ -86,9 +86,8 @@
             
             NSRange textRangeCook = [eachKnowledge.category rangeOfString:kCategoryCook];
             NSRange textRangeIngredient= [eachKnowledge.category rangeOfString:kCategoryIngredient];
-            NSRange textRangePlant = [eachKnowledge.category rangeOfString:kCategoryPlant];
             
-            NSRange unionRange = NSUnionRange(textRangeCook, NSUnionRange(textRangeIngredient, textRangePlant));
+            NSRange unionRange = NSUnionRange(textRangeCook, textRangeIngredient);
             if(unionRange.location != NSNotFound) {
                 checkCategoryPass = YES;
                 break;

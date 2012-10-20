@@ -273,7 +273,7 @@
 /* Begin PBXFileReference section */
 		1C35935516329C7F0083427E /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
 		1C35935616329C7F0083427E /* default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default@2x.png"; sourceTree = "<group>"; };
-		1C8784CD162A56EA005D3672 /* eggplant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eggplant.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C8784CD162A56EA005D3672 /* WikiIngredients.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WikiIngredients.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C8784D1162A56EA005D3672 /* UIKit.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1C8784D3162A56EA005D3672 /* Foundation.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1C8784D5162A56EA005D3672 /* CoreGraphics.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -720,7 +720,7 @@
 		1C8784CE162A56EA005D3672 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1C8784CD162A56EA005D3672 /* eggplant.app */,
+				1C8784CD162A56EA005D3672 /* WikiIngredients.app */,
 				1C8784F3162A56EA005D3672 /* eggplantTests.octest */,
 			);
 			name = Products;
@@ -1495,7 +1495,7 @@
 			);
 			name = eggplant;
 			productName = eggplant;
-			productReference = 1C8784CD162A56EA005D3672 /* eggplant.app */;
+			productReference = 1C8784CD162A56EA005D3672 /* WikiIngredients.app */;
 			productType = "com.apple.product-type.application";
 		};
 		1C8784F2162A56EA005D3672 /* eggplantTests */ = {
@@ -1929,6 +1929,7 @@
 					"-Weverything",
 					"-lstdc++",
 				);
+				PRODUCT_NAME = WikiIngredients;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1956,6 +1957,7 @@
 					"-Weverything",
 					"-lstdc++",
 				);
+				PRODUCT_NAME = WikiIngredients;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1999,7 +2001,7 @@
 					UIKit,
 					"-lstdc++",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = WikiIngredients;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -2042,7 +2044,7 @@
 					UIKit,
 					"-lstdc++",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = WikiIngredients;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
