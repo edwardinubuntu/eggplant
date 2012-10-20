@@ -640,17 +640,22 @@ CGFloat smallMoving = 25;
 }
 
 - (void)queryViewController:(EPQueryViewController *)queryViewController didFinishWithQuery:(NSString *)searchKeyword canEat:(BOOL)canEat {
-  [self.termKeysFromUserSaved addObject:searchKeyword];
-  
-  NSMutableDictionary *termsUserSavedDictData = [[EPTermsStorageManager defaultManager] termsFromUserSaved];
-  [termsUserSavedDictData setObject:self.termKeysFromUserSaved forKey:@"termKeys"];
-  [[EPTermsStorageManager defaultManager] save];
   
   [self.headerCarousel reloadData];
   [self.pagingScrollView reloadData];
   
-  // Scroll to last one
-  [self.headerCarousel scrollToItemAtIndex:self.headerCarousel.numberOfItems animated:YES];
+  // Saving result
+  if (![self.termKeysFromUserSaved containsObject:searchKeyword]) {
+    [self.termKeysFromUserSaved addObject:searchKeyword];
+    NSMutableDictionary *termsUserSavedDictData = [[EPTermsStorageManager defaultManager] termsFromUserSaved];
+    [termsUserSavedDictData setObject:self.termKeysFromUserSaved forKey:@"termKeys"];
+    [[EPTermsStorageManager defaultManager] save];
+    
+    // Scroll to last one
+    [self.headerCarousel scrollToItemAtIndex:self.headerCarousel.numberOfItems animated:YES];
+  } else {
+    NIDPRINT(@"Already exist");
+  }
   
   [self.navigationController dismissPopupViewControllerWithanimationType:MJPopupViewAnimationSlideBottomTop];
 }
