@@ -172,7 +172,6 @@ CGFloat smallMoving = 25;
   
   // Start to add icook
   self.yknowledgeSearchModel.keywords = searchingTerm;
-  self.yknowledgeSearchModel.isLoading = NO;
 
   [self.yknowledgeSearchModel loadMore:NO didFinishLoad:^{
     
