@@ -147,6 +147,13 @@ CGFloat smallMoving = 25;
 
 #pragma mark - private
 
+- (void)saveContentData {
+  // Finish, save
+  NSMutableDictionary *termsUserSavedDictData = [[EPTermsStorageManager defaultManager] termsFromUserSaved];
+  [termsUserSavedDictData setObject:self.contentDictData forKey:@"term"];
+  [[EPTermsStorageManager defaultManager] save];
+}
+
 - (void)perpareQueryAPIData:(NSString *)searchingTerm {
   
   __block EPHomeViewController *tempSelf = self;
@@ -170,11 +177,11 @@ CGFloat smallMoving = 25;
   
   // Start to add wiki
   
-  // Start to add icook
+  // Start with iCook
+  
+  // YKNowledge
   self.yknowledgeSearchModel.keywords = searchingTerm;
-
   [self.yknowledgeSearchModel loadMore:NO didFinishLoad:^{
-    
     NSMutableArray *sources = [[NSMutableArray alloc] init];
     for (EPYKnowledge *eachKnow in tempSelf.yknowledgeSearchModel.knowledges) {
       NSMutableDictionary *knowDict = [[NSMutableDictionary alloc] init];
@@ -195,20 +202,15 @@ CGFloat smallMoving = 25;
     [sourcesOriginal addObjectsFromArray:sources];
     [tempTermWithDataDict setObject:sourcesOriginal forKey:@"sources"];
     
-    [tempSelf.pagingScrollView reloadData];
+    // TODO: Save
+    
+    [tempSelf.tableView reloadData];
   } loadWithError:^(NSError *error) {
     // Handle Error
   }];
   
-  // Start to add knowledge
-  
   // Final saved
   [self.contentDictData addObject:termWithDataDict];
-  
-  // Finish, save
-//  NSMutableDictionary *termsUserSavedDictData = [[EPTermsStorageManager defaultManager] termsFromUserSaved];
-//  [termsUserSavedDictData setObject:self.contentDictData forKey:@"term"];
-//  [[EPTermsStorageManager defaultManager] save];
   
   // Call at the end
 //  [self.pagingScrollView reloadData];
