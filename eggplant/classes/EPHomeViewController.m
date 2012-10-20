@@ -709,6 +709,8 @@ CGFloat smallMoving = 25;
       contentHeaderLabel.backgroundColor = [UIColor grayColor];
       contentHeaderLabel.center = contentHeaderView.center;
       [contentHeaderView addSubview:contentHeaderLabel];
+      self.searchButton.hidden = YES;
+      self.buttonSectionsView.hidden = YES;
     }
       break;
     case kIndexHome: {
@@ -716,6 +718,8 @@ CGFloat smallMoving = 25;
       _termBrowseTableView.dataSource = self;
       _termBrowseTableView.delegate = self;
       [contentHeaderView addSubview:_termBrowseTableView];
+      self.searchButton.hidden = YES;
+      self.buttonSectionsView.hidden = YES;
     }
       break;
     default:
@@ -731,6 +735,9 @@ CGFloat smallMoving = 25;
         
         // if empty need to loading
         [self checkPerpareQueryAPIData:[self.headerTermKeys objectAtIndex:termIndex]];
+        
+        self.searchButton.hidden = NO;
+        self.buttonSectionsView.hidden = NO;
       }
       break;
   }
@@ -927,8 +934,14 @@ CGFloat smallMoving = 25;
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-  self.searchButton.hidden = (scrollView.contentOffset.y > self.view.frame.size.height / 2);
-  self.buttonSectionsView.hidden = self.searchButton.hidden;
+  if (self.pagingScrollView.centerPageIndex >= kCountAbout + kCountHome) {
+    self.searchButton.hidden = (scrollView.contentOffset.y > self.view.frame.size.height / 2);
+    self.buttonSectionsView.hidden = self.searchButton.hidden;
+  } else {
+    self.searchButton.hidden = YES;
+    self.buttonSectionsView.hidden = YES;
+  }
+
 }
 
 #pragma mark - EPSearchKeywordViewControllerDelegate
