@@ -23,6 +23,6 @@
 
 @protocol EPSearchKeywordViewControllerDelegate <NSObject>
 
-- (void)searchKeywordViewController:(EPSearchKeywordViewController *)searchKeywordViewController didinishEnterSearchKeyword:(NSString *)searchKeyword;
+- (void)searchKeywordViewController:(EPSearchKeywordViewController *)searchKeywordViewController didFinishEnterSearchKeyword:(NSString *)searchKeyword;
 
 @end

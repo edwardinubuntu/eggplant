@@ -26,6 +26,7 @@
       _needTranslate = YES;
       _cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
       _doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
+      _retryButton = [UIButton buttonWithType:UIButtonTypeCustom];
       _canEatResult = NO;
     }
     return self;
@@ -52,9 +53,24 @@
   _wikiQueryLangLinksModel = [[EPWikiQueryLangLinksModel alloc] init];
   _yknowlegedSearchModel = [[EPYKnowledgeSearchModel alloc] init];
   
+  [self.retryButton setTitle:NSLocalizedString(@"Retry", @"Retry") forState:UIControlStateNormal];
+  self.retryButton.backgroundColor = [UIColor grayColor];
+  [self.retryButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+  [self.retryButton.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
+  [self.retryButton.titleLabel setShadowColor: [UIColor blackColor]];
+  [self.retryButton.titleLabel setShadowOffset:CGSizeMake(0, -1.0)];
+  self.retryButton.frame = CGRectMake((self.view.frame.size.width - 100 ) / 2, self.view.frame.size.height - 60, 100, 30);
+  [self.retryButton addEventHandler:^(id sender) {
+    if (tempSelf.queryType == EPQueryTypeInput) {
+      if (tempSelf.delegate && [tempSelf.delegate respondsToSelector:@selector(queryViewController:retryWithSearching:)]) {
+        [tempSelf.delegate queryViewController:tempSelf retryWithSearching:tempSelf.keyword];
+      }
+    }
+    
+  } forControlEvents:UIControlEventTouchUpInside];
+  [self.view addSubview:self.retryButton];
+  
   [self.doneButton setTitle:NSLocalizedString(@"Done", @"Done") forState:UIControlStateNormal];
-//  [self.doneButton setBackgroundImage:[[UIImage imageNamed:@"button"] resizableImageWithCapInsets:UIEdgeInsetsMake(7, 6, 7, 6)] forState:UIControlStateNormal];
-//  [self.doneButton setBackgroundImage:[[UIImage imageNamed:@"buttonPressed"] resizableImageWithCapInsets:UIEdgeInsetsMake(7, 6, 7, 6)] forState:UIControlStateHighlighted];
   self.doneButton.backgroundColor = [UIColor grayColor];
   [self.doneButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
   [self.doneButton.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
@@ -69,8 +85,6 @@
   [self.view addSubview:self.doneButton];
   
   [self.cancelButton setTitle:NSLocalizedString(@"Cancel", @"Cancel") forState:UIControlStateNormal];
-//  [self.cancelButton setBackgroundImage:[[UIImage imageNamed:@"button"] resizableImageWithCapInsets:UIEdgeInsetsMake(7, 6, 7, 6)] forState:UIControlStateNormal];
-//  [self.cancelButton setBackgroundImage:[[UIImage imageNamed:@"buttonPressed"] resizableImageWithCapInsets:UIEdgeInsetsMake(7, 6, 7, 6)] forState:UIControlStateHighlighted];
   self.cancelButton.backgroundColor = [UIColor grayColor];
   [self.cancelButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
   [self.cancelButton.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
@@ -83,9 +97,6 @@
     }
   } forControlEvents:UIControlEventTouchUpInside];
   [self.view addSubview:self.cancelButton];
-  
-
-  
 
 }
 
@@ -110,6 +121,9 @@
 - (void)performSearch {
   
   if (NIIsStringWithAnyText(self.keyword)) {
+    if (!self.loadingView) {
+      self.loadingView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    }
     self.loadingView.frame = CGRectMake(0, 0, 20, 20);
     self.loadingView.center = CGPointMake(kTableViewFrameSizeWidth / 2, kTableViewFrameSizeHeight / 2);
     self.loadingView.hidden = NO;
@@ -184,18 +198,25 @@
   self.canEatResult = canEat;
   [self.loadingView stopAnimating];
   self.loadingView.hidden = YES;
+  self.cancelButton.hidden = YES;
+  self.doneButton.hidden = YES;
 
   NSString *canEatText = [NSString stringWithFormat:NSLocalizedString(@"Keyword Can  Eat", @"Can Eat"), self.keyword];
   NSString *canNotEatText = [NSString stringWithFormat:NSLocalizedString(@"Keyword Can Not Eat", @"Can Not Eat"), self.keyword];
   
+  self.resultLabel.numberOfLines = 3;
   self.resultLabel.text = self.canEatResult ?  canEatText : canNotEatText;
   self.resultLabel.font = [UIFont systemFontOfSize:14.f];
-  self.resultLabel.frame = CGRectMake((kTableViewFrameSizeHeight - 200) / 2, (kTableViewFrameSizeHeight - 44) / 2, 200, 44);
+  self.resultLabel.frame = CGRectMake((kTableViewFrameSizeHeight - 200) / 2, (kTableViewFrameSizeHeight - 64) / 2, 200, 64);
   self.resultLabel.textAlignment = UITextAlignmentCenter;
   
-  
-  self.doneButton.hidden = NO;
-  self.cancelButton.hidden = NO;
+  if (canEat) {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(queryViewController:didFinishWithQuery:canEat:)]) {
+      [self.delegate queryViewController:self didFinishWithQuery:self.keyword canEat:self.canEatResult];
+    }
+  } else {
+    self.retryButton.hidden = NO;
+  }
 }
 
 @end

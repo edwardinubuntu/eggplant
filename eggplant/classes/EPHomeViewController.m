@@ -600,9 +600,10 @@ CGFloat smallMoving = 25;
 
 #pragma mark - EPSearchKeywordViewControllerDelegate
 
-- (void)searchKeywordViewController:(EPSearchKeywordViewController *)searchKeywordViewController didinishEnterSearchKeyword:(NSString *)searchKeyword {
+- (void)searchKeywordViewController:(EPSearchKeywordViewController *)searchKeywordViewController didFinishEnterSearchKeyword:(NSString *)searchKeyword {
   [searchKeywordViewController dismissModalViewControllerAnimated:YES];
   
+  self.queryViewController.queryType = EPQueryTypeInput;
   self.queryViewController.delegate = self;
   self.queryViewController.keyword = searchKeyword;
   self.queryViewController.needTranslate = NO;
@@ -619,6 +620,11 @@ CGFloat smallMoving = 25;
 
 - (void)queryViewController:(EPQueryViewController *)queryViewController didFinishWithQuery:(NSString *)searchKeyword canEat:(BOOL)canEat {
   [self.navigationController dismissPopupViewControllerWithanimationType:MJPopupViewAnimationSlideBottomTop];
+}
+
+- (void)queryViewController:(EPQueryViewController *)queryViewController retryWithSearching:(NSString *)searchKeyword {
+  [self.navigationController dismissPopupViewControllerWithanimationType:MJPopupViewAnimationSlideBottomBottom];
+  [self.navigationController presentModalViewController:self.searchKeywordViewController animated:NO];
 }
 
 @end

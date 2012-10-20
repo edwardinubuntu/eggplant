@@ -28,10 +28,13 @@
 
 @property (nonatomic, strong) UIButton *doneButton;
 @property (nonatomic, strong) UIButton *cancelButton;
+@property (nonatomic, strong) UIButton *retryButton;
 
 @property (nonatomic, assign) BOOL canEatResult;
 
 @property (nonatomic, strong) UILabel *resultLabel;
+
+@property (nonatomic, assign) EPQueryType queryType;
 
 @end
 
@@ -39,5 +42,5 @@
 
 - (void)queryViewController:(EPQueryViewController *)queryViewController didCancelhWithQuery:(NSString *)searchKeyword;
 - (void)queryViewController:(EPQueryViewController *)queryViewController didFinishWithQuery:(NSString *)searchKeyword canEat:(BOOL)canEat;
-
+- (void)queryViewController:(EPQueryViewController *)queryViewController retryWithSearching:(NSString *)searchKeyword;
 @end

@@ -26,3 +26,8 @@
 #define kCategoryPlant  @"植物學"
 #define kCategoryCook  @"料理食譜"
 #define kCategoryIngredient @"食材"
+
+typedef enum {
+  EPQueryTypeCamera,
+  EPQueryTypeInput,
+} EPQueryType;

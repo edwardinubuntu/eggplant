@@ -45,6 +45,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
+  self.searchBar.text = nil;
   [self.searchBar becomeFirstResponder];
 }
 
@@ -135,8 +136,8 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
   NIDPRINT(@"Searching Text :%@", searchBar.text);
   
-  if (self.delegate && [self.delegate respondsToSelector:@selector(searchKeywordViewController:didinishEnterSearchKeyword:)]) {
-    [self.delegate searchKeywordViewController:self didinishEnterSearchKeyword:searchBar.text];
+  if (self.delegate && [self.delegate respondsToSelector:@selector(searchKeywordViewController:didFinishEnterSearchKeyword:)]) {
+    [self.delegate searchKeywordViewController:self didFinishEnterSearchKeyword:searchBar.text];
   }
 }
 
