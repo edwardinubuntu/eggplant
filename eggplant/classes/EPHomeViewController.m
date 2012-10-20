@@ -626,7 +626,7 @@ CGFloat smallMoving = 25;
   
   self.queryViewController.queryType = EPQueryTypeInput;
   self.queryViewController.delegate = self;
-  self.queryViewController.keyword = searchKeyword;
+  [self.queryViewController.keywords addObject:searchKeyword];
   self.queryViewController.needTranslate = NO;
   
   [self.queryViewController performSearch];

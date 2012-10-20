@@ -28,13 +28,22 @@
       _doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
       _retryButton = [UIButton buttonWithType:UIButtonTypeCustom];
       _canEatResult = NO;
+      _keywords = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
+- (id)initWithKeywords:(NSArray *)keywords {
+  if (self = [self initWithNibName:nil bundle:nil]) {
+    self.keywords = [[NSMutableArray alloc] initWithArray:keywords];
+  }
+  return self;
+}
+
 - (id)initWithKeyword:(NSString *)keyword{
   if (self = [self initWithNibName:nil bundle:nil]) {
-    self.keyword = keyword;
+    [self.keywords removeAllObjects];
+    [self.keywords addObject:keyword];
   }
   return self;
 }
@@ -64,7 +73,7 @@
   [self.retryButton addEventHandler:^(id sender) {
     if (tempSelf.queryType == EPQueryTypeInput) {
       if (tempSelf.delegate && [tempSelf.delegate respondsToSelector:@selector(queryViewController:retryWithSearching:)]) {
-        [tempSelf.delegate queryViewController:tempSelf retryWithSearching:tempSelf.keyword];
+        [tempSelf.delegate queryViewController:tempSelf retryWithSearching:nil];
       }
     }
     
@@ -80,7 +89,7 @@
   self.doneButton.frame = CGRectMake((self.view.frame.size.width / 2 - 100 ) / 2 + self.view.frame.size.width / 2, self.view.frame.size.height - 60, 100, 30);
   [self.doneButton addEventHandler:^(id sender) {
     if (tempSelf.delegate && [tempSelf.delegate respondsToSelector:@selector(queryViewController:didFinishWithQuery:canEat:)]) {
-      [tempSelf.delegate queryViewController:tempSelf didFinishWithQuery:tempSelf.keyword canEat:tempSelf.canEatResult];
+      [tempSelf.delegate queryViewController:tempSelf didFinishWithQuery:tempSelf.canEatKeyword canEat:tempSelf.canEatResult];
     }
   } forControlEvents:UIControlEventTouchUpInside];
   [self.view addSubview:self.doneButton];
@@ -94,7 +103,7 @@
   self.cancelButton.frame = CGRectMake((self.view.frame.size.width / 2 - 100 ) / 2, self.view.frame.size.height - 60, 100, 30);
   [self.cancelButton addEventHandler:^(id sender) {
     if (tempSelf.delegate && [tempSelf.delegate respondsToSelector:@selector(queryViewController:didCancelhWithQuery:)]) {
-      [tempSelf.delegate queryViewController:tempSelf didCancelhWithQuery:tempSelf.keyword];
+      [tempSelf.delegate queryViewController:tempSelf didCancelhWithQuery:tempSelf.canEatKeyword];
     }
   } forControlEvents:UIControlEventTouchUpInside];
   [self.view addSubview:self.cancelButton];
@@ -119,9 +128,13 @@
 
 #pragma mark - public
 
-- (void)performSearch {
+- (BOOL)performSearch {
   
-  if (NIIsStringWithAnyText(self.keyword)) {
+  BOOL didPerFormSearch = NO;
+  if (self.keywords.count > 0) {
+    
+    didPerFormSearch = YES;
+    
     if (!self.loadingView) {
       self.loadingView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     }
@@ -133,25 +146,27 @@
     
     self.doneButton.hidden = YES;
     self.cancelButton.hidden = YES;
+    
+    self.resultLabel.frame = CGRectZero;
+    
+    if (self.needTranslate) {
+      [self translateTermToZh:[self.keywords objectAtIndex:0]];
+    } else {
+      // Determine can eat
+      [self queryTermForKnowledge:[self.keywords objectAtIndex:0]];
+    }
   }
+  return didPerFormSearch;
   
-  self.resultLabel.frame = CGRectZero;
-  
-  if (self.needTranslate) {
-    [self translateTermToZh];
-  } else {
-    // Determine can eat
-    [self queryTermForKnowledge:self.keyword];
-  }
 }
 
 #pragma mark - private
 
-- (void)translateTermToZh {
+- (void)translateTermToZh:(NSString *)keyword {
   // Translate
   __block EPQueryViewController *tempSelf = self;
   
-  self.wikiQueryLangLinksModel.keyword = self.keyword;
+  self.wikiQueryLangLinksModel.keyword = keyword;
   [self.wikiQueryLangLinksModel loadMore:NO didFinishLoad:^{
     BOOL hasZHLang = NO;
     for (EPWikiLangLink *eachLangLink in tempSelf.wikiQueryLangLinksModel.term.langLinks) {
@@ -169,7 +184,13 @@
 - (void)queryTermForKnowledge:(NSString *)keyword {
   
   __block EPQueryViewController *tempSelf = self;
+  __block NSString *tempKeyowrd = keyword;
   self.yknowlegedSearchModel.keywords = keyword;
+  
+  if (self.keywords.count > 0) {
+    [self.keywords removeObjectAtIndex:0];
+  }
+  
   [self.yknowlegedSearchModel loadMore:NO didFinishLoad:^{
 
     BOOL checkCategoryPass = NO;
@@ -188,22 +209,22 @@
     }
     
     // Present Result
-    [tempSelf showQueryResultCanEat:checkCategoryPass];
+    [tempSelf showQueryResultCanEat:checkCategoryPass withKeyword:tempKeyowrd];
     
   } loadWithError:^(NSError *error) {
     NIDPRINT(@"testSearchEnglish got Error %@", error.localizedDescription);
   }];
 }
 
-- (void)showQueryResultCanEat:(BOOL)canEat {
+- (void)showQueryResultCanEat:(BOOL)canEat withKeyword:(NSString *)keyword {
   self.canEatResult = canEat;
   [self.loadingView stopAnimating];
   self.loadingView.hidden = YES;
   self.cancelButton.hidden = YES;
   self.doneButton.hidden = YES;
 
-  NSString *canEatText = [NSString stringWithFormat:NSLocalizedString(@"Keyword Can  Eat", @"Can Eat"), self.keyword];
-  NSString *canNotEatText = [NSString stringWithFormat:NSLocalizedString(@"Keyword Can Not Eat", @"Can Not Eat"), self.keyword];
+  NSString *canEatText = [NSString stringWithFormat:NSLocalizedString(@"Keyword Can  Eat", @"Can Eat"), keyword];
+  NSString *canNotEatText = [NSString stringWithFormat:NSLocalizedString(@"Keyword Can Not Eat", @"Can Not Eat"), keyword];
   
   self.resultLabel.numberOfLines = 3;
   self.resultLabel.text = self.canEatResult ?  canEatText : canNotEatText;
@@ -212,11 +233,17 @@
   self.resultLabel.textAlignment = UITextAlignmentCenter;
   
   if (canEat) {
+    self.canEatKeyword = keyword;
     if (self.delegate && [self.delegate respondsToSelector:@selector(queryViewController:didFinishWithQuery:canEat:)]) {
-      [self.delegate queryViewController:self didFinishWithQuery:self.keyword canEat:self.canEatResult];
+      [self.delegate queryViewController:self didFinishWithQuery:keyword canEat:self.canEatResult];
     }
   } else {
-    self.retryButton.hidden = NO;
+    if (self.keywords.count == 0) {
+      self.retryButton.hidden = NO;
+    } else {
+      [self performSearch];
+    }
+    
   }
 }
 

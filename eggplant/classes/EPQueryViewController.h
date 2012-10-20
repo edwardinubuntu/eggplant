@@ -16,11 +16,12 @@
 @interface EPQueryViewController : EPViewController
 
 - (id)initWithKeyword:(NSString *)keyword;
+- (id)initWithKeywords:(NSArray *)keywords;
 
-- (void)performSearch;
+- (BOOL)performSearch;
 
 @property (nonatomic, assign) id delegate;
-@property (nonatomic, strong) NSString *keyword;
+@property (nonatomic, strong) NSMutableArray *keywords;
 @property (nonatomic, assign) BOOL needTranslate;
 
 @property (nonatomic, strong) EPWikiQueryLangLinksModel *wikiQueryLangLinksModel;
@@ -31,6 +32,7 @@
 @property (nonatomic, strong) UIButton *retryButton;
 
 @property (nonatomic, assign) BOOL canEatResult;
+@property (nonatomic, strong) NSString *canEatKeyword;
 
 @property (nonatomic, strong) UILabel *resultLabel;
 
