@@ -26,3 +26,6 @@
 #define kCategoryPlant  @"植物學"
 #define kCategoryCook  @"料理食譜"
 #define kCategoryIngredient @"食材"
+
+#define IQE_APIKEY @"ddbfa0211be24f188c1db4b93fccc9ba" // IQ Engines API key string.
+#define IQE_SECRET @"38c6cd51624f4fa39dccf906b94b0c8d" // IQ Engines secret string.

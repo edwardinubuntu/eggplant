@@ -186,28 +186,28 @@
 		B610E6D21632708400114853 /* us_pos_cart.c in Sources */ = {isa = PBXBuildFile; fileRef = B610E66E1632708300114853 /* us_pos_cart.c */; };
 		B610E6D31632708400114853 /* us_text.c in Sources */ = {isa = PBXBuildFile; fileRef = B610E6711632708300114853 /* us_text.c */; };
 		B610E6D41632708400114853 /* usenglish.c in Sources */ = {isa = PBXBuildFile; fileRef = B610E6731632708300114853 /* usenglish.c */; };
-		B610E71E1632709800114853 /* IQE.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E6D71632709800114853 /* IQE.m */; };
-		B610E71F1632709800114853 /* IQEDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E6DA1632709800114853 /* IQEDebug.m */; };
-		B610E7201632709800114853 /* IQEImageCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E6DC1632709800114853 /* IQEImageCapture.m */; };
-		B610E7211632709800114853 /* IQEnginesMisc.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E6DE1632709800114853 /* IQEnginesMisc.m */; };
-		B610E7221632709800114853 /* IQEnginesLocal.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E6E21632709800114853 /* IQEnginesLocal.m */; };
+		B610E71E1632709800114853 /* IQE.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E6D71632709800114853 /* IQE.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B610E71F1632709800114853 /* IQEDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E6DA1632709800114853 /* IQEDebug.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B610E7201632709800114853 /* IQEImageCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E6DC1632709800114853 /* IQEImageCapture.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B610E7211632709800114853 /* IQEnginesMisc.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E6DE1632709800114853 /* IQEnginesMisc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B610E7221632709800114853 /* IQEnginesLocal.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E6E21632709800114853 /* IQEnginesLocal.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B610E7231632709800114853 /* libIQEnginesLocal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B610E6E31632709800114853 /* libIQEnginesLocal.a */; };
-		B610E7241632709800114853 /* IQEnginesAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E6E71632709800114853 /* IQEnginesAPI.m */; };
-		B610E7251632709800114853 /* IQEnginesBarcodeResultParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E6E91632709800114853 /* IQEnginesBarcodeResultParser.m */; };
-		B610E7261632709800114853 /* IQEnginesFeedbackResultParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E6EB1632709800114853 /* IQEnginesFeedbackResultParser.m */; };
-		B610E7271632709800114853 /* IQEnginesQueryResultParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E6ED1632709800114853 /* IQEnginesQueryResultParser.m */; };
-		B610E7281632709800114853 /* IQEnginesRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E6EF1632709800114853 /* IQEnginesRequestHandler.m */; };
-		B610E7291632709800114853 /* IQEnginesResultResultParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E6F11632709800114853 /* IQEnginesResultResultParser.m */; };
-		B610E72A1632709800114853 /* IQEnginesTags.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E6F31632709800114853 /* IQEnginesTags.m */; };
-		B610E72B1632709800114853 /* IQEnginesUpdateResultParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E6F51632709800114853 /* IQEnginesUpdateResultParser.m */; };
-		B610E72C1632709800114853 /* IQEnginesUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E6F71632709800114853 /* IQEnginesUtils.m */; };
-		B610E72D1632709800114853 /* IQEnginesXMLParserBase.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E6F91632709800114853 /* IQEnginesXMLParserBase.m */; };
-		B610E72E1632709800114853 /* IQEnginesRemote.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E6FB1632709800114853 /* IQEnginesRemote.m */; };
-		B610E72F1632709800114853 /* IQEBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E6FE1632709800114853 /* IQEBadgeView.m */; };
-		B610E7301632709800114853 /* IQEHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E7001632709800114853 /* IQEHistoryTableViewCell.m */; };
-		B610E7311632709800114853 /* IQELocation.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E7021632709800114853 /* IQELocation.m */; };
-		B610E7321632709800114853 /* IQEQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E7041632709800114853 /* IQEQuery.m */; };
-		B610E7331632709800114853 /* IQEViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E7061632709800114853 /* IQEViewController.m */; };
+		B610E7241632709800114853 /* IQEnginesAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E6E71632709800114853 /* IQEnginesAPI.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B610E7251632709800114853 /* IQEnginesBarcodeResultParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E6E91632709800114853 /* IQEnginesBarcodeResultParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B610E7261632709800114853 /* IQEnginesFeedbackResultParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E6EB1632709800114853 /* IQEnginesFeedbackResultParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B610E7271632709800114853 /* IQEnginesQueryResultParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E6ED1632709800114853 /* IQEnginesQueryResultParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B610E7281632709800114853 /* IQEnginesRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E6EF1632709800114853 /* IQEnginesRequestHandler.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B610E7291632709800114853 /* IQEnginesResultResultParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E6F11632709800114853 /* IQEnginesResultResultParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B610E72A1632709800114853 /* IQEnginesTags.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E6F31632709800114853 /* IQEnginesTags.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B610E72B1632709800114853 /* IQEnginesUpdateResultParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E6F51632709800114853 /* IQEnginesUpdateResultParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B610E72C1632709800114853 /* IQEnginesUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E6F71632709800114853 /* IQEnginesUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B610E72D1632709800114853 /* IQEnginesXMLParserBase.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E6F91632709800114853 /* IQEnginesXMLParserBase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B610E72E1632709800114853 /* IQEnginesRemote.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E6FB1632709800114853 /* IQEnginesRemote.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B610E72F1632709800114853 /* IQEBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E6FE1632709800114853 /* IQEBadgeView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B610E7301632709800114853 /* IQEHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E7001632709800114853 /* IQEHistoryTableViewCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B610E7311632709800114853 /* IQELocation.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E7021632709800114853 /* IQELocation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B610E7321632709800114853 /* IQEQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E7041632709800114853 /* IQEQuery.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B610E7331632709800114853 /* IQEViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E7061632709800114853 /* IQEViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B610E7341632709800114853 /* IQE.strings in Resources */ = {isa = PBXBuildFile; fileRef = B610E7081632709800114853 /* IQE.strings */; };
 		B610E7351632709800114853 /* IQEViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B610E70A1632709800114853 /* IQEViewController.xib */; };
 		B610E7361632709800114853 /* IQEAccessoryDisclosureArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = B610E70C1632709800114853 /* IQEAccessoryDisclosureArrow.png */; };
@@ -226,7 +226,14 @@
 		B610E7431632709800114853 /* IQEHistoryIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B610E7191632709800114853 /* IQEHistoryIcon@2x.png */; };
 		B610E7441632709800114853 /* IQEQRCode.png in Resources */ = {isa = PBXBuildFile; fileRef = B610E71A1632709800114853 /* IQEQRCode.png */; };
 		B610E7451632709800114853 /* IQEQRCode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B610E71B1632709800114853 /* IQEQRCode@2x.png */; };
-		B610E7461632709800114853 /* UIImage+IQE.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E71D1632709800114853 /* UIImage+IQE.m */; };
+		B610E7461632709800114853 /* UIImage+IQE.m in Sources */ = {isa = PBXBuildFile; fileRef = B610E71D1632709800114853 /* UIImage+IQE.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B662F47D163274B200F288FE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B662F47C163274B200F288FE /* QuartzCore.framework */; };
+		B662F480163274BB00F288FE /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B662F47F163274BB00F288FE /* CoreVideo.framework */; };
+		B662F482163274C500F288FE /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B662F481163274C500F288FE /* CoreMedia.framework */; };
+		B662F484163274CF00F288FE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B662F483163274CF00F288FE /* CoreLocation.framework */; };
+		B662F486163274D500F288FE /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B662F485163274D500F288FE /* AVFoundation.framework */; };
+		B662F488163274F800F288FE /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B662F487163274F800F288FE /* libiconv.dylib */; };
+		B662F48B163275D400F288FE /* EPIQEnginesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B662F48A163275D400F288FE /* EPIQEnginesViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -603,6 +610,14 @@
 		B610E71B1632709800114853 /* IQEQRCode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IQEQRCode@2x.png"; sourceTree = "<group>"; };
 		B610E71C1632709800114853 /* UIImage+IQE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+IQE.h"; sourceTree = "<group>"; };
 		B610E71D1632709800114853 /* UIImage+IQE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+IQE.m"; sourceTree = "<group>"; };
+		B662F47C163274B200F288FE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		B662F47F163274BB00F288FE /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		B662F481163274C500F288FE /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		B662F483163274CF00F288FE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		B662F485163274D500F288FE /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		B662F487163274F800F288FE /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		B662F489163275D400F288FE /* EPIQEnginesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPIQEnginesViewController.h; sourceTree = "<group>"; };
+		B662F48A163275D400F288FE /* EPIQEnginesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPIQEnginesViewController.m; sourceTree = "<group>"; };
 		BC5336F5AC004F25805C6DBC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -611,6 +626,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B662F488163274F800F288FE /* libiconv.dylib in Frameworks */,
+				B662F486163274D500F288FE /* AVFoundation.framework in Frameworks */,
+				B662F484163274CF00F288FE /* CoreLocation.framework in Frameworks */,
+				B662F482163274C500F288FE /* CoreMedia.framework in Frameworks */,
+				B662F480163274BB00F288FE /* CoreVideo.framework in Frameworks */,
+				B662F47D163274B200F288FE /* QuartzCore.framework in Frameworks */,
 				1C8784D2162A56EA005D3672 /* UIKit.framework in Frameworks */,
 				1C8784D4162A56EA005D3672 /* Foundation.framework in Frameworks */,
 				1C8784D6162A56EA005D3672 /* CoreGraphics.framework in Frameworks */,
@@ -657,6 +678,12 @@
 		1C8784D0162A56EA005D3672 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B662F487163274F800F288FE /* libiconv.dylib */,
+				B662F485163274D500F288FE /* AVFoundation.framework */,
+				B662F483163274CF00F288FE /* CoreLocation.framework */,
+				B662F481163274C500F288FE /* CoreMedia.framework */,
+				B662F47F163274BB00F288FE /* CoreVideo.framework */,
+				B662F47C163274B200F288FE /* QuartzCore.framework */,
 				1C8784D1162A56EA005D3672 /* UIKit.framework */,
 				1C8784D3162A56EA005D3672 /* Foundation.framework */,
 				1C8784D5162A56EA005D3672 /* CoreGraphics.framework */,
@@ -927,6 +954,8 @@
 				1CB075441632476B0028E3C9 /* EPQueryViewController.m */,
 				1CB0753F163236EF0028E3C9 /* EPSearchKeywordViewController.h */,
 				1CB07540163236F00028E3C9 /* EPSearchKeywordViewController.m */,
+				B662F489163275D400F288FE /* EPIQEnginesViewController.h */,
+				B662F48A163275D400F288FE /* EPIQEnginesViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -1689,6 +1718,7 @@
 				B610E7321632709800114853 /* IQEQuery.m in Sources */,
 				B610E7331632709800114853 /* IQEViewController.m in Sources */,
 				B610E7461632709800114853 /* UIImage+IQE.m in Sources */,
+				B662F48B163275D400F288FE /* EPIQEnginesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1786,7 +1816,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-Weverything";
+				OTHER_LDFLAGS = (
+					"-Weverything",
+					"-lstdc++",
+				);
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1810,7 +1843,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				OTHER_LDFLAGS = "-Weverything";
+				OTHER_LDFLAGS = (
+					"-Weverything",
+					"-lstdc++",
+				);
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1830,6 +1866,30 @@
 					"\"$(SRCROOT)/Dependency/IQEngines/IQEnginesSDK/Local\"",
 				);
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-Wl,-no_compact_unwind",
+					"-lxml2",
+					"-framework",
+					CoreData,
+					"-framework",
+					CoreGraphics,
+					"-framework",
+					CoreText,
+					"-framework",
+					ImageIO,
+					"-framework",
+					MediaPlayer,
+					"-framework",
+					MessageUI,
+					"-framework",
+					QuartzCore,
+					"-framework",
+					SystemConfiguration,
+					"-framework",
+					UIKit,
+					"-lstdc++",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1848,6 +1908,30 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Dependency/IQEngines/IQEnginesSDK/Local\"",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-Wl,-no_compact_unwind",
+					"-lxml2",
+					"-framework",
+					CoreData,
+					"-framework",
+					CoreGraphics,
+					"-framework",
+					CoreText,
+					"-framework",
+					ImageIO,
+					"-framework",
+					MediaPlayer,
+					"-framework",
+					MessageUI,
+					"-framework",
+					QuartzCore,
+					"-framework",
+					SystemConfiguration,
+					"-framework",
+					UIKit,
+					"-lstdc++",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;

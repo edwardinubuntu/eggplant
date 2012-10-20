@@ -20,6 +20,7 @@
 #import "EPAttributedSourceCell.h"
 #import "EPSearchKeywordViewController.h"
 #import "UIViewController+MJPopupViewController.h"
+#import "EPIQEnginesViewController.h"
 
 @interface EPHomeViewController ()
 
@@ -80,6 +81,9 @@ CGFloat smallMoving = 25;
   [self.cameraButton setImage:[UIImage imageNamed:@"86-camera"] forState:UIControlStateNormal];
   [self.cameraButton addEventHandler:^(id sender) {
     [tempSelf foldSearchButtonsWithCurrentButton:tempSelf.searchButton];
+    EPIQEnginesViewController *iqEngineViewController = [[EPIQEnginesViewController alloc] initWithNibName:nil bundle:nil];
+    [tempSelf presentModalViewController:iqEngineViewController animated:YES];
+    
   } forControlEvents:UIControlEventTouchUpInside];
   [self.buttonSectionsView addSubview:self.cameraButton];
   
