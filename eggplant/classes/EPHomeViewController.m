@@ -55,6 +55,8 @@ CGFloat smallMoving = 25;
   
   __block EPHomeViewController *tempSelf = self;
   
+  _queryViewController = [[EPQueryViewController alloc] init];
+  
   _searchKeywordViewController = [[EPSearchKeywordViewController alloc] init];
   self.searchKeywordViewController.delegate = self;
   
@@ -601,9 +603,22 @@ CGFloat smallMoving = 25;
 - (void)searchKeywordViewController:(EPSearchKeywordViewController *)searchKeywordViewController didinishEnterSearchKeyword:(NSString *)searchKeyword {
   [searchKeywordViewController dismissModalViewControllerAnimated:YES];
   
-  EPQueryViewController *queryViewController = [[EPQueryViewController alloc] initWithKeyword:searchKeyword];
+  self.queryViewController.delegate = self;
+  self.queryViewController.keyword = searchKeyword;
+  self.queryViewController.needTranslate = NO;
   
-  [self.navigationController presentPopupViewController:queryViewController animationType:MJPopupViewAnimationSlideBottomTop];
+  [self.queryViewController performSearch];
+  [self.navigationController presentPopupViewController:self.queryViewController animationType:MJPopupViewAnimationSlideBottomTop];
+}
+
+#pragma mark - EPQueryViewControllerDelegate
+
+- (void)queryViewController:(EPQueryViewController *)queryViewController didCancelhWithQuery:(NSString *)searchKeyword {
+  [self.navigationController dismissPopupViewControllerWithanimationType:MJPopupViewAnimationSlideBottomBottom];
+}
+
+- (void)queryViewController:(EPQueryViewController *)queryViewController didFinishWithQuery:(NSString *)searchKeyword canEat:(BOOL)canEat {
+  [self.navigationController dismissPopupViewControllerWithanimationType:MJPopupViewAnimationSlideBottomTop];
 }
 
 @end

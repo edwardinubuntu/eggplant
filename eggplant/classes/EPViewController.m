@@ -23,6 +23,14 @@
     return self;
 }
 
+- (void)loadView {
+  [super loadView];
+  _loadingView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+  
+  self.loadingView.hidden = YES;
+  [self.view addSubview:self.loadingView];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

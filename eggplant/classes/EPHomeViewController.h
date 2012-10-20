@@ -40,4 +40,6 @@
 
 @property (nonatomic, strong) EPSearchKeywordViewController *searchKeywordViewController;
 
+@property (nonatomic, strong) EPQueryViewController *queryViewController;
+
 @end
