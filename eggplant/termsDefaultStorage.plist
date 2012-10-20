@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>termKeys</key>
+	<array>
+		<string>茄</string>
+		<string>番茄</string>
+		<string>青椒</string>
+	</array>
 	<key>terms</key>
 	<array>
 		<dict>
@@ -214,12 +220,6 @@
 			<key>sources</key>
 			<array/>
 		</dict>
-	</array>
-	<key>termKeys</key>
-	<array>
-		<string>茄</string>
-		<string>番茄</string>
-		<string>青椒</string>
 	</array>
 </dict>
 </plist>

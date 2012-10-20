@@ -320,13 +320,19 @@ CGFloat smallMoving = 25;
             sourcesOriginal = [[NSMutableArray alloc] init];
         }
         [sourcesOriginal addObjectsFromArray:sources];
+      
+      
         [tempTermWithDataDict setObject:sourcesOriginal forKey:@"sources"];
       
       
       NSMutableArray *newSortedArray = [tempSelf sortByRandomNum:tempTermWithDataDict];
-      [tempTermWithDataDict setObject:newSortedArray forKey:@"sources"];
+      sourcesOriginal = newSortedArray;
         // TODO: Save
-        
+      
+      
+      // From original root find this source, set, save
+      
+      
         [tempSelf.tableView reloadData];
     } loadWithError:^(NSError *error) {
         // Handle Error
@@ -357,9 +363,9 @@ CGFloat smallMoving = 25;
 
   // Check if has term
   NSMutableDictionary *termWithDataDict = nil;
-  for (NSDictionary *eachDict in self.contentDictData) {
+  for (NSMutableDictionary *eachDict in self.contentDictData) {
     if ([eachDict objectForKey:@"key"] && [[eachDict objectForKey:@"key"] isEqualToString:searchingTerm]) {
-      termWithDataDict = [NSMutableDictionary dictionaryWithDictionary:eachDict];
+      termWithDataDict = eachDict;
     }
   }
   
