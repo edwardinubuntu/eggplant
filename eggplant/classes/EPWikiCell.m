@@ -40,10 +40,10 @@
   self.textLabel.backgroundColor = [UIColor clearColor];
   self.textLabel.frame = CGRectMake(left + self.bookIconImageView.frame.size.width + left / 2, top + 5, width, self.textLabel.frame.size.height);
   
-  self.seperateLineImageView.center = CGPointMake(self.contentView.frame.size.width / 2, self.textLabel.frame.origin.y + left * 2 + 5);
+  self.seperateLineImageView.center = CGPointMake(self.contentView.frame.size.width / 2, self.textLabel.frame.origin.y + left * 2 + 10);
   
   self.detailTextLabel.backgroundColor = [UIColor clearColor];
-  self.detailTextLabel.frame = CGRectMake(left, self.textLabel.frame.origin.y + left * 2 + 3, width, 65);
+  self.detailTextLabel.frame = CGRectMake(left, self.textLabel.frame.origin.y + left * 2 + 15, width, 65);
   
   self.sourceLabel.frame = CGRectMake(left, self.detailTextLabel.frame.origin.y + self.detailTextLabel.frame.size.height, width, 16.f);
 }
