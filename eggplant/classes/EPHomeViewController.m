@@ -224,7 +224,10 @@ CGFloat smallMoving = 25;
       [recipeDict setObject:eachRecipe.name forKey:@"title"];
       [recipeDict setObject:eachRecipe.recipeDescription forKey:@"detail"];
       [recipeDict setObject:@"icook.tw" forKey:@"sourceURL"];
-      [recipeDict setObject:eachRecipe.photos.smallURL.absoluteString forKey:@"imageURL"];
+      if (NIIsStringWithAnyText(eachRecipe.photos.smallURL.absoluteString)) {
+        [recipeDict setObject:eachRecipe.photos.smallURL.absoluteString forKey:@"imageURL"];
+      }
+      
       float randomNum = arc4random() % 100;
       [recipeDict setObject:[NSNumber numberWithFloat:randomNum] forKey:@"randomNum"];
       
@@ -416,6 +419,7 @@ CGFloat smallMoving = 25;
   }
   
   // Final saved
+  
   
   // Call at the end
 //  [self.pagingScrollView reloadData];
@@ -922,13 +926,15 @@ CGFloat smallMoving = 25;
   // Saving result
   if (![self.headerTermKeys containsObject:searchKeyword]) {
     [self.headerTermKeys addObject:searchKeyword];
-    NSMutableDictionary *termsUserSavedDictData = [[EPTermsStorageManager defaultManager] termsFromUserSaved];
-    [termsUserSavedDictData setObject:self.headerTermKeys forKey:@"termKeys"];
     
     NSMutableDictionary *termWithDataDict = [[NSMutableDictionary alloc] init];
     [termWithDataDict setObject:searchKeyword forKey:@"key"];
-    [termsUserSavedDictData setObject:termWithDataDict forKey:@"terms"];
+    [self.contentDictData addObject:termWithDataDict];
     
+    [[EPTermsStorageManager defaultManager] load];
+    NSMutableDictionary *termsUserSavedDictData = [[EPTermsStorageManager defaultManager] termsFromUserSaved];
+    [termsUserSavedDictData setObject:self.headerTermKeys forKey:@"termKeys"];
+    [termsUserSavedDictData setObject:self.contentDictData forKey:@"terms"];
     [[EPTermsStorageManager defaultManager] save];
   } else {
     NIDPRINT(@"Already exist");
