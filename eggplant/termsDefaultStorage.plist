@@ -206,6 +206,14 @@
 				</dict>
 			</array>
 		</dict>
+		<dict>
+			<key>key</key>
+			<string>青椒</string>
+			<key>termInEN</key>
+			<string>Green peppers</string>
+			<key>sources</key>
+			<array/>
+		</dict>
 	</array>
 	<key>termKeys</key>
 	<array>

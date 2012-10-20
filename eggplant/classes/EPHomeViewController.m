@@ -154,63 +154,67 @@ CGFloat smallMoving = 25;
   [[EPTermsStorageManager defaultManager] save];
 }
 
-- (void)perpareQueryAPIData:(NSString *)searchingTerm {
+- (void)performYKAPISearhTerm:(NSString *)searchingTerm withDataDict:(NSMutableDictionary *)termWithDataDict {
+    // YKNowledge
+    __block EPHomeViewController *tempSelf = self;
+    __block NSMutableDictionary *tempTermWithDataDict = termWithDataDict;
+    self.yknowledgeSearchModel.keywords = searchingTerm;
+    [self.yknowledgeSearchModel loadMore:NO didFinishLoad:^{
+        NSMutableArray *sources = [[NSMutableArray alloc] init];
+        for (EPYKnowledge *eachKnow in tempSelf.yknowledgeSearchModel.knowledges) {
+            NSMutableDictionary *knowDict = [[NSMutableDictionary alloc] init];
+            [knowDict setObject:@"YKnowledge" forKey:@"type"];
+            [knowDict setObject:eachKnow.url.absoluteString forKey:@"url"];
+            [knowDict setObject:eachKnow.subject forKey:@"title"];
+            [knowDict setObject:eachKnow.content forKey:@"detail"];
+            [knowDict setObject:@"knowledge.yahoo.com.tw" forKey:@"sourceURL"];
+            
+            [sources addObject:knowDict];
+        }
+        
+        // Add to data
+        NSMutableArray *sourcesOriginal = [tempTermWithDataDict objectForKey:@"sources"];
+        if (!sourcesOriginal) {
+            sourcesOriginal = [[NSMutableArray alloc] init];
+        }
+        [sourcesOriginal addObjectsFromArray:sources];
+        [tempTermWithDataDict setObject:sourcesOriginal forKey:@"sources"];
+        
+        // TODO: Save
+        
+        [tempSelf.tableView reloadData];
+    } loadWithError:^(NSError *error) {
+        // Handle Error
+    }];
+}
+
+- (void)checkPerpareQueryAPIData:(NSString *)searchingTerm {
   
-  __block EPHomeViewController *tempSelf = self;
+  
   
   // Check if has term
-  BOOL hasTermKeyAlreadyInData = NO;
   NSMutableDictionary *termWithDataDict = nil;
   for (NSDictionary *eachDict in self.contentDictData) {
     if ([eachDict objectForKey:@"key"] && [[eachDict objectForKey:@"key"] isEqualToString:searchingTerm]) {
-      hasTermKeyAlreadyInData = YES;
       termWithDataDict = [NSMutableDictionary dictionaryWithDictionary:eachDict];
     }
   }
-  if (!hasTermKeyAlreadyInData) {
-    termWithDataDict = [[NSMutableDictionary alloc] init];
-    [termWithDataDict setObject:searchingTerm forKey:@"key"];
-    [self.contentDictData addObject:termWithDataDict];
-  }
-  
-  __block NSMutableDictionary *tempTermWithDataDict = termWithDataDict;
   
   // Start to add wiki
   
   // Start with iCook
-  
-  // YKNowledge
-  self.yknowledgeSearchModel.keywords = searchingTerm;
-  [self.yknowledgeSearchModel loadMore:NO didFinishLoad:^{
-    NSMutableArray *sources = [[NSMutableArray alloc] init];
-    for (EPYKnowledge *eachKnow in tempSelf.yknowledgeSearchModel.knowledges) {
-      NSMutableDictionary *knowDict = [[NSMutableDictionary alloc] init];
-      [knowDict setObject:@"YKnowledge" forKey:@"type"];
-      [knowDict setObject:eachKnow.url.absoluteString forKey:@"url"];
-      [knowDict setObject:eachKnow.subject forKey:@"title"];
-      [knowDict setObject:eachKnow.content forKey:@"detail"];
-      [knowDict setObject:@"knowledge.yahoo.com.tw" forKey:@"sourceURL"];
-      
-      [sources addObject:knowDict];
+  NSMutableArray *sources = [termWithDataDict objectForKey:@"sources"];
+  BOOL hasYKnowledge = NO;
+  for (NSDictionary *eachSource in sources) {
+    if ([[eachSource objectForKey:@"type"] isEqualToString:@"YKnowledge"]) {
+      hasYKnowledge = YES;
     }
-    
-    // Add to data
-    NSMutableArray *sourcesOriginal = [tempTermWithDataDict objectForKey:@"sources"];
-    if (!sourcesOriginal) {
-      sourcesOriginal = [[NSMutableArray alloc] init];
-    }
-    [sourcesOriginal addObjectsFromArray:sources];
-    [tempTermWithDataDict setObject:sourcesOriginal forKey:@"sources"];
-    
-    // TODO: Save
-    
-    [tempSelf.tableView reloadData];
-  } loadWithError:^(NSError *error) {
-    // Handle Error
-  }];
+  }
+  if (!hasYKnowledge) {
+    [self performYKAPISearhTerm:searchingTerm withDataDict:termWithDataDict];
+  }
   
   // Final saved
-  [self.contentDictData addObject:termWithDataDict];
   
   // Call at the end
 //  [self.pagingScrollView reloadData];
@@ -521,12 +525,7 @@ CGFloat smallMoving = 25;
         [contentHeaderView addSubview:_tableView];
         
         // if empty need to loading
-        NSArray *sources = [self sourceWithGivenDefaultDataSet:termIndex];
-        if (sources.count <= 0) {
-          // We need to loading
-          NIDPRINT(@"Need to load for term %i, %@", termIndex, [self.headerTermKeys objectAtIndex:termIndex]);
-          [self perpareQueryAPIData:[self.headerTermKeys objectAtIndex:termIndex]];
-        }
+        [self checkPerpareQueryAPIData:[self.headerTermKeys objectAtIndex:termIndex]];
       }
       break;
   }
@@ -718,24 +717,27 @@ CGFloat smallMoving = 25;
 }
 
 - (void)queryViewController:(EPQueryViewController *)queryViewController didFinishWithQuery:(NSString *)searchKeyword canEat:(BOOL)canEat {
-  
 
-  
   // Saving result
   if (![self.headerTermKeys containsObject:searchKeyword]) {
     [self.headerTermKeys addObject:searchKeyword];
     NSMutableDictionary *termsUserSavedDictData = [[EPTermsStorageManager defaultManager] termsFromUserSaved];
     [termsUserSavedDictData setObject:self.headerTermKeys forKey:@"termKeys"];
-    [[EPTermsStorageManager defaultManager] save];
     
-    // Scroll to last one
-    [self.headerCarousel scrollToItemAtIndex:self.headerCarousel.numberOfItems animated:YES];
+    NSMutableDictionary *termWithDataDict = [[NSMutableDictionary alloc] init];
+    [termWithDataDict setObject:searchKeyword forKey:@"key"];
+    [termsUserSavedDictData setObject:termWithDataDict forKey:@"terms"];
+    
+    [[EPTermsStorageManager defaultManager] save];
   } else {
     NIDPRINT(@"Already exist");
   }
   
   [self.headerCarousel reloadData];
   [self.pagingScrollView reloadData];
+  
+  // Scroll to last one
+  [self.headerCarousel scrollToItemAtIndex:self.headerCarousel.numberOfItems animated:YES];
   
   [self.navigationController dismissPopupViewControllerWithanimationType:MJPopupViewAnimationSlideBottomTop];
 }
