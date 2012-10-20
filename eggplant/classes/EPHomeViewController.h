@@ -13,8 +13,10 @@
 #import "NIPagingScrollViewDelegate.h"
 #import "EPSearchKeywordViewController.h"
 #import "EPQueryViewController.h"
+#import "EPIQEnginesViewController.h"
 
 @interface EPHomeViewController : EPViewController <
+  EPIQEnginesViewControllerDelegate,
   iCarouselDataSource,
   iCarouselDelegate,
   NIPagingScrollViewDelegate,
