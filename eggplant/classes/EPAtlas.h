@@ -22,6 +22,7 @@
 #define kICOOK_BASE_URL @"https://icook.tw/api/v1/"
 #define kTRANSLATE_BASE_URL @"http://translate.google.com/translate_a/"
 #define kTRANSLATE_PARAMATER_FORMAT @"t?client=t&en=zh-TW&sl=en&tl=zh-TW&ie=UTF-8&oe=UTF-8&multires=1&otf=1&pc=1&trs=1&ssel=3&tsel=6&sc=1&text=%@"   //%@ as term
+#define kTRANSLATE_PARAMATER_SRC_TARGET_FORMAT @"t?client=t&%@=%@&sl=%@&tl=%@&ie=UTF-8&oe=UTF-8&multires=1&otf=1&pc=1&trs=1&ssel=3&tsel=6&sc=1&text=%@"   //%@ as term
 
 #pragma mark - Category
 

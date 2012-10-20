@@ -20,9 +20,13 @@
 - (void)loadMore:(BOOL)more didFinishLoad:(requestDidFinishLoadBolck)requestDidFinishLoad loadWithError:(requestLoadWithErrorBlock)requestLoadWithError {
 
   NSMutableString *path = [[NSMutableString alloc] init];
-  [path appendFormat:kTRANSLATE_PARAMATER_FORMAT, [self.keyword encodeString:NSUTF8StringEncoding]];
-  
-  
+  if (NIIsStringWithAnyText(self.sourceLang) && NIIsStringWithAnyText(self.targetLang)) {
+    [path appendFormat:kTRANSLATE_PARAMATER_SRC_TARGET_FORMAT, self.sourceLang, self.targetLang, self.sourceLang, self.targetLang, [self.keyword encodeString:NSUTF8StringEncoding]];
+
+  } else {
+    [path appendFormat:kTRANSLATE_PARAMATER_FORMAT, [self.keyword encodeString:NSUTF8StringEncoding]];
+  }
+
   __block EPPrivateTranslateModel *tempSelf = self;
   if (!self.isLoading) {
     self.isLoading = YES;

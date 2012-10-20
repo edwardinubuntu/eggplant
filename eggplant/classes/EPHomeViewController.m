@@ -112,6 +112,8 @@ CGFloat smallMoving = 25;
   
   _yknowledgeSearchModel = [[EPYKnowledgeSearchModel alloc] init];
   _recipesSearchModel = [[ICRecipesSearchModel alloc] init];
+  _privateTranslateModel = [[EPPrivateTranslateModel alloc] init];
+  _instgramTagsMediaModel = [[EPInstagramTagsMediaModel alloc] init];
 }
 
 - (void)viewDidLoad {
@@ -155,6 +157,57 @@ CGFloat smallMoving = 25;
   [[EPTermsStorageManager defaultManager] save];
 }
 
+- (void)performTranslateInstagramTerm:(NSString *)searchingTerm withDataDict:(NSMutableDictionary *)termWithDataDict {
+  __block EPHomeViewController *tempSelf = self;
+  __block NSMutableDictionary *tempTermWithDataDict = termWithDataDict;
+  
+  // Chinse term to English Term show wiki
+  self.privateTranslateModel.keyword = searchingTerm;
+  self.privateTranslateModel.sourceLang = @"zh-TW";
+  self.privateTranslateModel.targetLang = @"en";
+  [self.privateTranslateModel loadMore:NO didFinishLoad:^{
+    [tempSelf performInstagramAPISearhTerm:tempSelf.privateTranslateModel.targetLang withDataDict:tempTermWithDataDict];
+  } loadWithError:^(NSError *error) {
+    // Handle Error
+  }];
+}
+
+- (void)performWikiSearchTerm:(NSString *)searchingTerm withDataDict:(NSMutableDictionary *)termWithDataDict {
+  
+  __block EPHomeViewController *tempSelf = self;
+  __block NSMutableDictionary *tempTermWithDataDict = termWithDataDict;
+  
+  // Chinse term to English Term show wiki
+  self.privateTranslateModel.keyword = searchingTerm;
+  self.privateTranslateModel.sourceLang = @"zh-TW";
+  self.privateTranslateModel.targetLang = @"en";
+  [self.privateTranslateModel loadMore:NO didFinishLoad:^{
+    NSMutableArray *sources = [[NSMutableArray alloc] init];
+    
+    NSMutableDictionary *recipeDict = [[NSMutableDictionary alloc] init];
+    [recipeDict setObject:@"wiki" forKey:@"type"];
+    [recipeDict setObject:[NSString stringWithFormat:@"http://en.wikipedia.org/wiki/%@", tempSelf.privateTranslateModel.keywordTranslation] forKey:@"url"];
+    [recipeDict setObject:tempSelf.privateTranslateModel.keywordTranslation forKey:@"title"];
+    [recipeDict setObject:@"wikipedia.org" forKey:@"sourceURL"];
+    
+    [sources addObject:recipeDict];
+    
+    // Add to data
+    NSMutableArray *sourcesOriginal = [tempTermWithDataDict objectForKey:@"sources"];
+    if (!sourcesOriginal) {
+      sourcesOriginal = [[NSMutableArray alloc] init];
+    }
+    [sourcesOriginal addObjectsFromArray:sources];
+    [tempTermWithDataDict setObject:sourcesOriginal forKey:@"sources"];
+    
+    // TODO: Save
+    
+    [tempSelf.tableView reloadData];
+  } loadWithError:^(NSError *error) {
+    // Handle Error
+  }];
+}
+
 - (void)performiCookSearchTerm:(NSString *)searchingTerm withDataDict:(NSMutableDictionary *)termWithDataDict {
   // YKNowledge
   __block EPHomeViewController *tempSelf = self;
@@ -172,6 +225,46 @@ CGFloat smallMoving = 25;
       [recipeDict setObject:eachRecipe.photos.smallURL.absoluteString forKey:@"imageURL"];
       
       [sources addObject:recipeDict];
+    }
+    
+    // Add to data
+    NSMutableArray *sourcesOriginal = [tempTermWithDataDict objectForKey:@"sources"];
+    if (!sourcesOriginal) {
+      sourcesOriginal = [[NSMutableArray alloc] init];
+    }
+    [sourcesOriginal addObjectsFromArray:sources];
+    [tempTermWithDataDict setObject:sourcesOriginal forKey:@"sources"];
+    
+    // TODO: Save
+    
+    [tempSelf.tableView reloadData];
+  } loadWithError:^(NSError *error) {
+    // Handle Error
+  }];
+}
+
+- (void)performInstagramAPISearhTerm:(NSString *)searchingTerm withDataDict:(NSMutableDictionary *)termWithDataDict {
+  // YKNowledge
+  __block EPHomeViewController *tempSelf = self;
+  __block NSMutableDictionary *tempTermWithDataDict = termWithDataDict;
+  self.instgramTagsMediaModel.keyword = searchingTerm;
+  [self.instgramTagsMediaModel loadMore:NO didFinishLoad:^{
+    NSMutableArray *sources = [[NSMutableArray alloc] init];
+    for (EPInstagram *eachInstagram in tempSelf.instgramTagsMediaModel.instagrams) {
+      NSMutableDictionary *knowDict = [[NSMutableDictionary alloc] init];
+      [knowDict setObject:@"instagram" forKey:@"type"];
+      [knowDict setObject:eachInstagram.link.absoluteString forKey:@"url"];
+      [knowDict setObject:@"instagr.am" forKey:@"sourceURL"];
+      
+      for (NSString *key in eachInstagram.images.keyEnumerator.allObjects) {
+        EPImage *eachImage = [eachInstagram.images objectForKey:key];
+        if (eachImage.imageType == EPImageTypeThumbnail) {
+          NIDPRINT(@"EPImageTypeThumbnail eachImage.url.absoluteString: %@", eachImage.url.absoluteString);
+          [knowDict setObject:eachImage.url.absoluteString forKey:@"imageURL"];
+        }
+      }
+      
+      [sources addObject:knowDict];
     }
     
     // Add to data
@@ -225,9 +318,7 @@ CGFloat smallMoving = 25;
 }
 
 - (void)checkPerpareQueryAPIData:(NSString *)searchingTerm {
-  
-  
-  
+
   // Check if has term
   NSMutableDictionary *termWithDataDict = nil;
   for (NSDictionary *eachDict in self.contentDictData) {
@@ -239,9 +330,17 @@ CGFloat smallMoving = 25;
   NSMutableArray *sources = [termWithDataDict objectForKey:@"sources"];
   
   // Start to add wiki
+//  BOOL hasWiki = NO;
+//  for (NSDictionary *eachSource in sources) {
+//    if ([[eachSource objectForKey:@"type"] isEqualToString:@"wiki"]) {
+//      hasWiki = YES;
+//    }
+//  }
+//  if (!hasWiki) {
+//    [self performWikiSearchTerm:searchingTerm withDataDict:termWithDataDict];
+//  }
   
   // Start with hasICook
-  
   BOOL hasiCook = NO;
   for (NSDictionary *eachSource in sources) {
     if ([[eachSource objectForKey:@"type"] isEqualToString:@"icook"]) {
@@ -261,6 +360,17 @@ CGFloat smallMoving = 25;
   }
   if (!hasYKnowledge) {
     [self performYKAPISearhTerm:searchingTerm withDataDict:termWithDataDict];
+  }
+  
+  // Start with Instagram
+  BOOL hasInstagram = NO;
+  for (NSDictionary *eachSource in sources) {
+    if ([[eachSource objectForKey:@"type"] isEqualToString:@"instagram"]) {
+      hasInstagram = YES;
+    }
+  }
+  if (!hasInstagram) {
+    [self performInstagramAPISearhTerm:searchingTerm withDataDict:termWithDataDict];
   }
   
   // Final saved

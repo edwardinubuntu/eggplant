@@ -14,4 +14,7 @@
 @property (nonatomic, strong) NSString *keyword;
 @property (nonatomic, strong) NSString *keywordTranslation;
 
+@property (nonatomic, strong) NSString *sourceLang;
+@property (nonatomic, strong) NSString *targetLang;
+
 @end

@@ -17,6 +17,8 @@
 #import "EPYKnowledgeSearchModel.h"
 #import "EPYKnowledge.h"
 #import "ICRecipesSearchModel.h"
+#import "EPPrivateTranslateModel.h"
+#import "EPInstagramTagsMediaModel.h"
 
 @interface EPHomeViewController : EPViewController <
   EPIQEnginesViewControllerDelegate,
@@ -48,5 +50,9 @@
 
 @property (nonatomic, strong) EPYKnowledgeSearchModel *yknowledgeSearchModel;
 @property (nonatomic, strong) ICRecipesSearchModel *recipesSearchModel;
+
+@property (nonatomic, strong) EPPrivateTranslateModel *privateTranslateModel;
+
+@property (nonatomic, strong) EPInstagramTagsMediaModel *instgramTagsMediaModel;
 
 @end
