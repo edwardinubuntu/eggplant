@@ -20,6 +20,15 @@
 #import "EPPrivateTranslateModel.h"
 #import "EPInstagramTagsMediaModel.h"
 
+typedef enum {
+  EPScrollDirectionTypeNone,
+  EPScrollDirectionTypeRight,
+  EPScrollDirectionTypeLeft,
+  EPScrollDirectionTypeUp,
+  EPScrollDirectionTypeDown,
+  EPScrollDirectionTypeCrazy,
+} EPScrollDirectionType;
+
 @interface EPHomeViewController : EPViewController <
   EPIQEnginesViewControllerDelegate,
   iCarouselDataSource,
@@ -28,7 +37,10 @@
   NIPagingScrollViewDataSource,
   UITableViewDataSource,
   UITableViewDelegate
->
+> {
+
+  CGFloat lastContentOffset;
+}
 
 @property (nonatomic, strong) iCarousel *headerCarousel;
 @property (nonatomic, strong) UIButton *searchButton;

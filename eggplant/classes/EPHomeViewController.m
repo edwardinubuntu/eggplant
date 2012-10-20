@@ -21,7 +21,7 @@
 #import "EPSearchKeywordViewController.h"
 #import "UIViewController+MJPopupViewController.h"
 #import "EPIQEnginesViewController.h"
-
+#import <QuartzCore/QuartzCore.h>
 @interface EPHomeViewController ()
 
 @end
@@ -52,7 +52,7 @@ CGFloat smallMoving = 25;
 
 - (void)loadView {
   [super loadView];
-  
+  lastContentOffset = 0;
   __block EPHomeViewController *tempSelf = self;
   
   _queryViewController = [[EPQueryViewController alloc] init];
@@ -68,6 +68,10 @@ CGFloat smallMoving = 25;
   
   CGFloat spacing = 3;
   _searchButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+  _searchButton.layer.cornerRadius = 7.f;
+  _searchButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
+  _searchButton.layer.borderWidth = 3.f;
+  
   [self.searchButton setImage:[UIImage imageNamed:@"06-magnify"] forState:UIControlStateNormal];
   [self.searchButton sizeToFit];
   self.searchButton.center = CGPointMake(spacing + self.searchButton.frame.size.width, self.view.frame.size.height - self.searchButton.frame.size.height - spacing);
@@ -79,6 +83,10 @@ CGFloat smallMoving = 25;
   [self.view addSubview:self.buttonSectionsView];
   
   _cameraButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+  _cameraButton.layer.cornerRadius = 7.f;
+  _cameraButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
+  _cameraButton.layer.borderWidth = 3.f;
+
   [self.cameraButton setImage:[UIImage imageNamed:@"86-camera"] forState:UIControlStateNormal];
   [self.cameraButton addEventHandler:^(id sender) {
     [tempSelf foldSearchButtonsWithCurrentButton:tempSelf.searchButton];
@@ -90,6 +98,9 @@ CGFloat smallMoving = 25;
   [self.buttonSectionsView addSubview:self.cameraButton];
   
   _writeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+  _writeButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
+  _writeButton.layer.borderWidth = 3.f;
+  _writeButton.layer.cornerRadius = 7.f;
   [self.writeButton setImage:[UIImage imageNamed:@"187-pencil"] forState:UIControlStateNormal];
   [self.writeButton addEventHandler:^(id sender) {
     
@@ -897,8 +908,20 @@ CGFloat smallMoving = 25;
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-  self.searchButton.hidden = (scrollView.contentOffset.y > self.view.frame.size.height / 2);
-  self.buttonSectionsView.hidden = self.searchButton.hidden;
+
+  int scrollDirection;
+  if (lastContentOffset > scrollView.contentOffset.y)
+    scrollDirection = EPScrollDirectionTypeUp;
+  else if (lastContentOffset < scrollView.contentOffset.y)
+    scrollDirection = EPScrollDirectionTypeDown;
+  
+  lastContentOffset = scrollView.contentOffset.y;
+  
+  [UIView animateWithDuration:0.2 animations:^(void){
+    self.searchButton.alpha = ((scrollDirection == EPScrollDirectionTypeUp) ||(scrollView.contentOffset.y < 60.f))?1.f:0.f;
+    self.buttonSectionsView.alpha = self.searchButton.alpha;
+  }];
+  
 }
 
 #pragma mark - EPSearchKeywordViewControllerDelegate
