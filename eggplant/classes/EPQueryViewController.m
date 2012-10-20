@@ -219,10 +219,13 @@
 
 - (void)showQueryResultCanEat:(BOOL)canEat withKeyword:(NSString *)keyword {
   self.canEatResult = canEat;
+  
+  [self.view addSubview:self.loadingView];
   [self.loadingView stopAnimating];
   self.loadingView.hidden = YES;
   self.cancelButton.hidden = YES;
   self.doneButton.hidden = YES;
+  self.retryButton.hidden = YES;
 
   NSString *canEatText = [NSString stringWithFormat:NSLocalizedString(@"Keyword Can  Eat", @"Can Eat"), keyword];
   NSString *canNotEatText = [NSString stringWithFormat:NSLocalizedString(@"Keyword Can Not Eat", @"Can Not Eat"), keyword];

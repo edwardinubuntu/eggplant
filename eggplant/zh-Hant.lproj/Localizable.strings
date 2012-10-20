@@ -11,10 +11,16 @@
 "Home" = "主題";
 
 /* Sections */
-"Sections" = "類別";
+"Sections" = "食材";
 
 /* Search */
 "Search Placeholder" = "搜尋...";
+
+/* Cancel */
+"Cancel" = "取消";
+
+/* Done */
+"Done" = "完成";
 
 /* Can Eat */
 "Keyword Can  Eat" = "%@ 可以製作好料理喔！";

@@ -5,22 +5,22 @@
   Copyright (c) 2012年 Polydice Inc. All rights reserved. */
 
 /* About */
-"About" = "About";
+"About" = "關於";
 
 /* Home */
 "Home" = "Home";
 
 /* Sections */
-"Sections" = "Sections";
+"Sections" = "食材";
 
 /* Search */
-"Search Placeholder" = "Search...";
+"Search Placeholder" = "搜尋...";
 
 /* Cancel */
-"Cancel" = "Cancel";
+"Cancel" = "取消";
 
 /* Done */
-"Done" = "Done";
+"Done" = "完成";
 
 /* Can Eat */
 "Keyword Can  Eat" = "%@ 可以製作好料理喔！";
