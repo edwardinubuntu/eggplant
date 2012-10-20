@@ -11,6 +11,7 @@
 #import "NIPagingScrollView.h"
 #import "NIPagingScrollViewDataSource.h"
 #import "NIPagingScrollViewDelegate.h"
+#import "EPSearchKeywordViewController.h"
 
 @interface EPHomeViewController : EPViewController <
   iCarouselDataSource,
@@ -35,5 +36,7 @@
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableDictionary *recycledTableView;
+
+@property (nonatomic, strong) EPSearchKeywordViewController *searchKeywordViewController;
 
 @end

@@ -18,6 +18,7 @@
 #import "DDProgressView.h"
 #import "EPRESTClient.h"
 #import "EPAttributedSourceCell.h"
+#import "EPSearchKeywordViewController.h"
 
 @interface EPHomeViewController ()
 
@@ -53,6 +54,8 @@ CGFloat smallMoving = 25;
   
   __block EPHomeViewController *tempSelf = self;
   
+  _searchKeywordViewController = [[EPSearchKeywordViewController alloc] init];
+  
   _headerCarousel = [[iCarousel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44.f)];
   self.headerCarousel.delegate = self;
   self.headerCarousel.dataSource = self;
@@ -81,6 +84,9 @@ CGFloat smallMoving = 25;
   _writeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
   [self.writeButton setImage:[UIImage imageNamed:@"187-pencil"] forState:UIControlStateNormal];
   [self.writeButton addEventHandler:^(id sender) {
+    
+    [tempSelf.navigationController presentModalViewController:tempSelf.searchKeywordViewController animated:NO];
+    
     [tempSelf foldSearchButtonsWithCurrentButton:tempSelf.searchButton];
   } forControlEvents:UIControlEventTouchUpInside];
   [self.buttonSectionsView addSubview:self.writeButton];
@@ -114,7 +120,6 @@ CGFloat smallMoving = 25;
 
 - (void)viewDidDisappear:(BOOL)animated {
   [super viewDidDisappear:animated];
-  [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -586,6 +591,13 @@ CGFloat smallMoving = 25;
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
   self.searchButton.hidden = (scrollView.contentOffset.y > self.view.frame.size.height / 2);
+  self.buttonSectionsView.hidden = self.searchButton.hidden;
+}
+
+#pragma mark - EPSearchKeywordViewControllerDelegate
+
+- (void)searchKeywordViewController:(EPSearchKeywordViewController *)searchKeywordViewController didinishEnterSearchKeyword:(NSString *)searchKeyword {
+  [searchKeywordViewController dismissModalViewControllerAnimated:YES];
 }
 
 @end
