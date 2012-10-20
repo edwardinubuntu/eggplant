@@ -19,6 +19,7 @@
 #import "EPRESTClient.h"
 #import "EPAttributedSourceCell.h"
 #import "EPSearchKeywordViewController.h"
+#import "UIViewController+MJPopupViewController.h"
 
 @interface EPHomeViewController ()
 
@@ -55,6 +56,7 @@ CGFloat smallMoving = 25;
   __block EPHomeViewController *tempSelf = self;
   
   _searchKeywordViewController = [[EPSearchKeywordViewController alloc] init];
+  self.searchKeywordViewController.delegate = self;
   
   _headerCarousel = [[iCarousel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44.f)];
   self.headerCarousel.delegate = self;
@@ -598,6 +600,10 @@ CGFloat smallMoving = 25;
 
 - (void)searchKeywordViewController:(EPSearchKeywordViewController *)searchKeywordViewController didinishEnterSearchKeyword:(NSString *)searchKeyword {
   [searchKeywordViewController dismissModalViewControllerAnimated:YES];
+  
+  EPQueryViewController *queryViewController = [[EPQueryViewController alloc] initWithKeyword:searchKeyword];
+  
+  [self.navigationController presentPopupViewController:queryViewController animationType:MJPopupViewAnimationSlideBottomTop];
 }
 
 @end

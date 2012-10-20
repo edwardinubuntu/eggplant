@@ -61,6 +61,7 @@
 		1CB0749D1631F9630028E3C9 /* errorViewStateImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CB0749B1631F9630028E3C9 /* errorViewStateImage@2x.png */; };
 		1CB074EF1632006E0028E3C9 /* EPAttributedSourceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB074EE1632006E0028E3C9 /* EPAttributedSourceCell.m */; };
 		1CB07541163236F00028E3C9 /* EPSearchKeywordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB07540163236F00028E3C9 /* EPSearchKeywordViewController.m */; };
+		1CB075451632476D0028E3C9 /* EPQueryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB075441632476B0028E3C9 /* EPQueryViewController.m */; };
 		1CB1AD83162B713B0068EA0D /* EPYKnowledgeSearchModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB1AD82162B713B0068EA0D /* EPYKnowledgeSearchModelTests.m */; };
 		1CB1AD87162B75500068EA0D /* EPWikiSearchContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB1AD86162B75500068EA0D /* EPWikiSearchContentModel.m */; };
 		1CB1AD8A162B76190068EA0D /* EPWikiSearchContentModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB1AD89162B76190068EA0D /* EPWikiSearchContentModelTests.m */; };
@@ -193,6 +194,8 @@
 		1CB074EE1632006E0028E3C9 /* EPAttributedSourceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPAttributedSourceCell.m; sourceTree = "<group>"; };
 		1CB0753F163236EF0028E3C9 /* EPSearchKeywordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSearchKeywordViewController.h; sourceTree = "<group>"; };
 		1CB07540163236F00028E3C9 /* EPSearchKeywordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSearchKeywordViewController.m; sourceTree = "<group>"; };
+		1CB07543163247690028E3C9 /* EPQueryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPQueryViewController.h; sourceTree = "<group>"; };
+		1CB075441632476B0028E3C9 /* EPQueryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPQueryViewController.m; sourceTree = "<group>"; };
 		1CB1AD81162B713B0068EA0D /* EPYKnowledgeSearchModelTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPYKnowledgeSearchModelTests.h; sourceTree = "<group>"; };
 		1CB1AD82162B713B0068EA0D /* EPYKnowledgeSearchModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPYKnowledgeSearchModelTests.m; sourceTree = "<group>"; };
 		1CB1AD85162B75500068EA0D /* EPWikiSearchContentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPWikiSearchContentModel.h; sourceTree = "<group>"; };
@@ -553,6 +556,8 @@
 				1CB1AE09162C2D1B0068EA0D /* EPHomeViewController.m */,
 				1CB07442163182CB0028E3C9 /* EPWebViewController.h */,
 				1CB07443163182CB0028E3C9 /* EPWebViewController.m */,
+				1CB07543163247690028E3C9 /* EPQueryViewController.h */,
+				1CB075441632476B0028E3C9 /* EPQueryViewController.m */,
 				1CB0753F163236EF0028E3C9 /* EPSearchKeywordViewController.h */,
 				1CB07540163236F00028E3C9 /* EPSearchKeywordViewController.m */,
 			);
@@ -807,6 +812,7 @@
 				1CB074991631F5740028E3C9 /* EPSourceImageCell.m in Sources */,
 				1CB074EF1632006E0028E3C9 /* EPAttributedSourceCell.m in Sources */,
 				1CB07541163236F00028E3C9 /* EPSearchKeywordViewController.m in Sources */,
+				1CB075451632476D0028E3C9 /* EPQueryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

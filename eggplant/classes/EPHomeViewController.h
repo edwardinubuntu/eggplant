@@ -12,6 +12,7 @@
 #import "NIPagingScrollViewDataSource.h"
 #import "NIPagingScrollViewDelegate.h"
 #import "EPSearchKeywordViewController.h"
+#import "EPQueryViewController.h"
 
 @interface EPHomeViewController : EPViewController <
   iCarouselDataSource,
