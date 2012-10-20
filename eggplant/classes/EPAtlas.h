@@ -10,6 +10,9 @@
 
 @interface EPAtlas : NSObject
 
+NSString* EPRetina4Name(NSString *imageName);
+
+BOOL EPISRetina4();
 @end
 
 #pragma mark - API
