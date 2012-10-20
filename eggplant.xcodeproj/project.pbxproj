@@ -40,7 +40,6 @@
 		1CB0744016317DC70028E3C9 /* CellDefaultImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CB0743E16317DC70028E3C9 /* CellDefaultImage.png */; };
 		1CB0744116317DC70028E3C9 /* CellDefaultImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CB0743F16317DC70028E3C9 /* CellDefaultImage@2x.png */; };
 		1CB07444163182CB0028E3C9 /* EPWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB07443163182CB0028E3C9 /* EPWebViewController.m */; };
-		1CB0744C16319C960028E3C9 /* ICModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0744716319C960028E3C9 /* ICModel.m */; };
 		1CB0744D16319C960028E3C9 /* ICRecipesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0744916319C960028E3C9 /* ICRecipesModel.m */; };
 		1CB0744E16319C960028E3C9 /* ICRecipesSearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0744B16319C960028E3C9 /* ICRecipesSearchModel.m */; };
 		1CB0745116319CBC0028E3C9 /* NSDictionary+ICObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0745016319CBC0028E3C9 /* NSDictionary+ICObjects.m */; };
@@ -313,8 +312,6 @@
 		1CB0743F16317DC70028E3C9 /* CellDefaultImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CellDefaultImage@2x.png"; sourceTree = "<group>"; };
 		1CB07442163182CB0028E3C9 /* EPWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPWebViewController.h; sourceTree = "<group>"; };
 		1CB07443163182CB0028E3C9 /* EPWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPWebViewController.m; sourceTree = "<group>"; };
-		1CB0744616319C960028E3C9 /* ICModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICModel.h; sourceTree = "<group>"; };
-		1CB0744716319C960028E3C9 /* ICModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICModel.m; sourceTree = "<group>"; };
 		1CB0744816319C960028E3C9 /* ICRecipesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICRecipesModel.h; sourceTree = "<group>"; };
 		1CB0744916319C960028E3C9 /* ICRecipesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICRecipesModel.m; sourceTree = "<group>"; };
 		1CB0744A16319C960028E3C9 /* ICRecipesSearchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICRecipesSearchModel.h; sourceTree = "<group>"; };
@@ -925,8 +922,6 @@
 		1CB0744516319BC70028E3C9 /* ICook */ = {
 			isa = PBXGroup;
 			children = (
-				1CB0744616319C960028E3C9 /* ICModel.h */,
-				1CB0744716319C960028E3C9 /* ICModel.m */,
 				1CB0744816319C960028E3C9 /* ICRecipesModel.h */,
 				1CB0744916319C960028E3C9 /* ICRecipesModel.m */,
 				1CB0744A16319C960028E3C9 /* ICRecipesSearchModel.h */,
@@ -1658,7 +1653,6 @@
 				1CB0742D16316B260028E3C9 /* EPInstagram.m in Sources */,
 				1CB0743D163178DF0028E3C9 /* EPWikiCell.m in Sources */,
 				1CB07444163182CB0028E3C9 /* EPWebViewController.m in Sources */,
-				1CB0744C16319C960028E3C9 /* ICModel.m in Sources */,
 				1CB0744D16319C960028E3C9 /* ICRecipesModel.m in Sources */,
 				1CB0744E16319C960028E3C9 /* ICRecipesSearchModel.m in Sources */,
 				1CB0745116319CBC0028E3C9 /* NSDictionary+ICObjects.m in Sources */,

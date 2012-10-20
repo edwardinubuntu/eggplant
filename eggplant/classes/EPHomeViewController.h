@@ -16,6 +16,7 @@
 #import "EPIQEnginesViewController.h"
 #import "EPYKnowledgeSearchModel.h"
 #import "EPYKnowledge.h"
+#import "ICRecipesSearchModel.h"
 
 @interface EPHomeViewController : EPViewController <
   EPIQEnginesViewControllerDelegate,
@@ -46,5 +47,6 @@
 @property (nonatomic, strong) EPQueryViewController *queryViewController;
 
 @property (nonatomic, strong) EPYKnowledgeSearchModel *yknowledgeSearchModel;
+@property (nonatomic, strong) ICRecipesSearchModel *recipesSearchModel;
 
 @end

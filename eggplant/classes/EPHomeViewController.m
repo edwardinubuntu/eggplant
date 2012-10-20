@@ -111,6 +111,7 @@ CGFloat smallMoving = 25;
    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getTermsArray:) name:kNOTIFICATION_FOUND_TERMS object:nil];
   
   _yknowledgeSearchModel = [[EPYKnowledgeSearchModel alloc] init];
+  _recipesSearchModel = [[ICRecipesSearchModel alloc] init];
 }
 
 - (void)viewDidLoad {
@@ -152,6 +153,41 @@ CGFloat smallMoving = 25;
   NSMutableDictionary *termsUserSavedDictData = [[EPTermsStorageManager defaultManager] termsFromUserSaved];
   [termsUserSavedDictData setObject:self.contentDictData forKey:@"term"];
   [[EPTermsStorageManager defaultManager] save];
+}
+
+- (void)performiCookSearchTerm:(NSString *)searchingTerm withDataDict:(NSMutableDictionary *)termWithDataDict {
+  // YKNowledge
+  __block EPHomeViewController *tempSelf = self;
+  __block NSMutableDictionary *tempTermWithDataDict = termWithDataDict;
+  self.recipesSearchModel.text = searchingTerm;
+  [self.recipesSearchModel loadMore:NO didFinishLoad:^{
+    NSMutableArray *sources = [[NSMutableArray alloc] init];
+    for (ICRecipe *eachRecipe in tempSelf.recipesSearchModel.recipes) {
+      NSMutableDictionary *recipeDict = [[NSMutableDictionary alloc] init];
+      [recipeDict setObject:@"icook" forKey:@"type"];
+      [recipeDict setObject:[NSString stringWithFormat:@"http://icook.tw/recipes/%i", eachRecipe.objectID] forKey:@"url"];
+      [recipeDict setObject:eachRecipe.name forKey:@"title"];
+      [recipeDict setObject:eachRecipe.recipeDescription forKey:@"detail"];
+      [recipeDict setObject:@"icook.tw" forKey:@"sourceURL"];
+      [recipeDict setObject:eachRecipe.photos.smallURL.absoluteString forKey:@"imageURL"];
+      
+      [sources addObject:recipeDict];
+    }
+    
+    // Add to data
+    NSMutableArray *sourcesOriginal = [tempTermWithDataDict objectForKey:@"sources"];
+    if (!sourcesOriginal) {
+      sourcesOriginal = [[NSMutableArray alloc] init];
+    }
+    [sourcesOriginal addObjectsFromArray:sources];
+    [tempTermWithDataDict setObject:sourcesOriginal forKey:@"sources"];
+    
+    // TODO: Save
+    
+    [tempSelf.tableView reloadData];
+  } loadWithError:^(NSError *error) {
+    // Handle Error
+  }];
 }
 
 - (void)performYKAPISearhTerm:(NSString *)searchingTerm withDataDict:(NSMutableDictionary *)termWithDataDict {
@@ -200,10 +236,23 @@ CGFloat smallMoving = 25;
     }
   }
   
+  NSMutableArray *sources = [termWithDataDict objectForKey:@"sources"];
+  
   // Start to add wiki
   
-  // Start with iCook
-  NSMutableArray *sources = [termWithDataDict objectForKey:@"sources"];
+  // Start with hasICook
+  
+  BOOL hasiCook = NO;
+  for (NSDictionary *eachSource in sources) {
+    if ([[eachSource objectForKey:@"type"] isEqualToString:@"icook"]) {
+      hasiCook = YES;
+    }
+  }
+  if (!hasiCook) {
+    [self performiCookSearchTerm:searchingTerm withDataDict:termWithDataDict];
+  }
+  
+  // Start with hasYKnowledge
   BOOL hasYKnowledge = NO;
   for (NSDictionary *eachSource in sources) {
     if ([[eachSource objectForKey:@"type"] isEqualToString:@"YKnowledge"]) {
