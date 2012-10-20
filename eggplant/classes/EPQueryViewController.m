@@ -59,6 +59,7 @@
   self.view.frame = CGRectMake(0, 0, kTableViewFrameSizeWidth, kTableViewFrameSizeHeight);
   self.view.backgroundColor = [UIColor whiteColor];
   
+  _privateTranslationModel = [[EPPrivateTranslateModel alloc] init];
   _wikiQueryLangLinksModel = [[EPWikiQueryLangLinksModel alloc] init];
   _yknowlegedSearchModel = [[EPYKnowledgeSearchModel alloc] init];
   
@@ -166,17 +167,12 @@
   // Translate
   __block EPQueryViewController *tempSelf = self;
   
-  self.wikiQueryLangLinksModel.keyword = keyword;
-  [self.wikiQueryLangLinksModel loadMore:NO didFinishLoad:^{
-    BOOL hasZHLang = NO;
-    for (EPWikiLangLink *eachLangLink in tempSelf.wikiQueryLangLinksModel.term.langLinks) {
-      if ([eachLangLink.lang isEqualToString:@"zh"] || [eachLangLink.lang isEqualToString:@"zh-yue"]) {
-        hasZHLang = NIIsStringWithAnyText(eachLangLink.text);
-        [tempSelf queryTermForKnowledge:eachLangLink.text];
-        NIDPRINT(@"We got %@ in %@ : %@", tempSelf.wikiQueryLangLinksModel.keyword, eachLangLink.lang, eachLangLink.text);
-        break;
-      }
-    }
+  self.privateTranslationModel.keyword = keyword;
+  __block BOOL hasZHLang = NO;
+  [self.privateTranslationModel loadMore:NO didFinishLoad:^{
+    
+    hasZHLang = NIIsStringWithAnyText(tempSelf.privateTranslationModel.keywordTranslation);
+    [tempSelf queryTermForKnowledge:tempSelf.privateTranslationModel.keywordTranslation];
    if (!hasZHLang) {
      if (tempSelf.keywords.count > 0) {
        [tempSelf.keywords removeObjectAtIndex:0];

@@ -250,6 +250,7 @@
 		B662F486163274D500F288FE /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B662F485163274D500F288FE /* AVFoundation.framework */; };
 		B662F488163274F800F288FE /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B662F487163274F800F288FE /* libiconv.dylib */; };
 		B662F48B163275D400F288FE /* EPIQEnginesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B662F48A163275D400F288FE /* EPIQEnginesViewController.m */; };
+		B662F4B21632C3C300F288FE /* EPPrivateTranslateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B662F4B11632C3C300F288FE /* EPPrivateTranslateModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -650,6 +651,8 @@
 		B662F487163274F800F288FE /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		B662F489163275D400F288FE /* EPIQEnginesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPIQEnginesViewController.h; sourceTree = "<group>"; };
 		B662F48A163275D400F288FE /* EPIQEnginesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPIQEnginesViewController.m; sourceTree = "<group>"; };
+		B662F4B01632C3C300F288FE /* EPPrivateTranslateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPPrivateTranslateModel.h; sourceTree = "<group>"; };
+		B662F4B11632C3C300F288FE /* EPPrivateTranslateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPPrivateTranslateModel.m; sourceTree = "<group>"; };
 		BC5336F5AC004F25805C6DBC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -829,6 +832,7 @@
 		1C878523162A638D005D3672 /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
+				B662F4AE1632C38200F288FE /* PrivateTranslate */,
 				1C878527162A63EF005D3672 /* EPRESTClient.h */,
 				1C878528162A63EF005D3672 /* EPRESTClient.m */,
 				1C878524162A63C0005D3672 /* EPModel.h */,
@@ -1441,6 +1445,15 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		B662F4AE1632C38200F288FE /* PrivateTranslate */ = {
+			isa = PBXGroup;
+			children = (
+				B662F4B01632C3C300F288FE /* EPPrivateTranslateModel.h */,
+				B662F4B11632C3C300F288FE /* EPPrivateTranslateModel.m */,
+			);
+			name = PrivateTranslate;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1784,6 +1797,7 @@
 				B610E7331632709800114853 /* IQEViewController.m in Sources */,
 				B610E7461632709800114853 /* UIImage+IQE.m in Sources */,
 				B662F48B163275D400F288FE /* EPIQEnginesViewController.m in Sources */,
+				B662F4B21632C3C300F288FE /* EPPrivateTranslateModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
