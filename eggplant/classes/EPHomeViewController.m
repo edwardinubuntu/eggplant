@@ -22,6 +22,8 @@
 #import "UIViewController+MJPopupViewController.h"
 #import "EPIQEnginesViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "EPAcknowledgementsViewController.h"
+
 @interface EPHomeViewController ()
 
 @end
@@ -735,6 +737,20 @@ CGFloat smallMoving = 25;
       contentHeaderLabel.backgroundColor = [UIColor grayColor];
       contentHeaderLabel.center = contentHeaderView.center;
       [contentHeaderView addSubview:contentHeaderLabel];
+      
+      
+      // Add Acknowledgements
+      UIButton *knowledgementsInfoButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
+      knowledgementsInfoButton.center = CGPointMake(contentHeaderView.frame.size.width - 20, contentHeaderView.frame.size.height -20);
+      
+      __block EPHomeViewController *tempSelf = self;
+      [knowledgementsInfoButton addEventHandler:^(id sender) {
+        EPAcknowledgementsViewController *acknowView = [[EPAcknowledgementsViewController alloc] init];
+        [tempSelf.navigationController pushViewController:acknowView animated:YES];
+      } forControlEvents:UIControlEventTouchUpInside];
+      
+      [contentHeaderView addSubview:knowledgementsInfoButton];
+      
       self.searchButton.hidden = YES;
       self.buttonSectionsView.hidden = YES;
     }

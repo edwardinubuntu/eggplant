@@ -46,10 +46,6 @@
       tempSelf.isLoading = NO;
       tempSelf.isLoaded = YES;
       
-      NIDPRINT(@"operation.response.allHeaderFields: %@", operation.response.allHeaderFields);
-      NSString *runTime = [operation.response.allHeaderFields objectForKey:@"X-Runtime"];
-      runTime = [NSString stringWithFormat:@"%.03f", [runTime floatValue]];
-      
       NIDPRINT(@"ICIngredientTermModel: %@", responseObject);
       
       tempSelf.code = [[responseObject objectForKey:@"code"] intValue];

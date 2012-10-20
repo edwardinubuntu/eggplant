@@ -13,6 +13,8 @@
 		1C35937E163351090083427E /* book@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C35937A163351090083427E /* book@2x.png */; };
 		1C35937F163351090083427E /* hr.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C35937B163351090083427E /* hr.png */; };
 		1C359380163351090083427E /* hr@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C35937C163351090083427E /* hr@2x.png */; };
+		1C35938A163367390083427E /* EPAcknowledgementsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C359389163367390083427E /* EPAcknowledgementsViewController.m */; };
+		1C35938D163368DB0083427E /* Pods-Acknowledgements.markdown in Resources */ = {isa = PBXBuildFile; fileRef = 1C35938C163368DB0083427E /* Pods-Acknowledgements.markdown */; };
 		1C8784D2162A56EA005D3672 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8784D1162A56EA005D3672 /* UIKit.framework */; };
 		1C8784D4162A56EA005D3672 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8784D3162A56EA005D3672 /* Foundation.framework */; };
 		1C8784D6162A56EA005D3672 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8784D5162A56EA005D3672 /* CoreGraphics.framework */; };
@@ -281,6 +283,9 @@
 		1C35937A163351090083427E /* book@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "book@2x.png"; sourceTree = "<group>"; };
 		1C35937B163351090083427E /* hr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hr.png; sourceTree = "<group>"; };
 		1C35937C163351090083427E /* hr@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hr@2x.png"; sourceTree = "<group>"; };
+		1C359388163367390083427E /* EPAcknowledgementsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPAcknowledgementsViewController.h; sourceTree = "<group>"; };
+		1C359389163367390083427E /* EPAcknowledgementsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPAcknowledgementsViewController.m; sourceTree = "<group>"; };
+		1C35938C163368DB0083427E /* Pods-Acknowledgements.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "Pods-Acknowledgements.markdown"; path = "Pods/Pods-Acknowledgements.markdown"; sourceTree = SOURCE_ROOT; };
 		1C8784CD162A56EA005D3672 /* WikiIngredients.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WikiIngredients.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C8784D1162A56EA005D3672 /* UIKit.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1C8784D3162A56EA005D3672 /* Foundation.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -766,6 +771,7 @@
 		1C8784DA162A56EA005D3672 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1C35938C163368DB0083427E /* Pods-Acknowledgements.markdown */,
 				1C878514162A5901005D3672 /* images */,
 				1C8784DB162A56EA005D3672 /* eggplant-Info.plist */,
 				1C8784DC162A56EA005D3672 /* InfoPlist.strings */,
@@ -1043,6 +1049,8 @@
 				1CB07540163236F00028E3C9 /* EPSearchKeywordViewController.m */,
 				B662F489163275D400F288FE /* EPIQEnginesViewController.h */,
 				B662F48A163275D400F288FE /* EPIQEnginesViewController.m */,
+				1C359388163367390083427E /* EPAcknowledgementsViewController.h */,
+				1C359389163367390083427E /* EPAcknowledgementsViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -1632,6 +1640,7 @@
 				1C35937E163351090083427E /* book@2x.png in Resources */,
 				1C35937F163351090083427E /* hr.png in Resources */,
 				1C359380163351090083427E /* hr@2x.png in Resources */,
+				1C35938D163368DB0083427E /* Pods-Acknowledgements.markdown in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1844,6 +1853,7 @@
 				B662F4B21632C3C300F288FE /* EPPrivateTranslateModel.m in Sources */,
 				B6A4BFE11632F518007F9D29 /* ICIngredientTermModel.m in Sources */,
 				B6A4BFF316333984007F9D29 /* EPSplashViewController.m in Sources */,
+				1C35938A163367390083427E /* EPAcknowledgementsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

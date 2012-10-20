@@ -7,6 +7,8 @@
 //
 
 #import "EPRESTClient.h"
+#import "AFHTTPRequestOperation.h"
+#import "AFJSONRequestOperation.h"
 
 @implementation EPRESTClient
 
