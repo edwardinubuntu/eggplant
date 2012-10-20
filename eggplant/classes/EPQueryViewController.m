@@ -60,7 +60,6 @@
   self.view.backgroundColor = [UIColor whiteColor];
   
   _privateTranslationModel = [[EPPrivateTranslateModel alloc] init];
-  _wikiQueryLangLinksModel = [[EPWikiQueryLangLinksModel alloc] init];
   _yknowlegedSearchModel = [[EPYKnowledgeSearchModel alloc] init];
   
   [self.retryButton setTitle:NSLocalizedString(@"Retry", @"Retry") forState:UIControlStateNormal];

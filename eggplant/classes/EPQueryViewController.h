@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "EPViewController.h"
-#import "EPWikiQueryLangLinksModel.h"
 #import "EPYKnowledgeSearchModel.h"
 #import "EPPrivateTranslateModel.h"
 @protocol EPQueryViewControllerDelegate;
@@ -25,7 +24,6 @@
 @property (nonatomic, assign) BOOL needTranslate;
 @property (nonatomic, strong) EPPrivateTranslateModel *privateTranslationModel;
 
-@property (nonatomic, strong) EPWikiQueryLangLinksModel *wikiQueryLangLinksModel;
 @property (nonatomic, strong) EPYKnowledgeSearchModel *yknowlegedSearchModel;
 
 @property (nonatomic, strong) UIButton *doneButton;
