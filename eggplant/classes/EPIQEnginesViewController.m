@@ -122,7 +122,12 @@
     
     NSMutableArray *labelsArray = [NSMutableArray array];
     for (NSDictionary* termDictionary in results) {
-      [labelsArray addObject:[termDictionary objectForKey:@"labels"]];
+      if ([[[termDictionary objectForKey:@"labels"] componentsSeparatedByString:@" "] count] > 1) {
+        NSString *firstTerm = [[[termDictionary objectForKey:@"labels"] componentsSeparatedByString:@" "] objectAtIndex:0];
+        [labelsArray addObject:firstTerm];
+      } else {
+        [labelsArray addObject:[termDictionary objectForKey:@"labels"]];
+      }
     }
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(iqEnginesViewController:didFinishWithLabels:)]) {

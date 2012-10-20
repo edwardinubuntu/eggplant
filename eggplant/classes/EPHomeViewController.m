@@ -683,6 +683,12 @@ CGFloat smallMoving = 25;
 
 - (void)iqEnginesViewController:(EPIQEnginesViewController *)iqEnginesViewController didFinishWithLabels:(NSArray *)labelsArray{
   NSLog(@"Labels:%@",labelsArray);
+  EPQueryViewController* imageQueryViewController = [[EPQueryViewController alloc] initWithKeywords:labelsArray];
+  imageQueryViewController.queryType = EPQueryTypeCamera;
+  imageQueryViewController.delegate = self;
+  [imageQueryViewController performSearch];
+  [self.navigationController presentPopupViewController:imageQueryViewController animationType:MJPopupViewAnimationSlideBottomTop];
+  
 }
 
 
