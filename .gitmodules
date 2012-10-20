@@ -1,0 +1,6 @@
+[submodule "Dependency/IQEngines"]
+	path = Dependency/IQEngines
+	url = https://github.com/iqengines/ios-sdk.git
+[submodule "Dependency/iPhone-TTS"]
+	path = Dependency/iPhone-TTS
+	url = https://github.com/trisix/iPhone-TTS.git
