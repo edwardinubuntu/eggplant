@@ -10,13 +10,13 @@
 
 @implementation EPSourceImageCell
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+  self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+  if (self) {
+    self.textLabel.hidden = YES;
+    
+  }
+  return self;
 }
 
 - (void)layoutSubviews {
@@ -38,7 +38,7 @@
   }
   
   self.sourceLabel.textAlignment = UITextAlignmentRight;
-  self.sourceLabel.frame = CGRectMake(self.contentView.frame.size.width - 100 - 10, self.textLabel.frame.origin.y, 100, 16.f);
+  self.sourceLabel.frame = CGRectMake(self.contentView.frame.size.width - 100 - 10, self.imageView.frame.size.height + self.imageView.frame.origin.y + 5, 100, 16.f);
 }
 
 + (CGFloat)cellHeight {

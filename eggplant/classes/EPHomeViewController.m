@@ -124,6 +124,66 @@ CGFloat smallMoving = 25;
 
 #pragma mark - private
 
+- (void)requestImageFromCell:(UITableViewCell *)cell indexPath:(NSIndexPath *)indexPath imageURL:(NSString *)imageURL {
+  __block NSIndexPath *tempIndexPath = indexPath;
+  __block EPHomeViewController *tempSelf = self;
+  NIDPRINT(@"[currentSource objectForKey:imageURL] %@", imageURL);
+  [cell.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:imageURL]] placeholderImage:[UIImage imageNamed:@"CellDefaultImage"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+    UITableViewCell *currentLoadingCell = (UITableViewCell *)[tempSelf.tableView cellForRowAtIndexPath:tempIndexPath];
+    currentLoadingCell.imageView.image = image;
+    [currentLoadingCell setNeedsLayout];
+    
+  } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+    // Handle error
+    UITableViewCell *currentLoadingCell = (UITableViewCell *)[tempSelf.tableView cellForRowAtIndexPath:tempIndexPath];
+    currentLoadingCell.imageView.image = nil;
+    [currentLoadingCell setNeedsLayout];
+  }];
+}
+
+- (void)requestImageRequestProgressFromCell:(UITableViewCell *)cell indexPath:(NSIndexPath *)indexPath imageURL:(NSString *)imageURL {
+  // Design progress view
+  DDProgressView *progressView = [[DDProgressView alloc] init];
+  progressView.frame = CGRectMake(0, 0, 250, 16);
+  progressView.progress = 0.0;
+  progressView.center = CGPointMake(160, 150);
+  
+  [cell.contentView addSubview:progressView];
+  __block DDProgressView *tempProgressView = progressView;
+  __block EPHomeViewController *tempSelf = self;
+  __block NSIndexPath *tempIndexPath = indexPath;
+  // Download Image and not to give a default image
+  NSURLRequest *imageRequest = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:imageURL]];
+  AFImageRequestOperation *requestOperation = [[AFImageRequestOperation alloc] initWithRequest:imageRequest];
+  [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+    if ([responseObject isKindOfClass:[UIImage class]]) {
+      [tempProgressView removeFromSuperview];
+      UIImage *downloadedImage  = (UIImage *)responseObject;
+      UITableViewCell *currentLoadingCell = (UITableViewCell *)[tempSelf.tableView cellForRowAtIndexPath:tempIndexPath];
+      currentLoadingCell.imageView.image = downloadedImage;
+      [currentLoadingCell setNeedsLayout];
+    }
+  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    // Error handle
+    tempProgressView.frame = CGRectZero;
+    [tempProgressView removeFromSuperview];
+    UITableViewCell *currentLoadingCell = (UITableViewCell *)[tempSelf.tableView cellForRowAtIndexPath:tempIndexPath];
+    currentLoadingCell.imageView.image = [UIImage imageNamed:@"errorViewStateImage"];
+    currentLoadingCell.imageView.contentMode = UIViewContentModeCenter;
+    [currentLoadingCell setNeedsLayout];
+  }];
+  
+  [requestOperation setDownloadProgressBlock:^(NSInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
+    float percentage = (float)totalBytesRead / (float)totalBytesExpectedToRead;
+    tempProgressView.progress = percentage;
+    
+    if (tempProgressView.progress >= 1) {
+      tempProgressView.frame = CGRectZero;
+    }
+  }];
+  [[EPRESTClient sharedInstgramClient] enqueueHTTPRequestOperation:requestOperation];
+}
+
 - (NSArray *)sourceWithGivenDefaultDataSet:(NSInteger)pageIndex {
   NSArray *sources;
   if (pageIndex < self.termKeysFromDefault.count) {
@@ -408,43 +468,42 @@ CGFloat smallMoving = 25;
     for (NSDictionary *eachDataTerm  in dataFromTerms) {
       if ([[eachDataTerm objectForKey:@"key"] isEqualToString:key]) {
         NSDictionary *currentSource = [[eachDataTerm objectForKey:@"sources"] objectAtIndex:indexPath.row];
-          NSString *title = [currentSource objectForKey:@"title"];
-          
-          NSMutableString *cellWithId = [NSMutableString stringWithFormat:@"cell%@%i%i", title, indexPath.section, indexPath.row];
-          UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellWithId];
-          if (!cell) {
-            NSString *sourceType = [currentSource objectForKey:@"type"];
-            if ([sourceType isEqualToString:@"wiki"]) {
-              cell = [[EPWikiCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellWithId];
-              ((EPWikiCell *)cell).sourceLabel.text = [currentSource objectForKey:@"sourceURL"];
-            } else if ([sourceType isEqualToString:@"icook"]) {
-              cell = [[EPICookCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellWithId];
-              ((EPICookCell *)cell).sourceLabel.text = [currentSource objectForKey:@"sourceURL"];
-            } else if ([sourceType isEqualToString:@"instagram"]) {
-              cell = [[EPSourceImageCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellWithId];
-              ((EPSourceImageCell *)cell).sourceLabel.text = [currentSource objectForKey:@"sourceURL"];
-            } else if ([sourceType isEqualToString:@"YKnowledge"]) {
-              cell = [[EPAttributedSourceCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellWithId];
-              ((EPAttributedSourceCell *)cell).sourceLabel.text = [currentSource objectForKey:@"sourceURL"];
-            } else {
-              cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellWithId];
-              
-            }
-            cell.selectionStyle = UITableViewCellSelectionStyleGray;
-          }
-          cell.textLabel.text = title;
-          cell.detailTextLabel.text = [currentSource objectForKey:@"detail"];
-          
-          // TODO: Add placeholder image
-          [cell.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[currentSource objectForKey:@"imageURL"]]] placeholderImage:[UIImage imageNamed:@"CellDefaultImage"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-            UITableViewCell *currentLoadingCell = (UITableViewCell *)[tempSelf.tableView cellForRowAtIndexPath:tempIndexPath];
-            currentLoadingCell.imageView.image = image;
-            [currentLoadingCell setNeedsLayout];
+        NSString *title = [currentSource objectForKey:@"title"];
+        
+        NSMutableString *cellWithId = [NSMutableString stringWithFormat:@"cell-%i-%@%i%i", pageIndex, title, indexPath.section, indexPath.row];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellWithId];
+        if (!cell) {
+          NSString *sourceType = [currentSource objectForKey:@"type"];
+          if ([sourceType isEqualToString:@"wiki"]) {
+            cell = [[EPWikiCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellWithId];
+            ((EPWikiCell *)cell).sourceLabel.text = [currentSource objectForKey:@"sourceURL"];
+          } else if ([sourceType isEqualToString:@"icook"]) {
+            cell = [[EPICookCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellWithId];
+            ((EPICookCell *)cell).sourceLabel.text = [currentSource objectForKey:@"sourceURL"];
+          } else if ([sourceType isEqualToString:@"instagram"]) {
+            cell = [[EPSourceImageCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellWithId];
+            ((EPSourceImageCell *)cell).sourceLabel.text = [currentSource objectForKey:@"sourceURL"];
+          } else if ([sourceType isEqualToString:@"YKnowledge"]) {
+            cell = [[EPAttributedSourceCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellWithId];
+            ((EPAttributedSourceCell *)cell).sourceLabel.text = [currentSource objectForKey:@"sourceURL"];
+          } else {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellWithId];
             
-          } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-            // Handle error
-          }];
-          return cell;
+          }
+          cell.selectionStyle = UITableViewCellSelectionStyleGray;
+        }
+        cell.textLabel.text = title;
+        cell.detailTextLabel.text = [currentSource objectForKey:@"detail"];
+        
+        [cell.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[currentSource objectForKey:@"imageURL"]]] placeholderImage:[UIImage imageNamed:@"CellDefaultImage"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+          UITableViewCell *currentLoadingCell = (UITableViewCell *)[tempSelf.tableView cellForRowAtIndexPath:tempIndexPath];
+          currentLoadingCell.imageView.image = image;
+          [currentLoadingCell setNeedsLayout];
+          
+        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+          // Handle error
+        }];
+        return cell;
       }
       
       
@@ -466,65 +525,23 @@ CGFloat smallMoving = 25;
 
 #pragma mark - UITableViewDelegate
 
+
+
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
   
   NSArray *currentSourceArray = [self sourceWithGivenDefaultDataSet:tableView.tag];
   NSDictionary *currentSource = [currentSourceArray objectAtIndex:indexPath.row];
   
-  __block UITableView *tempTableView = tableView;
-  __block NSIndexPath *tempIndexPath = indexPath;
-  
-  if ([cell isKindOfClass:[EPSourceImageCell class]]) {
-    // Design progress view
-    DDProgressView *progressView = [[DDProgressView alloc] init];
-    progressView.frame = CGRectMake(0, 0, 250, 16);
-    progressView.progress = 0.0;
-    progressView.center = CGPointMake(160, 150);
-    
-    [cell.contentView addSubview:progressView];
-    __block DDProgressView *tempProgressView = progressView;
-    __block EPHomeViewController *tempSelf = self;
-    // Download Image and not to give a default image
-    NSURLRequest *imageRequest = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:[currentSource objectForKey:@"imageURL"]]];
-    AFImageRequestOperation *requestOperation = [[AFImageRequestOperation alloc] initWithRequest:imageRequest];
-    [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-      if ([responseObject isKindOfClass:[UIImage class]]) {
-        [tempProgressView removeFromSuperview];
-        UIImage *downloadedImage  = (UIImage *)responseObject;
-        UITableViewCell *currentLoadingCell = (UITableViewCell *)[tempSelf.tableView cellForRowAtIndexPath:tempIndexPath];
-        currentLoadingCell.imageView.image = downloadedImage;
-        [currentLoadingCell setNeedsLayout];
-      }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-      // Error handle
-      tempProgressView.frame = CGRectZero;
-      [tempProgressView removeFromSuperview];
-      UITableViewCell *currentLoadingCell = (UITableViewCell *)[tempSelf.tableView cellForRowAtIndexPath:tempIndexPath];
-      currentLoadingCell.imageView.image = [UIImage imageNamed:@"errorViewStateImage"];
-      currentLoadingCell.imageView.contentMode = UIViewContentModeCenter;
-      [currentLoadingCell setNeedsLayout];
-    }];
-    
-    [requestOperation setDownloadProgressBlock:^(NSInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
-      float percentage = (float)totalBytesRead / (float)totalBytesExpectedToRead;
-      tempProgressView.progress = percentage;
-      
-      if (tempProgressView.progress >= 1) {
-        tempProgressView.frame = CGRectZero;
-      }
-    }];
-    [[EPRESTClient sharedInstgramClient] enqueueHTTPRequestOperation:requestOperation];
-  } else {
-  
-  [cell.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[currentSource objectForKey:@"imageURL"]]] placeholderImage:[UIImage imageNamed:@"CellDefaultImage"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-    UITableViewCell *currentLoadingCell = (UITableViewCell *)[tempTableView cellForRowAtIndexPath:tempIndexPath];
-    currentLoadingCell.imageView.image = image;
-    [currentLoadingCell setNeedsLayout];
-    
-  } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-    // Handle error
-  }];
+  NSString *imageURL = [currentSource objectForKey:@"imageURL"];
+  if (NIIsStringWithAnyText(imageURL)) {
+    if ([cell isKindOfClass:[EPSourceImageCell class]]) {
+      [self requestImageRequestProgressFromCell:cell indexPath:indexPath imageURL:imageURL];
+    } else {
+      [self requestImageFromCell:cell indexPath:indexPath imageURL:imageURL];
+    }
   }
+  
+  
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -535,7 +552,7 @@ CGFloat smallMoving = 25;
     NSArray *dataFromTerms = [self.termDataFromDefault objectForKey:@"terms"];
     for (NSDictionary *eachDataTerm  in dataFromTerms) {
       if ([[eachDataTerm objectForKey:@"key"] isEqualToString:key]) {
-         NSDictionary *currentSource = [[eachDataTerm objectForKey:@"sources"] objectAtIndex:indexPath.row];
+        NSDictionary *currentSource = [[eachDataTerm objectForKey:@"sources"] objectAtIndex:indexPath.row];
         NSString *sourceType = [currentSource objectForKey:@"type"];
         if ([sourceType isEqualToString:@"wiki"]) {
           return [EPWikiCell cellHeight];
