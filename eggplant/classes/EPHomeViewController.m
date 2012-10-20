@@ -20,6 +20,7 @@
 #import "EPAttributedSourceCell.h"
 #import "EPSearchKeywordViewController.h"
 #import "UIViewController+MJPopupViewController.h"
+#import "EPIQEnginesViewController.h"
 
 @interface EPHomeViewController ()
 
@@ -82,6 +83,10 @@ CGFloat smallMoving = 25;
   [self.cameraButton setImage:[UIImage imageNamed:@"86-camera"] forState:UIControlStateNormal];
   [self.cameraButton addEventHandler:^(id sender) {
     [tempSelf foldSearchButtonsWithCurrentButton:tempSelf.searchButton];
+    EPIQEnginesViewController *iqEngineViewController = [[EPIQEnginesViewController alloc] initWithNibName:nil bundle:nil];
+    iqEngineViewController.delegate = self;
+    [tempSelf presentModalViewController:iqEngineViewController animated:YES];
+    
   } forControlEvents:UIControlEventTouchUpInside];
   [self.buttonSectionsView addSubview:self.cameraButton];
   
@@ -103,6 +108,8 @@ CGFloat smallMoving = 25;
   _tableView = [[UITableView alloc] init];
   
   [self loadData];
+  
+   //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getTermsArray:) name:kNOTIFICATION_FOUND_TERMS object:nil];
 }
 
 - (void)viewDidLoad {
@@ -111,6 +118,12 @@ CGFloat smallMoving = 25;
   [self searchBarPressHandleAnimations];
   [self.view bringSubviewToFront:self.searchButton];
   [self.view bringSubviewToFront:self.buttonSectionsView];
+}
+
+- (void)viewDidUnload {
+  [super viewDidUnload];
+  //[[NSNotificationCenter defaultCenter] removeObserver:self name:kNOTIFICATION_FOUND_TERMS object:nil];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -664,5 +677,13 @@ CGFloat smallMoving = 25;
   [self.navigationController dismissPopupViewControllerWithanimationType:MJPopupViewAnimationSlideBottomBottom];
   [self.navigationController presentModalViewController:self.searchKeywordViewController animated:NO];
 }
+
+
+#pragma mark - EPIQEnginesViewControllerDelegate
+
+- (void)iqEnginesViewController:(EPIQEnginesViewController *)iqEnginesViewController didFinishWithLabels:(NSArray *)labelsArray{
+  NSLog(@"Labels:%@",labelsArray);
+}
+
 
 @end
