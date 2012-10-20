@@ -325,7 +325,6 @@ CGFloat smallMoving = 25;
       
       NSMutableArray *newSortedArray = [tempSelf sortByRandomNum:tempTermWithDataDict];
       [tempTermWithDataDict setObject:newSortedArray forKey:@"sources"];
-      tempSelf.contentDictData = [NSMutableArray arrayWithArray:[tempTermWithDataDict objectForKey:@"terms"]];
         // TODO: Save
         
         [tempSelf.tableView reloadData];
