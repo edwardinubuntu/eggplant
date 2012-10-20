@@ -1010,6 +1010,7 @@ CGFloat smallMoving = 25;
     NIDPRINT(@"Already exist");
   }
   
+  [self.termBrowseTableView reloadData];
   [self.headerCarousel reloadData];
   [self.pagingScrollView reloadData];
   
