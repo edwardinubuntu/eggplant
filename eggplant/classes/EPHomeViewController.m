@@ -57,6 +57,9 @@ CGFloat smallMoving = 25;
   
   _queryViewController = [[EPQueryViewController alloc] init];
   
+  _termBrowseTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+  [self.view addSubview:_termBrowseTableView];
+  
   _searchKeywordViewController = [[EPSearchKeywordViewController alloc] init];
   self.searchKeywordViewController.delegate = self;
   
@@ -709,13 +712,10 @@ CGFloat smallMoving = 25;
     }
       break;
     case kIndexHome: {
-      UILabel *contentHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 36)];
-      contentHeaderLabel.textAlignment = UITextAlignmentCenter;
-      contentHeaderLabel.text = [NSString stringWithFormat:@"Content %i", pageIndex];
-      contentHeaderLabel.textColor = [UIColor whiteColor];
-      contentHeaderLabel.backgroundColor = [UIColor grayColor];
-      contentHeaderLabel.center = contentHeaderView.center;
-      [contentHeaderView addSubview:contentHeaderLabel];
+      _termBrowseTableView.frame = contentHeaderView.frame;
+      _termBrowseTableView.dataSource = self;
+      _termBrowseTableView.delegate = self;
+      [contentHeaderView addSubview:_termBrowseTableView];
     }
       break;
     default:
@@ -757,6 +757,11 @@ CGFloat smallMoving = 25;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   
+  // Home
+  if (tableView == self.termBrowseTableView) {
+    return self.headerTermKeys.count;
+  }
+  
   NSInteger pageIndex = tableView.tag;
   NSArray *sources = [self sourceWithGivenDefaultDataSet:pageIndex];
   if (sources.count > 0) {
@@ -771,6 +776,19 @@ CGFloat smallMoving = 25;
   
   __block EPHomeViewController *tempSelf = self;
   __block NSIndexPath *tempIndexPath = indexPath;
+  
+  // Home
+  if (tableView == self.termBrowseTableView) {
+    NSString *term = [self.headerTermKeys objectAtIndex:indexPath.row];
+    NSString *CellWithIdentifier = [NSString stringWithFormat:@"term%@", term];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellWithIdentifier];
+    if (!cell) {
+      cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellWithIdentifier];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleGray;
+    cell.textLabel.text = term;
+    return cell;
+  }
   
   NSInteger pageIndex = tableView.tag;
   if (pageIndex < self.headerTermKeys.count) {
@@ -842,22 +860,27 @@ CGFloat smallMoving = 25;
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
   
-  NSArray *currentSourceArray = [self sourceWithGivenDefaultDataSet:tableView.tag];
-  NSDictionary *currentSource = [currentSourceArray objectAtIndex:indexPath.row];
-  
-  NSString *imageURL = [currentSource objectForKey:@"imageURL"];
-  if (NIIsStringWithAnyText(imageURL)) {
-    if ([cell isKindOfClass:[EPSourceImageCell class]]) {
-      [self requestImageRequestProgressFromCell:cell indexPath:indexPath imageURL:imageURL];
-    } else {
-      [self requestImageFromCell:cell indexPath:indexPath imageURL:imageURL];
+  if (tableView == self.tableView) {
+    NSArray *currentSourceArray = [self sourceWithGivenDefaultDataSet:tableView.tag];
+    NSDictionary *currentSource = [currentSourceArray objectAtIndex:indexPath.row];
+    
+    NSString *imageURL = [currentSource objectForKey:@"imageURL"];
+    if (NIIsStringWithAnyText(imageURL)) {
+      if ([cell isKindOfClass:[EPSourceImageCell class]]) {
+        [self requestImageRequestProgressFromCell:cell indexPath:indexPath imageURL:imageURL];
+      } else {
+        [self requestImageFromCell:cell indexPath:indexPath imageURL:imageURL];
+      }
     }
   }
-  
-  
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+  
+  if (tableView == self.termBrowseTableView) {
+    return 44.f;
+  }
+  
   NSInteger pageIndex = tableView.tag;
   if (pageIndex < self.headerTermKeys.count) {
     NSString *key = [self.headerTermKeys objectAtIndex:(pageIndex)];
@@ -884,14 +907,21 @@ CGFloat smallMoving = 25;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   UITableViewCell *currentCell = [tableView cellForRowAtIndexPath:indexPath];
   currentCell.selected = NO;
-  NSArray *currentSourceArray = [self sourceWithGivenDefaultDataSet:tableView.tag];
-  NSDictionary *currentSource = [currentSourceArray objectAtIndex:indexPath.row];
-  if ([currentSource objectForKey:@"url"]) {
-    NSURL *openURL = [NSURL URLWithString:[currentSource objectForKey:@"url"]];
-    EPWebViewController *webController = [[EPWebViewController alloc] init];
-    [webController openURL:openURL];
-    [self.navigationController pushViewController:webController animated:YES];
+  
+  if (tableView == self.termBrowseTableView) {
+    [self.headerCarousel scrollToItemAtIndex:indexPath.row + kCountAbout + kCountHome animated:YES];
+  } else {
+    NSArray *currentSourceArray = [self sourceWithGivenDefaultDataSet:tableView.tag];
+    NSDictionary *currentSource = [currentSourceArray objectAtIndex:indexPath.row];
+    if ([currentSource objectForKey:@"url"]) {
+      NSURL *openURL = [NSURL URLWithString:[currentSource objectForKey:@"url"]];
+      EPWebViewController *webController = [[EPWebViewController alloc] init];
+      [webController openURL:openURL];
+      [self.navigationController pushViewController:webController animated:YES];
+    }
   }
+
+  
 }
 
 #pragma mark - UIScrollViewDelegate

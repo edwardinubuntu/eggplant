@@ -42,6 +42,7 @@
 @property (nonatomic, strong) NIPagingScrollView *pagingScrollView;
 
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UITableView *termBrowseTableView;
 @property (nonatomic, strong) NSMutableDictionary *recycledTableView;
 
 @property (nonatomic, strong) EPSearchKeywordViewController *searchKeywordViewController;
