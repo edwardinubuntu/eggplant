@@ -63,7 +63,7 @@ CGFloat smallMoving = 25;
   _headerCarousel = [[iCarousel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44.f)];
   self.headerCarousel.delegate = self;
   self.headerCarousel.dataSource = self;
-  self.headerCarousel.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"navy_blue"]];
+  self.headerCarousel.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"navy_blue_"]];
   [self.view addSubview:self.headerCarousel];
   
   CGFloat spacing = 3;
@@ -509,9 +509,9 @@ CGFloat smallMoving = 25;
     
     sectionHeaderLabel.textColor = [UIColor whiteColor];
     sectionHeaderLabel.backgroundColor = [UIColor clearColor];
-    sectionHeaderLabel.font = [UIFont systemFontOfSize:20.f];
-    sectionHeaderLabel.shadowColor = [UIColor lightGrayColor];
-    sectionHeaderLabel.shadowOffset = CGSizeMake(0, 1);
+    sectionHeaderLabel.font = [UIFont boldSystemFontOfSize:20.f];
+    sectionHeaderLabel.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+    sectionHeaderLabel.shadowOffset = CGSizeMake(0, -1);
     sectionHeaderLabel.center = sectionHeaderView.center;
     
     [sectionHeaderView setBackgroundColor:[UIColor clearColor]];

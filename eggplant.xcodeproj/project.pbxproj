@@ -97,7 +97,6 @@
 		1CC40AC6162F01B500DB04F0 /* EPWikiQueryLangLinksModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC40AC5162F01B500DB04F0 /* EPWikiQueryLangLinksModelTests.m */; };
 		1CC40AC9162F056500DB04F0 /* EPWikiTerm.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC40AC8162F056500DB04F0 /* EPWikiTerm.m */; };
 		1CC40ACC162F058400DB04F0 /* EPWikiLangLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC40ACB162F058400DB04F0 /* EPWikiLangLink.m */; };
-		1CC40ADA162F1A0A00DB04F0 /* navy_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CC40AD7162F1A0A00DB04F0 /* navy_blue.png */; };
 		1CC40ADB162F1A0A00DB04F0 /* navy_blue_@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CC40AD8162F1A0A00DB04F0 /* navy_blue_@2X.png */; };
 		1CC40ADC162F1A0A00DB04F0 /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1CC40AD9162F1A0A00DB04F0 /* readme.txt */; };
 		1CC40AE0162F570500DB04F0 /* EPTermsStorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC40ADF162F570400DB04F0 /* EPTermsStorageManager.m */; };
@@ -253,6 +252,7 @@
 		B6A4BFE11632F518007F9D29 /* ICIngredientTermModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A4BFE01632F518007F9D29 /* ICIngredientTermModel.m */; };
 		B6A4BFE516330502007F9D29 /* SerachTableSectionHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A4BFE316330502007F9D29 /* SerachTableSectionHeader.png */; };
 		B6A4BFE616330502007F9D29 /* SerachTableSectionHeader@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A4BFE416330502007F9D29 /* SerachTableSectionHeader@2x.png */; };
+		B6A4BFE8163311A5007F9D29 /* navy_blue_.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A4BFE7163311A5007F9D29 /* navy_blue_.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -402,7 +402,6 @@
 		1CC40AC8162F056500DB04F0 /* EPWikiTerm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPWikiTerm.m; sourceTree = "<group>"; };
 		1CC40ACA162F058400DB04F0 /* EPWikiLangLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPWikiLangLink.h; sourceTree = "<group>"; };
 		1CC40ACB162F058400DB04F0 /* EPWikiLangLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPWikiLangLink.m; sourceTree = "<group>"; };
-		1CC40AD7162F1A0A00DB04F0 /* navy_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navy_blue.png; sourceTree = "<group>"; };
 		1CC40AD8162F1A0A00DB04F0 /* navy_blue_@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navy_blue_@2X.png"; sourceTree = "<group>"; };
 		1CC40AD9162F1A0A00DB04F0 /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
 		1CC40ADE162F570400DB04F0 /* EPTermsStorageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPTermsStorageManager.h; sourceTree = "<group>"; };
@@ -657,6 +656,7 @@
 		B6A4BFE01632F518007F9D29 /* ICIngredientTermModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICIngredientTermModel.m; sourceTree = "<group>"; };
 		B6A4BFE316330502007F9D29 /* SerachTableSectionHeader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SerachTableSectionHeader.png; sourceTree = "<group>"; };
 		B6A4BFE416330502007F9D29 /* SerachTableSectionHeader@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SerachTableSectionHeader@2x.png"; sourceTree = "<group>"; };
+		B6A4BFE7163311A5007F9D29 /* navy_blue_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navy_blue_.png; sourceTree = "<group>"; };
 		BC5336F5AC004F25805C6DBC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -1051,7 +1051,7 @@
 		1CC40AD6162F1A0A00DB04F0 /* navy_blue */ = {
 			isa = PBXGroup;
 			children = (
-				1CC40AD7162F1A0A00DB04F0 /* navy_blue.png */,
+				B6A4BFE7163311A5007F9D29 /* navy_blue_.png */,
 				1CC40AD8162F1A0A00DB04F0 /* navy_blue_@2X.png */,
 				1CC40AD9162F1A0A00DB04F0 /* readme.txt */,
 			);
@@ -1549,7 +1549,6 @@
 				1CB1AE16162C37440068EA0D /* 86-camera@2x.png in Resources */,
 				1CB1AE5B162C49160068EA0D /* 06-magnify-right.png in Resources */,
 				1CB1AE66162D026B0068EA0D /* 06-magnify-right@2x.png in Resources */,
-				1CC40ADA162F1A0A00DB04F0 /* navy_blue.png in Resources */,
 				1CC40ADB162F1A0A00DB04F0 /* navy_blue_@2X.png in Resources */,
 				1CC40ADC162F1A0A00DB04F0 /* readme.txt in Resources */,
 				1CC40AE2162F57BF00DB04F0 /* termsDefaultStorage.plist in Resources */,
@@ -1595,6 +1594,7 @@
 				1C35935816329C7F0083427E /* default@2x.png in Resources */,
 				B6A4BFE516330502007F9D29 /* SerachTableSectionHeader.png in Resources */,
 				B6A4BFE616330502007F9D29 /* SerachTableSectionHeader@2x.png in Resources */,
+				B6A4BFE8163311A5007F9D29 /* navy_blue_.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
