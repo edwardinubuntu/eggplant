@@ -64,6 +64,7 @@ CGFloat smallMoving = 25;
   self.searchKeywordViewController.delegate = self;
   
   _headerCarousel = [[iCarousel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44.f)];
+  self.headerCarousel.scrollSpeed = 1;
   self.headerCarousel.delegate = self;
   self.headerCarousel.dataSource = self;
   self.headerCarousel.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"navy_blue_"]];
