@@ -59,6 +59,7 @@
   [self.retryButton.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
   [self.retryButton.titleLabel setShadowColor: [UIColor blackColor]];
   [self.retryButton.titleLabel setShadowOffset:CGSizeMake(0, -1.0)];
+  self.retryButton.hidden = YES;
   self.retryButton.frame = CGRectMake((self.view.frame.size.width - 100 ) / 2, self.view.frame.size.height - 60, 100, 30);
   [self.retryButton addEventHandler:^(id sender) {
     if (tempSelf.queryType == EPQueryTypeInput) {

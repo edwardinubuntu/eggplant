@@ -32,7 +32,7 @@
 @property (nonatomic, strong) NSArray *termKeysFromDefault;
 @property (nonatomic, strong) NSDictionary *termDataFromDefault;
 
-@property (nonatomic, strong) NSMutableArray *termsFromUserSaved;
+@property (nonatomic, strong) NSMutableArray *termKeysFromUserSaved;
 @property (nonatomic, strong) NIPagingScrollView *pagingScrollView;
 
 @property (nonatomic, strong) UITableView *tableView;

@@ -230,8 +230,8 @@ CGFloat smallMoving = 25;
   
   // User Saved
   NSDictionary *termsUserSavedDictData = [[EPTermsStorageManager defaultManager] termsFromUserSaved];
-  NSArray *termUserSavedKeys = [termsUserSavedDictData objectForKey:@"termKeys"];
-  self.termsFromUserSaved = [[NSMutableArray alloc] initWithArray:termUserSavedKeys];
+  NSMutableArray *termUserSavedKeys = [termsUserSavedDictData objectForKey:@"termKeys"];
+  self.termKeysFromUserSaved = [[NSMutableArray alloc] initWithArray:termUserSavedKeys];
   
   [self.headerCarousel reloadData];
   [self.pagingScrollView reloadData];
@@ -323,7 +323,9 @@ CGFloat smallMoving = 25;
 
 - (NSUInteger)numberOfItemsInCarousel:(iCarousel *)carousel {
   if (carousel == self.headerCarousel) {
-    return kCountAbout + kCountHome + self.termKeysFromDefault.count + self.termsFromUserSaved.count;
+    NSInteger numberOfitems = kCountAbout + kCountHome + self.termKeysFromDefault.count + self.termKeysFromUserSaved.count;
+    NIDPRINT(@"iCarousel numberOfitems %i", numberOfitems);
+    return numberOfitems;
   }
   return 0;
 }
@@ -334,6 +336,14 @@ CGFloat smallMoving = 25;
     UILabel *sectionHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 32)];
     sectionHeaderLabel.textAlignment = UITextAlignmentCenter;
     
+    NIDPRINT(@"iCarousel viewForItemAtIndex %i", index);
+    
+    NSInteger termIndex = index - kCountAbout - kCountHome;
+    NSInteger termSavedIndex = termIndex - self.termDataFromDefault.count -1;
+    
+    NIDPRINT(@"iCarousel viewForItemAtIndex termIndex %i", termIndex);
+    NIDPRINT(@"iCarousel viewForItemAtIndex termSavedIndex %i", termSavedIndex);
+    
     switch (index) {
       case kIndexAbout:
         sectionHeaderLabel.text = NSLocalizedString(@"About", @"About");
@@ -342,14 +352,15 @@ CGFloat smallMoving = 25;
         sectionHeaderLabel.text = NSLocalizedString(@"Sections", @"Sections");
         break;
       default:
-        
-        if ((index - kCountAbout - kCountHome) < self.termKeysFromDefault.count) {
-          NSString *termFromDefault = [self.termKeysFromDefault objectAtIndex:((index - kCountAbout - kCountHome))];
-          sectionHeaderLabel.text = termFromDefault;
-        } else {
-          sectionHeaderLabel.text = [NSString stringWithFormat:@"Sections %i", index];
-        }
         break;
+    }
+    NIDPRINT(@"self.termKeysFromUserSaved.count %i", self.termKeysFromUserSaved.count);
+    if (termIndex >= 0 &&  termIndex < self.termKeysFromDefault.count) {
+      NSString *termFromDefault = [self.termKeysFromDefault objectAtIndex:(termIndex)];
+      sectionHeaderLabel.text = termFromDefault;
+    } else if ( termSavedIndex >= 0 && termSavedIndex < self.termKeysFromUserSaved.count) {
+      NSString *term = [self.termKeysFromUserSaved objectAtIndex:(termSavedIndex)];
+      sectionHeaderLabel.text = term;
     }
     
     sectionHeaderLabel.textColor = [UIColor whiteColor];
@@ -377,7 +388,7 @@ CGFloat smallMoving = 25;
 #pragma mark - NIPagingScrollViewDataSource
 
 - (NSInteger)numberOfPagesInPagingScrollView:(NIPagingScrollView *)pagingScrollView {
-  return kCountAbout + kCountHome + self.termKeysFromDefault.count + self.termsFromUserSaved.count;
+  return kCountAbout + kCountHome + self.termKeysFromDefault.count + self.termKeysFromUserSaved.count;
 }
 
 - (UIView<NIPagingScrollViewPage> *)pagingScrollView:(NIPagingScrollView *)pagingScrollView pageViewForIndex:(NSInteger)pageIndex {
@@ -386,6 +397,7 @@ CGFloat smallMoving = 25;
   [contentHeaderView setBackgroundColor:[UIColor lightGrayColor]];
   
   NSInteger termIndex = pageIndex - kCountAbout - kCountHome;
+  NSInteger termSavedIndex = termIndex - self.termDataFromDefault.count;
   switch (pageIndex) {
     case kIndexAbout: {
       UILabel *contentHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 36)];
@@ -418,7 +430,16 @@ CGFloat smallMoving = 25;
         _tableView.dataSource = self;
         _tableView.delegate = self;
         [contentHeaderView addSubview:_tableView];
-      } else {
+      } else if (termSavedIndex < self.termKeysFromUserSaved.count) {
+        
+        NSString *termFromSaved = [self.termKeysFromUserSaved objectAtIndex:(termSavedIndex)];
+        _tableView = [self dequeueReusableTableViewWithIdentifier:[NSString stringWithFormat:@"TableViewID%@", termFromSaved]];
+        _tableView = [[UITableView alloc] init];
+        _tableView.tag = termIndex;
+        _tableView.frame = contentHeaderView.frame;
+        _tableView.dataSource = self;
+        _tableView.delegate = self;
+        [contentHeaderView addSubview:_tableView];
       }
     }
       break;
@@ -619,6 +640,14 @@ CGFloat smallMoving = 25;
 }
 
 - (void)queryViewController:(EPQueryViewController *)queryViewController didFinishWithQuery:(NSString *)searchKeyword canEat:(BOOL)canEat {
+  [self.termKeysFromUserSaved addObject:searchKeyword];
+  
+  [self.headerCarousel reloadData];
+  [self.pagingScrollView reloadData];
+  
+  // Scroll to last one
+  [self.headerCarousel scrollToItemAtIndex:self.headerCarousel.numberOfItems animated:YES];
+  
   [self.navigationController dismissPopupViewControllerWithanimationType:MJPopupViewAnimationSlideBottomTop];
 }
 

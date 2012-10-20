@@ -22,3 +22,6 @@
 /* Can Not Eat */
 "Keyword Can Not Eat" = "%@ 不是食材，不在 WikiIngredients 裡頭。請重新搜尋喔！";
 
+/* Retry */
+"Retry" = "重新再試";
+
