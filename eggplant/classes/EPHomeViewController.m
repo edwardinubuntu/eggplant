@@ -44,7 +44,6 @@ CGFloat smallMoving = 25;
   if (self) {
     // Custom initialization
     _recycledTableView = [[NSMutableDictionary alloc] init];
-    _termDataFromDefault = [[NSDictionary alloc] init];
   }
   return self;
 }
@@ -146,6 +145,36 @@ CGFloat smallMoving = 25;
 
 #pragma mark - private
 
+- (void)perpareQueryAPIData:(NSString *)searchingTerm {
+  
+  // Check if has term
+  BOOL hasTermKeyAlreadyInData = NO;
+  NSMutableDictionary *termWithDataDict = nil;
+  for (NSDictionary *eachDict in self.contentDictData) {
+    if ([eachDict objectForKey:@"key"] && [[eachDict objectForKey:@"key"] isEqualToString:searchingTerm]) {
+      hasTermKeyAlreadyInData = YES;
+      termWithDataDict = [NSMutableDictionary dictionaryWithDictionary:eachDict];
+    }
+  }
+  if (!hasTermKeyAlreadyInData) {
+    termWithDataDict = [[NSMutableDictionary alloc] init];
+    [termWithDataDict setObject:searchingTerm forKey:@"key"];
+  }
+  
+  // Start to add wiki
+  
+  // Start to add icook
+  
+  // Start to add knowledge
+  
+  [self.contentDictData addObject:termWithDataDict];
+  
+  // Finish, save
+  NSMutableDictionary *termsUserSavedDictData = [[EPTermsStorageManager defaultManager] termsFromUserSaved];
+  [termsUserSavedDictData setObject:self.contentDictData forKey:@"term"];
+  [[EPTermsStorageManager defaultManager] save];
+}
+
 - (void)requestImageFromCell:(UITableViewCell *)cell indexPath:(NSIndexPath *)indexPath imageURL:(NSString *)imageURL {
   __block NSIndexPath *tempIndexPath = indexPath;
   __block EPHomeViewController *tempSelf = self;
@@ -208,13 +237,12 @@ CGFloat smallMoving = 25;
 
 - (NSArray *)sourceWithGivenDefaultDataSet:(NSInteger)pageIndex {
   NSArray *sources;
-  if (pageIndex < self.termKeysFromDefault.count) {
+  if (pageIndex < self.headerTermKeys.count) {
     
-    NSString *key = [self.termKeysFromDefault objectAtIndex:(pageIndex)];
+    NSString *key = [self.headerTermKeys objectAtIndex:(pageIndex)];
     // Check data
-    NSArray *dataFromTerms = [self.termDataFromDefault objectForKey:@"terms"];
     
-    for (NSDictionary *eachDataTerm  in dataFromTerms) {
+    for (NSDictionary *eachDataTerm  in self.contentDictData) {
       if ([[eachDataTerm objectForKey:@"key"] isEqualToString:key]) {
         sources = [eachDataTerm objectForKey:@"sources"];
         break;
@@ -235,21 +263,34 @@ CGFloat smallMoving = 25;
 
 - (void)loadData {
   
-  // Default
   [[EPTermsStorageManager defaultManager] load];
-  self.termDataFromDefault = [[EPTermsStorageManager defaultManager] termsFromDefault];
-  NSArray *termKeys = [self.termDataFromDefault objectForKey:@"termKeys"];
-  self.termKeysFromDefault = [termKeys copy];
   
-  // User Saved
-  NSDictionary *termsUserSavedDictData = [[EPTermsStorageManager defaultManager] termsFromUserSaved];
-  NSMutableArray *termUserSavedKeys = [termsUserSavedDictData objectForKey:@"termKeys"];
-  self.termKeysFromUserSaved = [[NSMutableArray alloc] initWithArray:termUserSavedKeys];
+  NSMutableDictionary *termsFromSavedRoot = [[EPTermsStorageManager defaultManager] termsFromUserSaved];
+  NSMutableArray *termsFromSavedKeys = [termsFromSavedRoot objectForKey:@"termKeys"];
+  
+  if (termsFromSavedKeys.count == 0) {
+    NSDictionary *termDataFromDefault = [[EPTermsStorageManager defaultManager] termsFromDefault];
+    NSArray *termsFromDefaultKeys = [termDataFromDefault objectForKey:@"termKeys"];
+    self.headerTermKeys = [termsFromDefaultKeys copy];
+    self.contentDictData = [NSMutableArray arrayWithArray:[termDataFromDefault objectForKey:@"terms"]];
+    
+    [termsFromSavedRoot setObject:self.headerTermKeys forKey:@"termKeys"];
+    [termsFromSavedRoot setObject:self.contentDictData forKey:@"terms"];
+    [[EPTermsStorageManager defaultManager] save];
+  }
+  
+  // Load again
+  [[EPTermsStorageManager defaultManager] load];
+  termsFromSavedRoot = [[EPTermsStorageManager defaultManager] termsFromUserSaved];
+  termsFromSavedKeys = [termsFromSavedRoot objectForKey:@"termKeys"];
+  
+  self.headerTermKeys = termsFromSavedKeys;
+  self.contentDictData = [termsFromSavedRoot objectForKey:@"terms"];
   
   [self.headerCarousel reloadData];
   [self.pagingScrollView reloadData];
   
-  if (self.termKeysFromDefault.count > 0) {
+  if (self.headerTermKeys.count > 0) {
     // Scroll to First Data
     [self.headerCarousel scrollToItemAtIndex:(kCountAbout + kCountHome + 0) animated:YES];
   }
@@ -336,7 +377,7 @@ CGFloat smallMoving = 25;
 
 - (NSUInteger)numberOfItemsInCarousel:(iCarousel *)carousel {
   if (carousel == self.headerCarousel) {
-    NSInteger numberOfitems = kCountAbout + kCountHome + self.termKeysFromDefault.count + self.termKeysFromUserSaved.count;
+    NSInteger numberOfitems = kCountAbout + kCountHome + self.headerTermKeys.count;
     NIDPRINT(@"iCarousel numberOfitems %i", numberOfitems);
     return numberOfitems;
   }
@@ -352,7 +393,7 @@ CGFloat smallMoving = 25;
     NIDPRINT(@"iCarousel viewForItemAtIndex %i", index);
     
     NSInteger termIndex = index - kCountAbout - kCountHome;
-    NSInteger termSavedIndex = termIndex - self.termDataFromDefault.count -1;
+    NSInteger termSavedIndex = termIndex - self.contentDictData.count -1;
     
     NIDPRINT(@"iCarousel viewForItemAtIndex termIndex %i", termIndex);
     NIDPRINT(@"iCarousel viewForItemAtIndex termSavedIndex %i", termSavedIndex);
@@ -367,13 +408,9 @@ CGFloat smallMoving = 25;
       default:
         break;
     }
-    NIDPRINT(@"self.termKeysFromUserSaved.count %i", self.termKeysFromUserSaved.count);
-    if (termIndex >= 0 &&  termIndex < self.termKeysFromDefault.count) {
-      NSString *termFromDefault = [self.termKeysFromDefault objectAtIndex:(termIndex)];
+    if (termIndex >= 0 &&  termIndex < self.headerTermKeys.count) {
+      NSString *termFromDefault = [self.headerTermKeys objectAtIndex:(termIndex)];
       sectionHeaderLabel.text = termFromDefault;
-    } else if ( termSavedIndex >= 0 && termSavedIndex < self.termKeysFromUserSaved.count) {
-      NSString *term = [self.termKeysFromUserSaved objectAtIndex:(termSavedIndex)];
-      sectionHeaderLabel.text = term;
     }
     
     sectionHeaderLabel.textColor = [UIColor whiteColor];
@@ -401,7 +438,7 @@ CGFloat smallMoving = 25;
 #pragma mark - NIPagingScrollViewDataSource
 
 - (NSInteger)numberOfPagesInPagingScrollView:(NIPagingScrollView *)pagingScrollView {
-  return kCountAbout + kCountHome + self.termKeysFromDefault.count + self.termKeysFromUserSaved.count;
+  return kCountAbout + kCountHome + self.headerTermKeys.count;
 }
 
 - (UIView<NIPagingScrollViewPage> *)pagingScrollView:(NIPagingScrollView *)pagingScrollView pageViewForIndex:(NSInteger)pageIndex {
@@ -410,7 +447,6 @@ CGFloat smallMoving = 25;
   [contentHeaderView setBackgroundColor:[UIColor lightGrayColor]];
   
   NSInteger termIndex = pageIndex - kCountAbout - kCountHome;
-  NSInteger termSavedIndex = termIndex - self.termDataFromDefault.count;
   switch (pageIndex) {
     case kIndexAbout: {
       UILabel *contentHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 36)];
@@ -433,29 +469,28 @@ CGFloat smallMoving = 25;
     }
       break;
     default:
+      if (termIndex < self.headerTermKeys.count) {
+        NSString *termFromDefault = [self.headerTermKeys objectAtIndex:(termIndex)];
+        _tableView = [self dequeueReusableTableViewWithIdentifier:[NSString stringWithFormat:@"TableViewID%@", termFromDefault]];
+        _tableView = [[UITableView alloc] init];
+        _tableView.tag = termIndex;
+        _tableView.frame = contentHeaderView.frame;
+        _tableView.dataSource = self;
+        _tableView.delegate = self;
+        [contentHeaderView addSubview:_tableView];
+        
+        // if empty need to loading
+        NSArray *sources = [self sourceWithGivenDefaultDataSet:termIndex];
+        if (sources.count <= 0) {
+          // We need to loading
+          NIDPRINT(@"Need to load for term %i, %@", termIndex, [self.headerTermKeys objectAtIndex:termIndex]);
+          [self perpareQueryAPIData:[self.headerTermKeys objectAtIndex:termIndex]];
+        }
+      }
       break;
   }
   
-  if (termIndex < self.termKeysFromDefault.count) {
-    NSString *termFromDefault = [self.termKeysFromDefault objectAtIndex:(termIndex)];
-    _tableView = [self dequeueReusableTableViewWithIdentifier:[NSString stringWithFormat:@"TableViewID%@", termFromDefault]];
-    _tableView = [[UITableView alloc] init];
-    _tableView.tag = termIndex;
-    _tableView.frame = contentHeaderView.frame;
-    _tableView.dataSource = self;
-    _tableView.delegate = self;
-    [contentHeaderView addSubview:_tableView];
-  } else if (termSavedIndex < self.termKeysFromUserSaved.count) {
-    
-    NSString *termFromSaved = [self.termKeysFromUserSaved objectAtIndex:(termSavedIndex)];
-    _tableView = [self dequeueReusableTableViewWithIdentifier:[NSString stringWithFormat:@"TableViewID%@", termFromSaved]];
-    _tableView = [[UITableView alloc] init];
-    _tableView.tag = termSavedIndex;
-    _tableView.frame = contentHeaderView.frame;
-    _tableView.dataSource = self;
-    _tableView.delegate = self;
-    [contentHeaderView addSubview:_tableView];
-  }
+
   
   return contentHeaderView;
 }
@@ -484,14 +519,6 @@ CGFloat smallMoving = 25;
   }
   
   NSInteger numberOfRows = 0;
-  switch (pageIndex) {
-    case 1:
-      numberOfRows = 5;
-      break;
-    default:
-      numberOfRows = 20;
-      break;
-  }
   return numberOfRows;
 }
 
@@ -501,13 +528,12 @@ CGFloat smallMoving = 25;
   __block NSIndexPath *tempIndexPath = indexPath;
   
   NSInteger pageIndex = tableView.tag;
-  if (pageIndex < self.termKeysFromDefault.count) {
+  if (pageIndex < self.headerTermKeys.count) {
     
-    NSString *key = [self.termKeysFromDefault objectAtIndex:(pageIndex)];
+    NSString *key = [self.headerTermKeys objectAtIndex:(pageIndex)];
     // Check data
-    NSArray *dataFromTerms = [self.termDataFromDefault objectForKey:@"terms"];
     
-    for (NSDictionary *eachDataTerm  in dataFromTerms) {
+    for (NSDictionary *eachDataTerm  in self.contentDictData) {
       if ([[eachDataTerm objectForKey:@"key"] isEqualToString:key]) {
         NSDictionary *currentSource = [[eachDataTerm objectForKey:@"sources"] objectAtIndex:indexPath.row];
         NSString *title = [currentSource objectForKey:@"title"];
@@ -588,11 +614,10 @@ CGFloat smallMoving = 25;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   NSInteger pageIndex = tableView.tag;
-  if (pageIndex < self.termKeysFromDefault.count) {
-    NSString *key = [self.termKeysFromDefault objectAtIndex:(pageIndex)];
+  if (pageIndex < self.headerTermKeys.count) {
+    NSString *key = [self.headerTermKeys objectAtIndex:(pageIndex)];
     // Check data
-    NSArray *dataFromTerms = [self.termDataFromDefault objectForKey:@"terms"];
-    for (NSDictionary *eachDataTerm  in dataFromTerms) {
+    for (NSDictionary *eachDataTerm  in self.contentDictData) {
       if ([[eachDataTerm objectForKey:@"key"] isEqualToString:key]) {
         NSDictionary *currentSource = [[eachDataTerm objectForKey:@"sources"] objectAtIndex:indexPath.row];
         NSString *sourceType = [currentSource objectForKey:@"type"];
@@ -653,14 +678,13 @@ CGFloat smallMoving = 25;
 
 - (void)queryViewController:(EPQueryViewController *)queryViewController didFinishWithQuery:(NSString *)searchKeyword canEat:(BOOL)canEat {
   
-  [self.headerCarousel reloadData];
-  [self.pagingScrollView reloadData];
+
   
   // Saving result
-  if (![self.termKeysFromUserSaved containsObject:searchKeyword]) {
-    [self.termKeysFromUserSaved addObject:searchKeyword];
+  if (![self.headerTermKeys containsObject:searchKeyword]) {
+    [self.headerTermKeys addObject:searchKeyword];
     NSMutableDictionary *termsUserSavedDictData = [[EPTermsStorageManager defaultManager] termsFromUserSaved];
-    [termsUserSavedDictData setObject:self.termKeysFromUserSaved forKey:@"termKeys"];
+    [termsUserSavedDictData setObject:self.headerTermKeys forKey:@"termKeys"];
     [[EPTermsStorageManager defaultManager] save];
     
     // Scroll to last one
@@ -668,6 +692,9 @@ CGFloat smallMoving = 25;
   } else {
     NIDPRINT(@"Already exist");
   }
+  
+  [self.headerCarousel reloadData];
+  [self.pagingScrollView reloadData];
   
   [self.navigationController dismissPopupViewControllerWithanimationType:MJPopupViewAnimationSlideBottomTop];
 }

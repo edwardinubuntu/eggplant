@@ -31,10 +31,9 @@
 @property (nonatomic, strong) UIButton *cameraButton;
 @property (nonatomic, strong) UIButton *writeButton;
 
-@property (nonatomic, strong) NSArray *termKeysFromDefault;
-@property (nonatomic, strong) NSDictionary *termDataFromDefault;
+@property (nonatomic, strong) NSMutableArray *headerTermKeys;
+@property (nonatomic, strong) NSMutableArray *contentDictData;
 
-@property (nonatomic, strong) NSMutableArray *termKeysFromUserSaved;
 @property (nonatomic, strong) NIPagingScrollView *pagingScrollView;
 
 @property (nonatomic, strong) UITableView *tableView;
