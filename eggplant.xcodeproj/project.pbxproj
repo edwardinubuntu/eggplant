@@ -692,6 +692,7 @@
 			children = (
 				1C8784D9162A56EA005D3672 /* eggplant */,
 				1C8784FB162A56EA005D3672 /* eggplantTests */,
+				B610E5C116326F7D00114853 /* Dependencies */,
 				1C8784D0162A56EA005D3672 /* Frameworks */,
 				1C8784CE162A56EA005D3672 /* Products */,
 				3D2E77B0AA1D4CB683DB4B3C /* Pods.xcconfig */,
@@ -729,7 +730,6 @@
 		1C8784D9162A56EA005D3672 /* eggplant */ = {
 			isa = PBXGroup;
 			children = (
-				B610E5C116326F7D00114853 /* Dependencies */,
 				1C87851B162A59AD005D3672 /* classes */,
 				1C8784EB162A56EA005D3672 /* eggplant.xcdatamodeld */,
 				1C8784DA162A56EA005D3672 /* Supporting Files */,
@@ -1074,6 +1074,7 @@
 				B610E5C71632708300114853 /* flite-1.4-iphone */,
 			);
 			name = Dependencies;
+			path = eggplant;
 			sourceTree = "<group>";
 		};
 		B610E5C71632708300114853 /* flite-1.4-iphone */ = {

@@ -172,6 +172,7 @@
     for (EPWikiLangLink *eachLangLink in tempSelf.wikiQueryLangLinksModel.term.langLinks) {
       if ([eachLangLink.lang isEqualToString:@"zh"] || [eachLangLink.lang isEqualToString:@"zh-yue"]) {
         hasZHLang = NIIsStringWithAnyText(eachLangLink.text);
+        [tempSelf queryTermForKnowledge:eachLangLink.text];
         NIDPRINT(@"We got %@ in %@ : %@", tempSelf.wikiQueryLangLinksModel.keyword, eachLangLink.lang, eachLangLink.text);
         break;
       }
