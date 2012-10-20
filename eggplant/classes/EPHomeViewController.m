@@ -945,19 +945,26 @@ CGFloat smallMoving = 25;
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+  
+  if (self.pagingScrollView.centerPageIndex >= kCountAbout + kCountHome) {
+    int scrollDirection;
+    if (lastContentOffset > scrollView.contentOffset.y)
+      scrollDirection = EPScrollDirectionTypeUp;
+    else if (lastContentOffset < scrollView.contentOffset.y)
+      scrollDirection = EPScrollDirectionTypeDown;
+    
+    lastContentOffset = scrollView.contentOffset.y;
+    
+    [UIView animateWithDuration:0.2 animations:^(void){
+      self.searchButton.alpha = ((scrollDirection == EPScrollDirectionTypeUp) ||(scrollView.contentOffset.y < 60.f))?1.f:0.f;
+      self.buttonSectionsView.alpha = self.searchButton.alpha;
+    }];
+  } else {
+    self.searchButton.hidden = YES;
+    self.buttonSectionsView.hidden = YES;
+  }
 
-  int scrollDirection;
-  if (lastContentOffset > scrollView.contentOffset.y)
-    scrollDirection = EPScrollDirectionTypeUp;
-  else if (lastContentOffset < scrollView.contentOffset.y)
-    scrollDirection = EPScrollDirectionTypeDown;
   
-  lastContentOffset = scrollView.contentOffset.y;
-  
-  [UIView animateWithDuration:0.2 animations:^(void){
-    self.searchButton.alpha = ((scrollDirection == EPScrollDirectionTypeUp) ||(scrollView.contentOffset.y < 60.f))?1.f:0.f;
-    self.buttonSectionsView.alpha = self.searchButton.alpha;
-  }];
   
 
 }
