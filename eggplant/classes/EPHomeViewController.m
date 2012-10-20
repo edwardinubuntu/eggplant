@@ -432,30 +432,29 @@ CGFloat smallMoving = 25;
       [contentHeaderView addSubview:contentHeaderLabel];
     }
       break;
-    default: {
-      
-      if (termIndex < self.termKeysFromDefault.count) {
-        NSString *termFromDefault = [self.termKeysFromDefault objectAtIndex:(termIndex)];
-        _tableView = [self dequeueReusableTableViewWithIdentifier:[NSString stringWithFormat:@"TableViewID%@", termFromDefault]];
-        _tableView = [[UITableView alloc] init];
-        _tableView.tag = termIndex;
-        _tableView.frame = contentHeaderView.frame;
-        _tableView.dataSource = self;
-        _tableView.delegate = self;
-        [contentHeaderView addSubview:_tableView];
-      } else if (termSavedIndex < self.termKeysFromUserSaved.count) {
-        
-        NSString *termFromSaved = [self.termKeysFromUserSaved objectAtIndex:(termSavedIndex)];
-        _tableView = [self dequeueReusableTableViewWithIdentifier:[NSString stringWithFormat:@"TableViewID%@", termFromSaved]];
-        _tableView = [[UITableView alloc] init];
-        _tableView.tag = termIndex;
-        _tableView.frame = contentHeaderView.frame;
-        _tableView.dataSource = self;
-        _tableView.delegate = self;
-        [contentHeaderView addSubview:_tableView];
-      }
-    }
+    default:
       break;
+  }
+  
+  if (termIndex < self.termKeysFromDefault.count) {
+    NSString *termFromDefault = [self.termKeysFromDefault objectAtIndex:(termIndex)];
+    _tableView = [self dequeueReusableTableViewWithIdentifier:[NSString stringWithFormat:@"TableViewID%@", termFromDefault]];
+    _tableView = [[UITableView alloc] init];
+    _tableView.tag = termIndex;
+    _tableView.frame = contentHeaderView.frame;
+    _tableView.dataSource = self;
+    _tableView.delegate = self;
+    [contentHeaderView addSubview:_tableView];
+  } else if (termSavedIndex < self.termKeysFromUserSaved.count) {
+    
+    NSString *termFromSaved = [self.termKeysFromUserSaved objectAtIndex:(termSavedIndex)];
+    _tableView = [self dequeueReusableTableViewWithIdentifier:[NSString stringWithFormat:@"TableViewID%@", termFromSaved]];
+    _tableView = [[UITableView alloc] init];
+    _tableView.tag = termSavedIndex;
+    _tableView.frame = contentHeaderView.frame;
+    _tableView.dataSource = self;
+    _tableView.delegate = self;
+    [contentHeaderView addSubview:_tableView];
   }
   
   return contentHeaderView;
