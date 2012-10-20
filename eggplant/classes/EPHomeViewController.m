@@ -642,6 +642,10 @@ CGFloat smallMoving = 25;
 - (void)queryViewController:(EPQueryViewController *)queryViewController didFinishWithQuery:(NSString *)searchKeyword canEat:(BOOL)canEat {
   [self.termKeysFromUserSaved addObject:searchKeyword];
   
+  NSMutableDictionary *termsUserSavedDictData = [[EPTermsStorageManager defaultManager] termsFromUserSaved];
+  [termsUserSavedDictData setObject:self.termKeysFromUserSaved forKey:@"termKeys"];
+  [[EPTermsStorageManager defaultManager] save];
+  
   [self.headerCarousel reloadData];
   [self.pagingScrollView reloadData];
   
