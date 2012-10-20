@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C35935716329C7F0083427E /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C35935516329C7F0083427E /* default.png */; };
+		1C35935816329C7F0083427E /* default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C35935616329C7F0083427E /* default@2x.png */; };
 		1C8784D2162A56EA005D3672 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8784D1162A56EA005D3672 /* UIKit.framework */; };
 		1C8784D4162A56EA005D3672 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8784D3162A56EA005D3672 /* Foundation.framework */; };
 		1C8784D6162A56EA005D3672 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8784D5162A56EA005D3672 /* CoreGraphics.framework */; };
@@ -261,6 +263,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1C35935516329C7F0083427E /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
+		1C35935616329C7F0083427E /* default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default@2x.png"; sourceTree = "<group>"; };
 		1C8784CD162A56EA005D3672 /* eggplant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eggplant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C8784D1162A56EA005D3672 /* UIKit.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1C8784D3162A56EA005D3672 /* Foundation.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -768,6 +772,8 @@
 		1C878514162A5901005D3672 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				1C35935516329C7F0083427E /* default.png */,
+				1C35935616329C7F0083427E /* default@2x.png */,
 				1CB0754E163277B30028E3C9 /* iTunesArtwork.png */,
 				1CB0754F163277B40028E3C9 /* Icon-72.png */,
 				1CB07550163277B60028E3C9 /* Icon-72@2x.png */,
@@ -1565,6 +1571,8 @@
 				B610E7431632709800114853 /* IQEHistoryIcon@2x.png in Resources */,
 				B610E7441632709800114853 /* IQEQRCode.png in Resources */,
 				B610E7451632709800114853 /* IQEQRCode@2x.png in Resources */,
+				1C35935716329C7F0083427E /* default.png in Resources */,
+				1C35935816329C7F0083427E /* default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
