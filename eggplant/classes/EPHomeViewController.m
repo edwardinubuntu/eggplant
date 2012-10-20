@@ -109,6 +109,8 @@ CGFloat smallMoving = 25;
   [self loadData];
   
    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getTermsArray:) name:kNOTIFICATION_FOUND_TERMS object:nil];
+  
+  _yknowledgeSearchModel = [[EPYKnowledgeSearchModel alloc] init];
 }
 
 - (void)viewDidLoad {
@@ -147,6 +149,8 @@ CGFloat smallMoving = 25;
 
 - (void)perpareQueryAPIData:(NSString *)searchingTerm {
   
+  __block EPHomeViewController *tempSelf = self;
+  
   // Check if has term
   BOOL hasTermKeyAlreadyInData = NO;
   NSMutableDictionary *termWithDataDict = nil;
@@ -159,20 +163,56 @@ CGFloat smallMoving = 25;
   if (!hasTermKeyAlreadyInData) {
     termWithDataDict = [[NSMutableDictionary alloc] init];
     [termWithDataDict setObject:searchingTerm forKey:@"key"];
+    [self.contentDictData addObject:termWithDataDict];
   }
+  
+  __block NSMutableDictionary *tempTermWithDataDict = termWithDataDict;
   
   // Start to add wiki
   
   // Start to add icook
+  self.yknowledgeSearchModel.keywords = searchingTerm;
+  self.yknowledgeSearchModel.isLoading = NO;
+
+  [self.yknowledgeSearchModel loadMore:NO didFinishLoad:^{
+    
+    NSMutableArray *sources = [[NSMutableArray alloc] init];
+    for (EPYKnowledge *eachKnow in tempSelf.yknowledgeSearchModel.knowledges) {
+      NSMutableDictionary *knowDict = [[NSMutableDictionary alloc] init];
+      [knowDict setObject:@"YKnowledge" forKey:@"type"];
+      [knowDict setObject:eachKnow.url.absoluteString forKey:@"url"];
+      [knowDict setObject:eachKnow.subject forKey:@"title"];
+      [knowDict setObject:eachKnow.content forKey:@"detail"];
+      [knowDict setObject:@"knowledge.yahoo.com.tw" forKey:@"sourceURL"];
+      
+      [sources addObject:knowDict];
+    }
+    
+    // Add to data
+    NSMutableArray *sourcesOriginal = [tempTermWithDataDict objectForKey:@"sources"];
+    if (!sourcesOriginal) {
+      sourcesOriginal = [[NSMutableArray alloc] init];
+    }
+    [sourcesOriginal addObjectsFromArray:sources];
+    [tempTermWithDataDict setObject:sourcesOriginal forKey:@"sources"];
+    
+    [tempSelf.pagingScrollView reloadData];
+  } loadWithError:^(NSError *error) {
+    // Handle Error
+  }];
   
   // Start to add knowledge
   
+  // Final saved
   [self.contentDictData addObject:termWithDataDict];
   
   // Finish, save
-  NSMutableDictionary *termsUserSavedDictData = [[EPTermsStorageManager defaultManager] termsFromUserSaved];
-  [termsUserSavedDictData setObject:self.contentDictData forKey:@"term"];
-  [[EPTermsStorageManager defaultManager] save];
+//  NSMutableDictionary *termsUserSavedDictData = [[EPTermsStorageManager defaultManager] termsFromUserSaved];
+//  [termsUserSavedDictData setObject:self.contentDictData forKey:@"term"];
+//  [[EPTermsStorageManager defaultManager] save];
+  
+  // Call at the end
+//  [self.pagingScrollView reloadData];
 }
 
 - (void)requestImageFromCell:(UITableViewCell *)cell indexPath:(NSIndexPath *)indexPath imageURL:(NSString *)imageURL {

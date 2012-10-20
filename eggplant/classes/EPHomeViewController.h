@@ -14,6 +14,8 @@
 #import "EPSearchKeywordViewController.h"
 #import "EPQueryViewController.h"
 #import "EPIQEnginesViewController.h"
+#import "EPYKnowledgeSearchModel.h"
+#import "EPYKnowledge.h"
 
 @interface EPHomeViewController : EPViewController <
   EPIQEnginesViewControllerDelegate,
@@ -42,5 +44,7 @@
 @property (nonatomic, strong) EPSearchKeywordViewController *searchKeywordViewController;
 
 @property (nonatomic, strong) EPQueryViewController *queryViewController;
+
+@property (nonatomic, strong) EPYKnowledgeSearchModel *yknowledgeSearchModel;
 
 @end
