@@ -18,20 +18,6 @@
 			<key>sources</key>
 			<array>
 				<dict>
-					<key>imageURL</key>
-					<string>http://upload.wikimedia.org/wikipedia/commons/4/49/Solanum_melongena_ja02.jpg</string>
-					<key>type</key>
-					<string>wiki</string>
-					<key>url</key>
-					<string>http://en.wikipedia.org/wiki/Eggplant</string>
-					<key>title</key>
-					<string>Eggplant</string>
-					<key>detail</key>
-					<string>The eggplant, brinjal eggplant, aubergine, melongene, brinjal or guinea squash (Solanum melongena) is a plant of the family Solanaceae (also known as the nightshades) and genus Solanum. It bears a fruit of the same name, commonly used in cooking. As a nightshade, it is closely related to the tomato and potato. It was domesticated in India from Solanum incanum</string>
-					<key>sourceURL</key>
-					<string>en.wikipedia.org</string>
-				</dict>
-				<dict>
 					<key>type</key>
 					<string>wiki</string>
 					<key>imageURL</key>
@@ -44,6 +30,20 @@
 					<string>茄（學名：Solanum melongena）常稱茄子，吳越人沿用宋代叫法稱爲落蘇，廣東人稱為矮瓜，是茄科茄屬一年生草本植物，熱帶為多年生。其結出的果實可食用，顏色多為紫色或紫黑色，也有淡綠色或白色品種，形狀上也有圓形，橢圓，梨形等各種。茄子是一種典型的蔬菜，根據品種的不同，食用方法多樣。</string>
 					<key>sourceURL</key>
 					<string>zh.wikipedia.org</string>
+				</dict>
+				<dict>
+					<key>imageURL</key>
+					<string>http://upload.wikimedia.org/wikipedia/commons/4/49/Solanum_melongena_ja02.jpg</string>
+					<key>type</key>
+					<string>wiki</string>
+					<key>url</key>
+					<string>http://en.wikipedia.org/wiki/Eggplant</string>
+					<key>title</key>
+					<string>Eggplant</string>
+					<key>detail</key>
+					<string>The eggplant, brinjal eggplant, aubergine, melongene, brinjal or guinea squash (Solanum melongena) is a plant of the family Solanaceae (also known as the nightshades) and genus Solanum. It bears a fruit of the same name, commonly used in cooking. As a nightshade, it is closely related to the tomato and potato. It was domesticated in India from Solanum incanum</string>
+					<key>sourceURL</key>
+					<string>en.wikipedia.org</string>
 				</dict>
 				<dict>
 					<key>imageURL</key>
