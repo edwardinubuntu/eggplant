@@ -57,7 +57,7 @@
   [self.view addSubview:self.resultLabel];
   
   self.view.frame = CGRectMake(0, 0, kTableViewFrameSizeWidth, kTableViewFrameSizeHeight);
-  self.view.backgroundColor = [UIColor whiteColor];
+  self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"info-bg"]];
   
   _privateTranslationModel = [[EPPrivateTranslateModel alloc] init];
   _yknowlegedSearchModel = [[EPYKnowledgeSearchModel alloc] init];
