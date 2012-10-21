@@ -5,13 +5,13 @@
   Copyright (c) 2012年 Polydice Inc. All rights reserved. */
 
 /* About */
-"About" = "書名";
+"About" = "封面";
 
 /* Home */
 "Home" = "主題";
 
 /* Sections */
-"Sections" = "\a目錄";
+"Sections" = "a目錄";
 
 /* Search */
 "Search Placeholder" = "搜尋...";

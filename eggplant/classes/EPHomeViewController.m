@@ -726,19 +726,25 @@ CGFloat smallMoving = 25;
 - (UIView<NIPagingScrollViewPage> *)pagingScrollView:(NIPagingScrollView *)pagingScrollView pageViewForIndex:(NSInteger)pageIndex {
   
   EPScrollPageView *contentHeaderView = [[EPScrollPageView alloc] initWithFrame:CGRectMake(0, 0, pagingScrollView.frame.size.width,pagingScrollView.frame.size.height)];
-  [contentHeaderView setBackgroundColor:[UIColor lightGrayColor]];
+  [contentHeaderView setBackgroundColor:[UIColor whiteColor]];
   
   NSInteger termIndex = pageIndex - kCountAbout - kCountHome;
   switch (pageIndex) {
     case kIndexAbout: {
-      UILabel *contentHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 36)];
-      contentHeaderLabel.textAlignment = UITextAlignmentCenter;
-      contentHeaderLabel.text = [NSString stringWithFormat:@"Content %i", pageIndex];
-      contentHeaderLabel.textColor = [UIColor whiteColor];
-      contentHeaderLabel.backgroundColor = [UIColor grayColor];
-      contentHeaderLabel.center = contentHeaderView.center;
-      [contentHeaderView addSubview:contentHeaderLabel];
+      UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cover"]];
+      [imageView sizeToFit];
+      imageView.center = contentHeaderView.center;
+      [contentHeaderView addSubview:imageView];
       
+      UILabel *coverLabel = [[UILabel alloc] init];
+      coverLabel.text = @"Edward's WikiIngredients";
+      coverLabel.frame = CGRectMake(0, 0, 300, 44);
+      coverLabel.textColor = [UIColor whiteColor];
+      coverLabel.textAlignment = UITextAlignmentCenter;
+      coverLabel.font = [UIFont boldSystemFontOfSize:20.f];
+      coverLabel.backgroundColor = [UIColor clearColor];
+      coverLabel.center = contentHeaderView.center;
+      [contentHeaderView addSubview:coverLabel];
       
       // Add Acknowledgements
       UIButton *knowledgementsInfoButton = [UIButton buttonWithType:UIButtonTypeInfoDark];

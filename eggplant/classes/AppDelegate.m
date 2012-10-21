@@ -30,7 +30,7 @@
   dispatch_semaphore_t splashShown = dispatch_semaphore_create(0);
   
   // Hide splash after animation
-  double delayInSeconds = 1.5;
+  double delayInSeconds = 3;
   dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
   dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
     dispatch_semaphore_signal(splashShown);
