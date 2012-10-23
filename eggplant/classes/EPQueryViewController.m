@@ -213,7 +213,9 @@
     [tempSelf showQueryResultCanEat:checkCategoryPass withKeyword:tempKeyowrd];
     
   } loadWithError:^(NSError *error) {
-    NIDPRINT(@"testSearchEnglish got Error %@", error.localizedDescription);
+    NIDPRINT(@"yknowlegedSearchModel got Error %@", error.localizedDescription);
+    tempSelf.retryButton.hidden = NO;
+    tempSelf.resultLabel.text = error.localizedDescription;
   }];
 }
 

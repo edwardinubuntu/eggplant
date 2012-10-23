@@ -17,6 +17,14 @@
 		1C35938D163368DB0083427E /* Pods-Acknowledgements.markdown in Resources */ = {isa = PBXBuildFile; fileRef = 1C35938C163368DB0083427E /* Pods-Acknowledgements.markdown */; };
 		1C5F252216339BC100D07A6E /* cover.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C5F252016339BC100D07A6E /* cover.png */; };
 		1C5F252316339BC100D07A6E /* cover@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C5F252116339BC100D07A6E /* cover@2x.png */; };
+		1C7750661636EA950068E88E /* Blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C77505E1636EA950068E88E /* Blue.png */; };
+		1C7750671636EA950068E88E /* Blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C77505F1636EA950068E88E /* Blue@2x.png */; };
+		1C7750681636EA950068E88E /* Red.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C7750601636EA950068E88E /* Red.png */; };
+		1C7750691636EA950068E88E /* Red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C7750611636EA950068E88E /* Red@2x.png */; };
+		1C77506A1636EA950068E88E /* Tick.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C7750621636EA950068E88E /* Tick.png */; };
+		1C77506B1636EA950068E88E /* Tick@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C7750631636EA950068E88E /* Tick@2x.png */; };
+		1C77506C1636EA950068E88E /* Warning.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C7750641636EA950068E88E /* Warning.png */; };
+		1C77506D1636EA950068E88E /* Warning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C7750651636EA950068E88E /* Warning@2x.png */; };
 		1C8784D2162A56EA005D3672 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8784D1162A56EA005D3672 /* UIKit.framework */; };
 		1C8784D4162A56EA005D3672 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8784D3162A56EA005D3672 /* Foundation.framework */; };
 		1C8784D6162A56EA005D3672 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8784D5162A56EA005D3672 /* CoreGraphics.framework */; };
@@ -294,6 +302,14 @@
 		1C35938C163368DB0083427E /* Pods-Acknowledgements.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "Pods-Acknowledgements.markdown"; path = "Pods/Pods-Acknowledgements.markdown"; sourceTree = SOURCE_ROOT; };
 		1C5F252016339BC100D07A6E /* cover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cover.png; sourceTree = "<group>"; };
 		1C5F252116339BC100D07A6E /* cover@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cover@2x.png"; sourceTree = "<group>"; };
+		1C77505E1636EA950068E88E /* Blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue.png; sourceTree = "<group>"; };
+		1C77505F1636EA950068E88E /* Blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Blue@2x.png"; sourceTree = "<group>"; };
+		1C7750601636EA950068E88E /* Red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Red.png; sourceTree = "<group>"; };
+		1C7750611636EA950068E88E /* Red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Red@2x.png"; sourceTree = "<group>"; };
+		1C7750621636EA950068E88E /* Tick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tick.png; sourceTree = "<group>"; };
+		1C7750631636EA950068E88E /* Tick@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Tick@2x.png"; sourceTree = "<group>"; };
+		1C7750641636EA950068E88E /* Warning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Warning.png; sourceTree = "<group>"; };
+		1C7750651636EA950068E88E /* Warning@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Warning@2x.png"; sourceTree = "<group>"; };
 		1C8784CD162A56EA005D3672 /* Ingredients.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ingredients.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C8784D1162A56EA005D3672 /* UIKit.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1C8784D3162A56EA005D3672 /* Foundation.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -730,6 +746,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1C77505D1636EA950068E88E /* infopanel */ = {
+			isa = PBXGroup;
+			children = (
+				1C77505E1636EA950068E88E /* Blue.png */,
+				1C77505F1636EA950068E88E /* Blue@2x.png */,
+				1C7750601636EA950068E88E /* Red.png */,
+				1C7750611636EA950068E88E /* Red@2x.png */,
+				1C7750621636EA950068E88E /* Tick.png */,
+				1C7750631636EA950068E88E /* Tick@2x.png */,
+				1C7750641636EA950068E88E /* Warning.png */,
+				1C7750651636EA950068E88E /* Warning@2x.png */,
+			);
+			path = infopanel;
+			sourceTree = "<group>";
+		};
 		1C8784C2162A56EA005D3672 = {
 			isa = PBXGroup;
 			children = (
@@ -816,6 +847,7 @@
 		1C878514162A5901005D3672 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				1C77505D1636EA950068E88E /* infopanel */,
 				1C5F252016339BC100D07A6E /* cover.png */,
 				1C5F252116339BC100D07A6E /* cover@2x.png */,
 				B6A4C019163377B2007F9D29 /* info-bg.png */,
@@ -1665,6 +1697,14 @@
 				B6A4C01C163377B2007F9D29 /* info-bg@2x.png in Resources */,
 				1C5F252216339BC100D07A6E /* cover.png in Resources */,
 				1C5F252316339BC100D07A6E /* cover@2x.png in Resources */,
+				1C7750661636EA950068E88E /* Blue.png in Resources */,
+				1C7750671636EA950068E88E /* Blue@2x.png in Resources */,
+				1C7750681636EA950068E88E /* Red.png in Resources */,
+				1C7750691636EA950068E88E /* Red@2x.png in Resources */,
+				1C77506A1636EA950068E88E /* Tick.png in Resources */,
+				1C77506B1636EA950068E88E /* Tick@2x.png in Resources */,
+				1C77506C1636EA950068E88E /* Warning.png in Resources */,
+				1C77506D1636EA950068E88E /* Warning@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

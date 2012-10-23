@@ -23,6 +23,7 @@
 #import "EPIQEnginesViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "EPAcknowledgementsViewController.h"
+#import <MKInfoPanel/MKInfoPanel.h>
 
 @interface EPHomeViewController ()
 
@@ -200,6 +201,7 @@ CGFloat smallMoving = 25;
   self.privateTranslateModel.keyword = searchingTerm;
   self.privateTranslateModel.sourceLang = @"zh-TW";
   self.privateTranslateModel.targetLang = @"en";
+  
   [self.privateTranslateModel loadMore:NO didFinishLoad:^{
     NSMutableArray *sources = [[NSMutableArray alloc] init];
     
@@ -234,7 +236,10 @@ CGFloat smallMoving = 25;
   __block EPHomeViewController *tempSelf = self;
   __block NSMutableDictionary *tempTermWithDataDict = termWithDataDict;
   self.recipesSearchModel.text = searchingTerm;
+  
+  __block MKInfoPanel *tempInfoPanel = [MKInfoPanel showPanelInView:self.view type:MKInfoPanelTypeInfo title:NSLocalizedString(@"Prepare knowledge", @"Prepare knowledge") subtitle:NSLocalizedString(@"Looking on iCook....", @"Looking on iCook....")];
   [self.recipesSearchModel loadMore:NO didFinishLoad:^{
+    [tempInfoPanel hidePanel];
     NSMutableArray *sources = [[NSMutableArray alloc] init];
     for (ICRecipe *eachRecipe in tempSelf.recipesSearchModel.recipes) {
       NSMutableDictionary *recipeDict = [[NSMutableDictionary alloc] init];
@@ -269,6 +274,7 @@ CGFloat smallMoving = 25;
     [tempSelf.tableView reloadData];
   } loadWithError:^(NSError *error) {
     // Handle Error
+    [tempInfoPanel hidePanel];
   }];
 }
 
@@ -277,7 +283,9 @@ CGFloat smallMoving = 25;
   __block EPHomeViewController *tempSelf = self;
   __block NSMutableDictionary *tempTermWithDataDict = termWithDataDict;
   self.instgramTagsMediaModel.keyword = searchingTerm;
+  __block MKInfoPanel *tempInfoPanel = [MKInfoPanel showPanelInView:self.view type:MKInfoPanelTypeInfo title:NSLocalizedString(@"Prepare knowledge", @"Prepare knowledge") subtitle:NSLocalizedString(@"Looking on Instagram....", @"Looking on Instagram....")];
   [self.instgramTagsMediaModel loadMore:NO didFinishLoad:^{
+    [tempInfoPanel hidePanel];
     NSMutableArray *sources = [[NSMutableArray alloc] init];
     for (EPInstagram *eachInstagram in tempSelf.instgramTagsMediaModel.instagrams) {
       NSMutableDictionary *knowDict = [[NSMutableDictionary alloc] init];
@@ -313,6 +321,7 @@ CGFloat smallMoving = 25;
     [tempSelf.tableView reloadData];
   } loadWithError:^(NSError *error) {
     // Handle Error
+    [tempInfoPanel hidePanel];
   }];
 }
 
@@ -321,7 +330,10 @@ CGFloat smallMoving = 25;
     __block EPHomeViewController *tempSelf = self;
     __block NSMutableDictionary *tempTermWithDataDict = termWithDataDict;
     self.yknowledgeSearchModel.keywords = searchingTerm;
+  
+  __block MKInfoPanel *tempInfoPanel = [MKInfoPanel showPanelInView:self.view type:MKInfoPanelTypeInfo title:NSLocalizedString(@"Prepare knowledge", @"Prepare knowledge") subtitle:NSLocalizedString(@"Looking on Yahoo! Answer....", @"Looking on Yahoo! Answer....")];
     [self.yknowledgeSearchModel loadMore:NO didFinishLoad:^{
+      [tempInfoPanel hidePanel];
         NSMutableArray *sources = [[NSMutableArray alloc] init];
         for (EPYKnowledge *eachKnow in tempSelf.yknowledgeSearchModel.knowledges) {
             NSMutableDictionary *knowDict = [[NSMutableDictionary alloc] init];
@@ -358,6 +370,7 @@ CGFloat smallMoving = 25;
         [tempSelf.tableView reloadData];
     } loadWithError:^(NSError *error) {
         // Handle Error
+      [tempInfoPanel hidePanel];
     }];
 }
 
@@ -737,7 +750,7 @@ CGFloat smallMoving = 25;
       [contentHeaderView addSubview:imageView];
       
       UILabel *coverLabel = [[UILabel alloc] init];
-      coverLabel.text = @"Edward's WikiIngredients";
+      coverLabel.text = @"WikiIngredients";
       coverLabel.frame = CGRectMake(0, 0, 300, 44);
       coverLabel.textColor = [UIColor whiteColor];
       coverLabel.textAlignment = UITextAlignmentCenter;
