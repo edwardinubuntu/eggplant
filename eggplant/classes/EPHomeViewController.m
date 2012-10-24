@@ -237,7 +237,7 @@ CGFloat smallMoving = 25;
   __block NSMutableDictionary *tempTermWithDataDict = termWithDataDict;
   self.recipesSearchModel.text = searchingTerm;
   
-  __block MKInfoPanel *tempInfoPanel = [MKInfoPanel showPanelInView:self.view type:MKInfoPanelTypeInfo title:NSLocalizedString(@"Prepare knowledge", @"Prepare knowledge") subtitle:NSLocalizedString(@"Looking on iCook....", @"Looking on iCook....")];
+  __block MKInfoPanel *tempInfoPanel = [MKInfoPanel showPanelInView:self.view type:MKInfoPanelTypeInfo title:[NSString stringWithFormat:NSLocalizedString(@"Prepare knowledge", @"Prepare knowledge"), searchingTerm] subtitle:NSLocalizedString(@"Looking on iCook....", @"Looking on iCook....")];
   [self.recipesSearchModel loadMore:NO didFinishLoad:^{
     [tempInfoPanel hidePanel];
     NSMutableArray *sources = [[NSMutableArray alloc] init];
@@ -283,7 +283,7 @@ CGFloat smallMoving = 25;
   __block EPHomeViewController *tempSelf = self;
   __block NSMutableDictionary *tempTermWithDataDict = termWithDataDict;
   self.instgramTagsMediaModel.keyword = searchingTerm;
-  __block MKInfoPanel *tempInfoPanel = [MKInfoPanel showPanelInView:self.view type:MKInfoPanelTypeInfo title:NSLocalizedString(@"Prepare knowledge", @"Prepare knowledge") subtitle:NSLocalizedString(@"Looking on Instagram....", @"Looking on Instagram....")];
+  __block MKInfoPanel *tempInfoPanel = [MKInfoPanel showPanelInView:self.view type:MKInfoPanelTypeInfo title:[NSString stringWithFormat:NSLocalizedString(@"Prepare knowledge", @"Prepare knowledge"), searchingTerm] subtitle:NSLocalizedString(@"Looking on Instagram....", @"Looking on Instagram....")];
   [self.instgramTagsMediaModel loadMore:NO didFinishLoad:^{
     [tempInfoPanel hidePanel];
     NSMutableArray *sources = [[NSMutableArray alloc] init];
@@ -331,7 +331,7 @@ CGFloat smallMoving = 25;
     __block NSMutableDictionary *tempTermWithDataDict = termWithDataDict;
     self.yknowledgeSearchModel.keywords = searchingTerm;
   
-  __block MKInfoPanel *tempInfoPanel = [MKInfoPanel showPanelInView:self.view type:MKInfoPanelTypeInfo title:NSLocalizedString(@"Prepare knowledge", @"Prepare knowledge") subtitle:NSLocalizedString(@"Looking on Yahoo! Answer....", @"Looking on Yahoo! Answer....")];
+  __block MKInfoPanel *tempInfoPanel = [MKInfoPanel showPanelInView:self.view type:MKInfoPanelTypeInfo title:[NSString stringWithFormat:NSLocalizedString(@"Prepare knowledge", @"Prepare knowledge"), searchingTerm] subtitle:NSLocalizedString(@"Looking on Yahoo! Answer....", @"Looking on Yahoo! Answer....")];
     [self.yknowledgeSearchModel loadMore:NO didFinishLoad:^{
       [tempInfoPanel hidePanel];
         NSMutableArray *sources = [[NSMutableArray alloc] init];
