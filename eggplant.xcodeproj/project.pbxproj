@@ -61,12 +61,6 @@
 		1CB0745116319CBC0028E3C9 /* NSDictionary+ICObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0745016319CBC0028E3C9 /* NSDictionary+ICObjects.m */; };
 		1CB0747816319CEF0028E3C9 /* ICUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0745516319CEF0028E3C9 /* ICUser.m */; };
 		1CB0747916319CEF0028E3C9 /* ICRecipe.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0745716319CEF0028E3C9 /* ICRecipe.m */; };
-		1CB0747A16319CEF0028E3C9 /* ICList.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0745916319CEF0028E3C9 /* ICList.m */; };
-		1CB0747B16319CEF0028E3C9 /* ICDish.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0745B16319CEF0028E3C9 /* ICDish.m */; };
-		1CB0747C16319CEF0028E3C9 /* ICStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0745D16319CEF0028E3C9 /* ICStep.m */; };
-		1CB0747D16319CEF0028E3C9 /* ICIngredient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0745F16319CEF0028E3C9 /* ICIngredient.m */; };
-		1CB0747E16319CEF0028E3C9 /* ICCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0746116319CEF0028E3C9 /* ICCategory.m */; };
-		1CB0747F16319CEF0028E3C9 /* ICUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0746316319CEF0028E3C9 /* ICUpload.m */; };
 		1CB0748116319CEF0028E3C9 /* ICPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0746716319CEF0028E3C9 /* ICPhoto.m */; };
 		1CB0748816319CEF0028E3C9 /* ICIngredientTerm.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0747516319CEF0028E3C9 /* ICIngredientTerm.m */; };
 		1CB0748D16319D6E0028E3C9 /* ICRecipesSearchModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0748C16319D6E0028E3C9 /* ICRecipesSearchModelTests.m */; };
@@ -119,6 +113,9 @@
 		1CC40AE2162F57BF00DB04F0 /* termsDefaultStorage.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1CC40AE1162F57BF00DB04F0 /* termsDefaultStorage.plist */; };
 		1CC40AE5162F5F4300DB04F0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1CC40AE7162F5F4300DB04F0 /* Localizable.strings */; };
 		1CC40AF8162F711600DB04F0 /* EPScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC40AF7162F711600DB04F0 /* EPScrollPageView.m */; };
+		1CFE6F3A164085B200F9D3B8 /* EPInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFE6F39164085B100F9D3B8 /* EPInformation.m */; };
+		1CFE6F3D1640861300F9D3B8 /* EPTerm.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFE6F3C1640861300F9D3B8 /* EPTerm.m */; };
+		1CFE6F411640873300F9D3B8 /* EPSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFE6F401640873300F9D3B8 /* EPSource.m */; };
 		474FCF439F934B07B7BB343D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC5336F5AC004F25805C6DBC /* libPods.a */; };
 		B610E6751632708400114853 /* au_none.c in Sources */ = {isa = PBXBuildFile; fileRef = B610E5F11632708300114853 /* au_none.c */; };
 		B610E6761632708400114853 /* au_streaming.c in Sources */ = {isa = PBXBuildFile; fileRef = B610E5F21632708300114853 /* au_streaming.c */; };
@@ -367,18 +364,6 @@
 		1CB0745516319CEF0028E3C9 /* ICUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICUser.m; sourceTree = "<group>"; };
 		1CB0745616319CEF0028E3C9 /* ICRecipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICRecipe.h; sourceTree = "<group>"; };
 		1CB0745716319CEF0028E3C9 /* ICRecipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICRecipe.m; sourceTree = "<group>"; };
-		1CB0745816319CEF0028E3C9 /* ICList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICList.h; sourceTree = "<group>"; };
-		1CB0745916319CEF0028E3C9 /* ICList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICList.m; sourceTree = "<group>"; };
-		1CB0745A16319CEF0028E3C9 /* ICDish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICDish.h; sourceTree = "<group>"; };
-		1CB0745B16319CEF0028E3C9 /* ICDish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICDish.m; sourceTree = "<group>"; };
-		1CB0745C16319CEF0028E3C9 /* ICStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICStep.h; sourceTree = "<group>"; };
-		1CB0745D16319CEF0028E3C9 /* ICStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICStep.m; sourceTree = "<group>"; };
-		1CB0745E16319CEF0028E3C9 /* ICIngredient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICIngredient.h; sourceTree = "<group>"; };
-		1CB0745F16319CEF0028E3C9 /* ICIngredient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICIngredient.m; sourceTree = "<group>"; };
-		1CB0746016319CEF0028E3C9 /* ICCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICCategory.h; sourceTree = "<group>"; };
-		1CB0746116319CEF0028E3C9 /* ICCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICCategory.m; sourceTree = "<group>"; };
-		1CB0746216319CEF0028E3C9 /* ICUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICUpload.h; sourceTree = "<group>"; };
-		1CB0746316319CEF0028E3C9 /* ICUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICUpload.m; sourceTree = "<group>"; };
 		1CB0746616319CEF0028E3C9 /* ICPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICPhoto.h; sourceTree = "<group>"; };
 		1CB0746716319CEF0028E3C9 /* ICPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICPhoto.m; sourceTree = "<group>"; };
 		1CB0747416319CEF0028E3C9 /* ICIngredientTerm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICIngredientTerm.h; sourceTree = "<group>"; };
@@ -455,6 +440,12 @@
 		1CC40AEA162F5F6100DB04F0 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		1CC40AF6162F711600DB04F0 /* EPScrollPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPScrollPageView.h; sourceTree = "<group>"; };
 		1CC40AF7162F711600DB04F0 /* EPScrollPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPScrollPageView.m; sourceTree = "<group>"; };
+		1CFE6F38164085B100F9D3B8 /* EPInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPInformation.h; sourceTree = "<group>"; };
+		1CFE6F39164085B100F9D3B8 /* EPInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPInformation.m; sourceTree = "<group>"; };
+		1CFE6F3B1640861300F9D3B8 /* EPTerm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPTerm.h; sourceTree = "<group>"; };
+		1CFE6F3C1640861300F9D3B8 /* EPTerm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPTerm.m; sourceTree = "<group>"; };
+		1CFE6F3F1640873300F9D3B8 /* EPSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPSource.h; sourceTree = "<group>"; };
+		1CFE6F401640873300F9D3B8 /* EPSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPSource.m; sourceTree = "<group>"; };
 		3D2E77B0AA1D4CB683DB4B3C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		B610E5C91632708300114853 /* cst_alloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cst_alloc.h; sourceTree = "<group>"; };
 		B610E5CA1632708300114853 /* cst_audio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cst_audio.h; sourceTree = "<group>"; };
@@ -949,16 +940,13 @@
 			isa = PBXGroup;
 			children = (
 				1CB0745216319CD20028E3C9 /* iCook */,
-				1C878532162A6549005D3672 /* EPYKnowledge.h */,
-				1C878533162A6549005D3672 /* EPYKnowledge.m */,
-				1CC40AC7162F056500DB04F0 /* EPWikiTerm.h */,
-				1CC40AC8162F056500DB04F0 /* EPWikiTerm.m */,
-				1CC40ACA162F058400DB04F0 /* EPWikiLangLink.h */,
-				1CC40ACB162F058400DB04F0 /* EPWikiLangLink.m */,
-				1CB0742816316ADA0028E3C9 /* EPImage.h */,
-				1CB0742916316ADA0028E3C9 /* EPImage.m */,
-				1CB0742B16316B260028E3C9 /* EPInstagram.h */,
-				1CB0742C16316B260028E3C9 /* EPInstagram.m */,
+				1CFE6F3E1640868000F9D3B8 /* Source */,
+				1CFE6F38164085B100F9D3B8 /* EPInformation.h */,
+				1CFE6F39164085B100F9D3B8 /* EPInformation.m */,
+				1CFE6F3B1640861300F9D3B8 /* EPTerm.h */,
+				1CFE6F3C1640861300F9D3B8 /* EPTerm.m */,
+				1CFE6F3F1640873300F9D3B8 /* EPSource.h */,
+				1CFE6F401640873300F9D3B8 /* EPSource.m */,
 			);
 			name = "Data Objects";
 			sourceTree = "<group>";
@@ -1033,18 +1021,6 @@
 				1CB0745516319CEF0028E3C9 /* ICUser.m */,
 				1CB0745616319CEF0028E3C9 /* ICRecipe.h */,
 				1CB0745716319CEF0028E3C9 /* ICRecipe.m */,
-				1CB0745816319CEF0028E3C9 /* ICList.h */,
-				1CB0745916319CEF0028E3C9 /* ICList.m */,
-				1CB0745A16319CEF0028E3C9 /* ICDish.h */,
-				1CB0745B16319CEF0028E3C9 /* ICDish.m */,
-				1CB0745C16319CEF0028E3C9 /* ICStep.h */,
-				1CB0745D16319CEF0028E3C9 /* ICStep.m */,
-				1CB0745E16319CEF0028E3C9 /* ICIngredient.h */,
-				1CB0745F16319CEF0028E3C9 /* ICIngredient.m */,
-				1CB0746016319CEF0028E3C9 /* ICCategory.h */,
-				1CB0746116319CEF0028E3C9 /* ICCategory.m */,
-				1CB0746216319CEF0028E3C9 /* ICUpload.h */,
-				1CB0746316319CEF0028E3C9 /* ICUpload.m */,
 				1CB0746616319CEF0028E3C9 /* ICPhoto.h */,
 				1CB0746716319CEF0028E3C9 /* ICPhoto.m */,
 				1CB0747416319CEF0028E3C9 /* ICIngredientTerm.h */,
@@ -1162,6 +1138,23 @@
 				1CC40AF7162F711600DB04F0 /* EPScrollPageView.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		1CFE6F3E1640868000F9D3B8 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				1C878532162A6549005D3672 /* EPYKnowledge.h */,
+				1C878533162A6549005D3672 /* EPYKnowledge.m */,
+				1CC40AC7162F056500DB04F0 /* EPWikiTerm.h */,
+				1CC40AC8162F056500DB04F0 /* EPWikiTerm.m */,
+				1CC40ACA162F058400DB04F0 /* EPWikiLangLink.h */,
+				1CC40ACB162F058400DB04F0 /* EPWikiLangLink.m */,
+				1CB0742816316ADA0028E3C9 /* EPImage.h */,
+				1CB0742916316ADA0028E3C9 /* EPImage.m */,
+				1CB0742B16316B260028E3C9 /* EPInstagram.h */,
+				1CB0742C16316B260028E3C9 /* EPInstagram.m */,
+			);
+			name = Source;
 			sourceTree = "<group>";
 		};
 		B610E5C116326F7D00114853 /* Dependencies */ = {
@@ -1781,12 +1774,6 @@
 				1CB0745116319CBC0028E3C9 /* NSDictionary+ICObjects.m in Sources */,
 				1CB0747816319CEF0028E3C9 /* ICUser.m in Sources */,
 				1CB0747916319CEF0028E3C9 /* ICRecipe.m in Sources */,
-				1CB0747A16319CEF0028E3C9 /* ICList.m in Sources */,
-				1CB0747B16319CEF0028E3C9 /* ICDish.m in Sources */,
-				1CB0747C16319CEF0028E3C9 /* ICStep.m in Sources */,
-				1CB0747D16319CEF0028E3C9 /* ICIngredient.m in Sources */,
-				1CB0747E16319CEF0028E3C9 /* ICCategory.m in Sources */,
-				1CB0747F16319CEF0028E3C9 /* ICUpload.m in Sources */,
 				1CB0748116319CEF0028E3C9 /* ICPhoto.m in Sources */,
 				1CB0748816319CEF0028E3C9 /* ICIngredientTerm.m in Sources */,
 				1CB0749016319EDA0028E3C9 /* EPICookCell.m in Sources */,
@@ -1918,6 +1905,9 @@
 				B6A4BFE11632F518007F9D29 /* ICIngredientTermModel.m in Sources */,
 				B6A4BFF316333984007F9D29 /* EPSplashViewController.m in Sources */,
 				1C35938A163367390083427E /* EPAcknowledgementsViewController.m in Sources */,
+				1CFE6F3A164085B200F9D3B8 /* EPInformation.m in Sources */,
+				1CFE6F3D1640861300F9D3B8 /* EPTerm.m in Sources */,
+				1CFE6F411640873300F9D3B8 /* EPSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

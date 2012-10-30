@@ -56,16 +56,13 @@ typedef enum {
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UITableView *termBrowseTableView;
 @property (nonatomic, strong) NSMutableDictionary *recycledTableView;
-
 @property (nonatomic, strong) EPSearchKeywordViewController *searchKeywordViewController;
-
 @property (nonatomic, strong) EPQueryViewController *queryViewController;
 
+// Query API Model
 @property (nonatomic, strong) EPYKnowledgeSearchModel *yknowledgeSearchModel;
 @property (nonatomic, strong) ICRecipesSearchModel *recipesSearchModel;
-
 @property (nonatomic, strong) EPPrivateTranslateModel *privateTranslateModel;
-
 @property (nonatomic, strong) EPInstagramTagsMediaModel *instgramTagsMediaModel;
 
 @end
