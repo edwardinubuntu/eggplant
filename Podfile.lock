@@ -8,7 +8,6 @@ PODS:
 - DDProgressView (0.1)
 - DTCoreText (1.0.2)
 - MJPopupViewController (0.3)
-- MKInfoPanel (0.0.1)
 - Nimbus/AttributedLabel (0.9.3):
   - Nimbus/Core
 - Nimbus/Core (0.9.3)
@@ -26,6 +25,7 @@ PODS:
 - Nimbus/WebController (0.9.3):
   - Nimbus/Core
 - SDURLCache (1.2)
+- SVProgressHUD (0.7)
 - iCarousel (1.7.2)
 - libffi (3.0.11)
 
@@ -36,7 +36,6 @@ DEPENDENCIES:
 - DDProgressView
 - DTCoreText
 - MJPopupViewController
-- MKInfoPanel
 - Nimbus/AttributedLabel (= 0.9.3)
 - Nimbus/Core (= 0.9.3)
 - Nimbus/Models (= 0.9.3)
@@ -46,6 +45,7 @@ DEPENDENCIES:
 - Nimbus/Photos (= 0.9.3)
 - Nimbus/WebController (= 0.9.3)
 - SDURLCache
+- SVProgressHUD (= 0.7)
 - iCarousel
 
 SPEC CHECKSUMS:
@@ -55,7 +55,6 @@ SPEC CHECKSUMS:
   DDProgressView: 6dd7fa77900e3dc140b816dddc5616382c124b54
   DTCoreText: 4f2b9d62554c62dd7cd412c9f50ece1e70a548b9
   MJPopupViewController: b16cf4fdf53fef2c361bb33c0be0ec8ee5527720
-  MKInfoPanel: c425bb1c88e90a36af78845677b60a252a53c5e4
   Nimbus/AttributedLabel: 6a35688977607cda01be9027699a9e64bd08fb99
   Nimbus/Core: 6a35688977607cda01be9027699a9e64bd08fb99
   Nimbus/Models: 6a35688977607cda01be9027699a9e64bd08fb99
@@ -65,6 +64,7 @@ SPEC CHECKSUMS:
   Nimbus/Photos: 6a35688977607cda01be9027699a9e64bd08fb99
   Nimbus/WebController: 6a35688977607cda01be9027699a9e64bd08fb99
   SDURLCache: 2208f93474756c694eed002fa7e3ab62ff3c6468
+  SVProgressHUD: f37a38ee4d9f9a8d57f2f22c702f994ecc59a364
   iCarousel: 9786dc44e3fe4fb1d143db83443cfa7794687a49
   libffi: 8a1d9ba43c0c84b546b42c6f742714e73aa07ae1
 

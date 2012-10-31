@@ -34,15 +34,30 @@
 /* Acknowledgements */
 "Setting Acknowledgements" = "致謝";
 
-/* Looking on iCook.... */
-"Looking on iCook...." = "查詢 iCook 中...";
-
-/* Looking on Instagram.... */
-"Looking on Instagram...." = "查詢 Instagram 中...";
-
-/* Looking on Yahoo! Answer.... */
-"Looking on Yahoo! Answer...." = "查詢 Yahoo! Answer 中...";
-
 /* Prepare knowledge */
-"Prepare knowledge" = "準備%@的資訊";
+"Prepare knowledge" = "Yahoo! 知識+ 查詢%@中";
+
+/* Prepare iCook failure */
+"Prepare iCook failure" = "愛料理準備%@的資訊失敗";
+
+/* Prepare iCook finished */
+"Prepare iCook finished" = "愛料理準備%@的資訊完畢";
+
+/* Prepare iCook */
+"Prepare iCook" = "愛料理 查詢%@中";
+
+/* Prepare Instagream failure */
+"Prepare Instagream failure" = "Instagram 準備%@的資訊失敗";
+
+/* Prepare Instagream finished */
+"Prepare Instagream finished" = "Instagram 準備%@的資訊完畢";
+
+/* Prepare Instagream */
+"Prepare Instagream" = "Instagram 查詢%@中";
+
+/* Prepare knowledge failure */
+"Prepare knowledge failure" = "Yahoo! 知識+ 準備%@的資訊失敗";
+
+/* Prepare knowledge finished */
+"Prepare knowledge finished" = "Yahoo! 知識+ 準備%@的資訊完畢";
 

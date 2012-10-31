@@ -23,7 +23,7 @@
 #import "EPIQEnginesViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "EPAcknowledgementsViewController.h"
-#import <MKInfoPanel/MKInfoPanel.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface EPHomeViewController ()
 
@@ -35,6 +35,8 @@ CGFloat adjustX = 0;
 CGFloat spacing = 80;
 CGFloat backViewHeight = 30;
 CGFloat smallMoving = 25;
+
+#define kSVProgressHUDAfterDelaySecs  1
 
 #define kCountAbout 1
 #define kCountHome  1
@@ -223,9 +225,9 @@ CGFloat smallMoving = 25;
   __block EPHomeViewController *tempSelf = self;
   self.recipesSearchModel.text = searchingTerm;
   
-  __block MKInfoPanel *tempInfoPanel = [MKInfoPanel showPanelInView:self.view type:MKInfoPanelTypeInfo title:[NSString stringWithFormat:NSLocalizedString(@"Prepare knowledge", @"Prepare knowledge"), searchingTerm] subtitle:NSLocalizedString(@"Looking on iCook....", @"Looking on iCook....")];
+  [SVProgressHUD showWithStatus:[NSString stringWithFormat:NSLocalizedString(@"Prepare iCook", @"Prepare iCook"), searchingTerm]];
   [self.recipesSearchModel loadMore:NO didFinishLoad:^{
-    [tempInfoPanel hidePanel];
+    [SVProgressHUD dismissWithSuccess:[NSString stringWithFormat:NSLocalizedString(@"Prepare iCook finished", @"Prepare iCook finished"), searchingTerm] afterDelay:kSVProgressHUDAfterDelaySecs];
     NSMutableArray *sources = [[NSMutableArray alloc] init];
     for (ICRecipe *eachRecipe in tempSelf.recipesSearchModel.recipes) {
       EPSource *source = [[EPSource alloc] init];
@@ -248,7 +250,7 @@ CGFloat smallMoving = 25;
     [tempSelf.tableView reloadData];
   } loadWithError:^(NSError *error) {
     // Handle Error
-    [tempInfoPanel hidePanel];
+    [SVProgressHUD dismissWithError:[NSString stringWithFormat:NSLocalizedString(@"Prepare iCook failure", @"Prepare iCook failure"), searchingTerm] afterDelay:kSVProgressHUDAfterDelaySecs];
   }];
 }
 
@@ -256,9 +258,9 @@ CGFloat smallMoving = 25;
   // YKNowledge
   __block EPHomeViewController *tempSelf = self;
   self.instgramTagsMediaModel.keyword = searchingTerm;
-  __block MKInfoPanel *tempInfoPanel = [MKInfoPanel showPanelInView:self.view type:MKInfoPanelTypeInfo title:[NSString stringWithFormat:NSLocalizedString(@"Prepare knowledge", @"Prepare knowledge"), searchingTerm] subtitle:NSLocalizedString(@"Looking on Instagram....", @"Looking on Instagram....")];
+  [SVProgressHUD showWithStatus:[NSString stringWithFormat:NSLocalizedString(@"Prepare Instagream", @"Prepare Instagream"), searchingTerm]];
   [self.instgramTagsMediaModel loadMore:NO didFinishLoad:^{
-    [tempInfoPanel hidePanel];
+    [SVProgressHUD dismissWithSuccess:[NSString stringWithFormat:NSLocalizedString(@"Prepare Instagream finished", @"Prepare Instagream finished"), searchingTerm] afterDelay:kSVProgressHUDAfterDelaySecs];
     NSMutableArray *sources = [[NSMutableArray alloc] init];
     for (EPInstagram *eachInstagram in tempSelf.instgramTagsMediaModel.instagrams) {
       EPSource *source = [[EPSource alloc] init];
@@ -286,7 +288,7 @@ CGFloat smallMoving = 25;
     [tempSelf.tableView reloadData];
   } loadWithError:^(NSError *error) {
     // Handle Error
-    [tempInfoPanel hidePanel];
+    [SVProgressHUD dismissWithError:[NSString stringWithFormat:NSLocalizedString(@"Prepare Instagream failure", @"Prepare Instagream failure"), searchingTerm] afterDelay:kSVProgressHUDAfterDelaySecs];
   }];
 }
 
@@ -295,9 +297,9 @@ CGFloat smallMoving = 25;
   __block EPHomeViewController *tempSelf = self;
   self.yknowledgeSearchModel.keywords = searchingTerm;
   
-  __block MKInfoPanel *tempInfoPanel = [MKInfoPanel showPanelInView:self.view type:MKInfoPanelTypeInfo title:[NSString stringWithFormat:NSLocalizedString(@"Prepare knowledge", @"Prepare knowledge"), searchingTerm] subtitle:NSLocalizedString(@"Looking on Yahoo! Answer....", @"Looking on Yahoo! Answer....")];
+  [SVProgressHUD showWithStatus:[NSString stringWithFormat:NSLocalizedString(@"Prepare knowledge", @"Prepare knowledge"), searchingTerm]];
   [self.yknowledgeSearchModel loadMore:NO didFinishLoad:^{
-    [tempInfoPanel hidePanel];
+    [SVProgressHUD dismissWithSuccess:[NSString stringWithFormat:NSLocalizedString(@"Prepare knowledge finished", @"Prepare knowledge finished"), searchingTerm] afterDelay:kSVProgressHUDAfterDelaySecs];
     NSMutableArray *sources = [[NSMutableArray alloc] init];
     for (EPYKnowledge *eachKnow in tempSelf.yknowledgeSearchModel.knowledges) {
       EPSource *source = [[EPSource alloc] init];
@@ -321,7 +323,7 @@ CGFloat smallMoving = 25;
     [tempSelf.tableView reloadData];
   } loadWithError:^(NSError *error) {
     // Handle Error
-    [tempInfoPanel hidePanel];
+    [SVProgressHUD dismissWithError:[NSString stringWithFormat:NSLocalizedString(@"Prepare knowledge failure", @"Prepare knowledge failure"), searchingTerm] afterDelay:kSVProgressHUDAfterDelaySecs];
   }];
 }
 
