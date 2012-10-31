@@ -10,6 +10,7 @@
 #import "EPViewController.h"
 #import "EPYKnowledgeSearchModel.h"
 #import "EPPrivateTranslateModel.h"
+
 @protocol EPQueryViewControllerDelegate;
 
 @interface EPQueryViewController : EPViewController

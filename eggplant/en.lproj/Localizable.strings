@@ -61,3 +61,9 @@
 /* Prepare knowledge finished */
 "Prepare knowledge finished" = "Yahoo! 知識+ 準備%@的資訊完畢";
 
+/* Searching keyword Done */
+"Searching keyword Done" = "辨識%@完畢";
+
+/* Searching keyword */
+"Searching keyword" = "辨識%@中…";
+

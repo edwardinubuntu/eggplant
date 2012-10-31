@@ -10,6 +10,4 @@
 
 @interface EPViewController : UIViewController
 
-@property (nonatomic, strong) UIActivityIndicatorView *loadingView;
-
 @end

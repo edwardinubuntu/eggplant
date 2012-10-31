@@ -8,6 +8,7 @@
 
 #import "EPQueryViewController.h"
 #import "UIControl+BlocksKit.h"
+#import <SVProgressHUD.h>
 
 @interface EPQueryViewController ()
 
@@ -17,6 +18,8 @@
 
 #define kTableViewFrameSizeHeight 280.f
 #define kTableViewFrameSizeWidth 280.f
+
+#define kSVProgressHUDAfterDelaySecs  3
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -110,18 +113,21 @@
 
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
+  [SVProgressHUD dismiss];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -134,15 +140,6 @@
   if (self.keywords.count > 0) {
     
     didPerFormSearch = YES;
-    
-    if (!self.loadingView) {
-      self.loadingView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    }
-    self.loadingView.frame = CGRectMake(0, 0, 20, 20);
-    self.loadingView.center = CGPointMake(kTableViewFrameSizeWidth / 2, kTableViewFrameSizeHeight / 2);
-    self.loadingView.hidden = NO;
-    [self.loadingView startAnimating];
-    [self.view bringSubviewToFront:self.loadingView];
     
     self.doneButton.hidden = YES;
     self.cancelButton.hidden = YES;
@@ -183,6 +180,10 @@
 }
 
 - (void)queryTermForKnowledge:(NSString *)keyword {
+
+  if (!_yknowlegedSearchModel) {
+    _yknowlegedSearchModel = [[EPYKnowledgeSearchModel alloc] init];
+  }
   
   __block EPQueryViewController *tempSelf = self;
   __block NSString *tempKeyowrd = keyword;
@@ -192,6 +193,7 @@
     [self.keywords removeObjectAtIndex:0];
   }
   
+  [SVProgressHUD showWithStatus:[NSString stringWithFormat:NSLocalizedString(@"Searching keyword", @"Searching keyword"), keyword] maskType:SVProgressHUDMaskTypeGradient];
   [self.yknowlegedSearchModel loadMore:NO didFinishLoad:^{
 
     BOOL checkCategoryPass = NO;
@@ -210,9 +212,11 @@
     }
     
     // Present Result
+    [SVProgressHUD dismissWithSuccess:[NSString stringWithFormat:NSLocalizedString(@"Searching keyword Done", @"Searching keyword Done"), keyword] afterDelay:kSVProgressHUDAfterDelaySecs];
     [tempSelf showQueryResultCanEat:checkCategoryPass withKeyword:tempKeyowrd];
     
   } loadWithError:^(NSError *error) {
+    [SVProgressHUD dismiss];
     NIDPRINT(@"yknowlegedSearchModel got Error %@", error.localizedDescription);
     tempSelf.retryButton.hidden = NO;
     tempSelf.resultLabel.text = error.localizedDescription;
@@ -221,10 +225,7 @@
 
 - (void)showQueryResultCanEat:(BOOL)canEat withKeyword:(NSString *)keyword {
   self.canEatResult = canEat;
-  
-  [self.view addSubview:self.loadingView];
-  [self.loadingView stopAnimating];
-  self.loadingView.hidden = YES;
+
   self.cancelButton.hidden = YES;
   self.doneButton.hidden = YES;
   self.retryButton.hidden = YES;
