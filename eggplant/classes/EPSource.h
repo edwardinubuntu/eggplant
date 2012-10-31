@@ -25,4 +25,6 @@ typedef enum {
 @property (nonatomic, strong) NSString *detail;
 @property (nonatomic, strong) NSNumber *randomNum;
 
+- (NSString *)sourceURLText;
+
 @end

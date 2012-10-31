@@ -50,7 +50,7 @@
 "Prepare Instagream failure" = "Instagram 準備%@的資訊失敗";
 
 /* Prepare Instagream finished */
-"Prepare Instagream finished" = "Instagram 準備%@的資訊完畢";
+"Prepare Instagream finished" = "Instagram 準備%@共%i筆資訊";
 
 /* Prepare Instagream */
 "Prepare Instagream" = "Instagram 查詢%@中";
@@ -65,5 +65,5 @@
 "Searching keyword Done" = "辨識%@完畢";
 
 /* Searching keyword */
-"Searching keyword" = "辨識%@食材中…";
+"Searching keyword" = "辨識%@中…";
 

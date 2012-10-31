@@ -10,6 +10,12 @@
 
 @implementation EPSource
 
+- (NSString *)sourceURLText {
+  NSString *sourceURL = [self.sourceURL.absoluteURL.absoluteString stringByReplacingOccurrencesOfString:@"http://" withString:@""];
+  sourceURL = [sourceURL stringByReplacingOccurrencesOfString:@"https://" withString:@""];
+  return sourceURL;
+}
+
 - (BOOL)isEqual:(id)object {
   if ([object isKindOfClass:[EPSource class]]) {
     EPSource *otherSource = (EPSource *)object;

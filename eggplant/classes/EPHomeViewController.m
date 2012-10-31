@@ -260,8 +260,7 @@ CGFloat smallMoving = 25;
   self.instgramTagsMediaModel.keyword = searchingTerm;
   [SVProgressHUD showWithStatus:[NSString stringWithFormat:NSLocalizedString(@"Prepare Instagream", @"Prepare Instagream"), searchingTerm]];
   [self.instgramTagsMediaModel loadMore:NO didFinishLoad:^{
-    [SVProgressHUD dismissWithSuccess:[NSString stringWithFormat:NSLocalizedString(@"Prepare Instagream finished", @"Prepare Instagream finished"), searchingTerm] afterDelay:kSVProgressHUDAfterDelaySecs];
-    NSMutableArray *sources = [[NSMutableArray alloc] init];
+        NSMutableArray *sources = [[NSMutableArray alloc] init];
     for (EPInstagram *eachInstagram in tempSelf.instgramTagsMediaModel.instagrams) {
       EPSource *source = [[EPSource alloc] init];
       source.type = EPSourceTypeInstagram;
@@ -279,6 +278,9 @@ CGFloat smallMoving = 25;
       
       [sources addObject:source];
     }
+    
+    [SVProgressHUD dismissWithSuccess:[NSString stringWithFormat:NSLocalizedString(@"Prepare Instagream finished", @"Prepare Instagream finished"), searchingTerm, sources.count] afterDelay:kSVProgressHUDAfterDelaySecs];
+
     
     EPTerm *currentTerm = [tempSelf retrieveTermFromName:searchingTerm];
     [currentTerm.sources addObjectsFromArray:sources];
@@ -836,19 +838,19 @@ CGFloat smallMoving = 25;
       switch (source.type) {
         case EPSourceTypeWiki:
           cell = [[EPWikiCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellWithId];
-          ((EPWikiCell *)cell).sourceLabel.text = source.sourceURL.absoluteString;
+          ((EPWikiCell *)cell).sourceLabel.text = source.sourceURLText;
           break;
         case EPSourceTypeiCook:
           cell = [[EPICookCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellWithId];
-          ((EPICookCell *)cell).sourceLabel.text = source.sourceURL.absoluteString;
+          ((EPICookCell *)cell).sourceLabel.text = source.sourceURLText;
           break;
         case  EPSourceTypeInstagram:
           cell = [[EPSourceImageCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellWithId];
-          ((EPSourceImageCell *)cell).sourceLabel.text = source.sourceURL.absoluteString;
+          ((EPSourceImageCell *)cell).sourceLabel.text = source.sourceURLText;
           break;
         case EPSourceTypeYKnowledge:
           cell = [[EPAttributedSourceCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellWithId];
-          ((EPAttributedSourceCell *)cell).sourceLabel.text = source.sourceURL.absoluteString;
+          ((EPAttributedSourceCell *)cell).sourceLabel.text = source.sourceURLText;
         default:
           break;
       }
