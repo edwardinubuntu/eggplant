@@ -9,20 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "ICUser.h"
 #import "ICRecipe.h"
-#import "ICIngredient.h"
-#import "ICStep.h"
-#import "ICList.h"
-#import "ICDish.h"
-#import "ICCategory.h"
 
 @interface NSDictionary (ICObjects)
 
 - (ICRecipe *)extractRecipe;
 - (ICUser *)extractUser;
-- (ICStep *)extractStep;
-- (ICIngredient *)extractIngredient;
-- (ICList *)extractList;
-- (ICDish *)extractDish;
-- (ICCategory *)extractCategory;
 
 @end

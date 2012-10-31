@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "EPInformation.h"
 
 @interface EPTermsStorageManager : NSObject {
 @private
@@ -16,7 +17,7 @@
 + (EPTermsStorageManager *)defaultManager;
 
 @property (nonatomic, strong) NSMutableDictionary *termsFromDefault;
-@property (nonatomic, strong) NSMutableDictionary *termsFromUserSaved;
+@property (nonatomic, strong) EPInformation *informationFromUserSaved;
 
 - (void)load;
 - (void)save;
