@@ -242,6 +242,8 @@ CGFloat smallMoving = 25;
     }
     EPTerm *currentTerm = [tempSelf retrieveTermFromName:searchingTerm];
     [currentTerm.sources addObjectsFromArray:sources];
+    [tempSelf sortWithRandomNum:currentTerm];
+    [tempSelf saveContentData];
     
     [tempSelf.tableView reloadData];
   } loadWithError:^(NSError *error) {
@@ -278,6 +280,8 @@ CGFloat smallMoving = 25;
     
     EPTerm *currentTerm = [tempSelf retrieveTermFromName:searchingTerm];
     [currentTerm.sources addObjectsFromArray:sources];
+    [tempSelf sortWithRandomNum:currentTerm];
+    [tempSelf saveContentData];
     
     [tempSelf.tableView reloadData];
   } loadWithError:^(NSError *error) {
@@ -311,6 +315,8 @@ CGFloat smallMoving = 25;
     
     EPTerm *currentTerm = [tempSelf retrieveTermFromName:searchingTerm];
     [currentTerm.sources addObjectsFromArray:sources];
+    [tempSelf sortWithRandomNum:currentTerm];
+    [tempSelf saveContentData];
 
     [tempSelf.tableView reloadData];
   } loadWithError:^(NSError *error) {
@@ -319,12 +325,12 @@ CGFloat smallMoving = 25;
   }];
 }
 
-- (NSMutableArray *)sortByRandomNum:(NSMutableDictionary *)termWithDataDict {
+- (NSMutableArray *)sortByRandomNum:(EPTerm *)term {
   // Sort
-  NSArray *newSortedArray =  [[termWithDataDict objectForKey:@"sources"] sortedArrayUsingComparator: ^(id obj1, id obj2) {
+  NSArray *newSortedArray =  [term.sources sortedArrayUsingComparator: ^(id obj1, id obj2) {
     
-    NSNumber *p1 = [obj1 objectForKey:@"randomNum"];
-    NSNumber *p2 = [obj2 objectForKey:@"randomNum"];
+    NSNumber *p1 = ((EPSource *)obj1).randomNum;
+    NSNumber *p2 = ((EPSource *)obj2).randomNum;
     
     if (p1.floatValue > p2.floatValue ) {
       return (NSComparisonResult)NSOrderedDescending;
@@ -348,6 +354,15 @@ CGFloat smallMoving = 25;
     }
   }
   return termData;
+}
+
+- (void)sortWithRandomNum:(EPTerm *)searchingTerm {
+  for (EPTerm *eachTerms in self.information.terms) {
+    if ([eachTerms.name isEqualToString:searchingTerm.name]) {
+      eachTerms.sources = [self sortByRandomNum:searchingTerm];
+      break;
+    }
+  }
 }
 
 - (void)checkPerpareQueryAPIData:(EPTerm *)searchingTerm {

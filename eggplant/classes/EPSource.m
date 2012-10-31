@@ -10,6 +10,14 @@
 
 @implementation EPSource
 
+- (BOOL)isEqual:(id)object {
+  if ([object isKindOfClass:[EPSource class]]) {
+    EPSource *otherSource = (EPSource *)object;
+    return [self.title isEqual: otherSource.title] && self.type == otherSource.type && [self.URL isEqual:otherSource.URL];
+  }
+  return NO;
+}
+
 - (NSString *)description {
   NSMutableString *description = [[NSMutableString alloc] init];
   [description appendFormat:@"title: %@, ", self.title];
@@ -29,7 +37,7 @@
     self->_URL = [aDecoder decodeObjectForKey:@"URL"];
     self->_sourceURL = [aDecoder decodeObjectForKey:@"sourceURL"];
     self->_title = [aDecoder decodeObjectForKey:@"title"];
-    self->_detail = [aDecoder decodeObjectForKey:@"defail"];
+    self->_detail = [aDecoder decodeObjectForKey:@"detail"];
     self->_randomNum = [NSNumber numberWithInteger:[aDecoder decodeIntegerForKey:@"randomNum"]];
   }
   return self;
