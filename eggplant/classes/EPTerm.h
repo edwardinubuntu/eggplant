@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface EPTerm : NSObject
+@interface EPTerm : NSObject <NSCoding>
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *key;

@@ -19,6 +19,9 @@
 #import "ICRecipesSearchModel.h"
 #import "EPPrivateTranslateModel.h"
 #import "EPInstagramTagsMediaModel.h"
+#import "EPInformation.h"
+#import "EPTerm.h"
+#import "EPSource.h"
 
 typedef enum {
   EPScrollDirectionTypeNone,
@@ -42,17 +45,14 @@ typedef enum {
   CGFloat lastContentOffset;
 }
 
+@property (nonatomic, strong) EPInformation *information;
+
 @property (nonatomic, strong) iCarousel *headerCarousel;
 @property (nonatomic, strong) UIButton *searchButton;
 @property (nonatomic, strong) UIView *buttonSectionsView;
 @property (nonatomic, strong) UIButton *cameraButton;
 @property (nonatomic, strong) UIButton *writeButton;
-
-@property (nonatomic, strong) NSMutableArray *headerTermKeys;
-@property (nonatomic, strong) NSMutableArray *contentDictData;
-
 @property (nonatomic, strong) NIPagingScrollView *pagingScrollView;
-
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UITableView *termBrowseTableView;
 @property (nonatomic, strong) NSMutableDictionary *recycledTableView;

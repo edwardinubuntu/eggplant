@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface EPInformation : NSObject
+@interface EPInformation : NSObject <NSCoding>
 
 @property (nonatomic, strong) NSMutableArray *terms;
 

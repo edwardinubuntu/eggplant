@@ -8,13 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
-@interface EPSource : NSObject
+typedef enum {
+  EPSourceTypeiCook,
+  EPSourceTypeYKnowledge,
+  EPSourceTypeWiki,
+  EPSourceTypeInstagram
+} EPSourceType;
 
-@property (nonatomic, strong) NSString *type;
+@interface EPSource : NSObject <NSCoding>
+
+@property (nonatomic, assign) EPSourceType type;
 @property (nonatomic, strong) NSURL *imageURL;
 @property (nonatomic, strong) NSURL *URL;
 @property (nonatomic, strong) NSURL *sourceURL;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *detail;
+@property (nonatomic, strong) NSNumber *randomNum;
 
 @end

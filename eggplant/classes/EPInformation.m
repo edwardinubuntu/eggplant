@@ -10,4 +10,28 @@
 
 @implementation EPInformation
 
+- (id)init {
+  if (self = [super init]) {
+    _terms = [[NSMutableArray alloc] init];
+  }
+  return self;
+}
+
+- (NSString *)description {
+  return [NSString stringWithFormat:@"Terms count %i, terms %@", self.terms.count, self.terms];
+}
+
+#pragma mark - NSCoding
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+  if (self = [super init]) {
+    self->_terms = [aDecoder decodeObjectForKey:@"terms"];
+  }
+  return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+  [aCoder encodeObject:self->_terms forKey:@"terms"];
+}
+
 @end
