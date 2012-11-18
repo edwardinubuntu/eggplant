@@ -1,10 +1,8 @@
 
 PODS:
-- A2DynamicDelegate (2.0.2):
-  - libffi
 - AFNetworking (1.0RC1)
-- BlocksKit (1.5.2):
-  - A2DynamicDelegate
+- BlocksKit (1.8.0):
+  - libffi
 - DDProgressView (0.1)
 - DTCoreText (1.0.2)
 - MJPopupViewController (0.3)
@@ -30,7 +28,6 @@ PODS:
 - libffi (3.0.11)
 
 DEPENDENCIES:
-- A2DynamicDelegate
 - AFNetworking (= 1.0RC1)
 - BlocksKit
 - DDProgressView
@@ -49,9 +46,8 @@ DEPENDENCIES:
 - iCarousel
 
 SPEC CHECKSUMS:
-  A2DynamicDelegate: 013b345f1aca891ded67a95c1512fad677c260a9
   AFNetworking: b21c1252d437fd322e7db1caa93b163d76a362cb
-  BlocksKit: 12fbe889d9f8cc66adf5c9bd4cb0606071f214f2
+  BlocksKit: 4b6039288115dda2240526e6d1e45bfe28003ef1
   DDProgressView: 6dd7fa77900e3dc140b816dddc5616382c124b54
   DTCoreText: 4f2b9d62554c62dd7cd412c9f50ece1e70a548b9
   MJPopupViewController: b16cf4fdf53fef2c361bb33c0be0ec8ee5527720
