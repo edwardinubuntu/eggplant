@@ -24,8 +24,8 @@
 
 #pragma mark - Public
 
-- (void)loadMore:(BOOL)more didFinishLoad:(requestDidFinishLoadBolck)requestDidFinishLoad
-   loadWithError:(requestLoadWithErrorBlock)requestLoadWithError {
+- (void)loadMore:(BOOL)more didFinishLoad:(requestDidFinishLoadEPBolck)requestDidFinishLoad
+   loadWithError:(requestLoadWithErrorEPBlock)requestLoadWithError {
   self.isLoading = YES;
 }
 

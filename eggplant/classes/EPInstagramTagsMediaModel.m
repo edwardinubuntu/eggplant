@@ -17,7 +17,7 @@
   return self;
 }
 
-- (void)loadMore:(BOOL)more didFinishLoad:(requestDidFinishLoadBolck)requestDidFinishLoad loadWithError:(requestLoadWithErrorBlock)requestLoadWithError {
+- (void)loadMore:(BOOL)more didFinishLoad:(requestDidFinishLoadEPBolck)requestDidFinishLoad loadWithError:(requestLoadWithErrorEPBlock)requestLoadWithError {
   
   if (!more) {
     [self.instagrams removeAllObjects];

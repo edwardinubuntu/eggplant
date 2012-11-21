@@ -15,3 +15,4 @@ pod 'SDURLCache'
 pod 'MJPopupViewController'
 pod 'DDProgressView'
 pod 'iCarousel'
+pod 'iCookSDK', :git=>"https://github.com/polydice/iCook-iOS-SDK.git"

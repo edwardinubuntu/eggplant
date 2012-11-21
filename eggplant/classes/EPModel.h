@@ -12,8 +12,8 @@
 #import "NSString+Encode.h"
 #import "NSDictionary+ICObjects.h"
 
-typedef void(^requestDidFinishLoadBolck)(void);
-typedef void(^requestLoadWithErrorBlock)(NSError *error);
+typedef void(^requestDidFinishLoadEPBolck)(void);
+typedef void(^requestLoadWithErrorEPBlock)(NSError *error);
 
 @interface EPModel : NSObject
 
@@ -28,8 +28,8 @@ typedef void(^requestLoadWithErrorBlock)(NSError *error);
 /**
  *  Load the url, and parse into array
  */
-- (void)loadMore:(BOOL)more didFinishLoad:(requestDidFinishLoadBolck)requestDidFinishLoad
-   loadWithError:(requestLoadWithErrorBlock)requestLoadWithError;
+- (void)loadMore:(BOOL)more didFinishLoad:(requestDidFinishLoadEPBolck)requestDidFinishLoad
+   loadWithError:(requestLoadWithErrorEPBlock)requestLoadWithError;
 
 
 @end

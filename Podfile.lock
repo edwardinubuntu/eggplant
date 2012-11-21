@@ -1,10 +1,13 @@
 
 PODS:
+- AFIncrementalStore (0.3.1):
+  - AFNetworking (>= 0.9.0)
 - AFNetworking (1.0RC1)
 - BlocksKit (1.8.0):
   - libffi
 - DDProgressView (0.1)
 - DTCoreText (1.0.2)
+- Facebook-iOS-SDK (3.1.1)
 - MJPopupViewController (0.3)
 - Nimbus/AttributedLabel (0.9.3):
   - Nimbus/Core
@@ -23,8 +26,17 @@ PODS:
 - Nimbus/WebController (0.9.3):
   - Nimbus/Core
 - SDURLCache (1.2)
+- SSKeychain (0.1.4)
 - SVProgressHUD (0.7)
 - iCarousel (1.7.2)
+- iCookSDK (0.0.3):
+  - AFIncrementalStore
+  - BlocksKit (= 1.5.2)
+  - Facebook-iOS-SDK
+  - Nimbus/Core (= 0.9.3)
+  - Nimbus/Models (= 0.9.3)
+  - Nimbus/Overview (= 0.9.3)
+  - SSKeychain
 - libffi (3.0.11)
 
 DEPENDENCIES:
@@ -44,12 +56,19 @@ DEPENDENCIES:
 - SDURLCache
 - SVProgressHUD (= 0.7)
 - iCarousel
+- iCookSDK (from `https://github.com/polydice/iCook-iOS-SDK.git')
+
+EXTERNAL SOURCES:
+  iCookSDK:
+    :git: https://github.com/polydice/iCook-iOS-SDK.git
 
 SPEC CHECKSUMS:
+  AFIncrementalStore: aed50c647af3b3df5793d1e74c482454044e8e37
   AFNetworking: b21c1252d437fd322e7db1caa93b163d76a362cb
   BlocksKit: 4b6039288115dda2240526e6d1e45bfe28003ef1
   DDProgressView: 6dd7fa77900e3dc140b816dddc5616382c124b54
   DTCoreText: 4f2b9d62554c62dd7cd412c9f50ece1e70a548b9
+  Facebook-iOS-SDK: 5fc068ebfd8c8c9b0fad476bc36dbbf1fffeebc8
   MJPopupViewController: b16cf4fdf53fef2c361bb33c0be0ec8ee5527720
   Nimbus/AttributedLabel: 6a35688977607cda01be9027699a9e64bd08fb99
   Nimbus/Core: 6a35688977607cda01be9027699a9e64bd08fb99
@@ -60,8 +79,10 @@ SPEC CHECKSUMS:
   Nimbus/Photos: 6a35688977607cda01be9027699a9e64bd08fb99
   Nimbus/WebController: 6a35688977607cda01be9027699a9e64bd08fb99
   SDURLCache: 2208f93474756c694eed002fa7e3ab62ff3c6468
+  SSKeychain: bae692a4354f48691ca3463a121dc8060f781a7d
   SVProgressHUD: f37a38ee4d9f9a8d57f2f22c702f994ecc59a364
   iCarousel: 9786dc44e3fe4fb1d143db83443cfa7794687a49
+  iCookSDK: 88aad160206dd0ca93c57f640f139d1c6afa5d9b
   libffi: 8a1d9ba43c0c84b546b42c6f742714e73aa07ae1
 
 COCOAPODS: 0.15.2

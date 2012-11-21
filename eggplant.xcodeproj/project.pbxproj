@@ -48,6 +48,11 @@
 		1C878534162A6549005D3672 /* EPYKnowledge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C878533162A6549005D3672 /* EPYKnowledge.m */; };
 		1C878538162A65C2005D3672 /* NSString+Encode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C878537162A65C2005D3672 /* NSString+Encode.m */; };
 		1C87853B162A6631005D3672 /* NSDictionary+EPObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C87853A162A6631005D3672 /* NSDictionary+EPObject.m */; };
+		1C879236165CCA38009188D8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C879235165CCA38009188D8 /* Security.framework */; };
+		1C879238165CCA58009188D8 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C879237165CCA58009188D8 /* Accounts.framework */; };
+		1C87923A165CCA75009188D8 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C879239165CCA75009188D8 /* AdSupport.framework */; };
+		1C879243165CCABB009188D8 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C879242165CCABB009188D8 /* libsqlite3.0.dylib */; };
+		1C879246165CCADF009188D8 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C879245165CCADF009188D8 /* Social.framework */; };
 		1CA4FDF7163156660061E957 /* EPInstagramTagsMediaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA4FDF6163156660061E957 /* EPInstagramTagsMediaModel.m */; };
 		1CA4FDFB163158DE0061E957 /* EPInstagramTagsMediaModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA4FDFA163158DE0061E957 /* EPInstagramTagsMediaModelTests.m */; };
 		1CB0742A16316ADA0028E3C9 /* EPImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0742916316ADA0028E3C9 /* EPImage.m */; };
@@ -56,13 +61,6 @@
 		1CB0744016317DC70028E3C9 /* CellDefaultImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CB0743E16317DC70028E3C9 /* CellDefaultImage.png */; };
 		1CB0744116317DC70028E3C9 /* CellDefaultImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CB0743F16317DC70028E3C9 /* CellDefaultImage@2x.png */; };
 		1CB07444163182CB0028E3C9 /* EPWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB07443163182CB0028E3C9 /* EPWebViewController.m */; };
-		1CB0744D16319C960028E3C9 /* ICRecipesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0744916319C960028E3C9 /* ICRecipesModel.m */; };
-		1CB0744E16319C960028E3C9 /* ICRecipesSearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0744B16319C960028E3C9 /* ICRecipesSearchModel.m */; };
-		1CB0745116319CBC0028E3C9 /* NSDictionary+ICObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0745016319CBC0028E3C9 /* NSDictionary+ICObjects.m */; };
-		1CB0747816319CEF0028E3C9 /* ICUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0745516319CEF0028E3C9 /* ICUser.m */; };
-		1CB0747916319CEF0028E3C9 /* ICRecipe.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0745716319CEF0028E3C9 /* ICRecipe.m */; };
-		1CB0748116319CEF0028E3C9 /* ICPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0746716319CEF0028E3C9 /* ICPhoto.m */; };
-		1CB0748816319CEF0028E3C9 /* ICIngredientTerm.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0747516319CEF0028E3C9 /* ICIngredientTerm.m */; };
 		1CB0748D16319D6E0028E3C9 /* ICRecipesSearchModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0748C16319D6E0028E3C9 /* ICRecipesSearchModelTests.m */; };
 		1CB0749016319EDA0028E3C9 /* EPICookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB0748F16319EDA0028E3C9 /* EPICookCell.m */; };
 		1CB074931631A2580028E3C9 /* UILabel+VAlign.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CB074921631A2570028E3C9 /* UILabel+VAlign.m */; };
@@ -262,7 +260,6 @@
 		B662F488163274F800F288FE /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B662F487163274F800F288FE /* libiconv.dylib */; };
 		B662F48B163275D400F288FE /* EPIQEnginesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B662F48A163275D400F288FE /* EPIQEnginesViewController.m */; };
 		B662F4B21632C3C300F288FE /* EPPrivateTranslateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B662F4B11632C3C300F288FE /* EPPrivateTranslateModel.m */; };
-		B6A4BFE11632F518007F9D29 /* ICIngredientTermModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A4BFE01632F518007F9D29 /* ICIngredientTermModel.m */; };
 		B6A4BFE516330502007F9D29 /* SerachTableSectionHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A4BFE316330502007F9D29 /* SerachTableSectionHeader.png */; };
 		B6A4BFE616330502007F9D29 /* SerachTableSectionHeader@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A4BFE416330502007F9D29 /* SerachTableSectionHeader@2x.png */; };
 		B6A4BFE8163311A5007F9D29 /* navy_blue_.png in Resources */ = {isa = PBXBuildFile; fileRef = B6A4BFE7163311A5007F9D29 /* navy_blue_.png */; };
@@ -340,6 +337,11 @@
 		1C878537162A65C2005D3672 /* NSString+Encode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Encode.m"; sourceTree = "<group>"; };
 		1C878539162A6631005D3672 /* NSDictionary+EPObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+EPObject.h"; sourceTree = "<group>"; };
 		1C87853A162A6631005D3672 /* NSDictionary+EPObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+EPObject.m"; sourceTree = "<group>"; };
+		1C879235165CCA38009188D8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		1C879237165CCA58009188D8 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		1C879239165CCA75009188D8 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		1C879242165CCABB009188D8 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		1C879245165CCADF009188D8 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		1CA4FDF5163156660061E957 /* EPInstagramTagsMediaModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPInstagramTagsMediaModel.h; sourceTree = "<group>"; };
 		1CA4FDF6163156660061E957 /* EPInstagramTagsMediaModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPInstagramTagsMediaModel.m; sourceTree = "<group>"; };
 		1CA4FDF9163158DE0061E957 /* EPInstagramTagsMediaModelTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPInstagramTagsMediaModelTests.h; sourceTree = "<group>"; };
@@ -354,20 +356,6 @@
 		1CB0743F16317DC70028E3C9 /* CellDefaultImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CellDefaultImage@2x.png"; sourceTree = "<group>"; };
 		1CB07442163182CB0028E3C9 /* EPWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPWebViewController.h; sourceTree = "<group>"; };
 		1CB07443163182CB0028E3C9 /* EPWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPWebViewController.m; sourceTree = "<group>"; };
-		1CB0744816319C960028E3C9 /* ICRecipesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICRecipesModel.h; sourceTree = "<group>"; };
-		1CB0744916319C960028E3C9 /* ICRecipesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICRecipesModel.m; sourceTree = "<group>"; };
-		1CB0744A16319C960028E3C9 /* ICRecipesSearchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICRecipesSearchModel.h; sourceTree = "<group>"; };
-		1CB0744B16319C960028E3C9 /* ICRecipesSearchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICRecipesSearchModel.m; sourceTree = "<group>"; };
-		1CB0744F16319CBC0028E3C9 /* NSDictionary+ICObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+ICObjects.h"; sourceTree = "<group>"; };
-		1CB0745016319CBC0028E3C9 /* NSDictionary+ICObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+ICObjects.m"; sourceTree = "<group>"; };
-		1CB0745416319CEF0028E3C9 /* ICUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICUser.h; sourceTree = "<group>"; };
-		1CB0745516319CEF0028E3C9 /* ICUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICUser.m; sourceTree = "<group>"; };
-		1CB0745616319CEF0028E3C9 /* ICRecipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICRecipe.h; sourceTree = "<group>"; };
-		1CB0745716319CEF0028E3C9 /* ICRecipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICRecipe.m; sourceTree = "<group>"; };
-		1CB0746616319CEF0028E3C9 /* ICPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICPhoto.h; sourceTree = "<group>"; };
-		1CB0746716319CEF0028E3C9 /* ICPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICPhoto.m; sourceTree = "<group>"; };
-		1CB0747416319CEF0028E3C9 /* ICIngredientTerm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICIngredientTerm.h; sourceTree = "<group>"; };
-		1CB0747516319CEF0028E3C9 /* ICIngredientTerm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICIngredientTerm.m; sourceTree = "<group>"; };
 		1CB0748B16319D6E0028E3C9 /* ICRecipesSearchModelTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICRecipesSearchModelTests.h; sourceTree = "<group>"; };
 		1CB0748C16319D6E0028E3C9 /* ICRecipesSearchModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICRecipesSearchModelTests.m; sourceTree = "<group>"; };
 		1CB0748E16319EDA0028E3C9 /* EPICookCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPICookCell.h; sourceTree = "<group>"; };
@@ -685,8 +673,6 @@
 		B662F48A163275D400F288FE /* EPIQEnginesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPIQEnginesViewController.m; sourceTree = "<group>"; };
 		B662F4B01632C3C300F288FE /* EPPrivateTranslateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPPrivateTranslateModel.h; sourceTree = "<group>"; };
 		B662F4B11632C3C300F288FE /* EPPrivateTranslateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPPrivateTranslateModel.m; sourceTree = "<group>"; };
-		B6A4BFDF1632F518007F9D29 /* ICIngredientTermModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICIngredientTermModel.h; sourceTree = "<group>"; };
-		B6A4BFE01632F518007F9D29 /* ICIngredientTermModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICIngredientTermModel.m; sourceTree = "<group>"; };
 		B6A4BFE316330502007F9D29 /* SerachTableSectionHeader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SerachTableSectionHeader.png; sourceTree = "<group>"; };
 		B6A4BFE416330502007F9D29 /* SerachTableSectionHeader@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SerachTableSectionHeader@2x.png"; sourceTree = "<group>"; };
 		B6A4BFE7163311A5007F9D29 /* navy_blue_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navy_blue_.png; sourceTree = "<group>"; };
@@ -708,6 +694,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C879246165CCADF009188D8 /* Social.framework in Frameworks */,
+				1C879243165CCABB009188D8 /* libsqlite3.0.dylib in Frameworks */,
+				1C87923A165CCA75009188D8 /* AdSupport.framework in Frameworks */,
+				1C879238165CCA58009188D8 /* Accounts.framework in Frameworks */,
+				1C879236165CCA38009188D8 /* Security.framework in Frameworks */,
 				B662F488163274F800F288FE /* libiconv.dylib in Frameworks */,
 				B662F486163274D500F288FE /* AVFoundation.framework in Frameworks */,
 				B662F484163274CF00F288FE /* CoreLocation.framework in Frameworks */,
@@ -776,6 +767,11 @@
 		1C8784D0162A56EA005D3672 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1C879245165CCADF009188D8 /* Social.framework */,
+				1C879242165CCABB009188D8 /* libsqlite3.0.dylib */,
+				1C879239165CCA75009188D8 /* AdSupport.framework */,
+				1C879237165CCA58009188D8 /* Accounts.framework */,
+				1C879235165CCA38009188D8 /* Security.framework */,
 				B662F487163274F800F288FE /* libiconv.dylib */,
 				B662F485163274D500F288FE /* AVFoundation.framework */,
 				B662F483163274CF00F288FE /* CoreLocation.framework */,
@@ -919,7 +915,6 @@
 				1C878528162A63EF005D3672 /* EPRESTClient.m */,
 				1C878524162A63C0005D3672 /* EPModel.h */,
 				1C878525162A63C0005D3672 /* EPModel.m */,
-				1CB0744516319BC70028E3C9 /* ICook */,
 				1CA4FDF31631562E0061E957 /* Instagram */,
 				1CB1AD84162B75270068EA0D /* Wikipedia */,
 				1C87852D162A64FC005D3672 /* Knowledge */,
@@ -939,7 +934,6 @@
 		1C878531162A6534005D3672 /* Data Objects */ = {
 			isa = PBXGroup;
 			children = (
-				1CB0745216319CD20028E3C9 /* iCook */,
 				1CFE6F3E1640868000F9D3B8 /* Source */,
 				1CFE6F38164085B100F9D3B8 /* EPInformation.h */,
 				1CFE6F39164085B100F9D3B8 /* EPInformation.m */,
@@ -956,8 +950,6 @@
 			children = (
 				1CB074911631A2570028E3C9 /* UILabel+VAlign.h */,
 				1CB074921631A2570028E3C9 /* UILabel+VAlign.m */,
-				1CB0744F16319CBC0028E3C9 /* NSDictionary+ICObjects.h */,
-				1CB0745016319CBC0028E3C9 /* NSDictionary+ICObjects.m */,
 				1C878536162A65C2005D3672 /* NSString+Encode.h */,
 				1C878537162A65C2005D3672 /* NSString+Encode.m */,
 				1C878539162A6631005D3672 /* NSDictionary+EPObject.h */,
@@ -999,34 +991,6 @@
 				1CB074EE1632006E0028E3C9 /* EPAttributedSourceCell.m */,
 			);
 			name = "Table View Cells";
-			sourceTree = "<group>";
-		};
-		1CB0744516319BC70028E3C9 /* ICook */ = {
-			isa = PBXGroup;
-			children = (
-				1CB0744816319C960028E3C9 /* ICRecipesModel.h */,
-				1CB0744916319C960028E3C9 /* ICRecipesModel.m */,
-				1CB0744A16319C960028E3C9 /* ICRecipesSearchModel.h */,
-				1CB0744B16319C960028E3C9 /* ICRecipesSearchModel.m */,
-				B6A4BFDF1632F518007F9D29 /* ICIngredientTermModel.h */,
-				B6A4BFE01632F518007F9D29 /* ICIngredientTermModel.m */,
-			);
-			name = ICook;
-			sourceTree = "<group>";
-		};
-		1CB0745216319CD20028E3C9 /* iCook */ = {
-			isa = PBXGroup;
-			children = (
-				1CB0745416319CEF0028E3C9 /* ICUser.h */,
-				1CB0745516319CEF0028E3C9 /* ICUser.m */,
-				1CB0745616319CEF0028E3C9 /* ICRecipe.h */,
-				1CB0745716319CEF0028E3C9 /* ICRecipe.m */,
-				1CB0746616319CEF0028E3C9 /* ICPhoto.h */,
-				1CB0746716319CEF0028E3C9 /* ICPhoto.m */,
-				1CB0747416319CEF0028E3C9 /* ICIngredientTerm.h */,
-				1CB0747516319CEF0028E3C9 /* ICIngredientTerm.m */,
-			);
-			name = iCook;
 			sourceTree = "<group>";
 		};
 		1CB0748A16319D670028E3C9 /* iCook */ = {
@@ -1769,13 +1733,6 @@
 				1CB0742D16316B260028E3C9 /* EPInstagram.m in Sources */,
 				1CB0743D163178DF0028E3C9 /* EPWikiCell.m in Sources */,
 				1CB07444163182CB0028E3C9 /* EPWebViewController.m in Sources */,
-				1CB0744D16319C960028E3C9 /* ICRecipesModel.m in Sources */,
-				1CB0744E16319C960028E3C9 /* ICRecipesSearchModel.m in Sources */,
-				1CB0745116319CBC0028E3C9 /* NSDictionary+ICObjects.m in Sources */,
-				1CB0747816319CEF0028E3C9 /* ICUser.m in Sources */,
-				1CB0747916319CEF0028E3C9 /* ICRecipe.m in Sources */,
-				1CB0748116319CEF0028E3C9 /* ICPhoto.m in Sources */,
-				1CB0748816319CEF0028E3C9 /* ICIngredientTerm.m in Sources */,
 				1CB0749016319EDA0028E3C9 /* EPICookCell.m in Sources */,
 				1CB074931631A2580028E3C9 /* UILabel+VAlign.m in Sources */,
 				1CB074961631F4E30028E3C9 /* EPSourceCell.m in Sources */,
@@ -1902,7 +1859,6 @@
 				B610E7461632709800114853 /* UIImage+IQE.m in Sources */,
 				B662F48B163275D400F288FE /* EPIQEnginesViewController.m in Sources */,
 				B662F4B21632C3C300F288FE /* EPPrivateTranslateModel.m in Sources */,
-				B6A4BFE11632F518007F9D29 /* ICIngredientTermModel.m in Sources */,
 				B6A4BFF316333984007F9D29 /* EPSplashViewController.m in Sources */,
 				1C35938A163367390083427E /* EPAcknowledgementsViewController.m in Sources */,
 				1CFE6F3A164085B200F9D3B8 /* EPInformation.m in Sources */,

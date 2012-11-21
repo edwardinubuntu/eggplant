@@ -18,7 +18,7 @@
   return self;
 }
 
-- (void)loadMore:(BOOL)more didFinishLoad:(requestDidFinishLoadBolck)requestDidFinishLoad loadWithError:(requestLoadWithErrorBlock)requestLoadWithError {
+- (void)loadMore:(BOOL)more didFinishLoad:(requestDidFinishLoadEPBolck)requestDidFinishLoad loadWithError:(requestLoadWithErrorEPBlock)requestLoadWithError {
   NSMutableString *path = [[NSMutableString alloc] init];
   [path appendString:@"w/api.php?action=query&prop=langlinks&lllimit=500&format=json"];
   [path appendFormat:@"&titles=%@", [self.keyword encodeString:NSUTF8StringEncoding]];
