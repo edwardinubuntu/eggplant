@@ -96,10 +96,11 @@ CGFloat smallMoving = 25;
   _cameraButton.layer.borderWidth = 3.f;
 
   [self.cameraButton setImage:[UIImage imageNamed:@"86-camera"] forState:UIControlStateNormal];
+  __weak typeof(self) weakSelf = self;
   [self.cameraButton addEventHandler:^(id sender) {
     [tempSelf foldSearchButtonsWithCurrentButton:tempSelf.searchButton];
     EPIQEnginesViewController *iqEngineViewController = [[EPIQEnginesViewController alloc] initWithNibName:nil bundle:nil];
-    iqEngineViewController.delegate = self;
+    iqEngineViewController.delegate = weakSelf;
     [tempSelf presentModalViewController:iqEngineViewController animated:YES];
     
   } forControlEvents:UIControlEventTouchUpInside];
