@@ -55,7 +55,6 @@ typedef enum {
 @property (nonatomic, strong) NIPagingScrollView *pagingScrollView;
 
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) UITableView *termBrowseTableView;
 @property (nonatomic, strong) NSMutableDictionary *recycledTableView;
 
 // MGBox2 scroll view for displaying photos grid

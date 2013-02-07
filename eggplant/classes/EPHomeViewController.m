@@ -838,11 +838,6 @@ CGFloat smallMoving = 25;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   
-  // Home
-  if (tableView == self.termBrowseTableView) {
-    return self.headerTermKeys.count;
-  }
-  
   NSInteger pageIndex = tableView.tag;
   NSArray *sources = [self sourceWithGivenDefaultDataSet:pageIndex];
   if (sources.count > 0) {
@@ -857,19 +852,6 @@ CGFloat smallMoving = 25;
   
   __block EPHomeViewController *tempSelf = self;
   __block NSIndexPath *tempIndexPath = indexPath;
-  
-  // Home
-  if (tableView == self.termBrowseTableView) {
-    NSString *term = [self.headerTermKeys objectAtIndex:indexPath.row];
-    NSString *CellWithIdentifier = [NSString stringWithFormat:@"term%@", term];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellWithIdentifier];
-    if (!cell) {
-      cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellWithIdentifier];
-    }
-    cell.selectionStyle = UITableViewCellSelectionStyleGray;
-    cell.textLabel.text = term;
-    return cell;
-  }
   
   NSInteger pageIndex = tableView.tag;
   if (pageIndex < self.headerTermKeys.count) {
@@ -958,10 +940,6 @@ CGFloat smallMoving = 25;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   
-  if (tableView == self.termBrowseTableView) {
-    return 44.f;
-  }
-  
   NSInteger pageIndex = tableView.tag;
   if (pageIndex < self.headerTermKeys.count) {
     NSString *key = [self.headerTermKeys objectAtIndex:(pageIndex)];
@@ -988,21 +966,15 @@ CGFloat smallMoving = 25;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   UITableViewCell *currentCell = [tableView cellForRowAtIndexPath:indexPath];
   currentCell.selected = NO;
-  
-  if (tableView == self.termBrowseTableView) {
-    [self.headerCarousel scrollToItemAtIndex:indexPath.row + kCountAbout + kCountHome animated:YES];
-  } else {
-    NSArray *currentSourceArray = [self sourceWithGivenDefaultDataSet:tableView.tag];
-    NSDictionary *currentSource = [currentSourceArray objectAtIndex:indexPath.row];
-    if ([currentSource objectForKey:@"url"]) {
-      NSURL *openURL = [NSURL URLWithString:[currentSource objectForKey:@"url"]];
-      EPWebViewController *webController = [[EPWebViewController alloc] init];
-      [webController openURL:openURL];
-      [self.navigationController pushViewController:webController animated:YES];
-    }
-  }
 
-  
+  NSArray *currentSourceArray = [self sourceWithGivenDefaultDataSet:tableView.tag];
+  NSDictionary *currentSource = [currentSourceArray objectAtIndex:indexPath.row];
+  if ([currentSource objectForKey:@"url"]) {
+    NSURL *openURL = [NSURL URLWithString:[currentSource objectForKey:@"url"]];
+    EPWebViewController *webController = [[EPWebViewController alloc] init];
+    [webController openURL:openURL];
+    [self.navigationController pushViewController:webController animated:YES];
+  }
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -1056,11 +1028,23 @@ CGFloat smallMoving = 25;
     [termsUserSavedDictData setObject:self.headerTermKeys forKey:@"termKeys"];
     [termsUserSavedDictData setObject:self.contentDictData forKey:@"terms"];
     [[EPTermsStorageManager defaultManager] save];
+
+    // Add a photo box to photos grid
+    // TODO: grab image url from query result
+    NSString *imageURL = [termWithDataDict objectForKey:@"imageURL"];
+    EPTermPhotoBox *box = [EPTermPhotoBox photoBoxForIndex:[self.headerTermKeys count] withSize:CGSizeMake(148, 148) imageURL:imageURL];
+    __weak EPTermPhotoBox *weakBox = box;
+    __weak typeof(self) weakSelf = self;
+    box.onTap = ^{
+      NSInteger index = weakBox.tag;
+      [weakSelf.headerCarousel scrollToItemAtIndex:index + kCountAbout + kCountHome animated:YES];
+    };
+    [self.photosGrid.boxes addObject:box];
+    
   } else {
     NIDPRINT(@"Already exist");
   }
-  
-  [self.termBrowseTableView reloadData];
+
   [self.headerCarousel reloadData];
   [self.pagingScrollView reloadData];
   
