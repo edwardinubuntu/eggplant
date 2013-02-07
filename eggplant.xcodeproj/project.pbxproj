@@ -112,6 +112,7 @@
 		1CC40AE5162F5F4300DB04F0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1CC40AE7162F5F4300DB04F0 /* Localizable.strings */; };
 		1CC40AF8162F711600DB04F0 /* EPScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC40AF7162F711600DB04F0 /* EPScrollPageView.m */; };
 		474FCF439F934B07B7BB343D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC5336F5AC004F25805C6DBC /* libPods.a */; };
+		B5DE3EDB16C3B06900EEBA06 /* EPTermPhotoBox.m in Sources */ = {isa = PBXBuildFile; fileRef = B5DE3EDA16C3B06800EEBA06 /* EPTermPhotoBox.m */; };
 		B610E6751632708400114853 /* au_none.c in Sources */ = {isa = PBXBuildFile; fileRef = B610E5F11632708300114853 /* au_none.c */; };
 		B610E6761632708400114853 /* au_streaming.c in Sources */ = {isa = PBXBuildFile; fileRef = B610E5F21632708300114853 /* au_streaming.c */; };
 		B610E6771632708400114853 /* audio.c in Sources */ = {isa = PBXBuildFile; fileRef = B610E5F31632708300114853 /* audio.c */; };
@@ -440,6 +441,8 @@
 		1CC40AF6162F711600DB04F0 /* EPScrollPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPScrollPageView.h; sourceTree = "<group>"; };
 		1CC40AF7162F711600DB04F0 /* EPScrollPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPScrollPageView.m; sourceTree = "<group>"; };
 		3D2E77B0AA1D4CB683DB4B3C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		B5DE3ED916C3B06800EEBA06 /* EPTermPhotoBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPTermPhotoBox.h; sourceTree = "<group>"; };
+		B5DE3EDA16C3B06800EEBA06 /* EPTermPhotoBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPTermPhotoBox.m; sourceTree = "<group>"; };
 		B610E5C91632708300114853 /* cst_alloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cst_alloc.h; sourceTree = "<group>"; };
 		B610E5CA1632708300114853 /* cst_audio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cst_audio.h; sourceTree = "<group>"; };
 		B610E5CB1632708300114853 /* cst_cart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cst_cart.h; sourceTree = "<group>"; };
@@ -1128,6 +1131,8 @@
 				1CB07439163178A10028E3C9 /* Table View Cells */,
 				1CC40AF6162F711600DB04F0 /* EPScrollPageView.h */,
 				1CC40AF7162F711600DB04F0 /* EPScrollPageView.m */,
+				B5DE3ED916C3B06800EEBA06 /* EPTermPhotoBox.h */,
+				B5DE3EDA16C3B06800EEBA06 /* EPTermPhotoBox.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1878,6 +1883,7 @@
 				B6A4BFE11632F518007F9D29 /* ICIngredientTermModel.m in Sources */,
 				B6A4BFF316333984007F9D29 /* EPSplashViewController.m in Sources */,
 				1C35938A163367390083427E /* EPAcknowledgementsViewController.m in Sources */,
+				B5DE3EDB16C3B06900EEBA06 /* EPTermPhotoBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

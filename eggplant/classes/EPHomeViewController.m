@@ -23,9 +23,10 @@
 #import "EPIQEnginesViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "EPAcknowledgementsViewController.h"
+#import "EPTermPhotoBox.h"
 
 @interface EPHomeViewController ()
-
+@property (nonatomic, strong) MGBox *photosGrid;
 @end
 
 @implementation EPHomeViewController
@@ -58,11 +59,19 @@ CGFloat smallMoving = 25;
   __block EPHomeViewController *tempSelf = self;
   
   _queryViewController = [[EPQueryViewController alloc] init];
-  UIImageView *bgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg-purple"]];
-  _termBrowseTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
-  [_termBrowseTableView setBackgroundView:bgView];
-  [self.view addSubview:_termBrowseTableView];
-  
+
+  // Setup scroll view for displaying photos grid
+  _termBrowsePhotosScrollView = [[MGScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.size.width, self.view.size.height)];
+  self.termBrowsePhotosScrollView.contentLayoutMode = MGLayoutGridStyle;
+  self.termBrowsePhotosScrollView.bottomPadding = 8;
+  self.termBrowsePhotosScrollView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg-purple"]];
+  [self.view addSubview:_termBrowsePhotosScrollView];
+
+  // Setup photos grid
+  _photosGrid = [MGBox boxWithSize:CGSizeMake(312, 0)];
+  self.photosGrid.contentLayoutMode = MGLayoutGridStyle;
+  [self.termBrowsePhotosScrollView.boxes addObject:self.photosGrid];
+
   _searchKeywordViewController = [[EPSearchKeywordViewController alloc] init];
   self.searchKeywordViewController.delegate = self;
   
@@ -142,6 +151,8 @@ CGFloat smallMoving = 25;
   [self searchBarPressHandleAnimations];
   [self.view bringSubviewToFront:self.searchButton];
   [self.view bringSubviewToFront:self.buttonSectionsView];
+  // Render the photos grid
+  [self.termBrowsePhotosScrollView layoutWithSpeed:1 completion:NULL];
 }
 
 - (void)viewDidUnload {
@@ -560,9 +571,17 @@ CGFloat smallMoving = 25;
   [self.headerCarousel reloadData];
   [self.pagingScrollView reloadData];
   
+  // Add photo boxes of saved terms to photos grid
+  CGSize boxSize = CGSizeMake(148, 148);
+  for (int i = 0, numberOfItems = [self.contentDictData count]; i < numberOfItems; i++) {
+    NSString *imageURL = self.contentDictData[i][@"sources"][0][@"imageURL"];
+    EPTermPhotoBox *box = [EPTermPhotoBox photoBoxForIndex:i withSize:boxSize imageURL:imageURL];
+    [self.photosGrid.boxes addObject:box];
+  }
+
   if (self.headerTermKeys.count > 0) {
-    // Scroll to First Data
-    [self.headerCarousel scrollToItemAtIndex:(kCountAbout + kCountHome + 0) animated:YES];
+    // Scroll to menu
+    [self.headerCarousel scrollToItemAtIndex:kCountHome animated:YES];
   }
   
 }
@@ -764,10 +783,8 @@ CGFloat smallMoving = 25;
     }
       break;
     case kIndexHome: {
-      _termBrowseTableView.frame = contentHeaderView.frame;
-      _termBrowseTableView.dataSource = self;
-      _termBrowseTableView.delegate = self;
-      [contentHeaderView addSubview:_termBrowseTableView];
+      _termBrowsePhotosScrollView.frame = contentHeaderView.frame;
+      [contentHeaderView addSubview:_termBrowsePhotosScrollView];
       self.searchButton.hidden = YES;
       self.buttonSectionsView.hidden = YES;
     }

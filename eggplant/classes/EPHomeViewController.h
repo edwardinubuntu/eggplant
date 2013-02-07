@@ -19,6 +19,7 @@
 #import "ICRecipesSearchModel.h"
 #import "EPPrivateTranslateModel.h"
 #import "EPInstagramTagsMediaModel.h"
+#import "MGScrollView.h"
 
 typedef enum {
   EPScrollDirectionTypeNone,
@@ -56,6 +57,9 @@ typedef enum {
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UITableView *termBrowseTableView;
 @property (nonatomic, strong) NSMutableDictionary *recycledTableView;
+
+// MGBox2 scroll view for displaying photos grid
+@property (nonatomic, strong) MGScrollView *termBrowsePhotosScrollView;
 
 @property (nonatomic, strong) EPSearchKeywordViewController *searchKeywordViewController;
 
