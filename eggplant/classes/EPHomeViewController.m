@@ -576,6 +576,13 @@ CGFloat smallMoving = 25;
   for (int i = 0, numberOfItems = [self.contentDictData count]; i < numberOfItems; i++) {
     NSString *imageURL = self.contentDictData[i][@"sources"][0][@"imageURL"];
     EPTermPhotoBox *box = [EPTermPhotoBox photoBoxForIndex:i withSize:boxSize imageURL:imageURL];
+
+    __weak EPTermPhotoBox *weakBox = box;
+    __weak typeof(self) weakSelf = self;
+    box.onTap = ^{
+      NSInteger index = weakBox.tag;
+      [weakSelf.headerCarousel scrollToItemAtIndex:index + kCountAbout + kCountHome animated:YES];
+    };
     [self.photosGrid.boxes addObject:box];
   }
 
