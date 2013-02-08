@@ -6,6 +6,7 @@
 //
 
 #import "ICMRecipe+Config.h"
+#import "ICMUser+Config.h"
 
 @implementation ICMRecipe (Config)
 
@@ -55,7 +56,10 @@
       recipe.hasDoneByLoginUser = [NSNumber numberWithBool:hasDoneByLoginUser];
       recipe.isFavoritedByUser = [NSNumber numberWithBool:isFavoritedByUser];
 
-      // TODO: link user
+      // link user
+      // MARK: responseObject does not contain facebookUID, use username for practice
+      NSDictionary *userObject = [responseObject objectForKey:@"user"];
+      recipe.user = [ICMUser userWithResponseObject:userObject inManagedObjectContext:context];
 
       // TODO: link photos
 
