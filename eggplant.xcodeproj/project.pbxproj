@@ -122,6 +122,7 @@
 		B515D88716C490F300546869 /* ICMUser.m in Sources */ = {isa = PBXBuildFile; fileRef = B515D88616C490F300546869 /* ICMUser.m */; };
 		B515D88A16C490F300546869 /* EPMInstagram.m in Sources */ = {isa = PBXBuildFile; fileRef = B515D88916C490F300546869 /* EPMInstagram.m */; };
 		B515D88D16C490F300546869 /* ICMStep.m in Sources */ = {isa = PBXBuildFile; fileRef = B515D88C16C490F300546869 /* ICMStep.m */; };
+		B515D89116C4961700546869 /* ICMRecipe+Config.m in Sources */ = {isa = PBXBuildFile; fileRef = B515D89016C4961700546869 /* ICMRecipe+Config.m */; };
 		B610E6751632708400114853 /* au_none.c in Sources */ = {isa = PBXBuildFile; fileRef = B610E5F11632708300114853 /* au_none.c */; };
 		B610E6761632708400114853 /* au_streaming.c in Sources */ = {isa = PBXBuildFile; fileRef = B610E5F21632708300114853 /* au_streaming.c */; };
 		B610E6771632708400114853 /* audio.c in Sources */ = {isa = PBXBuildFile; fileRef = B610E5F31632708300114853 /* audio.c */; };
@@ -470,6 +471,8 @@
 		B515D88916C490F300546869 /* EPMInstagram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EPMInstagram.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		B515D88B16C490F300546869 /* ICMStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ICMStep.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		B515D88C16C490F300546869 /* ICMStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ICMStep.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		B515D88F16C4961700546869 /* ICMRecipe+Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ICMRecipe+Config.h"; sourceTree = "<group>"; };
+		B515D89016C4961700546869 /* ICMRecipe+Config.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ICMRecipe+Config.m"; sourceTree = "<group>"; };
 		B610E5C91632708300114853 /* cst_alloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cst_alloc.h; sourceTree = "<group>"; };
 		B610E5CA1632708300114853 /* cst_audio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cst_audio.h; sourceTree = "<group>"; };
 		B610E5CB1632708300114853 /* cst_cart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cst_cart.h; sourceTree = "<group>"; };
@@ -910,6 +913,7 @@
 				1CB1AD8B162B792B0068EA0D /* View Controllers */,
 				1C878531162A6534005D3672 /* Data Objects */,
 				B515D85116C490C700546869 /* Core Data Objects */,
+				B515D88E16C495F500546869 /* Core Data Categories */,
 				1CC40ADD162F56D300DB04F0 /* Managers */,
 				1C878523162A638D005D3672 /* Data Models */,
 				1C878535162A65B5005D3672 /* Categories */,
@@ -1188,6 +1192,15 @@
 				B515D87116C490F200546869 /* EPMWikiLangLink.m */,
 			);
 			name = "Core Data Objects";
+			sourceTree = "<group>";
+		};
+		B515D88E16C495F500546869 /* Core Data Categories */ = {
+			isa = PBXGroup;
+			children = (
+				B515D88F16C4961700546869 /* ICMRecipe+Config.h */,
+				B515D89016C4961700546869 /* ICMRecipe+Config.m */,
+			);
+			name = "Core Data Categories";
 			sourceTree = "<group>";
 		};
 		B610E5C116326F7D00114853 /* Dependencies */ = {
@@ -1946,6 +1959,7 @@
 				B515D88716C490F300546869 /* ICMUser.m in Sources */,
 				B515D88A16C490F300546869 /* EPMInstagram.m in Sources */,
 				B515D88D16C490F300546869 /* ICMStep.m in Sources */,
+				B515D89116C4961700546869 /* ICMRecipe+Config.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
