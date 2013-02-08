@@ -48,6 +48,7 @@
 
     case 1:
       photo = [foundPhotos lastObject];
+      // TODO: update contents
       break;
 
     default:

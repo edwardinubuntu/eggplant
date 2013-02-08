@@ -8,8 +8,8 @@
 #import "CoreDataStack.h"
 #import "ICMRecipeTests.h"
 #import "ICMRecipe+Config.h"
-#import "ICMPhoto.h"
-#import "ICMUser.h"
+#import "ICMPhoto+Config.h"
+#import "ICMUser+Config.h"
 #import "EPRESTClient.h"
 
 @interface ICMRecipeTests ()
@@ -104,6 +104,32 @@
     STAssertEqualObjects(@"no", self.testObject[@"favorited_by_login_user"], @"Assert isFavoritedByUser");
   }
 
+  ICMUser *user = newRecipe.user;
+  NSDictionary *userObject = self.testObject[@"user"];
+
+  STAssertEqualObjects(user.username, userObject[@"username"], @"Assert user name");
+  STAssertEqualObjects(user.nickname, userObject[@"nickname"], @"Assert user nickname");
+  STAssertEqualObjects(user.avatarURL, userObject[@"avatar_image_url"], @"Assert user name");
+
+  ICMPhoto *photo = [newRecipe.photos anyObject];
+  NSDictionary *photoObject = self.testObject[@"cover_pictures"];
+
+  STAssertEqualObjects(photo.largeURL, photoObject[@"large"][@"url"], @"Assert largeURL");
+  STAssertEqualObjects(photo.mediumURL, photoObject[@"medium"][@"url"], @"Assert mediumURL");
+  STAssertEqualObjects(photo.smallURL, photoObject[@"small"][@"url"], @"Assert smallURL");
+  STAssertEqualObjects(photo.squareURL, photoObject[@"original"][@"url"], @"Assert squareURL");
+
+  // Clean up
+  [self.managedObjectContext deleteObject:newRecipe];
+  [self.managedObjectContext deleteObject:user];
+  [self.managedObjectContext deleteObject:photo];
+
+  NSArray *foundRecipes = [ICMRecipe selectRecipesWithRecipeObjectID:self.testObject[@"id"] inManagedObjectContext:self.managedObjectContext];
+  STAssertTrue([foundRecipes count] == 0, @"Delete test recipe");
+  NSArray *foundUsers = [ICMUser selectUsersWithUserName:userObject[@"username"] inManagedObjectContext:self.managedObjectContext];
+  STAssertTrue([foundUsers count] == 0, @"Delete test user");
+  NSArray *foundPhotos = [ICMPhoto selectPhotosWithLargeURL:photoObject[@"large"][@"url"] inManagedObjectContext:self.managedObjectContext];
+  STAssertTrue([foundPhotos count] == 0, @"Delete test photo");
 }
 
 @end

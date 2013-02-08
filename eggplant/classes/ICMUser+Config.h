@@ -12,6 +12,9 @@
 + (NSArray *)selectUsersWithFacebookUID:(NSInteger)facebookUID
                       inManagedObjectContext:(NSManagedObjectContext *)context;
 
++ (NSArray *)selectUsersWithUserName:(NSString *)username
+              inManagedObjectContext:(NSManagedObjectContext *)context;
+
 + (ICMUser *)userWithResponseObject:(NSDictionary *)responseObject
              inManagedObjectContext:(NSManagedObjectContext *)context;
 
