@@ -42,14 +42,11 @@
 }
 
 + (CGFloat)cellHeight {
-  return 370;
+  return 350;
 }
 
 + (CGFloat)cellHeight:(NSString *)text detail:(NSString *)detail {
-  if (!NIIsStringWithAnyText(detail)) {
-    return 350;
-  }
-  return 370;
+  return 350;
 }
 
 @end

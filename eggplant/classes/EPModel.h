@@ -10,6 +10,7 @@
 #import "EPRESTClient.h"
 #import "NSDictionary+EPObject.h"
 #import "NSString+Encode.h"
+#import "NSDictionary+ICObjects.h"
 
 typedef void(^requestDidFinishLoadBolck)(void);
 typedef void(^requestLoadWithErrorBlock)(NSError *error);

@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "EPHomeViewController.h"
 #import "SDURLCache.h"
+#import "EPSplashViewController.h"
 
 @implementation AppDelegate
 
@@ -21,6 +22,39 @@
   // Override point for customization after application launch.
   self.window.backgroundColor = [UIColor whiteColor];
   
+  __block EPSplashViewController *splashViewController = [[EPSplashViewController alloc] initWithNibName:nil bundle:nil];
+  
+  self.window.rootViewController = splashViewController;
+  [self.window makeKeyAndVisible];
+  
+  dispatch_semaphore_t splashShown = dispatch_semaphore_create(0);
+  
+  // Hide splash after animation
+  double delayInSeconds = 3;
+  dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+  dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+    dispatch_semaphore_signal(splashShown);
+  });
+  
+  // Then setup view in background
+  dispatch_async(dispatch_get_main_queue(), ^{
+    
+    EPHomeViewController *rootViewController = [[EPHomeViewController alloc] init];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
+    [navigationController setNavigationBarHidden:YES animated:YES];
+    navigationController.navigationBar.tintColor = [UIColor blackColor];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+      dispatch_semaphore_wait(splashShown, popTime);
+      dispatch_async(dispatch_get_main_queue(), ^{
+        self.window.rootViewController = navigationController;
+        
+      });
+      dispatch_release(splashShown);
+    });
+  });
+  
+  
   dispatch_async(dispatch_get_main_queue(), ^{
     // Setup URL cache
     SDURLCache *urlCache = [[SDURLCache alloc] initWithMemoryCapacity:1024 * 1024 * 5  // 5MB mem cache
@@ -29,14 +63,8 @@
     [NSURLCache setSharedURLCache:urlCache];
   });
   
-  EPHomeViewController *rootViewController = [[EPHomeViewController alloc] init];
-  UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
-  [navigationController setNavigationBarHidden:YES animated:YES];
-  navigationController.navigationBar.tintColor = [UIColor blackColor];
   
-  self.window.rootViewController = navigationController;
   
-  [self.window makeKeyAndVisible];
   return YES;
 }
 

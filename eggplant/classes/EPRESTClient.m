@@ -7,6 +7,8 @@
 //
 
 #import "EPRESTClient.h"
+#import "AFHTTPRequestOperation.h"
+#import "AFJSONRequestOperation.h"
 
 @implementation EPRESTClient
 
@@ -14,6 +16,19 @@ static EPRESTClient *gYahooSharedClient;
 static EPRESTClient *gWikiSharedClient;
 static EPRESTClient *gInstagramClient;
 static EPRESTClient *giCookClient;
+static EPRESTClient *gTranslateSharedClient;
+
++ (EPRESTClient *)sharedTranslateClient{
+  
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    gTranslateSharedClient = [[EPRESTClient alloc] initWithBaseURL:[NSURL URLWithString:kTRANSLATE_BASE_URL]];
+     [gTranslateSharedClient registerHTTPOperationClass:[AFHTTPRequestOperation class]];
+  });
+  
+  return gTranslateSharedClient;
+}
+
 
 + (EPRESTClient *)sharedYahooClient {
   static dispatch_once_t yahooOnceToken;

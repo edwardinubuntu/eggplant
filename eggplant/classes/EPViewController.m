@@ -23,6 +23,12 @@
     return self;
 }
 
+- (void)loadView {
+  [super loadView];
+  _loadingView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+  
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

@@ -2,14 +2,12 @@
 PODS:
 - A2DynamicDelegate (2.0.2):
   - libffi
-- AFIncrementalStore (0.1.0):
-  - AFNetworking (>= 0.9.0)
 - AFNetworking (1.0RC1)
 - BlocksKit (1.5.2):
   - A2DynamicDelegate
 - DDProgressView (0.1)
 - DTCoreText (1.0.2)
-- FPPopover (1.1)
+- MGBox2 (2.0.0)
 - MJPopupViewController (0.3)
 - Nimbus/AttributedLabel (0.9.3):
   - Nimbus/Core
@@ -28,18 +26,16 @@ PODS:
 - Nimbus/WebController (0.9.3):
   - Nimbus/Core
 - SDURLCache (1.2)
-- SVProgressHUD (0.7)
 - iCarousel (1.7.2)
 - libffi (3.0.11)
 
 DEPENDENCIES:
 - A2DynamicDelegate
-- AFIncrementalStore
 - AFNetworking (= 1.0RC1)
 - BlocksKit
 - DDProgressView
 - DTCoreText
-- FPPopover
+- MGBox2
 - MJPopupViewController
 - Nimbus/AttributedLabel (= 0.9.3)
 - Nimbus/Core (= 0.9.3)
@@ -50,17 +46,15 @@ DEPENDENCIES:
 - Nimbus/Photos (= 0.9.3)
 - Nimbus/WebController (= 0.9.3)
 - SDURLCache
-- SVProgressHUD (= 0.7)
 - iCarousel
 
 SPEC CHECKSUMS:
   A2DynamicDelegate: 013b345f1aca891ded67a95c1512fad677c260a9
-  AFIncrementalStore: 81fa61bd06180839c8a3c934bf25b006dd16fd5f
   AFNetworking: b21c1252d437fd322e7db1caa93b163d76a362cb
   BlocksKit: 12fbe889d9f8cc66adf5c9bd4cb0606071f214f2
   DDProgressView: 6dd7fa77900e3dc140b816dddc5616382c124b54
   DTCoreText: 4f2b9d62554c62dd7cd412c9f50ece1e70a548b9
-  FPPopover: 80927060f59836f3b373716b8898535979c7f971
+  MGBox2: 7c09e36c2271f9af16fdb5141a0ca554ecee4d8d
   MJPopupViewController: b16cf4fdf53fef2c361bb33c0be0ec8ee5527720
   Nimbus/AttributedLabel: 6a35688977607cda01be9027699a9e64bd08fb99
   Nimbus/Core: 6a35688977607cda01be9027699a9e64bd08fb99
@@ -71,8 +65,7 @@ SPEC CHECKSUMS:
   Nimbus/Photos: 6a35688977607cda01be9027699a9e64bd08fb99
   Nimbus/WebController: 6a35688977607cda01be9027699a9e64bd08fb99
   SDURLCache: 2208f93474756c694eed002fa7e3ab62ff3c6468
-  SVProgressHUD: f37a38ee4d9f9a8d57f2f22c702f994ecc59a364
   iCarousel: 9786dc44e3fe4fb1d143db83443cfa7794687a49
   libffi: 8a1d9ba43c0c84b546b42c6f742714e73aa07ae1
 
-COCOAPODS: 0.15.1
+COCOAPODS: 0.16.1

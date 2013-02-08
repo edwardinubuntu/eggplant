@@ -11,4 +11,7 @@
 
 @interface EPWikiCell : EPSourceCell
 
+@property (nonatomic, strong) UIImageView *bookIconImageView;
+@property (nonatomic, strong) UIImageView *seperateLineImageView;
+
 @end

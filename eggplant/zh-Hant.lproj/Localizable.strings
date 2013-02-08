@@ -5,14 +5,32 @@
   Copyright (c) 2012年 Polydice Inc. All rights reserved. */
 
 /* About */
-"About" = "關於";
+"About" = "封面";
 
 /* Home */
 "Home" = "主題";
 
 /* Sections */
-"Sections" = "類別";
+"Sections" = "a目錄";
 
 /* Search */
 "Search Placeholder" = "搜尋...";
+
+/* Cancel */
+"Cancel" = "取消";
+
+/* Done */
+"Done" = "完成";
+
+/* Can Eat */
+"Keyword Can  Eat" = "%@ 可以製作好料理喔！";
+
+/* Can Not Eat */
+"Keyword Can Not Eat" = "%@ 不是食材，不在 WikiIngredients 裡頭。請重新搜尋喔！";
+
+/* Retry */
+"Retry" = "重新再試";
+
+/* Acknowledgements */
+"Setting Acknowledgements" = "致謝";
 

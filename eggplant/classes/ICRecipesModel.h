@@ -6,9 +6,9 @@
 //  Copyright (c) 2012年 Polydice, Inc. All rights reserved.
 //
 
-#import "ICModel.h"
+#import "EPModel.h"
 
-@interface ICRecipesModel : ICModel
+@interface ICRecipesModel : EPModel
 
 @property (nonatomic, strong) NSMutableArray *recipes;
 

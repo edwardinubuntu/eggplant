@@ -21,9 +21,12 @@
 #import "EPSearchKeywordViewController.h"
 #import "UIViewController+MJPopupViewController.h"
 #import "EPIQEnginesViewController.h"
+#import <QuartzCore/QuartzCore.h>
+#import "EPAcknowledgementsViewController.h"
+#import "EPTermPhotoBox.h"
 
 @interface EPHomeViewController ()
-
+@property (nonatomic, strong) MGBox *photosGrid;
 @end
 
 @implementation EPHomeViewController
@@ -44,7 +47,6 @@ CGFloat smallMoving = 25;
   if (self) {
     // Custom initialization
     _recycledTableView = [[NSMutableDictionary alloc] init];
-    _termDataFromDefault = [[NSDictionary alloc] init];
   }
   return self;
 }
@@ -53,23 +55,43 @@ CGFloat smallMoving = 25;
 
 - (void)loadView {
   [super loadView];
-  
+  lastContentOffset = 0;
   __block EPHomeViewController *tempSelf = self;
   
+  _queryViewController = [[EPQueryViewController alloc] init];
+
+  // Setup scroll view for displaying photos grid
+  _termBrowsePhotosScrollView = [[MGScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.size.width, self.view.size.height)];
+  self.termBrowsePhotosScrollView.contentLayoutMode = MGLayoutGridStyle;
+  self.termBrowsePhotosScrollView.bottomPadding = 8;
+  self.termBrowsePhotosScrollView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg-purple"]];
+  [self.view addSubview:_termBrowsePhotosScrollView];
+
+  // Setup photos grid
+  _photosGrid = [MGBox boxWithSize:CGSizeMake(312, 0)];
+  self.photosGrid.contentLayoutMode = MGLayoutGridStyle;
+  [self.termBrowsePhotosScrollView.boxes addObject:self.photosGrid];
+
   _searchKeywordViewController = [[EPSearchKeywordViewController alloc] init];
   self.searchKeywordViewController.delegate = self;
   
   _headerCarousel = [[iCarousel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44.f)];
+  self.headerCarousel.scrollSpeed = 1;
+  self.headerCarousel.decelerationRate = 5;
   self.headerCarousel.delegate = self;
   self.headerCarousel.dataSource = self;
-  self.headerCarousel.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"navy_blue"]];
+  self.headerCarousel.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"navy_blue_"]];
   [self.view addSubview:self.headerCarousel];
   
-  CGFloat spacing = 3;
+  CGFloat spacing = 7;
   _searchButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+  _searchButton.layer.cornerRadius = 7.f;
+  _searchButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
+  _searchButton.layer.borderWidth = 3.f;
+  
   [self.searchButton setImage:[UIImage imageNamed:@"06-magnify"] forState:UIControlStateNormal];
   [self.searchButton sizeToFit];
-  self.searchButton.center = CGPointMake(spacing + self.searchButton.frame.size.width, self.view.frame.size.height - self.searchButton.frame.size.height - spacing);
+  self.searchButton.center = CGPointMake(spacing + self.searchButton.frame.size.width / 2, self.view.frame.size.height - self.searchButton.frame.size.height / 2 - spacing);
   self.searchButton.tintColor = [UIColor clearColor];
   [self.view addSubview:self.searchButton];
   
@@ -78,17 +100,25 @@ CGFloat smallMoving = 25;
   [self.view addSubview:self.buttonSectionsView];
   
   _cameraButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+  _cameraButton.layer.cornerRadius = 7.f;
+  _cameraButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
+  _cameraButton.layer.borderWidth = 3.f;
+
   [self.cameraButton setImage:[UIImage imageNamed:@"86-camera"] forState:UIControlStateNormal];
+  __weak typeof(self) weakSelf = self;
   [self.cameraButton addEventHandler:^(id sender) {
     [tempSelf foldSearchButtonsWithCurrentButton:tempSelf.searchButton];
     EPIQEnginesViewController *iqEngineViewController = [[EPIQEnginesViewController alloc] initWithNibName:nil bundle:nil];
-    iqEngineViewController.delegate = self;
+    iqEngineViewController.delegate = weakSelf;
     [tempSelf presentModalViewController:iqEngineViewController animated:YES];
     
   } forControlEvents:UIControlEventTouchUpInside];
   [self.buttonSectionsView addSubview:self.cameraButton];
   
   _writeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+  _writeButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
+  _writeButton.layer.borderWidth = 3.f;
+  _writeButton.layer.cornerRadius = 7.f;
   [self.writeButton setImage:[UIImage imageNamed:@"187-pencil"] forState:UIControlStateNormal];
   [self.writeButton addEventHandler:^(id sender) {
     
@@ -108,6 +138,11 @@ CGFloat smallMoving = 25;
   [self loadData];
   
    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getTermsArray:) name:kNOTIFICATION_FOUND_TERMS object:nil];
+  
+  _yknowledgeSearchModel = [[EPYKnowledgeSearchModel alloc] init];
+  _recipesSearchModel = [[ICRecipesSearchModel alloc] init];
+  _privateTranslateModel = [[EPPrivateTranslateModel alloc] init];
+  _instgramTagsMediaModel = [[EPInstagramTagsMediaModel alloc] init];
 }
 
 - (void)viewDidLoad {
@@ -116,6 +151,8 @@ CGFloat smallMoving = 25;
   [self searchBarPressHandleAnimations];
   [self.view bringSubviewToFront:self.searchButton];
   [self.view bringSubviewToFront:self.buttonSectionsView];
+  // Render the photos grid
+  [self.termBrowsePhotosScrollView layoutWithSpeed:1 completion:NULL];
 }
 
 - (void)viewDidUnload {
@@ -143,6 +180,281 @@ CGFloat smallMoving = 25;
 }
 
 #pragma mark - private
+
+- (void)saveContentData {
+  // Finish, save
+  NSMutableDictionary *termsUserSavedDictData = [[EPTermsStorageManager defaultManager] termsFromUserSaved];
+  [termsUserSavedDictData setObject:self.contentDictData forKey:@"term"];
+  [[EPTermsStorageManager defaultManager] save];
+}
+
+- (void)performTranslateInstagramTerm:(NSString *)searchingTerm withDataDict:(NSMutableDictionary *)termWithDataDict {
+  __block EPHomeViewController *tempSelf = self;
+  __block NSMutableDictionary *tempTermWithDataDict = termWithDataDict;
+  
+  // Chinse term to English Term show wiki
+  self.privateTranslateModel.keyword = searchingTerm;
+  self.privateTranslateModel.sourceLang = @"zh-TW";
+  self.privateTranslateModel.targetLang = @"en";
+  [self.privateTranslateModel loadMore:NO didFinishLoad:^{
+    [tempSelf performInstagramAPISearhTerm:tempSelf.privateTranslateModel.targetLang withDataDict:tempTermWithDataDict];
+  } loadWithError:^(NSError *error) {
+    // Handle Error
+  }];
+}
+
+- (void)performWikiSearchTerm:(NSString *)searchingTerm withDataDict:(NSMutableDictionary *)termWithDataDict {
+  
+  __block EPHomeViewController *tempSelf = self;
+  __block NSMutableDictionary *tempTermWithDataDict = termWithDataDict;
+  
+  // Chinse term to English Term show wiki
+  self.privateTranslateModel.keyword = searchingTerm;
+  self.privateTranslateModel.sourceLang = @"zh-TW";
+  self.privateTranslateModel.targetLang = @"en";
+  [self.privateTranslateModel loadMore:NO didFinishLoad:^{
+    NSMutableArray *sources = [[NSMutableArray alloc] init];
+    
+    NSMutableDictionary *recipeDict = [[NSMutableDictionary alloc] init];
+    [recipeDict setObject:@"wiki" forKey:@"type"];
+    [recipeDict setObject:[NSString stringWithFormat:@"http://en.wikipedia.org/wiki/%@", tempSelf.privateTranslateModel.keywordTranslation] forKey:@"url"];
+    [recipeDict setObject:tempSelf.privateTranslateModel.keywordTranslation forKey:@"title"];
+    [recipeDict setObject:@"wikipedia.org" forKey:@"sourceURL"];
+    float randomNum = arc4random() % 100;
+    [recipeDict setObject:[NSNumber numberWithFloat:randomNum] forKey:@"randomNum"];
+    
+    [sources addObject:recipeDict];
+    
+    // Add to data
+    NSMutableArray *sourcesOriginal = [tempTermWithDataDict objectForKey:@"sources"];
+    if (!sourcesOriginal) {
+      sourcesOriginal = [[NSMutableArray alloc] init];
+    }
+    [sourcesOriginal addObjectsFromArray:sources];
+    [tempTermWithDataDict setObject:sourcesOriginal forKey:@"sources"];
+    
+    // TODO: Save
+    
+    [tempSelf.tableView reloadData];
+  } loadWithError:^(NSError *error) {
+    // Handle Error
+  }];
+}
+
+- (void)performiCookSearchTerm:(NSString *)searchingTerm withDataDict:(NSMutableDictionary *)termWithDataDict {
+  // YKNowledge
+  __block EPHomeViewController *tempSelf = self;
+  __block NSMutableDictionary *tempTermWithDataDict = termWithDataDict;
+  self.recipesSearchModel.text = searchingTerm;
+  [self.recipesSearchModel loadMore:NO didFinishLoad:^{
+    NSMutableArray *sources = [[NSMutableArray alloc] init];
+    for (ICRecipe *eachRecipe in tempSelf.recipesSearchModel.recipes) {
+      NSMutableDictionary *recipeDict = [[NSMutableDictionary alloc] init];
+      [recipeDict setObject:@"icook" forKey:@"type"];
+      [recipeDict setObject:[NSString stringWithFormat:@"http://icook.tw/recipes/%i", eachRecipe.objectID] forKey:@"url"];
+      [recipeDict setObject:eachRecipe.name forKey:@"title"];
+      [recipeDict setObject:eachRecipe.recipeDescription forKey:@"detail"];
+      [recipeDict setObject:@"icook.tw" forKey:@"sourceURL"];
+      if (NIIsStringWithAnyText(eachRecipe.photos.smallURL.absoluteString)) {
+        [recipeDict setObject:eachRecipe.photos.smallURL.absoluteString forKey:@"imageURL"];
+      }
+      
+      float randomNum = arc4random() % 100;
+      [recipeDict setObject:[NSNumber numberWithFloat:randomNum] forKey:@"randomNum"];
+      
+      [sources addObject:recipeDict];
+    }
+    
+    // Add to data
+    NSMutableArray *sourcesOriginal = [tempTermWithDataDict objectForKey:@"sources"];
+    if (!sourcesOriginal) {
+      sourcesOriginal = [[NSMutableArray alloc] init];
+    }
+    [sourcesOriginal addObjectsFromArray:sources];
+    [tempTermWithDataDict setObject:sourcesOriginal forKey:@"sources"];
+    
+    NSMutableArray *newSortedArray = [tempSelf sortByRandomNum:tempTermWithDataDict];
+    [tempTermWithDataDict setObject:newSortedArray forKey:@"sources"];
+    
+    // TODO: Save
+    
+    [tempSelf.tableView reloadData];
+  } loadWithError:^(NSError *error) {
+    // Handle Error
+  }];
+}
+
+- (void)performInstagramAPISearhTerm:(NSString *)searchingTerm withDataDict:(NSMutableDictionary *)termWithDataDict {
+  // YKNowledge
+  __block EPHomeViewController *tempSelf = self;
+  __block NSMutableDictionary *tempTermWithDataDict = termWithDataDict;
+  self.instgramTagsMediaModel.keyword = searchingTerm;
+  [self.instgramTagsMediaModel loadMore:NO didFinishLoad:^{
+    NSMutableArray *sources = [[NSMutableArray alloc] init];
+    for (EPInstagram *eachInstagram in tempSelf.instgramTagsMediaModel.instagrams) {
+      NSMutableDictionary *knowDict = [[NSMutableDictionary alloc] init];
+      [knowDict setObject:@"instagram" forKey:@"type"];
+      [knowDict setObject:eachInstagram.link.absoluteString forKey:@"url"];
+      [knowDict setObject:@"instagr.am" forKey:@"sourceURL"];
+      float randomNum = arc4random() % 100;
+      [knowDict setObject:[NSNumber numberWithFloat:randomNum] forKey:@"randomNum"];
+      
+      for (NSString *key in eachInstagram.images.keyEnumerator.allObjects) {
+        EPImage *eachImage = [eachInstagram.images objectForKey:key];
+        if (eachImage.imageType == EPImageTypeThumbnail) {
+          NIDPRINT(@"EPImageTypeThumbnail eachImage.url.absoluteString: %@", eachImage.url.absoluteString);
+          [knowDict setObject:eachImage.url.absoluteString forKey:@"imageURL"];
+        }
+      }
+      
+      [sources addObject:knowDict];
+    }
+    
+    // Add to data
+    NSMutableArray *sourcesOriginal = [tempTermWithDataDict objectForKey:@"sources"];
+    if (!sourcesOriginal) {
+      sourcesOriginal = [[NSMutableArray alloc] init];
+    }
+    [sourcesOriginal addObjectsFromArray:sources];
+    [tempTermWithDataDict setObject:sourcesOriginal forKey:@"sources"];
+    
+    NSMutableArray *newSortedArray = [tempSelf sortByRandomNum:tempTermWithDataDict];
+    [tempTermWithDataDict setObject:newSortedArray forKey:@"sources"];
+    // TODO: Save
+    
+    [tempSelf.tableView reloadData];
+  } loadWithError:^(NSError *error) {
+    // Handle Error
+  }];
+}
+
+- (void)performYKAPISearhTerm:(NSString *)searchingTerm withDataDict:(NSMutableDictionary *)termWithDataDict {
+    // YKNowledge
+    __block EPHomeViewController *tempSelf = self;
+    __block NSMutableDictionary *tempTermWithDataDict = termWithDataDict;
+    self.yknowledgeSearchModel.keywords = searchingTerm;
+    [self.yknowledgeSearchModel loadMore:NO didFinishLoad:^{
+        NSMutableArray *sources = [[NSMutableArray alloc] init];
+        for (EPYKnowledge *eachKnow in tempSelf.yknowledgeSearchModel.knowledges) {
+            NSMutableDictionary *knowDict = [[NSMutableDictionary alloc] init];
+            [knowDict setObject:@"YKnowledge" forKey:@"type"];
+            [knowDict setObject:eachKnow.url.absoluteString forKey:@"url"];
+            [knowDict setObject:eachKnow.subject forKey:@"title"];
+            [knowDict setObject:eachKnow.content forKey:@"detail"];
+            [knowDict setObject:@"knowledge.yahoo.com.tw" forKey:@"sourceURL"];
+          float randomNum = arc4random() % 100;
+          [knowDict setObject:[NSNumber numberWithFloat:randomNum] forKey:@"randomNum"];
+            
+            [sources addObject:knowDict];
+        }
+        
+        // Add to data
+        NSMutableArray *sourcesOriginal = [tempTermWithDataDict objectForKey:@"sources"];
+        if (!sourcesOriginal) {
+            sourcesOriginal = [[NSMutableArray alloc] init];
+        }
+        [sourcesOriginal addObjectsFromArray:sources];
+      
+      
+        [tempTermWithDataDict setObject:sourcesOriginal forKey:@"sources"];
+      
+      
+      NSMutableArray *newSortedArray = [tempSelf sortByRandomNum:tempTermWithDataDict];
+      sourcesOriginal = newSortedArray;
+        // TODO: Save
+      
+      
+      // From original root find this source, set, save
+      
+      
+        [tempSelf.tableView reloadData];
+    } loadWithError:^(NSError *error) {
+        // Handle Error
+    }];
+}
+
+- (NSMutableArray *)sortByRandomNum:(NSMutableDictionary *)termWithDataDict {
+    // Sort
+  NSArray *newSortedArray =  [[termWithDataDict objectForKey:@"sources"] sortedArrayUsingComparator: ^(id obj1, id obj2) {
+        
+        NSNumber *p1 = [obj1 objectForKey:@"randomNum"];
+        NSNumber *p2 = [obj2 objectForKey:@"randomNum"];
+        
+        if (p1.floatValue > p2.floatValue ) {
+            return (NSComparisonResult)NSOrderedDescending;
+            
+        }
+        
+        if (p1.floatValue < p2.floatValue) {
+            return (NSComparisonResult)NSOrderedAscending;
+        }
+        return (NSComparisonResult)NSOrderedSame;
+    }];
+  return [NSMutableArray arrayWithArray:newSortedArray];
+}
+
+- (void)checkPerpareQueryAPIData:(NSString *)searchingTerm {
+
+  // Check if has term
+  NSMutableDictionary *termWithDataDict = nil;
+  for (NSMutableDictionary *eachDict in self.contentDictData) {
+    if ([eachDict objectForKey:@"key"] && [[eachDict objectForKey:@"key"] isEqualToString:searchingTerm]) {
+      termWithDataDict = eachDict;
+    }
+  }
+  
+  NSMutableArray *sources = [termWithDataDict objectForKey:@"sources"];
+  
+  // Start to add wiki
+//  BOOL hasWiki = NO;
+//  for (NSDictionary *eachSource in sources) {
+//    if ([[eachSource objectForKey:@"type"] isEqualToString:@"wiki"]) {
+//      hasWiki = YES;
+//    }
+//  }
+//  if (!hasWiki) {
+//    [self performWikiSearchTerm:searchingTerm withDataDict:termWithDataDict];
+//  }
+  
+  // Start with hasICook
+  BOOL hasiCook = NO;
+  for (NSDictionary *eachSource in sources) {
+    if ([[eachSource objectForKey:@"type"] isEqualToString:@"icook"]) {
+      hasiCook = YES;
+    }
+  }
+  if (!hasiCook) {
+    [self performiCookSearchTerm:searchingTerm withDataDict:termWithDataDict];
+  }
+  
+  // Start with hasYKnowledge
+  BOOL hasYKnowledge = NO;
+  for (NSDictionary *eachSource in sources) {
+    if ([[eachSource objectForKey:@"type"] isEqualToString:@"YKnowledge"]) {
+      hasYKnowledge = YES;
+    }
+  }
+  if (!hasYKnowledge) {
+    [self performYKAPISearhTerm:searchingTerm withDataDict:termWithDataDict];
+  }
+  
+  // Start with Instagram
+  BOOL hasInstagram = NO;
+  for (NSDictionary *eachSource in sources) {
+    if ([[eachSource objectForKey:@"type"] isEqualToString:@"instagram"]) {
+      hasInstagram = YES;
+    }
+  }
+  if (!hasInstagram) {
+    [self performInstagramAPISearhTerm:searchingTerm withDataDict:termWithDataDict];
+  }
+  
+  // Final saved
+  
+  
+  // Call at the end
+//  [self.pagingScrollView reloadData];
+}
 
 - (void)requestImageFromCell:(UITableViewCell *)cell indexPath:(NSIndexPath *)indexPath imageURL:(NSString *)imageURL {
   __block NSIndexPath *tempIndexPath = indexPath;
@@ -206,13 +518,12 @@ CGFloat smallMoving = 25;
 
 - (NSArray *)sourceWithGivenDefaultDataSet:(NSInteger)pageIndex {
   NSArray *sources;
-  if (pageIndex < self.termKeysFromDefault.count) {
+  if (pageIndex < self.headerTermKeys.count) {
     
-    NSString *key = [self.termKeysFromDefault objectAtIndex:(pageIndex)];
+    NSString *key = [self.headerTermKeys objectAtIndex:(pageIndex)];
     // Check data
-    NSArray *dataFromTerms = [self.termDataFromDefault objectForKey:@"terms"];
     
-    for (NSDictionary *eachDataTerm  in dataFromTerms) {
+    for (NSDictionary *eachDataTerm  in self.contentDictData) {
       if ([[eachDataTerm objectForKey:@"key"] isEqualToString:key]) {
         sources = [eachDataTerm objectForKey:@"sources"];
         break;
@@ -233,23 +544,51 @@ CGFloat smallMoving = 25;
 
 - (void)loadData {
   
-  // Default
   [[EPTermsStorageManager defaultManager] load];
-  self.termDataFromDefault = [[EPTermsStorageManager defaultManager] termsFromDefault];
-  NSArray *termKeys = [self.termDataFromDefault objectForKey:@"termKeys"];
-  self.termKeysFromDefault = [termKeys copy];
   
-  // User Saved
-  NSDictionary *termsUserSavedDictData = [[EPTermsStorageManager defaultManager] termsFromUserSaved];
-  NSArray *termUserSavedKeys = [termsUserSavedDictData objectForKey:@"termKeys"];
-  self.termsFromUserSaved = [[NSMutableArray alloc] initWithArray:termUserSavedKeys];
+  NSMutableDictionary *termsFromSavedRoot = [[EPTermsStorageManager defaultManager] termsFromUserSaved];
+  NSMutableArray *termsFromSavedKeys = [termsFromSavedRoot objectForKey:@"termKeys"];
+  
+  if (termsFromSavedKeys.count == 0) {
+    NSDictionary *termDataFromDefault = [[EPTermsStorageManager defaultManager] termsFromDefault];
+    NSArray *termsFromDefaultKeys = [termDataFromDefault objectForKey:@"termKeys"];
+    self.headerTermKeys = [termsFromDefaultKeys copy];
+    self.contentDictData = [NSMutableArray arrayWithArray:[termDataFromDefault objectForKey:@"terms"]];
+    
+    [termsFromSavedRoot setObject:self.headerTermKeys forKey:@"termKeys"];
+    [termsFromSavedRoot setObject:self.contentDictData forKey:@"terms"];
+    [[EPTermsStorageManager defaultManager] save];
+  }
+  
+  // Load again
+  [[EPTermsStorageManager defaultManager] load];
+  termsFromSavedRoot = [[EPTermsStorageManager defaultManager] termsFromUserSaved];
+  termsFromSavedKeys = [termsFromSavedRoot objectForKey:@"termKeys"];
+  
+  self.headerTermKeys = termsFromSavedKeys;
+  self.contentDictData = [termsFromSavedRoot objectForKey:@"terms"];
   
   [self.headerCarousel reloadData];
   [self.pagingScrollView reloadData];
   
-  if (self.termKeysFromDefault.count > 0) {
-    // Scroll to First Data
-    [self.headerCarousel scrollToItemAtIndex:(kCountAbout + kCountHome + 0) animated:YES];
+  // Add photo boxes of saved terms to photos grid
+  CGSize boxSize = CGSizeMake(148, 148);
+  for (int i = 0, numberOfItems = [self.contentDictData count]; i < numberOfItems; i++) {
+    NSString *imageURL = self.contentDictData[i][@"sources"][0][@"imageURL"];
+    EPTermPhotoBox *box = [EPTermPhotoBox photoBoxForIndex:i withSize:boxSize imageURL:imageURL];
+
+    __weak EPTermPhotoBox *weakBox = box;
+    __weak typeof(self) weakSelf = self;
+    box.onTap = ^{
+      NSInteger index = weakBox.tag;
+      [weakSelf.headerCarousel scrollToItemAtIndex:index + kCountAbout + kCountHome animated:YES];
+    };
+    [self.photosGrid.boxes addObject:box];
+  }
+
+  if (self.headerTermKeys.count > 0) {
+    // Scroll to menu
+    [self.headerCarousel scrollToItemAtIndex:kCountHome animated:YES];
   }
   
 }
@@ -334,7 +673,9 @@ CGFloat smallMoving = 25;
 
 - (NSUInteger)numberOfItemsInCarousel:(iCarousel *)carousel {
   if (carousel == self.headerCarousel) {
-    return kCountAbout + kCountHome + self.termKeysFromDefault.count + self.termsFromUserSaved.count;
+    NSInteger numberOfitems = kCountAbout + kCountHome + self.headerTermKeys.count;
+    NIDPRINT(@"iCarousel numberOfitems %i", numberOfitems);
+    return numberOfitems;
   }
   return 0;
 }
@@ -345,6 +686,14 @@ CGFloat smallMoving = 25;
     UILabel *sectionHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 32)];
     sectionHeaderLabel.textAlignment = UITextAlignmentCenter;
     
+    NIDPRINT(@"iCarousel viewForItemAtIndex %i", index);
+    
+    NSInteger termIndex = index - kCountAbout - kCountHome;
+    NSInteger termSavedIndex = termIndex - self.contentDictData.count -1;
+    
+    NIDPRINT(@"iCarousel viewForItemAtIndex termIndex %i", termIndex);
+    NIDPRINT(@"iCarousel viewForItemAtIndex termSavedIndex %i", termSavedIndex);
+    
     switch (index) {
       case kIndexAbout:
         sectionHeaderLabel.text = NSLocalizedString(@"About", @"About");
@@ -353,21 +702,18 @@ CGFloat smallMoving = 25;
         sectionHeaderLabel.text = NSLocalizedString(@"Sections", @"Sections");
         break;
       default:
-        
-        if ((index - kCountAbout - kCountHome) < self.termKeysFromDefault.count) {
-          NSString *termFromDefault = [self.termKeysFromDefault objectAtIndex:((index - kCountAbout - kCountHome))];
-          sectionHeaderLabel.text = termFromDefault;
-        } else {
-          sectionHeaderLabel.text = [NSString stringWithFormat:@"Sections %i", index];
-        }
         break;
+    }
+    if (termIndex >= 0 &&  termIndex < self.headerTermKeys.count) {
+      NSString *termFromDefault = [self.headerTermKeys objectAtIndex:(termIndex)];
+      sectionHeaderLabel.text = termFromDefault;
     }
     
     sectionHeaderLabel.textColor = [UIColor whiteColor];
     sectionHeaderLabel.backgroundColor = [UIColor clearColor];
-    sectionHeaderLabel.font = [UIFont systemFontOfSize:20.f];
-    sectionHeaderLabel.shadowColor = [UIColor lightGrayColor];
-    sectionHeaderLabel.shadowOffset = CGSizeMake(0, 1);
+    sectionHeaderLabel.font = [UIFont boldSystemFontOfSize:20.f];
+    sectionHeaderLabel.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+    sectionHeaderLabel.shadowOffset = CGSizeMake(0, -1);
     sectionHeaderLabel.center = sectionHeaderView.center;
     
     [sectionHeaderView setBackgroundColor:[UIColor clearColor]];
@@ -379,49 +725,80 @@ CGFloat smallMoving = 25;
 
 #pragma mark - iCarouselDelegate
 
+- (void)carouselWillBeginScrollingAnimation:(iCarousel *)carousel {
+  self.searchButton.hidden = YES;
+  self.buttonSectionsView.hidden = YES;
+}
+
 - (void)carouselDidEndScrollingAnimation:(iCarousel *)carousel{
   if (carousel == self.headerCarousel) {
     [self.pagingScrollView moveToPageAtIndex:carousel.currentItemIndex animated:YES];
+    
+    if (self.headerCarousel.currentItemIndex < kCountAbout + kCountHome) {
+      self.searchButton.hidden = YES;
+      self.buttonSectionsView.hidden = YES;
+    } else {
+      self.searchButton.hidden = NO;
+      self.buttonSectionsView.hidden = NO;
+    }
   }
 }
 
 #pragma mark - NIPagingScrollViewDataSource
 
 - (NSInteger)numberOfPagesInPagingScrollView:(NIPagingScrollView *)pagingScrollView {
-  return kCountAbout + kCountHome + self.termKeysFromDefault.count + self.termsFromUserSaved.count;
+  return kCountAbout + kCountHome + self.headerTermKeys.count;
 }
 
 - (UIView<NIPagingScrollViewPage> *)pagingScrollView:(NIPagingScrollView *)pagingScrollView pageViewForIndex:(NSInteger)pageIndex {
   
   EPScrollPageView *contentHeaderView = [[EPScrollPageView alloc] initWithFrame:CGRectMake(0, 0, pagingScrollView.frame.size.width,pagingScrollView.frame.size.height)];
-  [contentHeaderView setBackgroundColor:[UIColor lightGrayColor]];
+  [contentHeaderView setBackgroundColor:[UIColor whiteColor]];
   
   NSInteger termIndex = pageIndex - kCountAbout - kCountHome;
   switch (pageIndex) {
     case kIndexAbout: {
-      UILabel *contentHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 36)];
-      contentHeaderLabel.textAlignment = UITextAlignmentCenter;
-      contentHeaderLabel.text = [NSString stringWithFormat:@"Content %i", pageIndex];
-      contentHeaderLabel.textColor = [UIColor whiteColor];
-      contentHeaderLabel.backgroundColor = [UIColor grayColor];
-      contentHeaderLabel.center = contentHeaderView.center;
-      [contentHeaderView addSubview:contentHeaderLabel];
+      UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cover"]];
+      [imageView sizeToFit];
+      imageView.center = contentHeaderView.center;
+      [contentHeaderView addSubview:imageView];
+      
+      UILabel *coverLabel = [[UILabel alloc] init];
+      coverLabel.text = @"Edward's WikiIngredients";
+      coverLabel.frame = CGRectMake(0, 0, 300, 44);
+      coverLabel.textColor = [UIColor whiteColor];
+      coverLabel.textAlignment = UITextAlignmentCenter;
+      coverLabel.font = [UIFont boldSystemFontOfSize:20.f];
+      coverLabel.backgroundColor = [UIColor clearColor];
+      coverLabel.center = contentHeaderView.center;
+      [contentHeaderView addSubview:coverLabel];
+      
+      // Add Acknowledgements
+      UIButton *knowledgementsInfoButton = [UIButton buttonWithType:UIButtonTypeInfoDark];
+      knowledgementsInfoButton.center = CGPointMake(contentHeaderView.frame.size.width - 20, contentHeaderView.frame.size.height -20);
+      
+      __block EPHomeViewController *tempSelf = self;
+      [knowledgementsInfoButton addEventHandler:^(id sender) {
+        EPAcknowledgementsViewController *acknowView = [[EPAcknowledgementsViewController alloc] init];
+        [tempSelf.navigationController pushViewController:acknowView animated:YES];
+      } forControlEvents:UIControlEventTouchUpInside];
+      
+      [contentHeaderView addSubview:knowledgementsInfoButton];
+      
+      self.searchButton.hidden = YES;
+      self.buttonSectionsView.hidden = YES;
     }
       break;
     case kIndexHome: {
-      UILabel *contentHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 36)];
-      contentHeaderLabel.textAlignment = UITextAlignmentCenter;
-      contentHeaderLabel.text = [NSString stringWithFormat:@"Content %i", pageIndex];
-      contentHeaderLabel.textColor = [UIColor whiteColor];
-      contentHeaderLabel.backgroundColor = [UIColor grayColor];
-      contentHeaderLabel.center = contentHeaderView.center;
-      [contentHeaderView addSubview:contentHeaderLabel];
+      _termBrowsePhotosScrollView.frame = contentHeaderView.frame;
+      [contentHeaderView addSubview:_termBrowsePhotosScrollView];
+      self.searchButton.hidden = YES;
+      self.buttonSectionsView.hidden = YES;
     }
       break;
-    default: {
-      
-      if (termIndex < self.termKeysFromDefault.count) {
-        NSString *termFromDefault = [self.termKeysFromDefault objectAtIndex:(termIndex)];
+    default:
+      if (termIndex < self.headerTermKeys.count) {
+        NSString *termFromDefault = [self.headerTermKeys objectAtIndex:(termIndex)];
         _tableView = [self dequeueReusableTableViewWithIdentifier:[NSString stringWithFormat:@"TableViewID%@", termFromDefault]];
         _tableView = [[UITableView alloc] init];
         _tableView.tag = termIndex;
@@ -429,11 +806,17 @@ CGFloat smallMoving = 25;
         _tableView.dataSource = self;
         _tableView.delegate = self;
         [contentHeaderView addSubview:_tableView];
-      } else {
+        
+        // if empty need to loading
+        [self checkPerpareQueryAPIData:[self.headerTermKeys objectAtIndex:termIndex]];
+        
+        self.searchButton.hidden = NO;
+        self.buttonSectionsView.hidden = NO;
       }
-    }
       break;
   }
+  
+
   
   return contentHeaderView;
 }
@@ -462,14 +845,6 @@ CGFloat smallMoving = 25;
   }
   
   NSInteger numberOfRows = 0;
-  switch (pageIndex) {
-    case 1:
-      numberOfRows = 5;
-      break;
-    default:
-      numberOfRows = 20;
-      break;
-  }
   return numberOfRows;
 }
 
@@ -479,13 +854,12 @@ CGFloat smallMoving = 25;
   __block NSIndexPath *tempIndexPath = indexPath;
   
   NSInteger pageIndex = tableView.tag;
-  if (pageIndex < self.termKeysFromDefault.count) {
+  if (pageIndex < self.headerTermKeys.count) {
     
-    NSString *key = [self.termKeysFromDefault objectAtIndex:(pageIndex)];
+    NSString *key = [self.headerTermKeys objectAtIndex:(pageIndex)];
     // Check data
-    NSArray *dataFromTerms = [self.termDataFromDefault objectForKey:@"terms"];
     
-    for (NSDictionary *eachDataTerm  in dataFromTerms) {
+    for (NSDictionary *eachDataTerm  in self.contentDictData) {
       if ([[eachDataTerm objectForKey:@"key"] isEqualToString:key]) {
         NSDictionary *currentSource = [[eachDataTerm objectForKey:@"sources"] objectAtIndex:indexPath.row];
         NSString *title = [currentSource objectForKey:@"title"];
@@ -549,28 +923,28 @@ CGFloat smallMoving = 25;
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
   
-  NSArray *currentSourceArray = [self sourceWithGivenDefaultDataSet:tableView.tag];
-  NSDictionary *currentSource = [currentSourceArray objectAtIndex:indexPath.row];
-  
-  NSString *imageURL = [currentSource objectForKey:@"imageURL"];
-  if (NIIsStringWithAnyText(imageURL)) {
-    if ([cell isKindOfClass:[EPSourceImageCell class]]) {
-      [self requestImageRequestProgressFromCell:cell indexPath:indexPath imageURL:imageURL];
-    } else {
-      [self requestImageFromCell:cell indexPath:indexPath imageURL:imageURL];
+  if (tableView == self.tableView) {
+    NSArray *currentSourceArray = [self sourceWithGivenDefaultDataSet:tableView.tag];
+    NSDictionary *currentSource = [currentSourceArray objectAtIndex:indexPath.row];
+    
+    NSString *imageURL = [currentSource objectForKey:@"imageURL"];
+    if (NIIsStringWithAnyText(imageURL)) {
+      if ([cell isKindOfClass:[EPSourceImageCell class]]) {
+        [self requestImageRequestProgressFromCell:cell indexPath:indexPath imageURL:imageURL];
+      } else {
+        [self requestImageFromCell:cell indexPath:indexPath imageURL:imageURL];
+      }
     }
   }
-  
-  
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+  
   NSInteger pageIndex = tableView.tag;
-  if (pageIndex < self.termKeysFromDefault.count) {
-    NSString *key = [self.termKeysFromDefault objectAtIndex:(pageIndex)];
+  if (pageIndex < self.headerTermKeys.count) {
+    NSString *key = [self.headerTermKeys objectAtIndex:(pageIndex)];
     // Check data
-    NSArray *dataFromTerms = [self.termDataFromDefault objectForKey:@"terms"];
-    for (NSDictionary *eachDataTerm  in dataFromTerms) {
+    for (NSDictionary *eachDataTerm  in self.contentDictData) {
       if ([[eachDataTerm objectForKey:@"key"] isEqualToString:key]) {
         NSDictionary *currentSource = [[eachDataTerm objectForKey:@"sources"] objectAtIndex:indexPath.row];
         NSString *sourceType = [currentSource objectForKey:@"type"];
@@ -592,6 +966,7 @@ CGFloat smallMoving = 25;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   UITableViewCell *currentCell = [tableView cellForRowAtIndexPath:indexPath];
   currentCell.selected = NO;
+
   NSArray *currentSourceArray = [self sourceWithGivenDefaultDataSet:tableView.tag];
   NSDictionary *currentSource = [currentSourceArray objectAtIndex:indexPath.row];
   if ([currentSource objectForKey:@"url"]) {
@@ -605,18 +980,83 @@ CGFloat smallMoving = 25;
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-  self.searchButton.hidden = (scrollView.contentOffset.y > self.view.frame.size.height / 2);
-  self.buttonSectionsView.hidden = self.searchButton.hidden;
+  
+  if (self.pagingScrollView.centerPageIndex >= kCountAbout + kCountHome) {
+    // No hide
+  } else {
+    self.searchButton.hidden = YES;
+    self.buttonSectionsView.hidden = YES;
+  }
+
+  
+  
+
 }
 
 #pragma mark - EPSearchKeywordViewControllerDelegate
 
-- (void)searchKeywordViewController:(EPSearchKeywordViewController *)searchKeywordViewController didinishEnterSearchKeyword:(NSString *)searchKeyword {
+- (void)searchKeywordViewController:(EPSearchKeywordViewController *)searchKeywordViewController didFinishEnterSearchKeyword:(NSString *)searchKeyword {
   [searchKeywordViewController dismissModalViewControllerAnimated:YES];
   
-  EPQueryViewController *queryViewController = [[EPQueryViewController alloc] initWithKeyword:searchKeyword];
+  self.queryViewController.queryType = EPQueryTypeInput;
+  self.queryViewController.delegate = self;
+  [self.queryViewController.keywords addObject:searchKeyword];
+  self.queryViewController.needTranslate = NO;
   
-  [self.navigationController presentPopupViewController:queryViewController animationType:MJPopupViewAnimationSlideBottomTop];
+  [self.queryViewController performSearch];
+  [self.navigationController presentPopupViewController:self.queryViewController animationType:MJPopupViewAnimationSlideBottomTop];
+}
+
+#pragma mark - EPQueryViewControllerDelegate
+
+- (void)queryViewController:(EPQueryViewController *)queryViewController didCancelhWithQuery:(NSString *)searchKeyword {
+  [self.navigationController dismissPopupViewControllerWithanimationType:MJPopupViewAnimationSlideBottomBottom];
+}
+
+- (void)queryViewController:(EPQueryViewController *)queryViewController didFinishWithQuery:(NSString *)searchKeyword canEat:(BOOL)canEat {
+
+  // Saving result
+  if (![self.headerTermKeys containsObject:searchKeyword]) {
+    [self.headerTermKeys addObject:searchKeyword];
+    
+    NSMutableDictionary *termWithDataDict = [[NSMutableDictionary alloc] init];
+    [termWithDataDict setObject:searchKeyword forKey:@"key"];
+    [self.contentDictData addObject:termWithDataDict];
+    
+    [[EPTermsStorageManager defaultManager] load];
+    NSMutableDictionary *termsUserSavedDictData = [[EPTermsStorageManager defaultManager] termsFromUserSaved];
+    [termsUserSavedDictData setObject:self.headerTermKeys forKey:@"termKeys"];
+    [termsUserSavedDictData setObject:self.contentDictData forKey:@"terms"];
+    [[EPTermsStorageManager defaultManager] save];
+
+    // Add a photo box to photos grid
+    // TODO: grab image url from query result
+    NSString *imageURL = [termWithDataDict objectForKey:@"imageURL"];
+    EPTermPhotoBox *box = [EPTermPhotoBox photoBoxForIndex:[self.headerTermKeys count] withSize:CGSizeMake(148, 148) imageURL:imageURL];
+    __weak EPTermPhotoBox *weakBox = box;
+    __weak typeof(self) weakSelf = self;
+    box.onTap = ^{
+      NSInteger index = weakBox.tag;
+      [weakSelf.headerCarousel scrollToItemAtIndex:index + kCountAbout + kCountHome animated:YES];
+    };
+    [self.photosGrid.boxes addObject:box];
+    
+  } else {
+    NIDPRINT(@"Already exist");
+  }
+
+  [self.headerCarousel reloadData];
+  [self.pagingScrollView reloadData];
+  
+  // Scroll to last one
+  [self.headerCarousel scrollToItemAtIndex:self.headerCarousel.numberOfItems animated:YES];
+  
+  [self.navigationController dismissPopupViewControllerWithanimationType:MJPopupViewAnimationSlideBottomTop];
+}
+
+- (void)queryViewController:(EPQueryViewController *)queryViewController retryWithSearching:(NSString *)searchKeyword {
+  [self.navigationController dismissPopupViewControllerWithanimationType:MJPopupViewAnimationSlideBottomBottom];
+  [self.navigationController presentModalViewController:self.searchKeywordViewController animated:NO];
 }
 
 
@@ -624,6 +1064,12 @@ CGFloat smallMoving = 25;
 
 - (void)iqEnginesViewController:(EPIQEnginesViewController *)iqEnginesViewController didFinishWithLabels:(NSArray *)labelsArray{
   NSLog(@"Labels:%@",labelsArray);
+  EPQueryViewController* imageQueryViewController = [[EPQueryViewController alloc] initWithKeywords:labelsArray];
+  imageQueryViewController.queryType = EPQueryTypeCamera;
+  imageQueryViewController.delegate = self;
+  [imageQueryViewController performSearch];
+  [self.navigationController presentPopupViewController:imageQueryViewController animationType:MJPopupViewAnimationSlideBottomTop];
+  
 }
 
 
