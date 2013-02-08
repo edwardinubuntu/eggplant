@@ -1,4 +1,98 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2057" systemVersion="12C60" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="EPMImage" representedClassName="EPMImage" syncable="YES">
+        <attribute name="height" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="imageType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="width" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="instagram" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="EPMInstagram" inverseName="images" inverseEntity="EPMInstagram" syncable="YES"/>
+    </entity>
+    <entity name="EPMInstagram" representedClassName="EPMInstagram" syncable="YES">
+        <attribute name="link" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="images" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EPMImage" inverseName="instagram" inverseEntity="EPMImage" syncable="YES"/>
+    </entity>
+    <entity name="EPMWikiLangLink" representedClassName="EPMWikiLangLink" syncable="YES">
+        <attribute name="lang" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="term" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="EPMWikiTerm" inverseName="langLinks" inverseEntity="EPMWikiTerm" syncable="YES"/>
+    </entity>
+    <entity name="EPMWikiTerm" representedClassName="EPMWikiTerm" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="langLinks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EPMWikiLangLink" inverseName="term" inverseEntity="EPMWikiLangLink" syncable="YES"/>
+    </entity>
+    <entity name="EPMYKnowledge" representedClassName="EPMYKnowledge" syncable="YES">
+        <attribute name="askDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="subject" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="ICMIngredient" representedClassName="ICMIngredient" syncable="YES">
+        <attribute name="group" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hasPurchased" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="ingredientObjectID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="quantity" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="recipes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ICMRecipe" inverseName="ingredients" inverseEntity="ICMRecipe" syncable="YES"/>
+    </entity>
+    <entity name="ICMPhoto" representedClassName="ICMPhoto" syncable="YES">
+        <attribute name="largeURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mediumURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="smallURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="squareURL" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="recipe" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ICMRecipe" inverseName="photos" inverseEntity="ICMRecipe" syncable="YES"/>
+    </entity>
+    <entity name="ICMRecipe" representedClassName="ICMRecipe" syncable="YES">
+        <attribute name="commentsCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="dishesCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="facebookObjectID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="favoritesCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="hasDoneByLoginUser" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isFavoritedByUser" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="likesCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ranking" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="recipeDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="recipeObjectID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="tips" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="viewsCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ICMIngredient" inverseName="recipes" inverseEntity="ICMIngredient" syncable="YES"/>
+        <relationship name="photos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ICMPhoto" inverseName="recipe" inverseEntity="ICMPhoto" syncable="YES"/>
+        <relationship name="steps" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ICMStep" inverseName="recipe" inverseEntity="ICMStep" syncable="YES"/>
+        <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ICMUser" inverseName="recipes" inverseEntity="ICMUser" syncable="YES"/>
+    </entity>
+    <entity name="ICMStep" representedClassName="ICMStep" syncable="YES">
+        <relationship name="recipe" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ICMRecipe" inverseName="steps" inverseEntity="ICMRecipe" syncable="YES"/>
+    </entity>
+    <entity name="ICMUser" representedClassName="ICMUser" syncable="YES">
+        <attribute name="avatarURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="birthday" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="blogURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dishesCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="facebookUID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="followersCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="gender" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nickname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="provider" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="recipesCount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="userDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="recipes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ICMRecipe" inverseName="user" inverseEntity="ICMRecipe" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="EPMImage" positionX="538" positionY="264" width="128" height="118"/>
+        <element name="EPMInstagram" positionX="360" positionY="261" width="128" height="88"/>
+        <element name="EPMWikiLangLink" positionX="538" positionY="402" width="128" height="88"/>
+        <element name="EPMWikiTerm" positionX="358" positionY="396" width="128" height="73"/>
+        <element name="EPMYKnowledge" positionX="358" positionY="72" width="128" height="133"/>
+        <element name="ICMIngredient" positionX="153" positionY="69" width="128" height="133"/>
+        <element name="ICMPhoto" positionX="-234" positionY="45" width="128" height="118"/>
+        <element name="ICMRecipe" positionX="-36" positionY="72" width="128" height="313"/>
+        <element name="ICMStep" positionX="153" positionY="338" width="128" height="58"/>
+        <element name="ICMUser" positionX="-234" positionY="192" width="128" height="253"/>
+    </elements>
 </model>

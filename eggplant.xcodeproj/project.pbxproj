@@ -112,6 +112,16 @@
 		1CC40AE5162F5F4300DB04F0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1CC40AE7162F5F4300DB04F0 /* Localizable.strings */; };
 		1CC40AF8162F711600DB04F0 /* EPScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC40AF7162F711600DB04F0 /* EPScrollPageView.m */; };
 		474FCF439F934B07B7BB343D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC5336F5AC004F25805C6DBC /* libPods.a */; };
+		B515D87216C490F200546869 /* EPMWikiLangLink.m in Sources */ = {isa = PBXBuildFile; fileRef = B515D87116C490F200546869 /* EPMWikiLangLink.m */; };
+		B515D87516C490F200546869 /* EPMImage.m in Sources */ = {isa = PBXBuildFile; fileRef = B515D87416C490F200546869 /* EPMImage.m */; };
+		B515D87816C490F300546869 /* ICMPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = B515D87716C490F300546869 /* ICMPhoto.m */; };
+		B515D87B16C490F300546869 /* EPMYKnowledge.m in Sources */ = {isa = PBXBuildFile; fileRef = B515D87A16C490F300546869 /* EPMYKnowledge.m */; };
+		B515D87E16C490F300546869 /* ICMRecipe.m in Sources */ = {isa = PBXBuildFile; fileRef = B515D87D16C490F300546869 /* ICMRecipe.m */; };
+		B515D88116C490F300546869 /* EPMWikiTerm.m in Sources */ = {isa = PBXBuildFile; fileRef = B515D88016C490F300546869 /* EPMWikiTerm.m */; };
+		B515D88416C490F300546869 /* ICMIngredient.m in Sources */ = {isa = PBXBuildFile; fileRef = B515D88316C490F300546869 /* ICMIngredient.m */; };
+		B515D88716C490F300546869 /* ICMUser.m in Sources */ = {isa = PBXBuildFile; fileRef = B515D88616C490F300546869 /* ICMUser.m */; };
+		B515D88A16C490F300546869 /* EPMInstagram.m in Sources */ = {isa = PBXBuildFile; fileRef = B515D88916C490F300546869 /* EPMInstagram.m */; };
+		B515D88D16C490F300546869 /* ICMStep.m in Sources */ = {isa = PBXBuildFile; fileRef = B515D88C16C490F300546869 /* ICMStep.m */; };
 		B610E6751632708400114853 /* au_none.c in Sources */ = {isa = PBXBuildFile; fileRef = B610E5F11632708300114853 /* au_none.c */; };
 		B610E6761632708400114853 /* au_streaming.c in Sources */ = {isa = PBXBuildFile; fileRef = B610E5F21632708300114853 /* au_streaming.c */; };
 		B610E6771632708400114853 /* audio.c in Sources */ = {isa = PBXBuildFile; fileRef = B610E5F31632708300114853 /* audio.c */; };
@@ -440,6 +450,26 @@
 		1CC40AF6162F711600DB04F0 /* EPScrollPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPScrollPageView.h; sourceTree = "<group>"; };
 		1CC40AF7162F711600DB04F0 /* EPScrollPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPScrollPageView.m; sourceTree = "<group>"; };
 		3D2E77B0AA1D4CB683DB4B3C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		B515D87016C490F200546869 /* EPMWikiLangLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = EPMWikiLangLink.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		B515D87116C490F200546869 /* EPMWikiLangLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EPMWikiLangLink.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		B515D87316C490F200546869 /* EPMImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = EPMImage.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		B515D87416C490F200546869 /* EPMImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EPMImage.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		B515D87616C490F300546869 /* ICMPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ICMPhoto.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		B515D87716C490F300546869 /* ICMPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ICMPhoto.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		B515D87916C490F300546869 /* EPMYKnowledge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = EPMYKnowledge.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		B515D87A16C490F300546869 /* EPMYKnowledge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EPMYKnowledge.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		B515D87C16C490F300546869 /* ICMRecipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ICMRecipe.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		B515D87D16C490F300546869 /* ICMRecipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ICMRecipe.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		B515D87F16C490F300546869 /* EPMWikiTerm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = EPMWikiTerm.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		B515D88016C490F300546869 /* EPMWikiTerm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EPMWikiTerm.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		B515D88216C490F300546869 /* ICMIngredient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ICMIngredient.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		B515D88316C490F300546869 /* ICMIngredient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ICMIngredient.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		B515D88516C490F300546869 /* ICMUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ICMUser.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		B515D88616C490F300546869 /* ICMUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ICMUser.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		B515D88816C490F300546869 /* EPMInstagram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = EPMInstagram.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		B515D88916C490F300546869 /* EPMInstagram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EPMInstagram.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		B515D88B16C490F300546869 /* ICMStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ICMStep.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		B515D88C16C490F300546869 /* ICMStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ICMStep.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		B610E5C91632708300114853 /* cst_alloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cst_alloc.h; sourceTree = "<group>"; };
 		B610E5CA1632708300114853 /* cst_audio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cst_audio.h; sourceTree = "<group>"; };
 		B610E5CB1632708300114853 /* cst_cart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cst_cart.h; sourceTree = "<group>"; };
@@ -879,6 +909,7 @@
 				1CC40AF5162F70F800DB04F0 /* Views */,
 				1CB1AD8B162B792B0068EA0D /* View Controllers */,
 				1C878531162A6534005D3672 /* Data Objects */,
+				B515D85116C490C700546869 /* Core Data Objects */,
 				1CC40ADD162F56D300DB04F0 /* Managers */,
 				1C878523162A638D005D3672 /* Data Models */,
 				1C878535162A65B5005D3672 /* Categories */,
@@ -1130,6 +1161,33 @@
 				1CC40AF7162F711600DB04F0 /* EPScrollPageView.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		B515D85116C490C700546869 /* Core Data Objects */ = {
+			isa = PBXGroup;
+			children = (
+				B515D87C16C490F300546869 /* ICMRecipe.h */,
+				B515D87D16C490F300546869 /* ICMRecipe.m */,
+				B515D88516C490F300546869 /* ICMUser.h */,
+				B515D88616C490F300546869 /* ICMUser.m */,
+				B515D87616C490F300546869 /* ICMPhoto.h */,
+				B515D87716C490F300546869 /* ICMPhoto.m */,
+				B515D88B16C490F300546869 /* ICMStep.h */,
+				B515D88216C490F300546869 /* ICMIngredient.h */,
+				B515D88316C490F300546869 /* ICMIngredient.m */,
+				B515D88C16C490F300546869 /* ICMStep.m */,
+				B515D88816C490F300546869 /* EPMInstagram.h */,
+				B515D88916C490F300546869 /* EPMInstagram.m */,
+				B515D87316C490F200546869 /* EPMImage.h */,
+				B515D87416C490F200546869 /* EPMImage.m */,
+				B515D87F16C490F300546869 /* EPMWikiTerm.h */,
+				B515D88016C490F300546869 /* EPMWikiTerm.m */,
+				B515D87916C490F300546869 /* EPMYKnowledge.h */,
+				B515D87A16C490F300546869 /* EPMYKnowledge.m */,
+				B515D87016C490F200546869 /* EPMWikiLangLink.h */,
+				B515D87116C490F200546869 /* EPMWikiLangLink.m */,
+			);
+			name = "Core Data Objects";
 			sourceTree = "<group>";
 		};
 		B610E5C116326F7D00114853 /* Dependencies */ = {
@@ -1878,6 +1936,16 @@
 				B6A4BFE11632F518007F9D29 /* ICIngredientTermModel.m in Sources */,
 				B6A4BFF316333984007F9D29 /* EPSplashViewController.m in Sources */,
 				1C35938A163367390083427E /* EPAcknowledgementsViewController.m in Sources */,
+				B515D87216C490F200546869 /* EPMWikiLangLink.m in Sources */,
+				B515D87516C490F200546869 /* EPMImage.m in Sources */,
+				B515D87816C490F300546869 /* ICMPhoto.m in Sources */,
+				B515D87B16C490F300546869 /* EPMYKnowledge.m in Sources */,
+				B515D87E16C490F300546869 /* ICMRecipe.m in Sources */,
+				B515D88116C490F300546869 /* EPMWikiTerm.m in Sources */,
+				B515D88416C490F300546869 /* ICMIngredient.m in Sources */,
+				B515D88716C490F300546869 /* ICMUser.m in Sources */,
+				B515D88A16C490F300546869 /* EPMInstagram.m in Sources */,
+				B515D88D16C490F300546869 /* ICMStep.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
