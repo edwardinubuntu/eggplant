@@ -77,59 +77,67 @@
     usleep(1000);
   }
 
-  ICMRecipe *newRecipe = [ICMRecipe recipeWithResponseObject:self.testObject inManagedObjectContext:self.managedObjectContext];
-  STAssertEqualObjects(([NSString stringWithFormat:@"%@", newRecipe.recipeObjectID]),
-                       ([NSString stringWithFormat:@"%@", self.testObject[@"id"]]),
-                       @"Assert recipeObjectID");
-  STAssertEqualObjects(newRecipe.name, self.testObject[@"name"], @"Assert name");
-  STAssertEqualObjects(newRecipe.recipeDescription, self.testObject[@"description"], @"Assert recipeDescription");
-  STAssertEqualObjects(newRecipe.tips, self.testObject[@"tips"], @"Assert tips");
-  STAssertEqualObjects(newRecipe.url, self.testObject[@"url"], @"Assert url");
+  if (self.testObject) {
+    ICMRecipe *newRecipe = [ICMRecipe recipeWithResponseObject:self.testObject inManagedObjectContext:self.managedObjectContext];
+    STAssertEqualObjects(([NSString stringWithFormat:@"%@", newRecipe.recipeObjectID]),
+                         ([NSString stringWithFormat:@"%@", self.testObject[@"id"]]),
+                         @"Assert recipeObjectID");
+    STAssertEqualObjects(newRecipe.name, self.testObject[@"name"], @"Assert name");
+    STAssertEqualObjects(newRecipe.recipeDescription, self.testObject[@"description"], @"Assert recipeDescription");
+    STAssertEqualObjects(newRecipe.tips, self.testObject[@"tips"], @"Assert tips");
+    STAssertEqualObjects(newRecipe.url, self.testObject[@"url"], @"Assert url");
 
-  STAssertEquals([newRecipe.favoritesCount integerValue], [self.testObject[@"favorites_count"] integerValue], @"Assert favoritesCount");
-  STAssertEquals([newRecipe.likesCount integerValue], [self.testObject[@"likes_count"] integerValue], @"Assert likesCount");
-  STAssertEquals([newRecipe.dishesCount integerValue], [self.testObject[@"dishes_count"] integerValue], @"Assert dishesCount");
-  STAssertEquals([newRecipe.viewsCount integerValue], [self.testObject[@"views_count"] integerValue], @"Assert viewsCount");
-  STAssertEquals([newRecipe.ranking floatValue], [self.testObject[@"ranking"] floatValue], @"Assert ranking");
+    STAssertEquals([newRecipe.favoritesCount integerValue], [self.testObject[@"favorites_count"] integerValue], @"Assert favoritesCount");
+    STAssertEquals([newRecipe.likesCount integerValue], [self.testObject[@"likes_count"] integerValue], @"Assert likesCount");
+    STAssertEquals([newRecipe.dishesCount integerValue], [self.testObject[@"dishes_count"] integerValue], @"Assert dishesCount");
+    STAssertEquals([newRecipe.viewsCount integerValue], [self.testObject[@"views_count"] integerValue], @"Assert viewsCount");
+    STAssertEquals([newRecipe.ranking floatValue], [self.testObject[@"ranking"] floatValue], @"Assert ranking");
 
-  if ([newRecipe.hasDoneByLoginUser boolValue]) {
-    STAssertEqualObjects(@"yes", self.testObject[@"done_by_login_user"], @"Assert hasDoneByLoginUser");
-  } else {
-    STAssertEqualObjects(@"no", self.testObject[@"done_by_login_user"], @"Assert hasDoneByLoginUser");
+    if ([newRecipe.hasDoneByLoginUser boolValue]) {
+      STAssertEqualObjects(@"yes", self.testObject[@"done_by_login_user"], @"Assert hasDoneByLoginUser");
+    } else {
+      STAssertEqualObjects(@"no", self.testObject[@"done_by_login_user"], @"Assert hasDoneByLoginUser");
+    }
+
+    if ([newRecipe.isFavoritedByUser boolValue]) {
+      STAssertEqualObjects(@"yes", self.testObject[@"favorited_by_login_user"], @"Assert isFavoritedByUser");
+    } else {
+      STAssertEqualObjects(@"no", self.testObject[@"favorited_by_login_user"], @"Assert isFavoritedByUser");
+    }
+
+    ICMUser *user = newRecipe.user;
+    NSDictionary *userObject = self.testObject[@"user"];
+
+    STAssertEqualObjects(user.username, userObject[@"username"], @"Assert user name");
+    STAssertEqualObjects(user.nickname, userObject[@"nickname"], @"Assert user nickname");
+    STAssertEqualObjects(user.avatarURL, userObject[@"avatar_image_url"], @"Assert user name");
+
+    ICMPhoto *photo = [newRecipe.photos anyObject];
+    NSDictionary *photoObject = self.testObject[@"cover_pictures"];
+
+    STAssertEqualObjects(photo.largeURL, photoObject[@"large"][@"url"], @"Assert largeURL");
+    STAssertEqualObjects(photo.mediumURL, photoObject[@"medium"][@"url"], @"Assert mediumURL");
+    STAssertEqualObjects(photo.smallURL, photoObject[@"small"][@"url"], @"Assert smallURL");
+    STAssertEqualObjects(photo.squareURL, photoObject[@"original"][@"url"], @"Assert squareURL");
+
+    // Clean up
+    [self.managedObjectContext deleteObject:newRecipe];
+    [self.managedObjectContext deleteObject:user];
+    [self.managedObjectContext deleteObject:photo];
+
+    NSArray *foundRecipes = [ICMRecipe selectRecipesWithRecipeObjectID:self.testObject[@"id"] inManagedObjectContext:self.managedObjectContext];
+    STAssertTrue([foundRecipes count] == 0, @"Delete test recipe");
+    NSArray *foundUsers = [ICMUser selectUsersWithUserName:userObject[@"username"] inManagedObjectContext:self.managedObjectContext];
+    STAssertTrue([foundUsers count] == 0, @"Delete test user");
+    NSArray *foundPhotos = [ICMPhoto selectPhotosWithLargeURL:photoObject[@"large"][@"url"] inManagedObjectContext:self.managedObjectContext];
+    STAssertTrue([foundPhotos count] == 0, @"Delete test photo");
+
+    NSError *error = nil;
+    [self.managedObjectContext save:&error];
+    if (error != nil) {
+      NIDPRINT(@"Error %@", [error localizedDescription]);
+    }
   }
-
-  if ([newRecipe.isFavoritedByUser boolValue]) {
-    STAssertEqualObjects(@"yes", self.testObject[@"favorited_by_login_user"], @"Assert isFavoritedByUser");
-  } else {
-    STAssertEqualObjects(@"no", self.testObject[@"favorited_by_login_user"], @"Assert isFavoritedByUser");
-  }
-
-  ICMUser *user = newRecipe.user;
-  NSDictionary *userObject = self.testObject[@"user"];
-
-  STAssertEqualObjects(user.username, userObject[@"username"], @"Assert user name");
-  STAssertEqualObjects(user.nickname, userObject[@"nickname"], @"Assert user nickname");
-  STAssertEqualObjects(user.avatarURL, userObject[@"avatar_image_url"], @"Assert user name");
-
-  ICMPhoto *photo = [newRecipe.photos anyObject];
-  NSDictionary *photoObject = self.testObject[@"cover_pictures"];
-
-  STAssertEqualObjects(photo.largeURL, photoObject[@"large"][@"url"], @"Assert largeURL");
-  STAssertEqualObjects(photo.mediumURL, photoObject[@"medium"][@"url"], @"Assert mediumURL");
-  STAssertEqualObjects(photo.smallURL, photoObject[@"small"][@"url"], @"Assert smallURL");
-  STAssertEqualObjects(photo.squareURL, photoObject[@"original"][@"url"], @"Assert squareURL");
-
-  // Clean up
-  [self.managedObjectContext deleteObject:newRecipe];
-  [self.managedObjectContext deleteObject:user];
-  [self.managedObjectContext deleteObject:photo];
-
-  NSArray *foundRecipes = [ICMRecipe selectRecipesWithRecipeObjectID:self.testObject[@"id"] inManagedObjectContext:self.managedObjectContext];
-  STAssertTrue([foundRecipes count] == 0, @"Delete test recipe");
-  NSArray *foundUsers = [ICMUser selectUsersWithUserName:userObject[@"username"] inManagedObjectContext:self.managedObjectContext];
-  STAssertTrue([foundUsers count] == 0, @"Delete test user");
-  NSArray *foundPhotos = [ICMPhoto selectPhotosWithLargeURL:photoObject[@"large"][@"url"] inManagedObjectContext:self.managedObjectContext];
-  STAssertTrue([foundPhotos count] == 0, @"Delete test photo");
 }
 
 @end
