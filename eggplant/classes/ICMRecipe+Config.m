@@ -14,7 +14,7 @@
 + (NSArray *)selectRecipesWithRecipeObjectID:(NSInteger)objectID inManagedObjectContext:(NSManagedObjectContext *)context
 {
   NSFetchRequest *searchRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([self class])];
-  searchRequest.predicate = [NSPredicate predicateWithFormat:@"recipeObjectID = %@", objectID];
+  searchRequest.predicate = [NSPredicate predicateWithFormat:@"recipeObjectID = %d", objectID];
 
   NSError *error = nil;
   NSArray *foundRecipes = [context executeFetchRequest:searchRequest error:&error];
