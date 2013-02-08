@@ -7,22 +7,27 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ICIngredientTermModel.h"
 
 @protocol EPSearchKeywordViewControllerDelegate;
 
 @interface EPSearchKeywordViewController : UITableViewController <
   UISearchDisplayDelegate,
   UISearchBarDelegate
->
+> {
+@private
+  NSTimer *_timerToLoadTerm;
+  BOOL _isLoadingTermModel;
+}
 
 @property (nonatomic, assign) id delegate;
 @property (nonatomic, strong) UISearchBar *searchBar;
 @property (nonatomic, strong) UISearchDisplayController *searchDisplay;
-
+@property (nonatomic, strong) ICIngredientTermModel *termModel;
 @end
 
 @protocol EPSearchKeywordViewControllerDelegate <NSObject>
 
-- (void)searchKeywordViewController:(EPSearchKeywordViewController *)searchKeywordViewController didinishEnterSearchKeyword:(NSString *)searchKeyword;
+- (void)searchKeywordViewController:(EPSearchKeywordViewController *)searchKeywordViewController didFinishEnterSearchKeyword:(NSString *)searchKeyword;
 
 @end

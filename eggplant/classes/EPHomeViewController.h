@@ -14,6 +14,20 @@
 #import "EPSearchKeywordViewController.h"
 #import "EPQueryViewController.h"
 #import "EPIQEnginesViewController.h"
+#import "EPYKnowledgeSearchModel.h"
+#import "EPYKnowledge.h"
+#import "ICRecipesSearchModel.h"
+#import "EPPrivateTranslateModel.h"
+#import "EPInstagramTagsMediaModel.h"
+
+typedef enum {
+  EPScrollDirectionTypeNone,
+  EPScrollDirectionTypeRight,
+  EPScrollDirectionTypeLeft,
+  EPScrollDirectionTypeUp,
+  EPScrollDirectionTypeDown,
+  EPScrollDirectionTypeCrazy,
+} EPScrollDirectionType;
 
 @interface EPHomeViewController : EPViewController <
   EPIQEnginesViewControllerDelegate,
@@ -23,7 +37,10 @@
   NIPagingScrollViewDataSource,
   UITableViewDataSource,
   UITableViewDelegate
->
+> {
+
+  CGFloat lastContentOffset;
+}
 
 @property (nonatomic, strong) iCarousel *headerCarousel;
 @property (nonatomic, strong) UIButton *searchButton;
@@ -31,15 +48,24 @@
 @property (nonatomic, strong) UIButton *cameraButton;
 @property (nonatomic, strong) UIButton *writeButton;
 
-@property (nonatomic, strong) NSArray *termKeysFromDefault;
-@property (nonatomic, strong) NSDictionary *termDataFromDefault;
+@property (nonatomic, strong) NSMutableArray *headerTermKeys;
+@property (nonatomic, strong) NSMutableArray *contentDictData;
 
-@property (nonatomic, strong) NSMutableArray *termsFromUserSaved;
 @property (nonatomic, strong) NIPagingScrollView *pagingScrollView;
 
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UITableView *termBrowseTableView;
 @property (nonatomic, strong) NSMutableDictionary *recycledTableView;
 
 @property (nonatomic, strong) EPSearchKeywordViewController *searchKeywordViewController;
+
+@property (nonatomic, strong) EPQueryViewController *queryViewController;
+
+@property (nonatomic, strong) EPYKnowledgeSearchModel *yknowledgeSearchModel;
+@property (nonatomic, strong) ICRecipesSearchModel *recipesSearchModel;
+
+@property (nonatomic, strong) EPPrivateTranslateModel *privateTranslateModel;
+
+@property (nonatomic, strong) EPInstagramTagsMediaModel *instgramTagsMediaModel;
 
 @end

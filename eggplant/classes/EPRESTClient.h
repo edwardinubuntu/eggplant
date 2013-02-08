@@ -6,13 +6,14 @@
 //  Copyright (c) 2012年 Polydice Inc. All rights reserved.
 //
 
-#import "AFRESTClient.h"
+#import "AFHTTPClient.h"
 
-@interface EPRESTClient : AFRESTClient
+@interface EPRESTClient : AFHTTPClient
 
 + (EPRESTClient *)sharedYahooClient;
 + (EPRESTClient *)sharedWikiClient:(NSString *)lang;
 + (EPRESTClient *)sharedInstgramClient;
 + (EPRESTClient *)sharediCookClient;
++ (EPRESTClient *)sharedTranslateClient;
 
 @end

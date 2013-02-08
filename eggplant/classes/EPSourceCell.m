@@ -22,10 +22,11 @@
     self.imageView.layer.shouldRasterize = [[UIScreen mainScreen] scale];
     
     self.detailTextLabel.numberOfLines = 3;
+    self.detailTextLabel.textColor = [UIColor grayColor];
     [self.detailTextLabel setVerticalAlignmentTop];
     
     _sourceLabel = [[UILabel alloc] init];
-    self.sourceLabel.textColor = [UIColor colorWithHue:0.571 saturation:0.872 brightness:0.859 alpha:1];
+    self.sourceLabel.textColor = [UIColor lightGrayColor];
     self.sourceLabel.backgroundColor = [UIColor clearColor];
     self.sourceLabel.font = [UIFont systemFontOfSize:12.f];
     self.sourceLabel.highlightedTextColor = self.detailTextLabel.highlightedTextColor;

@@ -19,6 +19,11 @@
 }
 
 - (void)loadMore:(BOOL)more didFinishLoad:(requestDidFinishLoadBolck)requestDidFinishLoad loadWithError:(requestLoadWithErrorBlock)requestLoadWithError {
+  
+  if (!more) {
+    [self.knowledges removeAllObjects];
+  }
+  
   NSMutableString *path = [[NSMutableString alloc] init];
   [path appendFormat:@"v1/SEARCH?appid=%@", kYAHOO_APP_ID];
   [path appendFormat:@"&p=%@", [self.keywords encodeString:NSUTF8StringEncoding]];

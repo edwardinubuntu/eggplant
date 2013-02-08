@@ -62,8 +62,7 @@
       tempSelf.isLoading = NO;
       tempSelf.isLoaded = YES;
       NIDPRINT(@"Error %@", error.description);
-      NSError *newError = [tempSelf retrieveErrorResponseData:operation error:error];
-      requestLoadWithError(newError);
+      requestLoadWithError(error);
     }];
   }
 }

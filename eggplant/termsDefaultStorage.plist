@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>termKeys</key>
+	<array>
+		<string>茄</string>
+		<string>番茄</string>
+		<string>青椒</string>
+	</array>
 	<key>terms</key>
 	<array>
 		<dict>
@@ -11,20 +17,6 @@
 			<string>eggplant</string>
 			<key>sources</key>
 			<array>
-				<dict>
-					<key>imageURL</key>
-					<string>http://upload.wikimedia.org/wikipedia/commons/4/49/Solanum_melongena_ja02.jpg</string>
-					<key>type</key>
-					<string>wiki</string>
-					<key>url</key>
-					<string>http://en.wikipedia.org/wiki/Eggplant</string>
-					<key>title</key>
-					<string>Eggplant</string>
-					<key>detail</key>
-					<string>The eggplant, brinjal eggplant, aubergine, melongene, brinjal or guinea squash (Solanum melongena) is a plant of the family Solanaceae (also known as the nightshades) and genus Solanum. It bears a fruit of the same name, commonly used in cooking. As a nightshade, it is closely related to the tomato and potato. It was domesticated in India from Solanum incanum</string>
-					<key>sourceURL</key>
-					<string>en.wikipedia.org</string>
-				</dict>
 				<dict>
 					<key>type</key>
 					<string>wiki</string>
@@ -38,6 +30,20 @@
 					<string>茄（學名：Solanum melongena）常稱茄子，吳越人沿用宋代叫法稱爲落蘇，廣東人稱為矮瓜，是茄科茄屬一年生草本植物，熱帶為多年生。其結出的果實可食用，顏色多為紫色或紫黑色，也有淡綠色或白色品種，形狀上也有圓形，橢圓，梨形等各種。茄子是一種典型的蔬菜，根據品種的不同，食用方法多樣。</string>
 					<key>sourceURL</key>
 					<string>zh.wikipedia.org</string>
+				</dict>
+				<dict>
+					<key>imageURL</key>
+					<string>http://upload.wikimedia.org/wikipedia/commons/4/49/Solanum_melongena_ja02.jpg</string>
+					<key>type</key>
+					<string>wiki</string>
+					<key>url</key>
+					<string>http://en.wikipedia.org/wiki/Eggplant</string>
+					<key>title</key>
+					<string>Eggplant</string>
+					<key>detail</key>
+					<string>The eggplant, brinjal eggplant, aubergine, melongene, brinjal or guinea squash (Solanum melongena) is a plant of the family Solanaceae (also known as the nightshades) and genus Solanum. It bears a fruit of the same name, commonly used in cooking. As a nightshade, it is closely related to the tomato and potato. It was domesticated in India from Solanum incanum</string>
+					<key>sourceURL</key>
+					<string>en.wikipedia.org</string>
 				</dict>
 				<dict>
 					<key>imageURL</key>
@@ -206,12 +212,43 @@
 				</dict>
 			</array>
 		</dict>
-	</array>
-	<key>termKeys</key>
-	<array>
-		<string>茄</string>
-		<string>番茄</string>
-		<string>青椒</string>
+		<dict>
+			<key>key</key>
+			<string>青椒</string>
+			<key>termInEN</key>
+			<string>Green peppers</string>
+			<key>sources</key>
+			<array>
+				<dict>
+					<key>type</key>
+					<string>wiki</string>
+					<key>imageURL</key>
+					<string>http://upload.wikimedia.org/wikipedia/commons/1/1f/Poivrons_Luc_Viatour.jpg</string>
+					<key>url</key>
+					<string>http://en.wikipedia.org/wiki/Bell_peppers</string>
+					<key>title</key>
+					<string>Bell pepper</string>
+					<key>detail</key>
+					<string>Bell pepper, also known as sweet pepper or a pepper (in the United Kingdom) and capsicum (in India, Australia and New Zealand), is a cultivar group of the species Capsicum annuum. Cultivars of the plant produce fruits in different colors, including red, yellow, orange and green. Bell peppers are sometimes grouped with less pungent pepper varieties as &quot;sweet peppers&quot;. Peppers are native to Mexico, Central America and northern South America. Pepper seeds were later carried to Spain in 1493 and from there spread to other European, African and Asian countries. Today, China is the world&apos;s largest pepper producer, followed by Mexico.</string>
+					<key>sourceURL</key>
+					<string>en.wikipedia.org</string>
+				</dict>
+				<dict>
+					<key>type</key>
+					<string>wiki</string>
+					<key>imageURL</key>
+					<string>http://upload.wikimedia.org/wikipedia/commons/1/1f/Poivrons_Luc_Viatour.jpg</string>
+					<key>url</key>
+					<string>http://zh.wikipedia.org/wiki/%E8%8F%9C%E6%A4%92</string>
+					<key>title</key>
+					<string>菜椒</string>
+					<key>sourceURL</key>
+					<string>zh.wikipedia.org</string>
+					<key>detail</key>
+					<string>菜椒（學名：Capsicum annuum var. grossum）俗稱燈籠椒、柿子椒、甜椒，臺灣話也稱作大筒仔，是茄科辣椒屬辣椒的一個變種，分佈於中國大陸的南北各地，屬於“非人工引種栽培”類型植物 [1]。在東亞（尤其是中國），所出產的甜椒品種因多為青色，故也常常被稱為“青椒”。</string>
+				</dict>
+			</array>
+		</dict>
 	</array>
 </dict>
 </plist>

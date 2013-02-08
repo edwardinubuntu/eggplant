@@ -84,11 +84,11 @@
         for (EPYKnowledge *eachKnowledge in tempSelf.searchModel.knowledges) {
             NIDPRINT(@"eachKnowledge %@", eachKnowledge);
             
-            NSRange textRangeCook = [eachKnowledge.category rangeOfString:kCategoryCook];
-            NSRange textRangeIngredient= [eachKnowledge.category rangeOfString:kCategoryIngredient];
-            NSRange textRangePlant = [eachKnowledge.category rangeOfString:kCategoryPlant];
-            
-            NSRange unionRange = NSUnionRange(textRangeCook, NSUnionRange(textRangeIngredient, textRangePlant));
+          NSRange textRangeCook = [eachKnowledge.category rangeOfString:kCategoryCook];
+          NSRange textRangeIngredient= [eachKnowledge.category rangeOfString:kCategoryIngredient];
+          NSRange textRangePlant = [eachKnowledge.category rangeOfString:kCategoryPlant];
+          
+          NSRange unionRange = NSUnionRange(textRangeCook, NSUnionRange(textRangeIngredient, textRangePlant));
             if(unionRange.location != NSNotFound) {
                 checkCategoryPass = YES;
                 break;

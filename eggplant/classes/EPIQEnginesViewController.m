@@ -46,19 +46,29 @@
   [self.view addSubview:self.loadingIndicator];
   
   _bottomBar = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-44.f, 320.f, 44.f)];
-  self.bottomBar.backgroundColor = [UIColor blackColor];
+  self.bottomBar.backgroundColor = [UIColor clearColor];
   [self.view addSubview:self.bottomBar];
   
   _snapButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-  self.snapButton.frame = CGRectMake(0, 0, 60, 30);
-  self.snapButton.center = self.bottomBar.center;
-  self.snapButton.titleLabel.text = @"拍照";
+ 
+  _snapButton.layer.cornerRadius = 7.f;
+  _snapButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
+  _snapButton.layer.borderWidth = 3.f;
+  [self.snapButton setImage:[UIImage imageNamed:@"86-camera"] forState:UIControlStateNormal];
+
+  self.snapButton.frame = CGRectMake(0, 0, 70, 44);
+  self.snapButton.center = CGPointMake( self.bottomBar.center.x,  self.bottomBar.center.y-20);
   [self.snapButton addTarget:self action:@selector(onSnapButton:) forControlEvents:UIControlEventTouchUpInside];
   [self.view addSubview:self.snapButton];
   
   _closeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-  self.closeButton.frame = CGRectMake(10, self.view.frame.size.height-35.f, 30, 30);
-  self.closeButton.titleLabel.text = @"X";
+  _closeButton.layer.cornerRadius = 7.f;
+  _closeButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
+  _closeButton.layer.borderWidth = 3.f;
+  [_closeButton setTitle:@"X" forState:UIControlStateNormal];
+  [_closeButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+  [_closeButton.titleLabel setFont:[UIFont boldSystemFontOfSize:20]];
+  self.closeButton.frame = CGRectMake(20, self.view.frame.size.height-64, 44, 44);
   [self.closeButton addTarget:self action:@selector(onCloseButton:) forControlEvents:UIControlEventTouchUpInside];
   [self.view addSubview:self.closeButton];
 }
@@ -122,7 +132,12 @@
     
     NSMutableArray *labelsArray = [NSMutableArray array];
     for (NSDictionary* termDictionary in results) {
-      [labelsArray addObject:[termDictionary objectForKey:@"labels"]];
+      if ([[[termDictionary objectForKey:@"labels"] componentsSeparatedByString:@" "] count] > 1) {
+        NSString *firstTerm = [[[termDictionary objectForKey:@"labels"] componentsSeparatedByString:@" "] objectAtIndex:0];
+        [labelsArray addObject:firstTerm];
+      } else {
+        [labelsArray addObject:[termDictionary objectForKey:@"labels"]];
+      }
     }
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(iqEnginesViewController:didFinishWithLabels:)]) {
