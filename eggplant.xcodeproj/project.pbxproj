@@ -125,6 +125,8 @@
 		B515D89116C4961700546869 /* ICMRecipe+Config.m in Sources */ = {isa = PBXBuildFile; fileRef = B515D89016C4961700546869 /* ICMRecipe+Config.m */; };
 		B515D89416C49D0200546869 /* ICMUser+Config.m in Sources */ = {isa = PBXBuildFile; fileRef = B515D89316C49D0200546869 /* ICMUser+Config.m */; };
 		B515D89716C4A27F00546869 /* ICMPhoto+Config.m in Sources */ = {isa = PBXBuildFile; fileRef = B515D89616C4A27F00546869 /* ICMPhoto+Config.m */; };
+		B515D89D16C4B1C700546869 /* ICMRecipeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B515D89C16C4B1C700546869 /* ICMRecipeTests.m */; };
+		B5CE735616C4C8F700B136C0 /* CoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CE735516C4C8F700B136C0 /* CoreDataStack.m */; };
 		B610E6751632708400114853 /* au_none.c in Sources */ = {isa = PBXBuildFile; fileRef = B610E5F11632708300114853 /* au_none.c */; };
 		B610E6761632708400114853 /* au_streaming.c in Sources */ = {isa = PBXBuildFile; fileRef = B610E5F21632708300114853 /* au_streaming.c */; };
 		B610E6771632708400114853 /* audio.c in Sources */ = {isa = PBXBuildFile; fileRef = B610E5F31632708300114853 /* audio.c */; };
@@ -479,6 +481,10 @@
 		B515D89316C49D0200546869 /* ICMUser+Config.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ICMUser+Config.m"; sourceTree = "<group>"; };
 		B515D89516C4A27F00546869 /* ICMPhoto+Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ICMPhoto+Config.h"; sourceTree = "<group>"; };
 		B515D89616C4A27F00546869 /* ICMPhoto+Config.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ICMPhoto+Config.m"; sourceTree = "<group>"; };
+		B515D89B16C4B1C700546869 /* ICMRecipeTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICMRecipeTests.h; sourceTree = "<group>"; };
+		B515D89C16C4B1C700546869 /* ICMRecipeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICMRecipeTests.m; sourceTree = "<group>"; };
+		B5CE735416C4C8F700B136C0 /* CoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataStack.h; sourceTree = "<group>"; };
+		B5CE735516C4C8F700B136C0 /* CoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataStack.m; sourceTree = "<group>"; };
 		B610E5C91632708300114853 /* cst_alloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cst_alloc.h; sourceTree = "<group>"; };
 		B610E5CA1632708300114853 /* cst_audio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cst_audio.h; sourceTree = "<group>"; };
 		B610E5CB1632708300114853 /* cst_cart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cst_cart.h; sourceTree = "<group>"; };
@@ -1074,6 +1080,7 @@
 		1CB1AD80162B713B0068EA0D /* classes */ = {
 			isa = PBXGroup;
 			children = (
+				B515D89A16C4B18900546869 /* Core Data */,
 				1CB0748A16319D670028E3C9 /* iCook */,
 				1CA4FDF8163156FA0061E957 /* Instagram */,
 				1CC40ACE162F0B1700DB04F0 /* Wiki */,
@@ -1211,6 +1218,17 @@
 				B515D89616C4A27F00546869 /* ICMPhoto+Config.m */,
 			);
 			name = "Core Data Categories";
+			sourceTree = "<group>";
+		};
+		B515D89A16C4B18900546869 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				B5CE735416C4C8F700B136C0 /* CoreDataStack.h */,
+				B5CE735516C4C8F700B136C0 /* CoreDataStack.m */,
+				B515D89B16C4B1C700546869 /* ICMRecipeTests.h */,
+				B515D89C16C4B1C700546869 /* ICMRecipeTests.m */,
+			);
+			name = "Core Data";
 			sourceTree = "<group>";
 		};
 		B610E5C116326F7D00114853 /* Dependencies */ = {
@@ -1984,6 +2002,8 @@
 				1CC40AC6162F01B500DB04F0 /* EPWikiQueryLangLinksModelTests.m in Sources */,
 				1CA4FDFB163158DE0061E957 /* EPInstagramTagsMediaModelTests.m in Sources */,
 				1CB0748D16319D6E0028E3C9 /* ICRecipesSearchModelTests.m in Sources */,
+				B515D89D16C4B1C700546869 /* ICMRecipeTests.m in Sources */,
+				B5CE735616C4C8F700B136C0 /* CoreDataStack.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
