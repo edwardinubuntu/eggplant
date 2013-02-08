@@ -7,6 +7,7 @@
 
 #import "ICMRecipe+Config.h"
 #import "ICMUser+Config.h"
+#import "ICMPhoto+Config.h"
 
 @implementation ICMRecipe (Config)
 
@@ -62,6 +63,9 @@
       recipe.user = [ICMUser userWithResponseObject:userObject inManagedObjectContext:context];
 
       // TODO: link photos
+      NSDictionary *photoObject = [responseObject objectForKey:@"cover_pictures"];
+      ICMPhoto *photo = [ICMPhoto photoWithResponseObject:photoObject inManagedObjectContext:context];
+      [recipe addPhotosObject:photo];
 
       // save
       NSError *error = nil;
